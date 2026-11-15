@@ -1,0 +1,4 @@
+# Optional, only for public GDELT geolocated news lookup.
+# Does not activate the other 20 OpenOSINT tools.
+-r requirements.txt
+openosint==2.38.1

@@ -1,0 +1,18 @@
+import assert from 'node:assert/strict';
+const key='simpul_workspace_v2';
+const saved={version:2,project:{name:'Pilot lama'},observations:[{source:'manual',id:'test'}],pipeline:[],sessions:[],equipmentMode:'fpga',edgeBenchmark:{baselineW:7},edgeData:{devices:[]},equipmentPrices:{fpga:5000000,phone:0}};
+let memory=new Map([[key,JSON.stringify(saved)]]);
+globalThis.localStorage={getItem:k=>memory.get(k)??null,setItem:(k,v)=>memory.set(k,v)};
+const {getState,updateState,exportState,importState}=await import('../js/store.js');
+const state=getState();
+assert.equal(state.project.name,'Pilot lama');
+assert.equal(state.observations.length,1);
+assert.equal(state.equipmentMode,'phone');
+assert.ok(!('edgeBenchmark' in state));
+assert.ok(!('edgeData' in state));
+assert.ok(!('fpga' in state.equipmentPrices));
+updateState(s=>({...s,observations:[...s.observations,{id:'new',source:'manual'}]}));
+assert.equal(getState().observations.length,2);
+importState(exportState());
+assert.equal(getState().observations.length,2);
+console.log('PASS: legacy state data preserved; obsolete FPGA settings removed');

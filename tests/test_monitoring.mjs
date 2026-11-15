@@ -1,0 +1,16 @@
+import assert from 'node:assert/strict';
+import {initialData} from '../js/data.js';
+import {filterEvents,timeSeries,monitorStats,monitorAlerts} from '../js/monitoring.js';
+const state=initialData();
+assert.equal(state.observations.length,8);
+assert.equal(monitorStats(state.observations,state.sessions).manual,0);
+assert.equal(filterEvents(state.observations,{source:'manual'}).length,0);
+assert.equal(monitorStats(state.observations,state.sessions).demo,8);
+const x={id:'manual-test',at:new Date().toISOString(),zone:'Zona A',type:'Jemput',vehicle:'Mobil',duration:42,source:'manual'};
+const events=[...state.observations,x];
+assert.equal(filterEvents(events,{source:'manual'}).length,1);
+assert.equal(monitorStats(events,state.sessions,{source:'manual'}).meanDwell,42);
+assert.ok(timeSeries(events,{source:'manual'}).bins.length>=1);
+assert.equal(filterEvents(events,{source:'demo'}).length,8);
+assert.equal(monitorAlerts(events,state.sessions).filter(x=>x.title.includes('Belum ada')).length,0);
+console.log('PASS monitoring JS: filters, provenance, time series and monitoring status');

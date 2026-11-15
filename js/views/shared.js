@@ -1,0 +1,11 @@
+import {icon,safe} from '../util.js';
+export const pageHead=(eyebrow,title,description,actions='')=>`<header class="main-head"><div><div class="eyebrow">${eyebrow}</div><h1>${title}</h1><p>${description}</p></div>${actions?`<div class="head-buttons">${actions}</div>`:''}</header>`;
+export const note=(body,kind='')=>`<div class="banner-note ${kind}">${icon(kind==='warning'?'alert-circle':'info',17)}<div>${body}</div></div>`;
+export const cardHeading=(title,description='',right='')=>`<header class="card-title"><div><h2>${title}</h2>${description?`<p>${description}</p>`:''}</div>${right}</header>`;
+export const button=(text,action,klass='')=>`<button type="button" class="btn ${klass}" data-action="${action}">${text}</button>`;
+export const tag=(text,klass='')=>`<span class="tag ${klass}">${safe(text)}</span>`;
+export const statCard=(ico,label,value,foot,variant='')=>`<article class="card"><div class="stat-top"><div class="stat-icon ${variant}">${icon(ico,19)}</div>${tag('PROYEK DEMO','slate')}</div><div class="stat-label">${label}</div><div class="stat-value">${value}</div><div class="stat-foot">${foot}</div></article>`;
+export const emptyState=(title,description,action='')=>`<div class="no-data"><div class="empty-icon">${icon('database',22)}</div><strong>${title}</strong><div>${description}</div>${action?`<div style="margin-top:17px">${action}</div>`:''}</div>`;
+export const rangeField=(id,label,min,max,val,step=1,suffix='')=>`<div class="field"><label for="${id}">${label}</label><div class="slider-row"><input id="${id}" class="scenario-input" type="range" min="${min}" max="${max}" step="${step}" value="${val}"/><strong data-range-out="${id}">${val}${suffix}</strong></div><div class="range-help"><span>${min}${suffix}</span><span>${max}${suffix}</span></div></div>`;
+export const numberField=(id,label,value,step=1,desc='',min=0)=>`<div class="field"><label for="${id}">${label}</label><input class="control" id="${id}" type="number" min="${min}" step="${step}" value="${value}" />${desc?`<small>${desc}</small>`:''}</div>`;
+export const selectField=(id,label,options,selected)=>`<div class="field"><label for="${id}">${label}</label><select id="${id}" class="control">${options.map(x=>`<option value="${safe(x)}" ${selected===x?'selected':''}>${safe(x)}</option>`).join('')}</select></div>`;

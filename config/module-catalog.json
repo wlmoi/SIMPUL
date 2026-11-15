@@ -1,0 +1,390 @@
+{
+  "schemaVersion": 1,
+  "project": "SIMPUL",
+  "release": "1.9.0",
+  "sourceOfTruth": "reference/SIMPUL_iSeeDesignITB_Proposal.pdf",
+  "statusLegend": {
+    "implemented_local": "source present and runnable locally; field performance not established",
+    "local_mock_verified": "external service contracts tested with mocks; not live provider validation",
+    "synthetic_only": "demonstration, no Fatmawati calibration",
+    "illustrative_only": "business or equipment assumptions, not measured results",
+    "optional_credentials": "requires configured upstream API"
+  },
+  "modules": [
+    {
+      "id": "shell-routing",
+      "purpose": "Route ownership, accessible sidebar navigation, motion-enhanced rendering and state orchestration (no data changes)",
+      "source": [
+        "js/app.js",
+        "js/page-registry.js",
+        "js/data.js",
+        "js/views/shared.js",
+        "js/store.js",
+        "js/navigation.js",
+        "js/motion.js",
+        "js/views/overview.js",
+        "js/views/creators.js"
+      ],
+      "tests": [
+        "tests/test_module_boundaries.mjs",
+        "tests/test_state_migration.mjs",
+        "tests/test_navigation.mjs",
+        "tests/test_motion.mjs",
+        "tests/test_solution_first.mjs"
+      ],
+      "interfaces": [
+        "browser hash navigation",
+        "browser localStorage",
+        "prefers-reduced-motion",
+        "Web Animations API; optional GSAP runtime"
+      ],
+      "status": "implemented_local"
+    },
+    {
+      "id": "field-observation",
+      "purpose": "Record manual vehicle events and synchronize verified source metadata",
+      "source": [
+        "js/views/observation.js",
+        "server/storage.py",
+        "server/extra_routes.py"
+      ],
+      "tests": [
+        "tests/test_api.py",
+        "tests/test_classification.mjs"
+      ],
+      "interfaces": [
+        "/api/observations/sync",
+        "/api/observations"
+      ],
+      "status": "implemented_local"
+    },
+    {
+      "id": "field-survey-coverage",
+      "purpose": "Review manual survey sessions and track planned 12-session zone/period coverage without treating review as model validation",
+      "source": [
+        "js/pilot.js",
+        "js/views/survey.js",
+        "js/views/observation.js",
+        "js/store.js"
+      ],
+      "tests": [
+        "tests/test_pilot.mjs",
+        "tests/test_state_migration.mjs"
+      ],
+      "interfaces": [
+        "local session protocol",
+        "local internal review records",
+        "survey coverage JSON export"
+      ],
+      "status": "implemented_local"
+    },
+    {
+      "id": "operational-response",
+      "purpose": "Turn manually observed P1/P2 obstructions into assigned follow-ups; no automated enforcement",
+      "source": [
+        "js/operations.js",
+        "js/views/operations.js",
+        "js/classification.js"
+      ],
+      "tests": [
+        "tests/test_operations.mjs"
+      ],
+      "interfaces": [
+        "local response case queue",
+        "status audit",
+        "response JSON export"
+      ],
+      "status": "implemented_local"
+    },
+    {
+      "id": "monitoring",
+      "purpose": "Track observation history, local audit history, InfluxDB outbox and Grafana dashboards",
+      "source": [
+        "js/views/monitor.js",
+        "js/monitoring.js",
+        "server/monitoring.py",
+        "server/timeseries.py",
+        "infrastructure/grafana/dashboards/simpul-field.json"
+      ],
+      "tests": [
+        "tests/test_monitoring.mjs",
+        "tests/test_timeseries.py"
+      ],
+      "interfaces": [
+        "/api/monitor/*",
+        "InfluxDB OSS 2.x (optional)"
+      ],
+      "status": "local_mock_verified"
+    },
+    {
+      "id": "traffic-diagnosis",
+      "purpose": "Normalize traffic intervals, characterize operational impacts and compare follow-up",
+      "source": [
+        "js/diagnostics.js",
+        "js/views/diagnosis.js",
+        "js/views/evaluation.js",
+        "server/field_readings.py"
+      ],
+      "tests": [
+        "tests/test_diagnostics.mjs",
+        "tests/test_field_readings.py"
+      ],
+      "interfaces": [
+        "/api/field-readings/sync",
+        "SQLite interval records"
+      ],
+      "status": "implemented_local"
+    },
+    {
+      "id": "traffic-classification",
+      "purpose": "Prioritize traffic observations for human review without legal adjudication",
+      "source": [
+        "js/classification.js",
+        "js/views/classification.js",
+        "server/traffic_classification.py"
+      ],
+      "tests": [
+        "tests/test_classification.mjs",
+        "tests/test_traffic_classification_api.py"
+      ],
+      "interfaces": [
+        "/api/v1/traffic/taxonomy",
+        "/api/v1/traffic/classify"
+      ],
+      "status": "implemented_local"
+    },
+    {
+      "id": "simulation",
+      "purpose": "A0/A1/A2 heuristic demonstration and optional synthetic SUMO engine",
+      "source": [
+        "js/analytics.js",
+        "js/views/simulation.js",
+        "server/simulation_engine.py",
+        "server/simulation_api.py"
+      ],
+      "tests": [
+        "tests/test_engines.mjs",
+        "tests/test_api.py",
+        "tests/test_api_registry.py"
+      ],
+      "interfaces": [
+        "/api/simulation",
+        "/api/simulation/{job_id}"
+      ],
+      "status": "synthetic_only"
+    },
+    {
+      "id": "geospatial-context",
+      "purpose": "Search geospatial facilities, routing, environment and weather context",
+      "source": [
+        "js/views/context.js",
+        "js/views/contextplus.js",
+        "server/providers.py",
+        "server/context_plus.py",
+        "server/routing.py",
+        "server/extended_routes.py"
+      ],
+      "tests": [
+        "tests/test_extended_api.py",
+        "tests/test_context_plus_ui.py"
+      ],
+      "interfaces": [
+        "/api/geo/*",
+        "/api/context/*"
+      ],
+      "status": "local_mock_verified"
+    },
+    {
+      "id": "public-intelligence",
+      "purpose": "Optional passive OpenOSINT geolocated public-news context",
+      "source": [
+        "js/views/publicintel.js",
+        "server/public_intelligence.py"
+      ],
+      "tests": [
+        "tests/test_public_intelligence.py",
+        "tests/test_publicintel_render.mjs"
+      ],
+      "interfaces": [
+        "/api/v1/public-intelligence/status",
+        "/api/v1/public-intelligence/news"
+      ],
+      "status": "local_mock_verified"
+    },
+    {
+      "id": "ai-insights",
+      "purpose": "Optional Gemini interpretation of aggregated observations, no autonomous intervention",
+      "source": [
+        "js/views/insights.js",
+        "server/providers.py",
+        "server/extra_routes.py"
+      ],
+      "tests": [
+        "tests/test_api.py"
+      ],
+      "interfaces": [
+        "/api/ai/insights"
+      ],
+      "status": "optional_credentials"
+    },
+    {
+      "id": "evidence-and-reports",
+      "purpose": "Evidence quality, provenance, geo exports and executive brief",
+      "source": [
+        "js/standards.js",
+        "js/views/standards.js",
+        "js/views/reports.js",
+        "server/international.py"
+      ],
+      "tests": [
+        "tests/test_standards.mjs",
+        "tests/test_international_api.py"
+      ],
+      "interfaces": [
+        "evidence JSON",
+        "GeoJSON RFC 7946",
+        "executive brief HTML"
+      ],
+      "status": "implemented_local"
+    },
+    {
+      "id": "business-studio",
+      "purpose": "Deterministic business model forecast and customer discovery",
+      "source": [
+        "js/finance.js",
+        "js/views/business.js",
+        "js/views/pipeline.js"
+      ],
+      "tests": [
+        "tests/test_engines.mjs"
+      ],
+      "interfaces": [
+        "local business assumptions"
+      ],
+      "status": "illustrative_only"
+    },
+    {
+      "id": "equipment-planner",
+      "purpose": "Estimate phone, cloud and optional field-device deployment costs",
+      "source": [
+        "js/views/equipment.js",
+        "js/services/export-data.js"
+      ],
+      "tests": [
+        "tests/test_module_boundaries.mjs"
+      ],
+      "interfaces": [
+        "local equipment assumptions",
+        "CSV export"
+      ],
+      "status": "illustrative_only"
+    },
+    {
+      "id": "exports",
+      "purpose": "Pure CSV serialization and file export transformations",
+      "source": [
+        "js/services/csv.js",
+        "js/services/export-data.js"
+      ],
+      "tests": [
+        "tests/test_module_boundaries.mjs"
+      ],
+      "interfaces": [
+        "UTF-8 BOM CSV",
+        "browser download"
+      ],
+      "status": "implemented_local"
+    },
+    {
+      "id": "backend-api-registry",
+      "purpose": "Register API routers through a single dependency boundary",
+      "source": [
+        "server/api_registry.py",
+        "server/app.py"
+      ],
+      "tests": [
+        "tests/test_api_registry.py"
+      ],
+      "interfaces": [
+        "FastAPI OpenAPI schema"
+      ],
+      "status": "implemented_local"
+    },
+    {
+      "id": "standalone-delivery",
+      "purpose": "Build a single-file offline demo from the ES-module dependency graph",
+      "source": [
+        "tools/build_standalone.py",
+        "index.html"
+      ],
+      "tests": [
+        "tests/test_build_standalone.py",
+        "tests/test_readme_integrity.py"
+      ],
+      "interfaces": [
+        "SIMPUL_Standalone.html"
+      ],
+      "status": "implemented_local"
+    },
+    {
+      "id": "api-security",
+      "purpose": "Enforce local host policy, optional API bearer token, same-origin mutation checks and secure response headers; support controlled local-only Strix review",
+      "source": [
+        "server/security.py",
+        "js/api.js",
+        "tools/run_strix_local.py"
+      ],
+      "tests": [
+        "tests/test_security_hardening.py",
+        "tests/test_csv_security.mjs"
+      ],
+      "interfaces": [
+        "HTTP middleware for all /api/* routes",
+        "SIMPUL_API_TOKEN + SIMPUL_ALLOWED_HOSTS",
+        "docs/security/STRIX_LOCAL_RUNBOOK.md"
+      ],
+      "status": "implemented_local"
+    },
+    {
+      "id": "geospatial-document-intelligence",
+      "purpose": "Interactive map for explicit project/observer/PDF GPS coordinates; local PDF ingestion and time/zone/vehicle-category indexing with optional OpenOCR; never personal vehicle identification",
+      "source": [
+        "js/views/mapview.js",
+        "js/views/documents.js",
+        "js/document-search.js",
+        "js/map-controller.js",
+        "server/document_evidence.py"
+      ],
+      "tests": [
+        "tests/test_document_evidence.py",
+        "tests/test_document_filter.mjs"
+      ],
+      "interfaces": [
+        "/api/v1/documents/status",
+        "/api/v1/documents/import",
+        "/api/v1/documents/records",
+        "/api/v1/documents/map",
+        "Leaflet + OSM online tiles"
+      ],
+      "status": "implemented_local"
+    },
+    {
+      "id": "vehicle-problem",
+      "purpose": "Vehicle activity, dwell, observed obstruction and route to A1/A2 decision support, without inferring offences",
+      "source": [
+        "js/vehicle-problem.js",
+        "js/views/vehicles.js",
+        "js/views/overview.js"
+      ],
+      "tests": [
+        "tests/test_vehicle_first.mjs"
+      ],
+      "interfaces": [
+        "browser state from getState",
+        "vehicleView source/activity/zone filters",
+        "typed observational event fields"
+      ],
+      "status": "implemented_local"
+    }
+  ]
+}

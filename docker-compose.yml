@@ -1,0 +1,65 @@
+# Default: SIMPUL only. Add --profile monitoring for InfluxDB + Grafana.
+# This prototype binds ports to loopback and is NOT safe for public access.
+services:
+  simpul:
+    build: .
+    ports:
+      - '127.0.0.1:8888:8888'
+    environment:
+      PORT: '8888'
+      SIMPUL_HOST: '0.0.0.0'
+      SIMPUL_DB_PATH: /app/server/data/simpul.sqlite3
+      INFLUXDB_URL: ${INFLUXDB_URL:-}
+      INFLUXDB_TOKEN: ${INFLUXDB_TOKEN:-}
+      INFLUXDB_ORG: ${INFLUXDB_ORG:-}
+      INFLUXDB_BUCKET: ${INFLUXDB_BUCKET:-}
+    volumes:
+      - simpul_data:/app/server/data
+    restart: unless-stopped
+
+  influxdb:
+    image: influxdb:2.7
+    profiles: [monitoring]
+    ports:
+      - '127.0.0.1:8086:8086'
+    environment:
+      DOCKER_INFLUXDB_INIT_MODE: setup
+      DOCKER_INFLUXDB_INIT_USERNAME: ${INFLUXDB_ADMIN_USERNAME:-simpul_admin}
+      DOCKER_INFLUXDB_INIT_PASSWORD: ${INFLUXDB_ADMIN_PASSWORD:-}
+      DOCKER_INFLUXDB_INIT_ORG: ${INFLUXDB_ORG:-simpul}
+      DOCKER_INFLUXDB_INIT_BUCKET: ${INFLUXDB_BUCKET:-simpul_observations}
+      DOCKER_INFLUXDB_INIT_RETENTION: 90d
+      DOCKER_INFLUXDB_INIT_ADMIN_TOKEN: ${INFLUXDB_TOKEN:-}
+    volumes:
+      - influxdb_data:/var/lib/influxdb2
+      - influxdb_config:/etc/influxdb2
+    restart: unless-stopped
+
+  grafana:
+    image: grafana/grafana:12.3.0
+    profiles: [monitoring]
+    ports:
+      - '127.0.0.1:3000:3000'
+    environment:
+      GF_SECURITY_ADMIN_USER: admin
+      GF_SECURITY_ADMIN_PASSWORD: ${GRAFANA_ADMIN_PASSWORD:-}
+      GF_USERS_ALLOW_SIGN_UP: 'false'
+      GF_USERS_DEFAULT_THEME: light
+      GF_AUTH_ANONYMOUS_ENABLED: 'false'
+      GF_ANALYTICS_REPORTING_ENABLED: 'false'
+      INFLUXDB_TOKEN: ${INFLUXDB_TOKEN:-}
+      INFLUXDB_ORG: ${INFLUXDB_ORG:-simpul}
+      INFLUXDB_BUCKET: ${INFLUXDB_BUCKET:-simpul_observations}
+    volumes:
+      - grafana_data:/var/lib/grafana
+      - ./infrastructure/grafana/provisioning:/etc/grafana/provisioning:ro
+      - ./infrastructure/grafana/dashboards:/var/lib/grafana/simpul-dashboards:ro
+    depends_on:
+      - influxdb
+    restart: unless-stopped
+
+volumes:
+  simpul_data:
+  influxdb_data:
+  influxdb_config:
+  grafana_data:

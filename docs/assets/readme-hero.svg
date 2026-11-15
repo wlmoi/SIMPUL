@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1240" height="410" viewBox="0 0 1240 410" role="img" aria-label="SIMPUL — mobility intelligence, from field observation to evidence-based decisions">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0b1739"/><stop offset="0.56" stop-color="#162d68"/><stop offset="1" stop-color="#064c73"/></linearGradient>
+    <linearGradient id="accent" x1="0" x2="1"><stop offset="0" stop-color="#22b3a2"/><stop offset="1" stop-color="#46b1e4"/></linearGradient>
+    <pattern id="grid" width="42" height="42" patternUnits="userSpaceOnUse"><path d="M 42 0 L 0 0 0 42" fill="none" stroke="#6d9bc7" stroke-width=".65" opacity=".13"/></pattern>
+    <filter id="shadow"><feDropShadow dx="0" dy="6" stdDeviation="7" flood-opacity=".25"/></filter>
+  </defs>
+  <rect width="1240" height="410" rx="20" fill="url(#bg)"/>
+  <rect width="1240" height="410" rx="20" fill="url(#grid)"/>
+  <path d="M905 -30 C940 110, 1120 110, 1290 235" stroke="#45a2d4" stroke-width="72" fill="none" opacity=".09"/>
+  <path d="M890 -30 C975 95, 1010 202, 1275 271" stroke="#45e3c9" stroke-width="2" fill="none" opacity=".34"/>
+  <path d="M900 -40 C995 83, 1052 205, 1285 244" stroke="#45e3c9" stroke-width="2" fill="none" opacity=".17"/>
+  <g transform="translate(72 58)">
+    <g filter="url(#shadow)"><rect width="50" height="50" rx="13" fill="#0ca794"/><path d="M16 13h20v6H20v6h12v6H20v6h16" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></g>
+    <text x="69" y="20" font-family="Arial, Helvetica, sans-serif" font-size="16" font-weight="700" fill="#eaf6fa" letter-spacing="4">ISEEDESIGNITB / MOBILITY LAB</text>
+    <text x="0" y="130" font-family="Arial, Helvetica, sans-serif" font-size="72" font-weight="800" fill="#fff" letter-spacing="-3">SIMPUL</text>
+    <text x="2" y="163" font-family="Arial, Helvetica, sans-serif" font-size="23" font-weight="500" fill="#b7ece6">Sistem Inspeksi Mobilitas untuk Penataan Ulang Layanan</text>
+    <text x="2" y="202" font-family="Arial, Helvetica, sans-serif" font-size="17" fill="#d1e3f2">From field observation to auditable transport decisions</text>
+    <rect x="1" y="229" width="680" height="1.3" fill="url(#accent)" opacity=".65"/>
+    <text x="2" y="267" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="700" fill="#a7cbe5" letter-spacing="2">MRT FATMAWATI  ·  SOUTH JAKARTA  ·  MOBILE FIRST</text>
+  </g>
+  <g transform="translate(763 91)">
+    <rect width="394" height="242" rx="18" fill="#0b214d" stroke="#43719b" stroke-width="1.5"/>
+    <rect x="22" y="22" width="350" height="50" rx="9" fill="#153667"/>
+    <circle cx="45" cy="47" r="10" fill="#0fb69a"/>
+    <text x="63" y="43" fill="#a4c2d9" font-family="Arial" font-size="11" font-weight="700">DATA SOURCE</text>
+    <text x="63" y="60" fill="#fff" font-family="Arial" font-size="14" font-weight="700">Manual / validated / synthetic</text>
+    <path d="M54 110 L54 205 M54 110 L338 110" fill="none" stroke="#557b9c" stroke-width="1.2"/>
+    <path d="M55 170 C110 170,95 150,147 146 S213 127,250 137 S308 106,340 117" fill="none" stroke="#1bd8b6" stroke-width="4" stroke-linecap="round"/>
+    <path d="M55 189 C97 175,129 192,165 179 S233 166,273 171 S310 156,340 155" fill="none" stroke="#72bbef" stroke-width="3" opacity=".85" stroke-linecap="round"/>
+    <circle cx="340" cy="117" r="6" fill="#1bd8b6"/>
+    <text x="32" y="220" fill="#a7cbe5" font-family="Arial" font-size="12">Observe  →  Analyze  →  Simulate  →  Review</text>
+  </g>
+  <rect x="0" y="392" width="1240" height="18" rx="3" fill="url(#accent)"/>
+</svg>

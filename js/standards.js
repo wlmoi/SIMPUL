@@ -1,0 +1,70 @@
+// SIMPUL international-practice module: quality gates and interoperable export.
+// These are implementation controls; they do NOT establish ISO/WCAG certification.
+const iso = value => { const parsed=new Date(value); return Number.isFinite(parsed.getTime())?parsed.toISOString():null; };
+const tzAware = value => typeof value==='string' && /(Z|[+-]\d{2}:?\d{2})$/i.test(value) && iso(value)!==null;
+const unique = items => new Set(items).size===items.length;
+const asNum = value => typeof value==='number' && Number.isFinite(value) && value>=0;
+export const STANDARD_REFERENCES = [
+ {code:'ISO 37120:2018',name:'City services & quality of life',application:'Konteks indikator mobilitas perkotaan; metrik SIMPUL adalah indikator studi lokal, bukan otomatis indikator ISO.',status:'Referensi metodologis',url:'https://www.iso.org/standard/68498.html'},
+ {code:'ISO 37122:2019',name:'Smart city indicators',application:'Prinsip indikator terdefinisi dengan sumber, periode, dan metode yang dapat ditinjau.',status:'Referensi metodologis',url:'https://www.iso.org/standard/69050.html'},
+ {code:'ISO 39001:2012',name:'Road traffic safety management',application:'Tinjauan risiko dan akses sebelum usulan perubahan pengaturan lalu lintas; bukan sertifikasi sistem.',status:'Referensi keselamatan',url:'https://www.iso.org/standard/44958.html'},
+ {code:'ISO 19157-1:2023',name:'Geospatial data quality',application:'Pemeriksaan keterisian, konsistensi, validitas, dan provenance lokasi.',status:'Prinsip kualitas data',url:'https://www.iso.org/standard/78900.html'},
+ {code:'ISO 8601-1:2019',name:'Date/time interchange',application:'Ekspor waktu pengamatan dan pencatatan ke UTC ISO 8601 dengan jejak zona waktu asal.',status:'Diterapkan pada ekspor',url:'https://www.iso.org/standard/70907.html'},
+ {code:'RFC 7946',name:'GeoJSON',application:'Titik lokasi studi sebagai WGS84 [longitude, latitude], hanya jika koordinat tersedia; bukan posisi masing-masing event.',status:'Diterapkan pada ekspor',url:'https://www.rfc-editor.org/rfc/rfc7946'},
+ {code:'W3C PROV-O',name:'Data provenance',application:'Identitas sumber, waktu, data turunan, metode dan status bukti dalam export bundle.',status:'Pemetaan provenance',url:'https://www.w3.org/TR/prov-o/'},
+ {code:'WCAG 2.2 AA',name:'Web accessibility',application:'Target keyboard, kontras, focus state, label, dan responsivitas; memerlukan audit manual serta otomatis.',status:'Target, belum diaudit',url:'https://www.w3.org/TR/WCAG22/'}
+];
+export function assessQuality(state){
+ const observations=(state.observations||[]).filter(x=>x?.source==='manual');
+ const intervals=(state.fieldReadings||[]).filter(x=>x?.source==='manual');
+ const all=[...observations,...intervals];
+ const invalidTime=all.filter(x=>!tzAware(x.at)|| (x.recordedAt&&!tzAware(x.recordedAt)));
+ const ids=all.map(x=>x.id);
+ const invalidNumeric=intervals.filter(x=>!Number.isInteger(Number(x.minutes))||Number(x.minutes)<5||Number(x.minutes)>240 || ['passingVehicles','stoppedVehicles','maxQueue','accessMeters','pedestrians','availableBays','occupiedBays'].some(k=>!asNum(Number(x[k]))));
+ const invalidCapacity=intervals.filter(x=>Number(x.occupiedBays)>Number(x.availableBays)&&Number(x.availableBays)>0);
+ const invalidPhase=intervals.filter(x=>x.phase==='baseline'&&x.scenario!=='A0'||x.phase==='followup'&&x.scenario==='A0');
+ const pairs=[];
+ const base=new Set(intervals.filter(x=>x.phase==='baseline'&&x.scenario==='A0').map(x=>`${x.zone}|${x.period}`));
+ for(const x of intervals.filter(x=>x.phase==='followup'&&['A1','A2'].includes(x.scenario))){if(base.has(`${x.zone}|${x.period}`))pairs.push(x)}
+ const observedSessions=(state.sessions||[]).filter(x=>x.source==='manual'&&x.endedAt);
+ const issues=[];
+ if(!all.length) issues.push({severity:'block',code:'NO_FIELD_DATA',message:'Belum ada observasi manual. Data sintetis tidak digunakan untuk evidence review.'});
+ if(invalidTime.length)issues.push({severity:'block',code:'INVALID_TIME',message:`${invalidTime.length} rekaman memiliki timestamp tidak valid atau tanpa zona waktu.`});
+ if(!unique(ids))issues.push({severity:'block',code:'DUPLICATE_ID',message:'ID rekaman tidak unik di dataset manual.'});
+ if(invalidNumeric.length)issues.push({severity:'block',code:'INVALID_METRIC',message:`${invalidNumeric.length} interval memiliki nilai numerik di luar kontrak input.`});
+ if(invalidCapacity.length)issues.push({severity:'block',code:'CAPACITY_CONFLICT',message:`${invalidCapacity.length} interval memiliki okupansi ruang jemput melebihi kapasitas tercatat; perlu konfirmasi.`});
+ if(invalidPhase.length)issues.push({severity:'block',code:'SCENARIO_CONFLICT',message:'Penandaan baseline dan skenario tidak konsisten.'});
+ if(observedSessions.length<12)issues.push({severity:'review',code:'SESSION_TARGET',message:`${observedSessions.length}/12 sesi manual selesai; angka 12 adalah rencana sampel pada proposal, bukan syarat ISO.`});
+ if(!pairs.length)issues.push({severity:'review',code:'NO_MATCHED_FOLLOWUP',message:'Belum ada pasangan before–after pada zona dan periode yang sama.'});
+ issues.push({severity:'review',code:'INDEPENDENT_VALIDATION',message:'Data kalibrasi/validasi terpisah, anotasi ground truth, serta kesesuaian jaringan SUMO belum dibuktikan.'});
+ issues.push({severity:'review',code:'SAFETY_REVIEW',message:'Persetujuan rekayasa lalu lintas dan audit aksesibilitas pejalan kaki belum diverifikasi.'});
+ const blocks=issues.filter(x=>x.severity==='block');
+ return {status:blocks.length?'not_ready':'exploratory_only',manualEvents:observations.length,manualIntervals:intervals.length,completedManualSessions:observedSessions.length,syntheticEvents:(state.observations||[]).filter(x=>x?.source==='demo').length,matchedFollowups:pairs.length,invalidTime:invalidTime.length,duplicateIds:ids.length-new Set(ids).size,issues,scope:'Data manual saja; tidak ada validasi kalibrasi, klaim sebab-akibat, atau sertifikasi'};
+}
+export function buildStandardsBundle(state){
+ const quality=assessQuality(state);
+ const obs=(state.observations||[]).filter(x=>x.source==='manual').map(x=>({id:x.id,observed_at_utc:iso(x.at),source_timestamp:x.at,category:x.type,vehicle_category:x.vehicle,zone:x.zone,dwell_seconds:Number(x.duration),source:'manual',session_id:x.sessionId||null,note:x.note||''}));
+ const fields=(state.fieldReadings||[]).filter(x=>x.source==='manual').map(x=>({id:x.id,observed_at_utc:iso(x.at),recorded_at_utc:x.recordedAt?iso(x.recordedAt):null,source_timestamp:x.at,phase:x.phase,scenario:x.scenario,period:x.period,zone:x.zone,observation_minutes:Number(x.minutes),passing_vehicles:Number(x.passingVehicles),stopped_vehicles:Number(x.stoppedVehicles),stopping_events_per_hour:Number(x.minutes)>0?Number((Number(x.stoppedVehicles)*60/Number(x.minutes)).toFixed(3)):null,max_queue_vehicles:Number(x.maxQueue),pedestrian_access_distance_m:Number(x.accessMeters),pedestrians_observed:Number(x.pedestrians),access_blocked:Boolean(x.blockedAccess),available_pickup_bays:Number(x.availableBays),occupied_pickup_bays:Number(x.occupiedBays),source:'manual',session_id:x.sessionId||null,note:x.note||''}));
+ const generatedAt=new Date().toISOString();
+ return {schema:'https://simpul.local/schemas/evidence-bundle/v1',schema_version:'1.0.0',generated_at_utc:generatedAt,report_kind:'research_evidence_export',validation_status:'NOT_FIELD_VALIDATED',project:{id:state.project.id,name:state.project.name,district:state.project.district,spatial_reference:'WGS84 / EPSG:4326 only if coordinate supplied'},data_provenance:{manual_only:true,synthetic_records_excluded:quality.syntheticEvents,source_data_types:['manual_observation','manual_interval'],source_version:'SIMPUL v0.9',basis:'Local project proposal; independent calibration/validation pending'},quality,units:{observation_minutes:'min',dwell_seconds:'s',stopping_events_per_hour:'events/h',pedestrian_access_distance_m:'m',passing_vehicles:'vehicle count',max_queue_vehicles:'vehicle count'},observations:obs,field_intervals:fields,provenance:{'@context':{'prov':'http://www.w3.org/ns/prov#','dcterms':'http://purl.org/dc/terms/'},'@graph':[...obs,...fields].map(x=>({'@id':`urn:simpul:record:${encodeURIComponent(x.id)}`,'@type':'prov:Entity','prov:generatedAtTime':x.recorded_at_utc||x.observed_at_utc,'dcterms:source':'manual field input', 'dcterms:identifier':x.id}))},limitations:['ISO references inform design, not certification','No confirmed Fatmawati SUMO calibration','No independent field validation','Before/after metrics are descriptive, not causal','Manual observations are not automatically verified']};
+}
+export function buildProjectGeoJSON(state){
+ const geo=state.project?.geo, lat=Number(geo?.lat), lon=Number(geo?.lon);
+ if(!geo||!Number.isFinite(lat)||!Number.isFinite(lon)||Math.abs(lat)>90||Math.abs(lon)>180)throw new Error('Koordinat lokasi proyek belum tersedia atau tidak valid. Pilih lokasi pada halaman Peta terlebih dahulu.');
+ return {type:'FeatureCollection',name:'SIMPUL study reference (not observed event coordinates)',features:[{type:'Feature',id:state.project.id,geometry:{type:'Point',coordinates:[lon,lat]},properties:{name:state.project.name,location_type:'project_reference_point',coordinate_accuracy:'not_verified',observation_location:'not_per_event',source:'user-selected geocoding',recorded_at_utc:new Date().toISOString()}}]};
+}
+export function buildExecutiveBriefHTML(state){
+ const q=assessQuality(state);
+ const escape=v=>String(v??'').replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;').replaceAll('"','&quot;');
+ const rows=[['Manual event records',q.manualEvents],['Manual interval records',q.manualIntervals],['Completed manual sessions',q.completedManualSessions],['Matched before-after follow-ups',q.matchedFollowups],['Synthetic events excluded',q.syntheticEvents]];
+ return `<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>SIMPUL | International Research Brief</title><style>
+ @page{size:A4;margin:18mm}*{box-sizing:border-box}body{margin:0;font:12px/1.6 Arial,sans-serif;color:#1b3354;background:#f0f4f7}.sheet{max-width:800px;margin:20px auto;padding:40px 48px;background:#fff;box-shadow:0 6px 22px #17265e12}header{border-top:9px solid #087d72;padding-top:20px}.eyebrow{color:#087d72;font-size:10px;letter-spacing:1.5px;font-weight:800}h1{font-size:30px;line-height:1.2;margin:14px 0;color:#192960}h2{font-size:15px;margin-top:27px;color:#192960;border-bottom:1px solid #e1e9ee;padding-bottom:6px}p{margin:9px 0}table{border-collapse:collapse;width:100%;margin:15px 0}th,td{text-align:left;padding:8px 10px;border-bottom:1px solid #e6edf1}th{background:#192960;color:#fff}.warn{background:#fcf7eb;border-left:4px solid #d19c42;padding:14px}.foot{font-size:10px;color:#71869c;margin-top:30px;padding-top:12px;border-top:1px solid #dce8ed}@media print{body{background:#fff}.sheet{box-shadow:none;margin:0;max-width:none;padding:0}}</style></head><body><article class="sheet"><header><div class="eyebrow">SIMPUL · iSeeDesignITB · STUDY TECHNICAL BRIEF</div><h1>Mobility Access &amp; Pickup Management</h1><p><b>Case study:</b> ${escape(state.project?.name)} · ${escape(state.project?.district)}</p><p><b>Prepared (UTC):</b> ${escape(new Date().toISOString())}</p></header>
+ <div class="warn"><b>Evidence status: ${q.status==='not_ready'?'NOT READY':'EXPLORATORY ONLY'}</b><p>This document is generated from a research prototype. No real-world impact, certified standard conformance, traffic safety approval, or calibrated SUMO model is claimed.</p></div>
+ <h2>1. Problem and intended users</h2><p>SIMPUL is a mobile-first decision-support system for assessing vehicle pickup, drop-off and waiting activity near MRT Fatmawati, Jakarta, while monitoring implications for pedestrian access. Intended users include field surveyors, transport analysts, and transit operators.</p>
+ <h2>2. Engineering workflow</h2><p>Field observations → deterministic/AI-assisted analysis → A0 existing conditions, A1 pickup area optimization, A2 stopping rule evaluation → human review and follow-up measurement.</p>
+ <h2>3. Evidence inventory</h2><table><thead><tr><th>Data category</th><th>Count</th></tr></thead><tbody>${rows.map(([a,b])=>`<tr><td>${escape(a)}</td><td>${escape(b)}</td></tr>`).join('')}</tbody></table><p>Time representations follow ISO 8601 conventions; spatial exports use GeoJSON per RFC 7946 where reference coordinates exist. Data source metadata and caveats accompany the machine-readable evidence bundle.</p>
+ <h2>4. Quality findings</h2><table><thead><tr><th>Level</th><th>Finding</th></tr></thead><tbody>${q.issues.map(x=>`<tr><td>${escape(x.severity.toUpperCase())}</td><td>${escape(x.message)}</td></tr>`).join('')}</tbody></table>
+ <h2>5. Verification still required</h2><p>Independent vehicle-count annotations, calibrated and separately validated SUMO geometry/demand, accessibility and safety review, authorized field data collection, and a defensible before-after study are required before operational deployment.</p>
+ <h2>6. Standard references</h2><p>${STANDARD_REFERENCES.map(x=>escape(x.code)).join(' · ')}. These references inform engineering practices only; this application is not certified against any of them.</p>
+ <footer class="foot">Automatically generated · SIMPUL research prototype · No personal identifiers included in this brief · Methodology and field data require independent review.</footer></article></body></html>`;
+}
