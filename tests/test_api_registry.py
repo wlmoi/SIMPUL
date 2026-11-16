@@ -11,7 +11,8 @@ def test_api_router_registry_unique():
 
 
 def test_required_api_surfaces_present():
-    paths = {route.path for route in app.routes}
+    # OpenAPI is the public contract; newer FastAPI keeps included routers lazy.
+    paths = set(app.openapi()['paths'])
     for required in (
         '/api/status', '/api/simulation', '/api/observations/sync',
         '/api/v1/public-intelligence/status', '/api/v1/public-intelligence/news',

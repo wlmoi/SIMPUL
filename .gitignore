@@ -10,3 +10,14 @@ node_modules/
 
 strix_runs/
 *.log
+
+dist/
+.vercel/
+.pytest_tmp_web/
+
+.qa-python/
+
+
+# Local deployment archives, hardware snapshots, funding documents and QA scratch files
+/output/
+/tmp/

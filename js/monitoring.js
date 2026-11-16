@@ -28,7 +28,7 @@ export function monitorStats(records=[],sessions=[],filter={}){
 }
 export function monitorAlerts(records=[],sessions=[],now=Date.now()){
   const alerts=[];const manual=records.filter(e=>e.source==='manual');
-  if(!manual.length)alerts.push({type:'info',title:'Belum ada observasi lapangan',detail:'Data demo tersedia untuk menguji antarmuka. Mulai sesi nyata untuk membuat data yang dapat dievaluasi.'});
+  if(!manual.length)alerts.push({type:'info',title:'Belum ada observasi lapangan',detail:'Data sintetis tersedia untuk menguji antarmuka. Mulai sesi nyata untuk membuat data yang dapat dievaluasi.'});
   if(sessions.some(s=>s.status==='Berjalan'&&Date.parse(s.startedAt)<now-2*60*60*1000))alerts.push({type:'warning',title:'Sesi berlangsung lebih dari 2 jam',detail:'Periksa apakah sesi masih aktif dan pastikan pencatatan sesuai periode survei.'});
   if(manual.length&&Math.max(...manual.map(e=>Date.parse(e.at)||0))<now-24*60*60*1000)alerts.push({type:'info',title:'Tidak ada rekaman manual 24 jam terakhir',detail:'Ini merupakan indikator kesegaran data, bukan bukti gangguan lalu lintas.'});
   return alerts;

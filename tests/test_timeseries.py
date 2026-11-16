@@ -85,6 +85,7 @@ def run():
         with sqlite3.connect(legacy) as c:
             c.execute('CREATE TABLE observations (id TEXT PRIMARY KEY, content TEXT NOT NULL, created_at TEXT DEFAULT CURRENT_TIMESTAMP)')
             c.execute('INSERT INTO observations(id,content) VALUES (?,?)',('legacy-evt',json.dumps({**item,'id':'legacy-evt'})))
+        c.close()  # sqlite context commits the fixture; Windows also needs handle closure.
         original=storage.DB;storage.DB=legacy
         try:
             s=client.get('/api/monitor/stream/status').json()

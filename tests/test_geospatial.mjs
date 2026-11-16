@@ -1,0 +1,11 @@
+import assert from 'node:assert/strict';
+import {coordinatePair,mapCenter,zoneReferencePoints,STATION_REFERENCE} from '../js/geospatial.js';
+for(const value of [null,undefined,'',' ',false,true,NaN,Infinity,'abc'])assert.equal(coordinatePair(value,106),null);
+assert.equal(coordinatePair(91,106),null);assert.equal(coordinatePair(-6,181),null);
+assert.deepEqual(coordinatePair(0,0),{lat:0,lon:0});
+assert.deepEqual(coordinatePair('-6.29247','106.79245'),STATION_REFERENCE);
+assert.deepEqual(mapCenter({geo:{lat:null,lon:null}}),STATION_REFERENCE);
+assert.deepEqual(mapCenter({geo:{lat:'',lon:''}}),STATION_REFERENCE);
+assert.deepEqual(mapCenter({geo:{lat:0,lon:0}}),{lat:0,lon:0});
+assert.deepEqual(zoneReferencePoints({'Zona A':{lat:-6.2,lon:106.8},invalid:null,empty:{lat:'',lon:null},outside:{lat:100,lon:1}}),[{name:'Zona A',lat:-6.2,lon:106.8}]);
+console.log('PASS geospatial: explicit coordinates, empty-coordinate rejection, bounds, valid zero and zone provenance');

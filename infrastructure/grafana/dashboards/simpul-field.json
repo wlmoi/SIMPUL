@@ -501,5 +501,29 @@
         "type": "dashboard"
       }
     ]
-  }
+  },
+  "links": [
+    {
+      "title": "Buka SIMPUL",
+      "url": "http://127.0.0.1:8890/#monitor",
+      "type": "link",
+      "icon": "external link",
+      "targetBlank": true,
+      "includeVars": false,
+      "keepTime": false,
+      "asDropdown": false,
+      "tags": []
+    },
+    {
+      "title": "Buka InfluxDB",
+      "url": "http://127.0.0.1:8086",
+      "type": "link",
+      "icon": "external link",
+      "targetBlank": true,
+      "includeVars": false,
+      "keepTime": false,
+      "asDropdown": false,
+      "tags": []
+    }
+  ]
 }

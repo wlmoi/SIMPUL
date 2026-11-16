@@ -8,7 +8,7 @@ from tools.build_standalone import ENTRY, ROOT, dependency_order, bundle_js
 
 def test_dependency_graph_includes_new_modules_and_entry_last():
     modules = dependency_order(ENTRY)
-    rel = {str(x.relative_to(ROOT)) for x in modules}
+    rel = {x.relative_to(ROOT).as_posix() for x in modules}
     assert 'js/page-registry.js' in rel
     assert 'js/services/export-data.js' in rel
     assert 'js/services/csv.js' in rel
@@ -34,4 +34,6 @@ def test_pwa_cache_covers_every_loaded_js_module():
     modules = dependency_order(ENTRY)
     assert all('./' + file.relative_to(ROOT).as_posix() in assets for file in modules)
     assert './styles.css' in assets
+    assert './assets/vendor/leaflet/leaflet.js' in assets
+    assert './assets/vendor/leaflet/leaflet.css' in assets
     assert 'simpul-v19-vehicle-first' in worker

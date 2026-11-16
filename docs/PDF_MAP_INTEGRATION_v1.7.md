@@ -17,7 +17,7 @@ This release supplements, but does not replace, the original four-stage SIMPUL p
 
 ## Map sources and API
 
-- Leaflet 1.9.4 is loaded on demand from unpkg when connected to the internet. It is only a browser visualization library.
+- Leaflet 1.9.4 is served on demand from local assets/vendor/leaflet, including its BSD license. The browser requests OSM tiles for the visible viewport when online.
 - OpenStreetMap standard raster tiles provide the base map: `https://tile.openstreetmap.org/{z}/{x}/{y}.png` with visible OpenStreetMap attribution.
 - Initial station reference: `-6.29247, 106.79245` from published OpenStreetMap-derived station data. It is not a surveyed curb position.
 - Nominatim and Overpass API integrations continue to exist in the previous **Peta & data konteks** page.
@@ -49,5 +49,5 @@ For optional OpenOCR, install `openocr-python==0.1.5` in a separate controlled P
 - Input caps are 10 MB and 30 pages; downstream OpenOCR is opt-in, has a timeout, and should be placed in a worker sandbox for production.
 - A derived record includes document ID, filename, page, source, and review state. It must not be used as direct enforcement evidence without human review.
 - Date/time formats beyond the documented format may not be recognized. GPS is not inferred from zone labels.
-- Leaflet and OSM tiles were not exercised against a live tile service during local browser verification; the offline fallback and rendered UI were tested.
+- Local Leaflet, explicit-coordinate pins, provenance popups, error states and mobile rendering were exercised in an isolated browser against the Pi deployment. Automated tests block OSM tile traffic. Live basemap availability follows browser connectivity and is displayed on the map.
 - The SIMPUL reference proposal does not authorize collecting identity information or reading license plates.

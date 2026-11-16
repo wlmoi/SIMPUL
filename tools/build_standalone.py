@@ -14,6 +14,7 @@ A real bundler should replace this tool if those features become necessary.
 from __future__ import annotations
 
 import base64
+import hashlib
 import json
 from pathlib import Path
 import re
@@ -80,10 +81,17 @@ def refresh_pwa_cache_manifest(files: list[Path]) -> None:
     existing = sw_path.read_text(encoding='utf-8')
     gsap_local = ROOT / 'assets/vendor/gsap.min.js'
     assets = ['./', './index.html', './styles.css', './manifest.webmanifest',
-              './assets/favicon.svg', *(f'./{file.relative_to(ROOT).as_posix()}' for file in files)]
+              './assets/favicon.svg', './assets/itb-seal.png', './assets/aiera-foundation.png', *(f'./{file.relative_to(ROOT).as_posix()}' for file in files)]
     if gsap_local.is_file():
         assets.append('./assets/vendor/gsap.min.js')
-    updated = re.sub(r"const CACHE='[^']+';", "const CACHE='simpul-v19-vehicle-first';", existing, count=1)
+    assets.extend('./' + p.relative_to(ROOT).as_posix() for p in sorted((ROOT/'assets/vendor/leaflet').rglob('*')) if p.is_file())
+    digest = hashlib.sha256()
+    for name in assets:
+        path = ROOT / name.removeprefix('./')
+        if path.is_file():
+            digest.update(path.read_bytes())
+    cache_name = 'simpul-v19-vehicle-first-' + digest.hexdigest()[:12]
+    updated = re.sub(r"const CACHE='[^']+';", f"const CACHE='{cache_name}';", existing, count=1)
     updated = re.sub(r'const ASSETS=\[.*?\];', 'const ASSETS=' + json.dumps(assets, separators=(',', ':')) + ';', updated, count=1)
     if updated == existing and 'simpul-v19-vehicle-first' not in updated:
         raise ValueError('Missing service worker cache declarations')
@@ -93,6 +101,10 @@ def refresh_pwa_cache_manifest(files: list[Path]) -> None:
 def build() -> tuple[int, int]:
     modules = dependency_order(ENTRY)
     js = bundle_js(modules)
+    seal = base64.b64encode((ROOT / 'assets/itb-seal.png').read_bytes()).decode()
+    js = js.replace('./assets/itb-seal.png', 'data:image/png;base64,' + seal)
+    aiera = base64.b64encode((ROOT / 'assets/aiera-foundation.png').read_bytes()).decode()
+    js = js.replace('/assets/aiera-foundation.png', 'data:image/png;base64,' + aiera)
     refresh_pwa_cache_manifest(modules)
     css = (ROOT / 'styles.css').read_text(encoding='utf-8')
     css = re.sub(r'^@import\s+url\(.*?\);\s*', '', css, count=1)
@@ -122,3 +134,4 @@ def build() -> tuple[int, int]:
 if __name__ == '__main__':
     count, size = build()
     print(f'PASS standalone build: {count} JS modules, {size:,} bytes')
+

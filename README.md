@@ -439,3 +439,23 @@ SIMPUL is developed by **iSeeDesignITB**, a five-member team from Institut Tekno
 Only the explicitly supplied LinkedIn profile is linked. No other personal accounts or biographies were inferred.
 
 <p align="center"><sub>iSeeDesignITB · SIMPUL · SI Bridges Indonesia 2026 · Prototype release v1.9</sub></p>
+
+## Prototype web Vercel
+
+Panduan build, file publik, aset dan batas backend: [docs/VERCEL.md](docs/VERCEL.md).
+
+
+Intro interaktif empat tahap: [docs/INTRO.md](docs/INTRO.md).
+
+## Peta dan monitoring pada Raspberry Pi
+
+Workspace peta menggunakan Leaflet lokal, koordinat eksplisit WGS84, panel provenance, dan status pemuatan peta dasar. UI menyertakan logo AIERA yang diberikan pengusul. Data sintetis dan observasi manual tetap memiliki sumber terpisah.
+
+Pada pemasangan laptop–Pi, SIMPUL diakses melalui `http://127.0.0.1:8890/#mapview`; Grafana dan InfluxDB laptop tersedia pada port loopback 3000 dan 8086. Akun serta kata sandi dapat dilihat secara lokal melalui `output/pi/Lihat_Akses_Monitoring.ps1`. Hasil pengujian dan batas validasi terdapat pada [laporan geospasial Pi](docs/VERIFICATION_GEOSPATIAL_PI_20261116.md).
+
+
+UI exploration: overview now offers an illustrative 3D corridor with A0/A1/A2 presentation controls. Classification includes a non-persisting rule-based priority sandbox. Desktop launcher: output/pi/Buka_SIMPUL.ps1. See docs/VERIFICATION_UI_INNOVATION_20261116.md.
+
+Windows monitoring access verified: SIMPUL at http://127.0.0.1:8890/#monitor, Grafana at http://127.0.0.1:3000, InfluxDB at http://127.0.0.1:8086. Both Grafana dashboards include return links to SIMPUL and InfluxDB. See docs/VERIFICATION_WINDOWS_MONITORING_20261116.md for observed checks and startup requirements.
+
+Raspberry Pi inventory and prompt/deployment behavior are documented in [docs/RASPBERRY_PI_INTEGRATION.md](docs/RASPBERRY_PI_INTEGRATION.md). Git push does not deploy to Pi. Live AI remains unavailable until its backend key and Pi Internet access are configured.

@@ -23,7 +23,9 @@
         "js/navigation.js",
         "js/motion.js",
         "js/views/overview.js",
-        "js/views/creators.js"
+        "js/views/creators.js",
+        "js/views/intro.js",
+        "assets/aiera-foundation.png"
       ],
       "tests": [
         "tests/test_module_boundaries.mjs",
@@ -50,7 +52,8 @@
       ],
       "tests": [
         "tests/test_api.py",
-        "tests/test_classification.mjs"
+        "tests/test_classification.mjs",
+        "tests/test_sqlite_context.py"
       ],
       "interfaces": [
         "/api/observations/sync",
@@ -353,18 +356,22 @@
         "js/views/documents.js",
         "js/document-search.js",
         "js/map-controller.js",
-        "server/document_evidence.py"
+        "server/document_evidence.py",
+        "js/geospatial.js",
+        "assets/vendor/leaflet/leaflet.js",
+        "assets/vendor/leaflet/leaflet.css"
       ],
       "tests": [
         "tests/test_document_evidence.py",
-        "tests/test_document_filter.mjs"
+        "tests/test_document_filter.mjs",
+        "tests/test_geospatial.mjs"
       ],
       "interfaces": [
         "/api/v1/documents/status",
         "/api/v1/documents/import",
         "/api/v1/documents/records",
         "/api/v1/documents/map",
-        "Leaflet + OSM online tiles"
+        "Self-hosted Leaflet 1.9.4 + online OSM tiles"
       ],
       "status": "implemented_local"
     },

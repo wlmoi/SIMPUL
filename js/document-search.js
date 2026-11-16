@@ -15,5 +15,5 @@ export function filterDocumentRecords(records, filters={}) {
   return out.sort((a,b)=>String(b.at).localeCompare(String(a.at)));
 }
 export function mapPointsFromDocuments(records){
-  return (Array.isArray(records)?records:[]).filter(row=>row.source==='uploaded_pdf' && Number.isFinite(row.lat) && Number.isFinite(row.lon) && Math.abs(row.lat)<=90 && Math.abs(row.lon)<=180).map(row=>({lat:row.lat,lon:row.lon,kind:'pdf',id:row.id,zone:row.zone,at:row.at,vehicle:row.vehicle,color:row.color}));
+  return (Array.isArray(records)?records:[]).filter(row=>row?.source==='uploaded_pdf' && Number.isFinite(row.lat) && Number.isFinite(row.lon) && Math.abs(row.lat)<=90 && Math.abs(row.lon)<=180).map(row=>({lat:row.lat,lon:row.lon,kind:'pdf',id:row.id,zone:row.zone,at:row.at,vehicle:row.vehicle,color:row.color,page:row.page}));
 }

@@ -45,7 +45,7 @@ export function enterPage(main, { initial = false } = {}) {
   if (!main || !canMove()) return;
   stopMotion();
   const heading = main.querySelector('.main-head, .hero, .dia-hero, .eval-hero, .pilot-hero, .monitor-hero, .intel-hero, .scope-hero, .ctx-hero, .revenue-hero');
-  const cards = [...main.querySelectorAll('.cards > .card, .dia-stat, .pilot-stats > div, .monitor-kpi, .scope-stage, .card, .pilot-case, .intel-item')]
+  const cards = [...main.querySelectorAll('.cards > .card, .dia-stat, .pilot-stats > div, .monitor-kpi, .scope-stage, .card, .pilot-case, .intel-item, .solution-hero, .solution-step, .solution-evidence, .vehicle-story, .vehicle-kpis > article, .vehicle-panel, .creator-card, .creators-intro, .creators-outro')]
     .filter((node, i, arr) => arr.indexOf(node) === i && !node.closest('[hidden]')).slice(0, 15);
   const gsap = engine();
   if (gsap) {
@@ -143,3 +143,4 @@ export function accentActiveNav(root) {
   if(gsap)gsap.fromTo(active,{scale:.985},{scale:1,duration:.24,ease:'power2.out',clearProps:'transform'});
   else animate(active,[{transform:'scale(.985)'},{transform:'scale(1)'}],{duration:250});
 }
+

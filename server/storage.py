@@ -50,9 +50,18 @@ class Event(BaseModel):
 class EventBatch(BaseModel):
     items:list[Event]=Field(min_length=1,max_length=500)
 
+class _ManagedConnection(sqlite3.Connection):
+    """Commit/rollback on context exit, then release the database handle."""
+    def __exit__(self, *args):
+        try:
+            return super().__exit__(*args)
+        finally:
+            self.close()
+
+
 def connect():
     DB.parent.mkdir(parents=True,exist_ok=True)
-    c=sqlite3.connect(DB,timeout=5)
+    c=sqlite3.connect(DB,timeout=5,factory=_ManagedConnection)
     c.execute('CREATE TABLE IF NOT EXISTS observations (id TEXT PRIMARY KEY, content TEXT NOT NULL, created_at TEXT DEFAULT CURRENT_TIMESTAMP)')
     c.execute('''CREATE TABLE IF NOT EXISTS telemetry_outbox (
         event_id TEXT PRIMARY KEY, content TEXT NOT NULL,

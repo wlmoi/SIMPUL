@@ -1,3 +1,4 @@
+import {INTRO_STAGES} from './views/intro.js';
 import { fieldReadingModal } from './views/diagnosis.js';
 import { reviewSessionModal } from './views/survey.js';
 import { operationCreateModal, operationUpdateModal } from './views/operations.js';
@@ -18,7 +19,7 @@ import {views,initialData} from './data.js';
 import {apiRequest,setSessionApiToken,getSessionApiToken} from './api.js';
 import {getState,updateState,resetState,subscribe,exportState,importState} from './store.js';
 import {icon,safe,uid,nowIso,download} from './util.js';
-import {classifyTrafficDataset,makePoliceReviewBundle,REVIEW_STATUS} from './classification.js';
+import {classifyTrafficEvent,classifyTrafficDataset,makePoliceReviewBundle,REVIEW_STATUS} from './classification.js';
 import {assessQuality,buildStandardsBundle,buildProjectGeoJSON,buildExecutiveBriefHTML} from './standards.js';
 import {heuristicSimulation} from './analytics.js';
 import {filterEvents} from './monitoring.js';
@@ -31,15 +32,36 @@ const currentPage=()=>{let p=decodeURIComponent(location.hash.replace('#',''))||
 function sidebar(){
   const active=currentPage();
   const open=expandedNavGroup===null?sectionForRoute(active):expandedNavGroup;
-  return `<aside class="sidebar ${mobileOpen?'open':''}" id="sidebar" aria-label="Panel navigasi"><div class="brand"><div class="brand-icon">S</div><div><div class="wordmark">SIMPUL</div><small>MOBILITY INTELLIGENCE</small></div></div><nav class="nav-area" aria-label="Navigasi utama">${renderNavigation(active,open)}</nav><div class="sidebar-foot"><div class="mini">WORKSPACE AKTIF</div><strong>${safe(getState().project.name)}</strong><div class="presence"><span class="dot"></span> Mode demo - tersimpan lokal</div><button type="button" data-route="settings">${icon('settings-2',13)} &nbsp; Pengaturan proyek</button></div></aside>`;
+  return `<aside class="sidebar ${mobileOpen?'open':''}" id="sidebar" aria-label="Panel navigasi"><div class="brand"><div class="brand-icon">S</div><div><div class="wordmark">SIMPUL</div><small>MOBILITY INTELLIGENCE</small></div></div><nav class="nav-area" aria-label="Navigasi utama">${renderNavigation(active,open)}</nav><div class="sidebar-foot"><div class="mini">WORKSPACE AKTIF</div><strong>${safe(getState().project.name)}</strong><div class="presence"><span class="dot"></span> Workspace lokal - tersimpan</div><button type="button" data-route="settings">${icon('settings-2',13)} &nbsp; Pengaturan proyek</button></div></aside>`;
 }
-function layout(){const route=currentPage();const dateStr=new Intl.DateTimeFormat('id-ID',{day:'numeric',month:'long',year:'numeric',timeZone:'Asia/Jakarta'}).format(new Date());return `<div class="shell">${sidebar()}<div class="mobile-curtain ${mobileOpen?'show':''}" data-action="close-mobile"></div><div class="workspace"><header class="topbar"><div class="crumb"><button class="hamburger" data-action="toggle-mobile" aria-label="Buka navigasi">${icon('menu',22)}</button><span class="crumb-section">${sectionTitleForRoute(route)}</span>${icon('chevron-right',13)}<strong>${names[route]}</strong></div><div class="top-actions"><div class="header-date">${dateStr} - WIB</div><div class="header-divider"></div><span class="tag gold">DEMO / BUKAN DATA LAPANGAN</span><div class="avatar" title="iSeeDesignITB">ITB</div></div></header><main class="main" id="main-content">${components[route]()}<footer class="app-footer"><span>© 2026 SIMPUL · iSeeDesignITB · SI Bridges Indonesia 2026</span><span><a href="#creators">About the Creators</a> · <a href="https://www.linkedin.com/in/wlmoi/" target="_blank" rel="noopener noreferrer">LinkedIn William Anthony</a></span></footer></main></div></div><nav class="mobile-bottom-nav" aria-label="Navigasi cepat">${[['overview','layout-dashboard','Beranda'],['vehicles','car-front','Kendaraan'],['mapview','map-pinned','Peta'],['simulation','git-compare-arrows','Simulasi'],['evaluation','clipboard-check','Evaluasi']].map(v=>`<button type="button" data-route="${v[0]}" class="${route===v[0]?'active':''}" aria-label="${v[2]}">${icon(v[1],19)}<span>${v[2]}</span></button>`).join('')}</nav><div class="toasts" id="toasts" aria-live="polite"></div>`;}
+function layout(){const route=currentPage();const dateStr=new Intl.DateTimeFormat('id-ID',{day:'numeric',month:'long',year:'numeric',timeZone:'Asia/Jakarta'}).format(new Date());return `<div class="shell">${sidebar()}<div class="mobile-curtain ${mobileOpen?'show':''}" data-action="close-mobile"></div><div class="workspace"><header class="topbar"><div class="crumb"><button class="hamburger" data-action="toggle-mobile" aria-label="Buka navigasi">${icon('menu',22)}</button><span class="crumb-section">${sectionTitleForRoute(route)}</span>${icon('chevron-right',13)}<strong>${names[route]}</strong></div><div class="top-actions"><div class="header-date">${dateStr} - WIB</div><div class="header-divider"></div><span class="partner-brand"><img src="/assets/aiera-foundation.png" alt="AIERA Foundation" width="48" height="51"><span>AIERA<small>FOUNDATION</small></span></span><div class="avatar" title="iSeeDesignITB">ITB</div></div></header><main class="main" id="main-content">${components[route]()}<footer class="app-footer"><span>© 2026 SIMPUL · iSeeDesignITB · SI Bridges Indonesia 2026</span><span><a href="#creators">About the Creators</a> · <a href="https://www.linkedin.com/in/wlmoi/" target="_blank" rel="noopener noreferrer">LinkedIn William Anthony</a></span></footer></main></div></div><nav class="mobile-bottom-nav" aria-label="Navigasi cepat">${[['overview','layout-dashboard','Beranda'],['vehicles','car-front','Kendaraan'],['mapview','map-pinned','Peta'],['simulation','git-compare-arrows','Simulasi'],['evaluation','clipboard-check','Evaluasi']].map(v=>`<button type="button" data-route="${v[0]}" class="${route===v[0]?'active':''}" aria-label="${v[2]}">${icon(v[1],19)}<span>${v[2]}</span></button>`).join('')}</nav><div class="toasts" id="toasts" aria-live="polite"></div>`;}
+let introIndex=0,introPlaying=false,introTimer=null;
+function syncIntro(){
+ clearTimeout(introTimer);introTimer=null;
+ const panel=document.querySelector('.simpul-intro');
+ if(!panel){introPlaying=false;return;}
+ const stage=INTRO_STAGES[introIndex];
+ panel.dataset.introStage=String(introIndex);
+ panel.classList.toggle('intro-playing',introPlaying);
+ panel.querySelector('#intro-count').textContent=`0${introIndex+1} / 04 · ${stage.label.toUpperCase()}`;
+ panel.querySelector('#intro-title').textContent=stage.title;
+ panel.querySelector('#intro-description').textContent=stage.text;
+ const destination=panel.querySelector('#intro-destination');
+ destination.textContent=stage.cta+' ↗';destination.dataset.route=stage.route;
+ panel.querySelectorAll('[data-action="intro-stage"]').forEach((button,index)=>button.setAttribute('aria-pressed',String(index===introIndex)));
+ const play=panel.querySelector('[data-action="intro-play"]');
+ play.textContent=introPlaying?'Jeda':'Putar intro';play.setAttribute('aria-pressed',String(introPlaying));
+ // Only user-requested playback advances the explanation. No data is changed.
+ if(introPlaying)introTimer=setTimeout(()=>{if(introIndex===INTRO_STAGES.length-1)introPlaying=false;else introIndex++;syncIntro();},6000);
+}
+document.addEventListener('visibilitychange',()=>{if(document.hidden){introPlaying=false;syncIntro();}});
 function render(){
   const route=currentPage();
   const changed=route!==lastRenderedRoute;
   const first=lastRenderedRoute===null;
   document.getElementById('app').innerHTML=layout();
   lastRenderedRoute=route;
+  syncIntro();
   // Motion is a progressive enhancement; page data and events work without it.
   if(changed){
     const main=document.getElementById('main-content');
@@ -116,7 +138,7 @@ function manageMonitorPolling(){
  if(monitorTimer){clearInterval(monitorTimer);monitorTimer=null;}
  if(currentPage()==='monitor'){refreshMonitor({silent:true});monitorTimer=setInterval(()=>{if(currentPage()==='monitor'&&!document.hidden){refreshMonitor({silent:true});if(getState().monitorAutoSync&&Date.now()-lastMonitorSync>=30000){lastMonitorSync=Date.now();syncMonitorAutomatically();}}},15000);}
 }
-async function runSumo(){const button=document.querySelector('[data-action="run-sumo"]');if(button){button.disabled=true;button.textContent='Memeriksa backend…'}
+async function runSumo(){const button=document.querySelector('[data-action="run-sumo"]');if(button){button.disabled=true;button.textContent='Memeriksa backendâ€¦'}
  try{
   const data=await apiRequest('/api/status',{timeout:3000});
   if(!data.engineAvailable)throw new Error('Engine SUMO/netconvert belum terpasang. Lihat README.');
@@ -162,7 +184,7 @@ async function connectedAction(action,el){
       const part=`lat=${p.lat}&lon=${p.lon}`;
       const key=action==='fetch-weather'?'weather':action==='fetch-nearby'?'nearby':'traffic';
       const url=key==='weather'?'/api/context/weather?'+part:key==='nearby'?'/api/geo/nearby?'+part:'/api/traffic/live?'+part;
-      toast(key==='weather'?'Mengambil data cuaca…':key==='nearby'?'Mencari fasilitas sekitar…':'Mengambil snapshot lalu lintas…');
+      toast(key==='weather'?'Mengambil data cuacaâ€¦':key==='nearby'?'Mencari fasilitas sekitarâ€¦':'Mengambil snapshot lalu lintasâ€¦');
       const result=await apiRequest(url,{timeout:30000});
       updateState(s=>({...s,context:{...s.context,[key]:result}}));
       toast(key==='weather'?'Cuaca Open-Meteo berhasil dimuat':key==='nearby'?'Fasilitas dari Overpass berhasil dimuat':'Data TomTom berhasil dimuat');return;
@@ -170,7 +192,7 @@ async function connectedAction(action,el){
     if(action==='sync-observations'){
       const items=getState().observations.filter(x=>x.source==='manual').map(x=>({id:x.id,at:x.at,type:x.type,vehicle:x.vehicle,duration:x.duration,zone:x.zone,source:'manual',note:x.note||'',sessionId:x.sessionId||null,zoneContext:x.zoneContext||'unknown',laneBlocked:x.laneBlocked||'unknown',pedestrianBlocked:x.pedestrianBlocked||'unknown',queueObserved:x.queueObserved||'unknown',signageVerified:x.signageVerified===true,evidenceReference:x.evidenceReference||''}));
       if(!items.length)throw new Error('Belum ada rekaman manual. Buat sesi dan masukkan kejadian dahulu.');
-      if(!confirm(`Kirim ${items.length} rekaman manual ke SQLite pada server lokal? Data demo tidak akan dikirim.`))return;
+      if(!confirm(`Kirim ${items.length} rekaman manual ke SQLite pada server lokal? Data sintetis tidak akan dikirim.`))return;
       const result=await apiRequest('/api/observations/sync',{method:'POST',body:{items},timeout:15000});
       toast(`${result.inserted} rekaman baru tersinkronisasi; ${result.alreadyPresent} sudah ada.`);return;
     }
@@ -182,7 +204,7 @@ async function connectedAction(action,el){
     }
     if(action==='ai-insights'){
       const events=getState().observations.filter(x=>x.source==='manual');
-      if(!events.length)throw new Error('Analisis AI memerlukan minimal satu observasi manual. Data demo tidak dikirim.');
+      if(!events.length)throw new Error('Analisis AI memerlukan minimal satu observasi manual. Data sintetis tidak dikirim.');
       const byType={},byZone={};let sum=0;
       for(const e of events){byType[e.type]=(byType[e.type]||0)+1;byZone[e.zone]=(byZone[e.zone]||0)+1;sum+=Number(e.duration)||0;}
       const result=await apiRequest('/api/ai/insights',{method:'POST',body:{count:events.length,meanDwellSec:sum/events.length,byType,byZone},timeout:45000});
@@ -284,6 +306,15 @@ async function refreshPdfRecords(){
 }
 
 function handleAction(action,el){switch(action){
+case 'scene-alternative':{const scene=el.closest('.corridor-lab'),key=el.dataset.scene;if(!['A0','A1','A2'].includes(key))break;scene.dataset.scene=key;scene.querySelectorAll('.scene-switch button').forEach(b=>b.setAttribute('aria-pressed',String(b===el)));scene.querySelector('.scene-description').textContent=({A0:'A0: ilustrasi ruang jalan dan aktivitas penjemputan.',A1:'A1: ilustrasi pemusatan aktivitas di area jemput.',A2:'A2: ilustrasi pengaturan titik dan durasi berhenti.'})[key];break;}
+case 'preview-classifier':{const val=id=>document.getElementById('lab-'+id).value,duration=Number(val('duration')),out=document.getElementById('classifier-result');if(!Number.isFinite(duration)||duration<0||duration>86400){out.textContent='Isi durasi antara 0 dan 86400 detik.';break;}const result=classifyTrafficEvent({source:'demo',type:val('activity'),duration,pedestrianBlocked:val('pedestrian'),laneBlocked:val('lane'),queueObserved:val('queue')});out.textContent=result.priorityLabel+' — '+result.priorityReason+' Sumber: percobaan sintetis.';break;}
+
+case 'intro-skip':{introPlaying=false;syncIntro();const target=document.getElementById('intro-end');target?.focus({preventScroll:true});target?.scrollIntoView({block:'start',behavior:window.matchMedia('(prefers-reduced-motion: reduce)').matches?'instant':'smooth'});break;}
+case 'intro-stage':introPlaying=false;introIndex=Math.max(0,Math.min(3,Number(el.dataset.index)||0));syncIntro();break;
+case 'intro-next':introPlaying=false;introIndex=(introIndex+1)%INTRO_STAGES.length;syncIntro();break;
+case 'intro-prev':introPlaying=false;introIndex=(introIndex+INTRO_STAGES.length-1)%INTRO_STAGES.length;syncIntro();break;
+case 'intro-play':introPlaying=!introPlaying;syncIntro();break;
+case 'intro-replay':introIndex=0;introPlaying=true;syncIntro();break;
 case 'doc-status':apiRequest('/api/v1/documents/status').then(data=>{updateState(s=>({...s,pdfEvidence:{...s.pdfEvidence,status:data}}));toast('Status OCR diperbarui')}).catch(e=>toast(e.message));break;
 case 'doc-reset':updateState(s=>({...s,pdfEvidence:{...s.pdfEvidence,filters:{}}}));break;
 case 'doc-export':{const data=getState().pdfEvidence||{items:[],filters:{}};download('SIMPUL_pdf_observations_filtered.json',JSON.stringify({source:'uploaded_pdf',status:'unverified',records:filterDocumentRecords(data.items,data.filters)},null,2));toast('Hasil PDF yang sedang difilter disiapkan');break;}
@@ -327,7 +358,7 @@ case 'update-operation':{
 case 'export-operations':download('SIMPUL_operational_response_manual.json',JSON.stringify(exportOperations(getState()),null,2));toast('Daftar tindak lanjut diekspor tanpa catatan bebas');break;
 case 'export-police-csv':downloadPoliceCsv();break;
 case 'export-police-json':{download('SIMPUL_traffic_review_manual_only.json',JSON.stringify(makePoliceReviewBundle(getState()),null,2));toast('Berkas review JSON disiapkan, tanpa contoh sintetis');break;}
-case 'review-traffic':{const e=getState().observations.find(x=>x.id===el.dataset.id);if(!e)return toast('Rekaman tidak ditemukan');if(e.source!=='manual'){toast('Review resmi tidak dapat diisi pada data demo. Catat observasi manual.');return;}modal(trafficReviewModal(e,getState().eventReviews?.[e.id]));break;}
+case 'review-traffic':{const e=getState().observations.find(x=>x.id===el.dataset.id);if(!e)return toast('Rekaman tidak ditemukan');if(e.source!=='manual'){toast('Review resmi tidak dapat diisi pada data sintetis. Catat observasi manual.');return;}modal(trafficReviewModal(e,getState().eventReviews?.[e.id]));break;}
 
 case 'add-field-reading':modal(fieldReadingModal());break;
 case 'add-decision':modal(decisionModal());break;
@@ -338,7 +369,7 @@ case 'capture-type':modal(eventModal(el.dataset.value));break;
 case 'close-modal':closeModal();break;
 case 'start-session':startSession();break;
 case 'end-session':endSession();break;
-case 'clear-demo':{const count=getState().observations.filter(e=>e.source==='demo').length;if(!count)return toast('Tidak ada contoh demo');if(confirm(`Hapus ${count} kejadian sintetis? Rekaman manual tetap tersimpan.`)){updateState(s=>({...s,observations:s.observations.filter(e=>e.source!=='demo')}));recordLocalActivity('data.cleanup','Data demo sintetis dihapus');toast('Data contoh dihapus')}}break;
+case 'clear-demo':{const count=getState().observations.filter(e=>e.source==='demo').length;if(!count)return toast('Tidak ada contoh sintetis');if(confirm(`Hapus ${count} kejadian sintetis? Rekaman manual tetap tersimpan.`)){updateState(s=>({...s,observations:s.observations.filter(e=>e.source!=='demo')}));recordLocalActivity('data.cleanup','Data sintetis sintetis dihapus');toast('Data contoh dihapus')}}break;
 case 'delete-event':if(getState().responseCases?.some(c=>c.eventId===el.dataset.id)){toast('Rekaman sudah memiliki tindak lanjut. Ekspor/arsipkan catatan dulu sebelum menghapus sumber.');break;}if(confirm('Hapus satu kejadian ini?')){updateState(s=>({...s,observations:s.observations.filter(e=>e.id!==el.dataset.id)}));recordLocalActivity('observation.delete','Satu kejadian dihapus','warning');toast('Kejadian dihapus')}break;
 case 'run-simulation':updateState(s=>({...s,lastAnalysis:heuristicSimulation(s.scenario),history:[...s.history,{id:uid('run'),engine:'heuristic',createdAt:nowIso()}]}));recordLocalActivity('simulation.demo','Estimasi heuristik ilustratif dijalankan');toast('Estimasi heuristik ilustratif diperbarui');break;
 case 'run-sumo':runSumo();break;
@@ -361,7 +392,7 @@ case 'export-study-geojson':{try{download('SIMPUL_study_reference.geojson',JSON.
 case 'export-observations':downloadObservations();break;
 case 'export-forecast':downloadForecast();break;
 case 'export-equipment':downloadEquipment();break;
-case 'export-report':download('SIMPUL_laporan_demo.json',JSON.stringify(makeReport(),null,2));toast('Laporan dengan asumsi dan keterbatasan diekspor');break;
+case 'export-report':download('SIMPUL_laporan.json',JSON.stringify(makeReport(),null,2));toast('Laporan dengan asumsi dan keterbatasan diekspor');break;
 case 'export-backup':download('SIMPUL_backup.json',exportState());toast('Backup workspace diunduh');break;
 case 'save-api-token':{
   const value=document.getElementById('simpul-api-token')?.value?.trim()||'';
@@ -371,7 +402,7 @@ case 'save-api-token':{
   toast('Token API disimpan hanya untuk sesi tab ini.');render();break;
 }
 case 'clear-api-token':setSessionApiToken('');toast('Token sesi dihapus.');render();break;
-case 'reset-data':if(confirm('Reset seluruh pekerjaan menjadi data demo awal? Backup terlebih dahulu jika diperlukan.')){resetState();toast('Workspace direset ke data awal')}break;
+case 'reset-data':if(confirm('Reset seluruh pekerjaan menjadi data sintetis awal? Backup terlebih dahulu jika diperlukan.')){resetState();toast('Workspace direset ke data awal')}break;
 default:if(action.startsWith('goto-'))go(action.slice(5));}
 }
 document.addEventListener('click',e=>{const route=e.target.closest('[data-route]');if(route){go(route.dataset.route);return;}const action=e.target.closest('[data-action]');if(action){e.preventDefault();handleAction(action.dataset.action,action);}});
@@ -437,7 +468,7 @@ document.addEventListener('submit',e=>{e.preventDefault();const id=e.target.id;c
  }
  if(id==='geo-search-form'){searchLocation(get('geo-query'));return;}
  if(id==='ctx-route-form'){requestRoute();return;}
- if(id==='event-form'){const duration=Number(get('event-duration'));if(!Number.isFinite(duration)||duration<0||duration>3600)return toast('Durasi harus antara 0–3600 detik');const active=getState().activeSession;if(!active){toast('Mulai sesi dari halaman Observasi sebelum mencatat kejadian');closeModal();go('observation');return;}
+ if(id==='event-form'){const duration=Number(get('event-duration'));if(!Number.isFinite(duration)||duration<0||duration>3600)return toast('Durasi harus antara 0â€“3600 detik');const active=getState().activeSession;if(!active){toast('Mulai sesi dari halaman Observasi sebelum mencatat kejadian');closeModal();go('observation');return;}
   const evidenceReference=get('event-evidence').trim().slice(0,80);
   const signageVerified=document.getElementById('event-signage')?.checked===true;
   if(signageVerified&&!evidenceReference)return toast('Isi ID referensi sebelum menandai rambu/fasilitas sudah diperiksa.');
