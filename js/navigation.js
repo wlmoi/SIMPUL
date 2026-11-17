@@ -15,7 +15,7 @@ export const PRIMARY_ROUTES = Object.freeze([
 ]);
 
 /** Always-visible tools under the main flow (kept short on purpose). */
-export const TOOL_ROUTES = Object.freeze(['mapview', 'observation', 'settings']);
+export const TOOL_ROUTES = Object.freeze(['mapview', 'settings']);
 
 /**
  * Advanced pages. They stay routable, appear under the single collapsible
@@ -24,7 +24,6 @@ export const TOOL_ROUTES = Object.freeze(['mapview', 'observation', 'settings'])
 export const NAV_SECTIONS = Object.freeze([
   { id:'field', label:'Survei & operasional', icon:'clipboard-list', routes:['survey','monitor','classification','operations'] },
   { id:'context', label:'Data & konteks', icon:'map-pinned', routes:['documents','context','contextplus','insights','publicintel'] },
-  { id:'business', label:'Model bisnis', icon:'chart-no-axes-combined', routes:['business','pipeline','equipment'] },
   { id:'evidence', label:'Dokumentasi & bukti', icon:'files', routes:['project','standards','reports'] },
   { id:'system', label:'Integrasi', icon:'plug-zap', routes:['integrations'] },
   { id:'about', label:'Tentang pembuat', icon:'users', routes:['creators'] }

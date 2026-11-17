@@ -931,3 +931,7 @@ input[type=range]:disabled{cursor:not-allowed;opacity:.5}
 .solution-credits>.btn:hover{background:linear-gradient(135deg,#ff8a38,#ff7a1f);transform:translateY(-1px);box-shadow:0 12px 28px #f8680966}
 .solution-credits>.btn:focus-visible{outline:3px solid #fff;outline-offset:3px}
 .solution-credits>.btn svg{color:#fff}
+/* Corridor map: small zone labels next to the three zone dots. */
+.leaflet-tooltip.zone-tip{background:#042573;color:#fff;border:0;border-radius:999px;padding:1px 7px;font:800 10px/16px 'Plus Jakarta Sans',Arial,sans-serif;box-shadow:0 2px 6px #04257340}
+.leaflet-tooltip.zone-tip::before{display:none}
+.spatial-layer i.zone{background:#f86809!important;box-shadow:0 0 0 2px #fff,0 0 0 3px #f8680966!important}

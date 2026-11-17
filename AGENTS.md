@@ -121,6 +121,7 @@ The menu hierarchy is defined only in `js/navigation.js`. Keep all pages registe
 - Primary routes live in `js/navigation.js`; each route must occur exactly once in `PRIMARY_ROUTES` or `NAV_SECTIONS`.
 - `creators` must remain the final navigation section; details must be grounded in the proposal, with only the user-supplied LinkedIn link.
 - (v2.0) The sidebar shows only `PRIMARY_ROUTES` + `TOOL_ROUTES`; every other page is reached from the Pengaturan hub (`js/views/settings.js`) and sidebar search only, where About the Creators is its own tab.
+- (v2.1) The manual Field Observation page and the business pages (Business Studio, customer pipeline, equipment cost) are removed from the website: the CCTV AI automates input and the business model lives in the pitch deck. Old hashes redirect via `REMOVED_ROUTES` in `js/app.js`; `js/finance.js` and the CSV formulas remain only as tested domain code.
 - Changes to display priority must never modify traffic observations, AI, SUMO calculations, or provenance.
 - Run `node tests/test_solution_first.mjs`, `npm run verify`, and `python -m pytest -q`.
 

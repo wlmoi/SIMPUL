@@ -6,7 +6,6 @@ import { surveyCoverage, normalizeProtocol, sessionQuality, exportSurveyCoverage
 import { operationalBoard,validateCaseDraft,validateCaseUpdate,exportOperations } from './operations.js';
 import { decisionModal } from './views/evaluation.js';
 import { eventModal } from './views/observation.js';
-import { leadModal, STAGES } from './views/pipeline.js';
 import { makeReport } from './views/reports.js';
 import { trafficReviewModal } from './views/classification.js';
 import { pageRenderers } from './page-registry.js';
@@ -30,11 +29,14 @@ import {filterEvents} from './monitoring.js';
 import {comparePeriods,evidenceGate} from './diagnostics.js';
 import {getLanguage,setLanguage,labelForRoute,t} from './i18n.js';
 import {installCustomSelects} from './custom-select.js';
+import {installDomI18n,refreshDomI18n} from './i18n-dom.js';
 // The renderer registry is maintained separately from action orchestration.
 const components = pageRenderers;
 const names=Object.fromEntries(views.map(v=>[v.id,v.label]));
 let mobileOpen=false,toastTimer=null,serverStatus=null,monitorTimer=null,monitorBusy=false,lastMonitorSync=0,expandedNavGroup=null,lastRenderedRoute=null;
-const currentPage=()=>{let p=decodeURIComponent(location.hash.replace('#',''))||'overview';return components[p]?p:'overview';};
+// Pages removed from the website: manual field observation (AI now automates input) and the business model (moved to the pitch deck).
+const REMOVED_ROUTES={observation:'cctv',business:'overview',pipeline:'overview',equipment:'overview'};
+const currentPage=()=>{let p=decodeURIComponent(location.hash.replace('#',''))||'overview';p=REMOVED_ROUTES[p]||p;return components[p]?p:'overview';};
 function sidebar(){
   const active=currentPage();
   const open=expandedNavGroup===null?sectionForRoute(active):expandedNavGroup;
@@ -325,7 +327,7 @@ function selectOverviewNode(el){
 }
 
 function handleAction(action,el){switch(action){
-case 'switch-language':setLanguage(el.dataset.language);introIndex=0;render();break;
+case 'switch-language':setLanguage(el.dataset.language);introIndex=0;render();refreshDomI18n();break;
 case 'select-overview-node':selectOverviewNode(el);break;
 case 'scene-alternative':{const scene=el.closest('.corridor-lab'),key=el.dataset.scene;if(!['A0','A1','A2'].includes(key))break;scene.dataset.scene=key;scene.querySelectorAll('.scene-switch button').forEach(b=>b.setAttribute('aria-pressed',String(b===el)));scene.querySelector('.scene-description').textContent=({A0:'A0: ilustrasi ruang jalan dan aktivitas penjemputan.',A1:'A1: ilustrasi pemusatan aktivitas di area jemput.',A2:'A2: ilustrasi pengaturan titik dan durasi berhenti.'})[key];break;}
 case 'preview-classifier':{const val=id=>document.getElementById('lab-'+id).value,duration=Number(val('duration')),out=document.getElementById('classifier-result');if(!Number.isFinite(duration)||duration<0||duration>86400){out.textContent='Isi durasi antara 0 dan 86400 detik.';break;}const result=classifyTrafficEvent({source:'demo',type:val('activity'),duration,pedestrianBlocked:val('pedestrian'),laneBlocked:val('lane'),queueObserved:val('queue')});out.textContent=result.priorityLabel+' - '+result.priorityReason+' Sumber: percobaan sintetis.';break;}
@@ -414,9 +416,8 @@ case 'probe-telemetry':flushTelemetry(true);break;
 case 'reset-monitor-filters':updateState(s=>({...s,monitorFilter:{source:'all',zone:'all',range:'all'}}));break;
 case 'reset-scenario':resetScenario();break;
 case 'reset-finance':resetFinance();break;
-case 'add-lead':modal(leadModal());break;
-case 'advance-lead':{const l=getState().pipeline.find(x=>x.id===el.dataset.id);if(!l)return;const next=STAGES[Math.min(STAGES.indexOf(l.stage)+1,STAGES.length-1)];updateState(s=>({...s,pipeline:s.pipeline.map(x=>x.id===l.id?{...x,stage:next}:x)}));toast('Tahap prospek diperbarui');break;}
-case 'delete-lead':if(confirm('Hapus prospek ini?')){updateState(s=>({...s,pipeline:s.pipeline.filter(x=>x.id!==el.dataset.id)}));toast('Prospek dihapus')}break;
+
+
 case 'select-equipment':updateState(s=>({...s,equipmentMode:el.dataset.value}));break;
 case 'export-executive-brief':{download('SIMPUL_Executive_Brief_EN.html',buildExecutiveBriefHTML(getState()),'text/html;charset=utf-8');toast('Executive brief berbahasa Inggris siap dibuka atau dicetak');break;}
 case 'export-evidence-package':{const bundle=buildStandardsBundle(getState());download('SIMPUL_evidence_bundle_v1.json',JSON.stringify(bundle,null,2));recordLocalActivity('export.evidence','Evidence bundle manual diekspor');toast('Evidence bundle dengan kualitas dan provenance diekspor');break;}
@@ -435,7 +436,7 @@ case 'save-api-token':{
 }
 case 'clear-api-token':setSessionApiToken('');toast('Token sesi dihapus.');render();break;
 case 'reset-data':if(confirm('Reset seluruh pekerjaan menjadi data sintetis awal? Backup terlebih dahulu jika diperlukan.')){resetState();toast('Workspace direset ke data awal')}break;
-default:if(action.startsWith('goto-'))go(action.slice(5));}
+default:if(action.startsWith('goto-')){const target=action.slice(5);go(REMOVED_ROUTES[target]||target);}}
 }
 document.addEventListener('click',e=>{const route=e.target.closest('[data-route]');if(route){go(route.dataset.route);return;}const action=e.target.closest('[data-action]');if(action){e.preventDefault();handleAction(action.dataset.action,action);}});
 document.addEventListener('input',e=>{if(e.target.id==='simpul-nav-search'){filterNavigation(e.target.closest('.nav-area'),e.target.value);return;}if(e.target.matches('input[type=range].scenario-input')){const display=document.querySelector(`[data-range-out="${e.target.id}"]`);if(display){const suffix=display.textContent.endsWith('%')?'%':display.textContent.endsWith('s')?'s':display.textContent.endsWith('m')?'m':'';display.textContent=e.target.value+suffix}}});
@@ -538,7 +539,6 @@ document.addEventListener('submit',e=>{e.preventDefault();const id=e.target.id;c
   const item={id:uid('decision'),at:nowIso(),owner,reason,status,scenario,nextAction:get('dec-next').trim().slice(0,200),source:'internal-team-record',approvedByAuthority:false};
   closeModal();updateState(s=>({...s,decisions:[...s.decisions,item]}));recordLocalActivity('decision.create',`Catatan kajian ${scenario} dibuat (${status})`);toast('Catatan keputusan internal disimpan');return;
  }
- if(id==='lead-form'){const name=get('lead-name').trim();if(!name)return toast('Nama organisasi wajib diisi');const lead={id:uid('lead'),name:name.slice(0,120),segment:get('lead-segment'),stage:get('lead-stage'),amount:Number(get('lead-amount'))||0,contact:get('lead-contact').slice(0,150),next:get('lead-next').slice(0,250),demo:false};closeModal();updateState(s=>({...s,pipeline:[...s.pipeline,lead]}));toast('Prospek ditambahkan');}
  if(id==='project-form'){updateState(s=>({...s,project:{...s.project,name:get('project-name').trim().slice(0,90)||s.project.name,district:get('project-district').slice(0,120),description:get('project-desc').slice(0,500)}}));toast('Pengaturan proyek disimpan')}
 });
 window.addEventListener('hashchange',()=>{mobileOpen=false;expandedNavGroup=sectionForRoute(currentPage())||expandedNavGroup;render();window.scrollTo(0,0);manageMonitorPolling()});
@@ -564,5 +564,6 @@ window.addEventListener('keydown',e=>{
 });
 subscribe(render);render();manageMonitorPolling();
 installCustomSelects();
+installDomI18n();
 // PWA service worker, best-effort. HTTPS or localhost required.
 if('serviceWorker' in navigator && location.protocol!=='file:')navigator.serviceWorker.register('./sw.js').catch(()=>{});
