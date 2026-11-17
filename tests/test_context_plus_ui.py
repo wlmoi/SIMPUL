@@ -5,6 +5,8 @@ import asyncio,shutil
 from pathlib import Path
 from playwright.async_api import async_playwright
 ROOT=Path(__file__).resolve().parent.parent
+SHOT_DIR=ROOT/'tmp'/'screenshots'
+SHOT_DIR.mkdir(parents=True,exist_ok=True)
 HTML=(ROOT/'SIMPUL_Standalone.html').read_text()
 MOCK='''(() => {
 window.fetch=async (url,options={})=>{
@@ -61,11 +63,11 @@ async def main():
   print('route_figures=',await page.locator('.ctx-route-figure').count(), 'toast=', await page.locator('.toasts').inner_text())
   print('iso snippet=', (await page.locator('.ctx-route-layout').inner_text())[-600:])
   assert await page.locator('.ctx-route-figure').count()==2
-  await page.screenshot(path=str(ROOT/'docs/context_plus_desktop.png'),full_page=True)
+  await page.screenshot(path=str(SHOT_DIR/'context_plus_desktop.png'),full_page=True)
   await page.set_viewport_size({'width':390,'height':844})
   await page.wait_for_timeout(120)
   assert await page.evaluate('document.documentElement.scrollWidth <= window.innerWidth+2'), 'Mobile horizontal scroll overflow'
-  await page.screenshot(path=str(ROOT/'docs/context_plus_mobile.png'),full_page=True)
+  await page.screenshot(path=str(SHOT_DIR/'context_plus_mobile.png'),full_page=True)
   assert not errors,errors
   await browser.close()
   print('PASS: Context+ 7 context providers, OSM facility destination, ORS routes & isochrones, 390px layout, 0 page errors')

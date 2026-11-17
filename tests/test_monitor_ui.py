@@ -3,6 +3,8 @@ import asyncio, shutil
 from pathlib import Path
 from playwright.async_api import async_playwright
 ROOT=Path(__file__).resolve().parent.parent
+SHOT_DIR=ROOT/'tmp'/'screenshots'
+SHOT_DIR.mkdir(parents=True,exist_ok=True)
 HTML=(ROOT/'SIMPUL_Standalone.html').read_text()
 async def main():
     async with async_playwright() as p:
@@ -26,7 +28,7 @@ async def main():
             assert await page.locator('.monitor-no-results').count()==1
             await page.locator('[data-action="reset-monitor-filters"]').click()
             assert await page.locator('#monitor-source').input_value()=='all'
-            await page.screenshot(path=str(ROOT/'docs'/name),full_page=True)
+            await page.screenshot(path=str(SHOT_DIR/name),full_page=True)
             async with page.expect_download() as result:
                 await page.locator('[data-action="export-monitor"]').click()
             assert (await result.value).suggested_filename=='SIMPUL_monitoring_log.csv'

@@ -7,6 +7,8 @@ import asyncio,shutil
 from pathlib import Path
 from playwright.async_api import async_playwright
 ROOT=Path(__file__).resolve().parent.parent
+SHOT_DIR=ROOT/'tmp'/'screenshots'
+SHOT_DIR.mkdir(parents=True,exist_ok=True)
 HTML=(ROOT/'SIMPUL_Standalone.html').read_text()
 MOCK='''(() => {
 const realFetch=window.fetch.bind(window);
@@ -44,7 +46,7 @@ async def main():
   await page.evaluate('location.hash="integrations"')
   await page.locator('[data-action="check-apis"]').click()
   await page.get_by_text('BACKEND TERHUBUNG',exact=True).wait_for(timeout=4500)
-  await page.screenshot(path=str(ROOT/'docs'/'api_hub_desktop.png'),full_page=True)
+  await page.screenshot(path=str(SHOT_DIR/'api_hub_desktop.png'),full_page=True)
   await page.evaluate('location.hash="context"')
   await page.locator('#geo-query').fill('Stasiun MRT Fatmawati')
   await page.locator('#geo-search-form button[type="submit"]').click()
@@ -57,7 +59,7 @@ async def main():
   await page.locator('text=Halte contoh (data mock)').wait_for()
   await page.locator('[data-action="fetch-traffic"]').click()
   await page.locator('text=22 km/j').wait_for()
-  await page.screenshot(path=str(ROOT/'docs'/'context_desktop.png'),full_page=True)
+  await page.screenshot(path=str(SHOT_DIR/'context_desktop.png'),full_page=True)
   await page.evaluate('location.hash="observation"')
   await page.locator('[data-action="start-session"]').click()
   await page.locator('[data-action="capture-type"][data-value="Jemput"]').click()
@@ -73,7 +75,7 @@ async def main():
   await phone.set_content(HTML,wait_until='domcontentloaded')
   await phone.evaluate('location.hash="integrations"')
   assert await phone.evaluate('document.documentElement.scrollWidth')==390
-  await phone.screenshot(path=str(ROOT/'docs'/'api_hub_mobile.png'),full_page=True)
+  await phone.screenshot(path=str(SHOT_DIR/'api_hub_mobile.png'),full_page=True)
   print('PASS: API Hub status UI, mock geocode/weather/nearby, mock sync/pull, responsive layout')
   await browser.close()
 if __name__=='__main__':asyncio.run(main())

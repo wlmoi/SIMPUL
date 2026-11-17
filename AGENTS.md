@@ -49,7 +49,7 @@ A missing integration, API credential or hardware engine must have an **unavaila
 npm test                            # Deterministic JS + registry/export tests
 python tools/check_module_catalog.py
 python tools/build_standalone.py
-node --check docs/bundled_app.js
+node --check tmp/bundled_app.js
 python -m pytest -q tests/test_api_registry.py tests/test_build_standalone.py
 ```
 

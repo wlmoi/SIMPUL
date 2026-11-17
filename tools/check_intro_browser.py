@@ -5,6 +5,8 @@ from http.server import ThreadingHTTPServer, SimpleHTTPRequestHandler
 from threading import Thread
 from playwright.sync_api import sync_playwright
 ROOT=Path(__file__).resolve().parent.parent
+SHOT_DIR=ROOT/'tmp'/'screenshots'
+SHOT_DIR.mkdir(parents=True,exist_ok=True)
 class Quiet(SimpleHTTPRequestHandler):
     def log_message(self,*args): pass
 server=ThreadingHTTPServer(('127.0.0.1',0),partial(Quiet,directory=str(ROOT/'dist')))
@@ -43,7 +45,7 @@ try:
             pg.evaluate("location.hash='overview'")
             pg.locator('.simpul-intro').wait_for()
             assert not pg.evaluate('document.documentElement.scrollWidth>innerWidth')
-            pg.locator('.simpul-intro').screenshot(path=str(ROOT/'docs'/f'intro_{label}.png'),animations='disabled')
+            pg.locator('.simpul-intro').screenshot(path=str(SHOT_DIR/f'intro_{label}.png'),animations='disabled')
             print(f'PASS intro {label}: 4 chapters, automatic advance, pause/replay/prev/next/skip, destination, cleanup, unchanged data, no overflow',flush=True)
             pg.close()
         pg=browser.new_page(viewport={'width':390,'height':844},reduced_motion='reduce')

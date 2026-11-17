@@ -32,7 +32,7 @@ flowchart TB
 | `js/services/csv.js` | CSV field escaping and row encoding | No UI or persistence effects |
 | `js/services/export-data.js` | Source-aware export data transformations | No DOM, no filesystem writes |
 
-**Standalone build:** `tools/build_standalone.py` recursively reads static relative named imports from `js/app.js`, validates paths/cycles and emits `docs/bundled_app.js` and `SIMPUL_Standalone.html`. Changing ES module syntax may require upgrading the bundler. Do not load CDN scripts or runtime packages into standalone demo without redesigning this contract.
+**Standalone build:** `tools/build_standalone.py` recursively reads static relative named imports from `js/app.js`, validates paths/cycles and emits `tmp/bundled_app.js` and `SIMPUL_Standalone.html`. Changing ES module syntax may require upgrading the bundler. Do not load CDN scripts or runtime packages into standalone demo without redesigning this contract.
 
 ### Backend contracts
 

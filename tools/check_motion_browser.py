@@ -3,6 +3,8 @@ from pathlib import Path
 from playwright.sync_api import sync_playwright
 
 ROOT=Path(__file__).resolve().parent.parent
+SHOT_DIR=ROOT/'tmp'/'screenshots'
+SHOT_DIR.mkdir(parents=True,exist_ok=True)
 HTML=(ROOT/'SIMPUL_Standalone.html').read_text(encoding='utf-8')
 with sync_playwright() as p:
   browser=p.chromium.launch(headless=True,executable_path='/usr/bin/chromium',args=['--no-sandbox','--disable-dev-shm-usage'])
@@ -44,7 +46,7 @@ with sync_playwright() as p:
     assert not overflow, f'{label}: horizontal overflow'
     pg.evaluate("location.hash='#overview'")
     pg.wait_for_timeout(570)
-    pg.screenshot(path=str(ROOT/'docs'/f'motion_{label}_v1.6.png'),full_page=(label=='desktop'))
+    pg.screenshot(path=str(SHOT_DIR/f'motion_{label}_v1.6.png'),full_page=(label=='desktop'))
     print(f'PASS browser {label}: navigation, motion, zero console pageerrors, no horizontal overflow')
     pg.close()
   pg=browser.new_page(viewport={'width':390,'height':844},reduced_motion='reduce')

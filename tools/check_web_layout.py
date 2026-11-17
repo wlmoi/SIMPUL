@@ -7,6 +7,8 @@ import re
 from playwright.sync_api import sync_playwright
 
 ROOT = Path(__file__).resolve().parent.parent
+SHOT_DIR = ROOT / 'tmp' / 'screenshots'
+SHOT_DIR.mkdir(parents=True, exist_ok=True)
 routes = re.findall(r'^  (\w+): render', (ROOT/'js/page-registry.js').read_text(), re.M)
 class QuietHandler(SimpleHTTPRequestHandler):
     def log_message(self, *args): pass
@@ -29,7 +31,7 @@ try:
                 assert not pg.evaluate('document.documentElement.scrollWidth > innerWidth'), (label,route,'overflow')
                 assert pg.locator('#main-content').is_visible(), (label,route,'layout')
                 if route in ['overview','vehicles','creators']:
-                    pg.screenshot(animations='disabled', timeout=10000, path=str(ROOT/'docs'/f'web_{label}_{route}.png'),full_page=True)
+                    pg.screenshot(animations='disabled', timeout=10000, path=str(SHOT_DIR/f'web_{label}_{route}.png'),full_page=True)
             assert not errors, errors
             if label=='mobile':
                 pg.locator('.hamburger').click()

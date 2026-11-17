@@ -11,7 +11,7 @@ These are short runbooks for coding agents. Apply only the relevant recipe; do n
 3. Add its route ID to `js/data.js` and its renderer to `js/page-registry.js`.
 4. Wire a `data-action` handler in `js/app.js` only if new user interaction is required.
 5. Update `config/module-catalog.json` ownership and add tests for the new flow.
-6. Run `npm test`, `python tools/build_standalone.py`, `node --check docs/bundled_app.js`.
+6. Run `npm test`, `python tools/build_standalone.py`, `node --check tmp/bundled_app.js`.
 
 **Done:** all routes render, action has a real effect, no synthetic outputs labeled as field evidence.
 

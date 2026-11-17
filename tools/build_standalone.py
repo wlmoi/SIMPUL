@@ -127,7 +127,9 @@ def build() -> tuple[int, int]:
     html = html.replace(marker, f'<script type="module">\n{js}\n</script>')
     html = html.replace('</head>', f'<style>\n{css}\n</style></head>')
     (ROOT / 'SIMPUL_Standalone.html').write_text(html, encoding='utf-8')
-    (ROOT / 'docs' / 'bundled_app.js').write_text(js, encoding='utf-8')
+    tmp_dir = ROOT / 'tmp'
+    tmp_dir.mkdir(exist_ok=True)
+    (tmp_dir / 'bundled_app.js').write_text(js, encoding='utf-8')
     return len(modules), (ROOT / 'SIMPUL_Standalone.html').stat().st_size
 
 

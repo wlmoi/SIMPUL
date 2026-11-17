@@ -29,76 +29,16 @@
 
 ---
 
-## AIERA interface and illustrative 3D CCTV simulation (PR #1)
+## Core Capabilities & Interface
 
-PR #1 adds the AIERA palette, a live schematic 3D preview, an interactive CCTV simulation page, and compact navigation with advanced pages under Settings. The A0/A1/A2 traffic simulation is synthetic and uncalibrated. External detection input is display-only and never becomes a stored field observation. Existing bilingual navigation and observation provenance remain intact.
+SIMPUL starts with the core operational problem: vehicles picking up, dropping off, or waiting for passengers compete for curbside space near **MRT Fatmawati, Jakarta Selatan**. The outcome being investigated is traffic queues and obstruction of passenger/pedestrian access, not vehicle identity tracking or automatic law enforcement.
 
-See [PR #1 integration verification](docs/VERIFICATION_PR1.md) for observed checks, browser limitations, and the commit-attribution cleanup. No API credentials are needed for the illustrative simulation; a real detection model must be connected separately.
+The primary app sequence is **Vehicle Problem Center → Field Observation → Diagnosis by time interval → Corridor Map → A0/A1/A2 Simulation → Evidence-backed Evaluation**.
 
-## Vehicle-first experience (v1.9)
-
-<p align="center"><img src="docs/vehicle_first_desktop_v1.9.png" width="90%" alt="SIMPUL vehicle problem dashboard showing pickup, drop-off, waiting, zones, and A1/A2 hypotheses" /></p>
-
-SIMPUL starts with the core operational problem: vehicles picking up, dropping off, or waiting for passengers compete for curbside space. The outcome being investigated is traffic queues and obstruction of passenger/pedestrian access, not vehicle identity tracking or automatic law enforcement.
-
-The primary app sequence is **Vehicle Problem Center → Field Observation → Diagnosis by time interval → A0/A1/A2 Simulation → Evidence-backed Evaluation**. The new **Masalah Kendaraan** page offers working source/activity/zone filters, duration and activity summaries, pedestrian/lane/queue evidence states, and review hypotheses for A1 and A2.
-
-The example dataset is explicitly marked **synthetic**. Select manual observations only after collecting real data. Unknown obstruction fields are displayed as *unknown*. Counts of stopping events are not vehicle delay measurements or causal findings. See [Vehicle Problem Logic](docs/VEHICLE_PROBLEM_v1.9.md) and run `node tests/test_vehicle_first.mjs`.
-
----
-
-## Solution-first interface (v1.8)
-
-<p align="center"><img src="docs/solution_first_desktop_v1.8.png" alt="SIMPUL solution-first dashboard with diagnosis, map, simulation and evaluation" width="86%" /></p>
-
-The start screen now prioritizes the operational question **“Di mana kendaraan berhenti menghambat akses MRT?”** with immediate access to **Diagnosis Hambatan**, **Peta Koridor**, **Simulasi A0/A1/A2**, and **Evaluasi**. This changes only navigation and presentation, not how numerical findings are calculated.
-
-A visible **Evidence Readiness** panel separates manually recorded events, manually measured intervals, and synthetic examples. The page deliberately does not put illustrative business revenue before the main transport problem. Other modules remain available through the collapsible sidebar.
-
-**About the Creators** is the final navigation group and footer destination. The team list and responsibilities come from the proposal; the only linked social profile is the one supplied by the team: [William Anthony on LinkedIn](https://www.linkedin.com/in/wlmoi/). No other public profiles were inferred.
-
-See [`docs/SOLUTION_FIRST_UI_v1.8.md`](docs/SOLUTION_FIRST_UI_v1.8.md) and `tests/test_solution_first.mjs` for navigation and credits verification.
-
----
-
-## Spatial map and PDF observations (v1.7)
-
-<div align="center">
-  <img src="docs/geodocument_desktop.png" alt="PDF import and structured observation filters" width="50%" />
-  <img src="docs/geomap_desktop.png" alt="Interactive corridor map page and manually defined zones" width="48%" />
-</div>
-
-The new **Peta koridor interaktif** page provides Leaflet / OpenStreetMap visualization and makes the project location easy to inspect. **Pencarian catatan PDF** accepts an uploaded observation PDF and searches text-derived event candidates by time, zone, vehicle category, and color. Both functions preserve source and review status. The app cannot track vehicles in real time or identify their owners.
-
-**Try the PDF workflow on your local machine:**
-
-```powershell
-python -m pip install -r server/requirements.txt
-python server/app.py
-```
-
-Open `http://localhost:8888/#documents`, upload [`examples/SIMPUL_Observations_SYNTHETIC.pdf`](examples/SIMPUL_Observations_SYNTHETIC.pdf), select `Zona A`, `Mobil`, and `Hitam`, then inspect the matched 07:35 observation. Use **Peta koridor interaktif** to inspect its explicitly recorded GPS coordinate. All values in the example are synthetic.
-
-**OpenOCR:** [`Topdu/OpenOCR`](https://github.com/Topdu/OpenOCR) is an optional local scanned-document OCR provider. It is not a vehicle detector and is not installed or enabled by default. Digital PDFs work with PyMuPDF; OCR model dependencies and weights require separate setup. See [integration design and limitations](docs/PDF_MAP_INTEGRATION_v1.7.md).
-
-**Map providers:** Leaflet 1.9.4, OpenStreetMap standard tiles, and existing Nominatim / Overpass integrations. Do not prefetch map tiles or send personal/vehicle identity data to external map providers.
-
----
-
-## ✨ Navigation & Motion Experience (v1.6)
-
-Six directly accessible steps prioritize the problem: **Beranda → Diagnosis → Peta → Observasi → Simulasi → Evaluasi**. Other supporting pages are organized into five collapsible groups with searchable labels. On mobile, the five most decision-relevant destinations stay accessible at the bottom of the screen.
-
-<div align="center">
-  <img src="docs/motion_desktop_v1.6.png" alt="SIMPUL 1.6 dashboard with simplified navy navigation and teal highlight" width="82%" />
-  <img src="docs/motion_mobile_v1.6.png" alt="SIMPUL mobile-first navigation and dashboard" width="17%" />
-</div>
-
-**New interaction behavior:** staged page reveal, smooth accordion expansion, animated mobile drawer, modal and toast entrances, subtle card elevation, consistent keyboard focus and `/` or `Ctrl/Cmd+K` page search. All motion respects the system's reduced-motion setting.
-
-**Motion engine:** the default standalone application works offline with the browser's **Web Animations API**. The motion layer also supports a **self-hosted GSAP 3.15.1 runtime**, which can be installed optionally with `python tools/enable_gsap_local.py`. Actual GSAP is **not included in the default ZIP**; external animation libraries are not automatically loaded. [Interaction and motion guide](docs/MOTION_DESIGN_v1.6.md) · [Navigation IA](docs/NAVIGATION_GUIDE_v1.5.md).
-
-**Scope protection:** this release modifies UI/UX and documentation only. Gemini processing, SUMO logic, observation evidence, classification, monitoring, and business calculations are unchanged.
+- **Vehicle-first diagnostics:** Working source/activity/zone filters, duration and activity summaries, ternary pedestrian/lane/queue evidence states (`yes` / `no` / `unknown`), and review hypotheses for A1 and A2 ([Vehicle Problem Logic](docs/VEHICLE_PROBLEM_v1.9.md)).
+- **Solution-first navigation:** Prioritizes *“Di mana kendaraan berhenti menghambat akses MRT?”* with an **Evidence Readiness** panel separating manually recorded events, manually measured intervals, and synthetic examples, plus an illustrative 3D corridor presentation preview and compact settings/creators hub.
+- **Spatial map & PDF observations:** **Peta koridor interaktif** uses local Leaflet 1.9.4 + OpenStreetMap standard tiles for explicit WGS84 coordinates, while **Pencarian catatan PDF** indexes text-derived event candidates via PyMuPDF (with optional local OpenOCR; see [PDF & Map guide](docs/PDF_MAP_INTEGRATION_v1.7.md)). Try [`examples/SIMPUL_Observations_SYNTHETIC.pdf`](examples/SIMPUL_Observations_SYNTHETIC.pdf) on `#documents`.
+- **Motion & offline experience:** Staged page reveals via Web Animations API (or optional self-hosted GSAP via `python tools/enable_gsap_local.py`), `prefers-reduced-motion` support, and `/` or `Ctrl/Cmd+K` page search ([Motion guide](docs/MOTION_DESIGN_v1.6.md) · [Navigation IA](docs/NAVIGATION_GUIDE_v1.5.md)).
 
 ---
 
@@ -114,32 +54,10 @@ The original proposal defines four stages:
 
 **Primary users:** field surveyors, transportation analysts, station operators, and authorized reviewers. **Initial deployment:** local demonstration; no live police platform or automatic enforcement.
 
-### Core field operations retained from v1.4
+### Core field operations
 
-<table>
-  <tr><td width="50%"><img src="docs/survey_desktop_v1.4.png" alt="Survey planning matrix and internal quality gate" /></td><td width="50%"><img src="docs/operations_desktop_v1.4.png" alt="Operational follow-up and case assignment" /></td></tr>
-  <tr><td><strong>Survey Coverage Planner</strong><br/>Track planned manual sessions by zone and period, check duration, source quality, and internal review status. Based on the proposal's 12 × 30–60 min target.</td><td><strong>Operational Response Board</strong><br/>Turn manually reported P1/P2 obstructions into internal follow-ups with an owner, deadline, status, and audit history. No automated enforcement.</td></tr>
-</table>
-
-The default 3-zone × 2-period × 2-repeat schedule is a **configurable planning assumption**, not an allocation specified in the original proposal. See the [feature-gap audit](docs/FEATURE_GAP_AUDIT_v1.4.md), [release notes](docs/RELEASE_NOTES_v1.4.md), and [verification report](docs/VERIFICATION_v1.4.md).
-
-### See the product
-
-<p align="center">
-  <img src="docs/preview_desktop.png" alt="SIMPUL main dashboard" width="94%" />
-</p>
-<p align="center"><em>Example dashboard from the previous prototype release. Content is illustrative and does not represent field-validated Fatmawati results.</em></p>
-
-<details>
-<summary><strong>Additional screenshots: monitoring, fieldwork, and mobile</strong></summary>
-<br/>
-<table>
-  <tr><td width="50%"><img src="docs/monitor_desktop.png" alt="Monitoring workspace" /></td><td width="50%"><img src="docs/diagnosis_desktop.png" alt="Traffic diagnosis" /></td></tr>
-  <tr><td align="center"><strong>Monitoring / event logs</strong></td><td align="center"><strong>Diagnosis / evidence</strong></td></tr>
-  <tr><td><img src="docs/observation_mobile.png" alt="Mobile observation" /></td><td><img src="docs/standards_mobile.png" alt="Mobile evidence quality" /></td></tr>
-  <tr><td align="center"><strong>Mobile field capture</strong></td><td align="center"><strong>Evidence readiness</strong></td></tr>
-</table>
-</details>
+- **Survey Coverage Planner:** Track planned manual sessions by zone and period (configurable 3-zone × 2-period × 2-repeat assumption based on the proposal's 12 × 30–60 min target), check duration, source quality, and internal review status.
+- **Operational Response Board:** Turn manually reported P1/P2 obstructions into internal follow-ups with an owner, deadline, status, and audit history. No automated enforcement. See [feature-gap audit](docs/FEATURE_GAP_AUDIT_v1.4.md) and [verification report](docs/VERIFICATION_v1.4.md).
 
 ---
 
@@ -446,22 +364,7 @@ Only the explicitly supplied LinkedIn profile is linked. No other personal accou
 
 <p align="center"><sub>iSeeDesignITB · SIMPUL · SI Bridges Indonesia 2026 · Prototype release v1.9</sub></p>
 
-## Prototype web Vercel
+## Deployment & Edge Notes
 
-Panduan build, file publik, aset dan batas backend: [docs/VERCEL.md](docs/VERCEL.md).
-
-
-Intro interaktif empat tahap: [docs/INTRO.md](docs/INTRO.md).
-
-## Peta dan monitoring pada Raspberry Pi
-
-Workspace peta menggunakan Leaflet lokal, koordinat eksplisit WGS84, panel provenance, dan status pemuatan peta dasar. UI menyertakan logo AIERA yang diberikan pengusul. Data sintetis dan observasi manual tetap memiliki sumber terpisah.
-
-Pada pemasangan laptop–Pi, SIMPUL diakses melalui `http://127.0.0.1:8890/#mapview`; Grafana dan InfluxDB laptop tersedia pada port loopback 3000 dan 8086. Akun serta kata sandi dapat dilihat secara lokal melalui `output/pi/Lihat_Akses_Monitoring.ps1`. Hasil pengujian dan batas validasi terdapat pada [laporan geospasial Pi](docs/VERIFICATION_GEOSPATIAL_PI_20261116.md).
-
-
-UI exploration: overview now offers an illustrative 3D corridor with A0/A1/A2 presentation controls. Classification includes a non-persisting rule-based priority sandbox. Desktop launcher: output/pi/Buka_SIMPUL.ps1. See docs/VERIFICATION_UI_INNOVATION_20261116.md.
-
-Windows monitoring access verified: SIMPUL at http://127.0.0.1:8890/#monitor, Grafana at http://127.0.0.1:3000, InfluxDB at http://127.0.0.1:8086. Both Grafana dashboards include return links to SIMPUL and InfluxDB. See docs/VERIFICATION_WINDOWS_MONITORING_20261116.md for observed checks and startup requirements.
-
-Raspberry Pi inventory and prompt/deployment behavior are documented in [docs/RASPBERRY_PI_INTEGRATION.md](docs/RASPBERRY_PI_INTEGRATION.md). Git push does not deploy to Pi. Live AI remains unavailable until its backend key and Pi Internet access are configured.
+- **Static web (Vercel):** Build output and backend boundary rules are documented in [docs/VERCEL.md](docs/VERCEL.md).
+- **Raspberry Pi + Laptop Monitoring:** Local Leaflet map workspace and SSH-tunneled Grafana/InfluxDB setup are documented in [docs/RASPBERRY_PI_INTEGRATION.md](docs/RASPBERRY_PI_INTEGRATION.md). Git push does not deploy to Pi; live AI requires a configured backend `GEMINI_API_KEY` and outbound connectivity.
