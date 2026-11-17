@@ -7,6 +7,7 @@
  * Presentation only. Nothing here writes to the store, observations or exports.
  * Simulated detections are synthetic and labelled as such everywhere they appear.
  */
+import {reportAiStatus} from './ai-status.js';
 import {CCTV_ZONES,CCTV_CLASSES,CAMERA_PRESETS} from './views/cctv.js';
 import {LAYOUT} from './fatmawati-layout.js';
 import {createSim,stepSim,simMetrics,runScenario,placeStoppedVehicle,resetStats,SCENARIOS,TIME_PRESETS} from './traffic-sim.js';
@@ -79,6 +80,10 @@ export function ingestDetections(detail){
   }
   for(const [id,t] of rt.tracks){
     if(source==='demo'?!present.has(id):now-t.t>STALE_MS)closeTrack(id,t);
+  }  if(source==='ai'){
+    const counts={car:0,motorcycle:0,bus:0};for(const c of rt.seen.values())counts[c]=(counts[c]||0)+1;
+    const stoppedNow=[...rt.tracks.values()].filter(t=>t.zone&&t.dwellSec>=STOP_LOG_SEC);
+    reportAiStatus({model:rt.model,counts,stopped:stoppedNow.length,over:stoppedNow.filter(t=>t.dwellSec>=rt.threshold).length});
   }
 }
 
@@ -232,8 +237,8 @@ function drawPanels(){
   setText('[data-sim-clock]',`Sim ${simClock()}`);
   setText('[data-cctv-fps]',`${rt.frames.length} frame/dtk`);
   const states={
-    idle:['AI belum terhubung','Simulasi 3D sintetis siap diputar'],
-    demo:['Simulasi 3D berjalan','AI virtual · data sintetis, bukan rekaman nyata'],
+    idle:['AI belum terhubung','Simulasi 3D Fatmawati siap diputar'],
+    demo:['Simulasi 3D berjalan','AI virtual · simulasi lalu lintas Fatmawati'],
     paused:['Simulasi dijeda','Putar lagi untuk melanjutkan'],
     ai:['AI terhubung',rt.model?`Model: ${rt.model}`:'Menerima deteksi langsung']
   };

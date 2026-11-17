@@ -11,10 +11,6 @@ import { renderVehicles } from './views/vehicles.js';
 import { renderCctv } from './views/cctv.js';
 import { renderOverview } from './views/overview.js';
 import { renderProject } from './views/project.js';
-import { renderSurvey } from './views/survey.js';
-import { renderOperations } from './views/operations.js';
-import { renderMonitor } from './views/monitor.js';
-import { renderClassification } from './views/classification.js';
 import { renderPublicIntel } from './views/publicintel.js';
 import { renderDiagnosis } from './views/diagnosis.js';
 import { renderContext } from './views/context.js';
@@ -22,12 +18,10 @@ import { renderContextPlus } from './views/contextplus.js';
 import { renderSimulation } from './views/simulation.js';
 import { renderEvaluation } from './views/evaluation.js';
 import { renderInsights } from './views/insights.js';
-import { renderStandards } from './views/standards.js';
 import { renderReports } from './views/reports.js';
 import { renderIntegrations } from './views/integrations.js';
 import { renderSettings } from './views/settings.js';
 import { renderMapview } from './views/mapview.js';
-import { renderDocuments } from './views/documents.js';
 import { renderCreators } from './views/creators.js';
 
 export const pageRenderers = Object.freeze({
@@ -35,10 +29,6 @@ export const pageRenderers = Object.freeze({
   cctv: renderCctv,
   vehicles: renderVehicles,
   project: renderProject,
-  survey: renderSurvey,
-  operations: renderOperations,
-  monitor: renderMonitor,
-  classification: renderClassification,
   publicintel: renderPublicIntel,
   diagnosis: renderDiagnosis,
   context: renderContext,
@@ -46,11 +36,9 @@ export const pageRenderers = Object.freeze({
   simulation: renderSimulation,
   evaluation: renderEvaluation,
   insights: renderInsights,
-  standards: renderStandards,
   reports: renderReports,
   integrations: renderIntegrations,
   settings: renderSettings,
   mapview: renderMapview,
-  documents: renderDocuments,
   creators: renderCreators,
 });

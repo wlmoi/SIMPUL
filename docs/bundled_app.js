@@ -10,7 +10,7 @@ const dictionary={
   'shell.workspace':'ACTIVE WORKSPACE','shell.local':'Local workspace - saved','shell.settings':'Project settings','shell.openNav':'Open navigation','shell.quickNav':'Quick navigation','shell.about':'About the Creators','shell.linkedin':'LinkedIn William Anthony',
   'language.english':'English','language.indonesian':'Indonesian',
   'map.selectNode':'Select a node to inspect','map.station':'MRT Fatmawati','map.zoneA':'Zone A','map.zoneB':'Zone B','map.zoneC':'Zone C','map.pickup':'Pickup area','map.stationDetail':'OpenStreetMap reference. Field verification is required.','map.zoneDetail':'Observer-defined survey reference point.','map.pickupDetail':'Illustrative pickup activity area.','map.cctv':'Open official Jakarta public CCTV','map.openMap':'Open interactive corridor map',
-  'overview.eyebrow':'SIMPUL / FATMAWATI','overview.title':'Vehicles stop. Queues form. MRT access is affected.','overview.description':'SIMPUL traces vehicle activity, pickup space, queues, and pedestrian access before testing a street arrangement.','overview.heroEyebrow':'SI BRIDGES INDONESIA 2026 / ONE PROBLEM, ONE LOCATION','overview.heroTitle':'Why can pickup activity obstruct MRT access?','overview.heroDescription':'Start with observed vehicle activity: pickup, drop-off, and waiting. Check stopping duration and location, measure queues and pedestrian access, then test A0, A1, and A2. Every result shows its data source and validation limits.','overview.vehicleAction':'Explore vehicle problem','overview.mapAction':'Open corridor map','overview.guardrail':'No real-world traffic condition is claimed from illustrative data.','overview.flowTitle':'From vehicle problem to decision','overview.flowLabel':'PRIMARY FLOW','overview.steps':['Identify vehicle behavior','Measure the obstruction','Test an arrangement','Decide with evidence'],'overview.stepBodies':['Separate pickup, drop-off, and waiting activity. Check duration and impact.','Record events, volume, queues, and pedestrian access by interval.','Compare existing A0, pickup area A1, and stopping rule A2.','Review queues, pedestrian access, and evidence quality before recommending.'],'overview.stepActions':['Review vehicles','Open diagnosis','Compare A0, A1, A2','Review decision'],'overview.evidenceTitle':'Observation evidence readiness','overview.evidenceLabel':'BASED ON STORED DATA','overview.evidenceReady':'Manual observations are stored and need further validation','overview.evidenceEmpty':'Not ready for field recommendation','overview.evidenceReadyText':'Manual input exists. Evaluation still needs review and model calibration.','overview.evidenceEmptyText':'Add manual survey results and interval measurements before drawing conclusions.','overview.manualEvents':'Manual events','overview.manualIntervals':'Manual intervals','overview.sessions':'Completed sessions','overview.illustrative':'Illustrative data','overview.review':'NEEDS REVIEW','overview.notValidated':'ILLUSTRATIVE / NOT VALIDATED','overview.record':'Open CCTV AI','overview.survey':'Survey plan','overview.quality':'Evidence quality','overview.locationTitle':'One location: MRT Fatmawati','overview.locationDescription':'Illustrative map. Survey coordinates appear only when available.','overview.map':'Interactive map','overview.pdf':'Search PDF reports','overview.optionsTitle':'Three alternatives under test','overview.optionsDescription':'Compare interventions against equivalent traffic demand.','overview.a0':'Existing condition','overview.a0Text':'Baseline before intervention.','overview.a1':'Pickup area arrangement','overview.a1Text':'Optimize use of available space.','overview.a2':'Stopping location and duration rule','overview.a2Text':'Test a time limit or relocated point.','overview.compare':'Run comparison','overview.limit':'Quick results are illustrative estimates. SUMO Fatmawati is not calibrated.','overview.supportTitle':'Supporting features','overview.supportText':'Use the extended dashboard after understanding diagnosis and simulation. API integrations require server configuration.','overview.monitoring':'Monitoring','overview.classification':'Event classification','overview.reports':'Reports','overview.business':'Business model','overview.integrity':'Data integrity: illustrative records are clearly separated from manual observations. No vehicle identity tracking, face recognition, or automatic violation finding.','overview.creatorsTitle':'About the Creators','overview.creatorsText':'Meet the team and review project roles in the final section of the application.','overview.creatorsAction':'Meet the team',
+  'overview.eyebrow':'SIMPUL / FATMAWATI','overview.title':'Vehicles stop. Queues form. MRT access is affected.','overview.description':'SIMPUL traces vehicle activity, pickup space, queues, and pedestrian access before testing a street arrangement.','overview.heroEyebrow':'SI BRIDGES INDONESIA 2026 / ONE PROBLEM, ONE LOCATION','overview.heroTitle':'Why can pickup activity obstruct MRT access?','overview.heroDescription':'Start with observed vehicle activity: pickup, drop-off, and waiting. Check stopping duration and location, measure queues and pedestrian access, then test A0, A1, and A2. Every result shows its data source and validation limits.','overview.vehicleAction':'Explore vehicle problem','overview.mapAction':'Open corridor map','overview.guardrail':'No real-world traffic condition is claimed from illustrative data.','overview.flowTitle':'From vehicle problem to decision','overview.flowLabel':'PRIMARY FLOW','overview.steps':['Identify vehicle behavior','Measure the obstruction','Test an arrangement','Decide with evidence'],'overview.stepBodies':['Separate pickup, drop-off, and waiting activity. Check duration and impact.','The CCTV AI turns detections into volume, queue and pedestrian access per interval.','Compare existing A0, pickup area A1, and stopping rule A2.','Review queues, pedestrian access, and evidence quality before recommending.'],'overview.stepActions':['Review vehicles','Open diagnosis','Compare A0, A1, A2','Review decision'],'overview.evidenceTitle':'Observation evidence readiness','overview.evidenceLabel':'BASED ON STORED DATA','overview.evidenceReady':'Manual observations are stored and need further validation','overview.evidenceEmpty':'Not ready for field recommendation','overview.evidenceReadyText':'Manual input exists. Evaluation still needs review and model calibration.','overview.evidenceEmptyText':'Add manual survey results and interval measurements before drawing conclusions.','overview.manualEvents':'Manual events','overview.manualIntervals':'Manual intervals','overview.sessions':'Completed sessions','overview.illustrative':'Illustrative data','overview.review':'NEEDS REVIEW','overview.notValidated':'ILLUSTRATIVE / NOT VALIDATED','overview.record':'Open CCTV AI','overview.survey':'Survey plan','overview.quality':'Evidence quality','overview.locationTitle':'One location: MRT Fatmawati','overview.locationDescription':'Map of the three CCTV AI zones under the station.','overview.map':'Interactive map','overview.pdf':'Search PDF reports','overview.optionsTitle':'Three alternatives under test','overview.optionsDescription':'Compare interventions against equivalent traffic demand.','overview.a0':'Existing condition','overview.a0Text':'Baseline before intervention.','overview.a1':'Pickup area arrangement','overview.a1Text':'Optimize use of available space.','overview.a2':'Stopping location and duration rule','overview.a2Text':'Test a time limit or relocated point.','overview.compare':'Run comparison','overview.limit':'Quick results are simulation estimates, ready to calibrate with Fatmawati CCTV data.','overview.supportTitle':'Supporting features','overview.supportText':'Use the extended dashboard after understanding diagnosis and simulation. API integrations require server configuration.','overview.monitoring':'Monitoring','overview.classification':'Event classification','overview.reports':'Reports','overview.business':'Business model','overview.integrity':'Data integrity: simulation results and real CCTV AI detections are always labelled separately. No vehicle identity tracking, face recognition, or automatic violation finding.','overview.creatorsTitle':'About the Creators','overview.creatorsText':'Meet the team and review project roles in the final section of the application.','overview.creatorsAction':'Meet the team',
  },
  id:{
   'nav.overview':'Beranda','nav.cctv':'CCTV AI Live','nav.vehicles':'Masalah Kendaraan','nav.project':'Cara kerja SIMPUL','nav.observation':'Observasi lapangan','nav.survey':'Rencana survei & cakupan','nav.operations':'Tindak lanjut hambatan','nav.monitor':'Monitoring & data log','nav.classification':'Klasifikasi & Tinjauan','nav.publicintel':'Konteks Publik / OSINT','nav.diagnosis':'Diagnosis Hambatan','nav.context':'Peta & data konteks','nav.mapview':'Peta koridor interaktif','nav.documents':'Pencarian catatan PDF','nav.contextplus':'Context Intelligence Lab','nav.simulation':'Simulasi skenario','nav.evaluation':'Rencana & Dampak','nav.insights':'Temuan & keputusan','nav.business':'Business Studio','nav.pipeline':'Akuisisi pelanggan','nav.equipment':'Perangkat & biaya','nav.standards':'Standar & kualitas bukti','nav.reports':'Laporan & ekspor','nav.integrations':'API & integrasi','nav.settings':'Pengaturan & data','nav.creators':'About the Creators',
@@ -18,7 +18,7 @@ const dictionary={
   'shell.workspace':'WORKSPACE AKTIF','shell.local':'Workspace lokal - tersimpan','shell.settings':'Pengaturan proyek','shell.openNav':'Buka navigasi','shell.quickNav':'Navigasi cepat','shell.about':'About the Creators','shell.linkedin':'LinkedIn William Anthony',
   'language.english':'English','language.indonesian':'Bahasa Indonesia',
   'map.selectNode':'Pilih node untuk melihat identitas','map.station':'MRT Fatmawati','map.zoneA':'Zona A','map.zoneB':'Zona B','map.zoneC':'Zona C','map.pickup':'Area jemput','map.stationDetail':'Referensi OpenStreetMap. Verifikasi lapangan diperlukan.','map.zoneDetail':'Titik referensi survei yang ditetapkan pengamat.','map.pickupDetail':'Area aktivitas jemput ilustratif.','map.cctv':'Buka CCTV publik resmi Jakarta','map.openMap':'Buka peta koridor interaktif',
-  'overview.eyebrow':'SIMPUL / FATMAWATI','overview.title':'Kendaraan berhenti. Antrean terbentuk. Akses MRT terdampak.','overview.description':'SIMPUL menelusuri aktivitas kendaraan, ruang penjemputan, antrean, dan akses pejalan kaki sebelum menguji penataan.','overview.heroEyebrow':'SI BRIDGES INDONESIA 2026 / SATU MASALAH, SATU LOKASI','overview.heroTitle':'Mengapa aktivitas penjemputan dapat menghambat akses MRT?','overview.heroDescription':'Mulai dari aktivitas kendaraan yang teramati: menjemput, menurunkan, dan menunggu. Periksa durasi dan lokasi berhentinya, ukur antrean serta akses pejalan, lalu uji A0, A1, dan A2. Semua hasil menyatakan asal data dan batas validasinya.','overview.vehicleAction':'Analisis masalah kendaraan','overview.mapAction':'Buka peta koridor','overview.guardrail':'Tidak ada klaim kondisi lalu lintas nyata dari data ilustratif.','overview.flowTitle':'Dari masalah kendaraan menuju keputusan','overview.flowLabel':'ALUR UTAMA','overview.steps':['Identifikasi perilaku kendaraan','Ukur hambatan','Uji penataan','Putuskan dengan bukti'],'overview.stepBodies':['Bedakan aktivitas jemput, turun, dan menunggu. Periksa durasi serta dampaknya.','Catat kejadian, volume, antrean, dan akses pejalan kaki pada interval.','Bandingkan A0 eksisting, A1 area jemput, dan A2 aturan berhenti.','Tinjau antrean, akses pejalan, dan mutu bukti sebelum rekomendasi.'],'overview.stepActions':['Periksa kendaraan','Buka diagnosis','Bandingkan A0, A1, A2','Tinjau keputusan'],'overview.evidenceTitle':'Kesiapan bukti pengamatan','overview.evidenceLabel':'BERDASARKAN DATA YANG TERSIMPAN','overview.evidenceReady':'Observasi manual tersimpan, perlu validasi lanjutan','overview.evidenceEmpty':'Belum siap untuk rekomendasi lapangan','overview.evidenceReadyText':'Ada input manual. Evaluasi masih membutuhkan peninjauan dan kalibrasi model.','overview.evidenceEmptyText':'Tambahkan hasil survei manual dan pengukuran interval sebelum menarik kesimpulan.','overview.manualEvents':'Kejadian manual','overview.manualIntervals':'Interval manual','overview.sessions':'Sesi selesai','overview.illustrative':'Data ilustratif','overview.review':'PERLU TINJAUAN','overview.notValidated':'ILUSTRATIF / BELUM TERVALIDASI','overview.record':'Buka CCTV AI','overview.survey':'Rencana survei','overview.quality':'Kualitas bukti','overview.locationTitle':'Satu lokasi: MRT Fatmawati','overview.locationDescription':'Peta ilustratif. Koordinat survei ditampilkan jika tersedia.','overview.map':'Peta interaktif','overview.pdf':'Cari laporan PDF','overview.optionsTitle':'Tiga alternatif yang diuji','overview.optionsDescription':'Bandingkan intervensi terhadap permintaan lalu lintas setara.','overview.a0':'Kondisi eksisting','overview.a0Text':'Titik pembanding sebelum intervensi.','overview.a1':'Penataan area jemput','overview.a1Text':'Optimasi pemanfaatan ruang yang tersedia.','overview.a2':'Aturan lokasi dan durasi berhenti','overview.a2Text':'Uji batas waktu atau perpindahan titik.','overview.compare':'Jalankan perbandingan','overview.limit':'Hasil cepat merupakan estimasi ilustratif. SUMO Fatmawati belum terkalibrasi.','overview.supportTitle':'Fitur pendukung','overview.supportText':'Gunakan dashboard lanjutan setelah alur diagnosis dan simulasi dipahami. Integrasi API memerlukan konfigurasi server.','overview.monitoring':'Monitoring','overview.classification':'Klasifikasi kejadian','overview.reports':'Laporan','overview.business':'Model bisnis','overview.integrity':'Integritas data: data ilustratif dipisahkan dengan jelas dari observasi manual. Tidak ada pelacakan identitas kendaraan, pengenalan wajah, atau penetapan pelanggaran otomatis.','overview.creatorsTitle':'About the Creators','overview.creatorsText':'Kenali tim dan pembagian perannya pada bagian terakhir aplikasi.','overview.creatorsAction':'Kenali tim',
+  'overview.eyebrow':'SIMPUL / FATMAWATI','overview.title':'Kendaraan berhenti. Antrean terbentuk. Akses MRT terdampak.','overview.description':'SIMPUL menelusuri aktivitas kendaraan, ruang penjemputan, antrean, dan akses pejalan kaki sebelum menguji penataan.','overview.heroEyebrow':'SI BRIDGES INDONESIA 2026 / SATU MASALAH, SATU LOKASI','overview.heroTitle':'Mengapa aktivitas penjemputan dapat menghambat akses MRT?','overview.heroDescription':'Mulai dari aktivitas kendaraan yang teramati: menjemput, menurunkan, dan menunggu. Periksa durasi dan lokasi berhentinya, ukur antrean serta akses pejalan, lalu uji A0, A1, dan A2. Semua hasil menyatakan asal data dan batas validasinya.','overview.vehicleAction':'Analisis masalah kendaraan','overview.mapAction':'Buka peta koridor','overview.guardrail':'Tidak ada klaim kondisi lalu lintas nyata dari data ilustratif.','overview.flowTitle':'Dari masalah kendaraan menuju keputusan','overview.flowLabel':'ALUR UTAMA','overview.steps':['Identifikasi perilaku kendaraan','Ukur hambatan','Uji penataan','Putuskan dengan bukti'],'overview.stepBodies':['Bedakan aktivitas jemput, turun, dan menunggu. Periksa durasi serta dampaknya.','CCTV AI mengubah deteksi menjadi volume, antrean, dan akses pejalan kaki per interval.','Bandingkan A0 eksisting, A1 area jemput, dan A2 aturan berhenti.','Tinjau antrean, akses pejalan, dan mutu bukti sebelum rekomendasi.'],'overview.stepActions':['Periksa kendaraan','Buka diagnosis','Bandingkan A0, A1, A2','Tinjau keputusan'],'overview.evidenceTitle':'Kesiapan bukti pengamatan','overview.evidenceLabel':'BERDASARKAN DATA YANG TERSIMPAN','overview.evidenceReady':'Observasi manual tersimpan, perlu validasi lanjutan','overview.evidenceEmpty':'Belum siap untuk rekomendasi lapangan','overview.evidenceReadyText':'Ada input manual. Evaluasi masih membutuhkan peninjauan dan kalibrasi model.','overview.evidenceEmptyText':'Tambahkan hasil survei manual dan pengukuran interval sebelum menarik kesimpulan.','overview.manualEvents':'Kejadian manual','overview.manualIntervals':'Interval manual','overview.sessions':'Sesi selesai','overview.illustrative':'Data ilustratif','overview.review':'PERLU TINJAUAN','overview.notValidated':'ILUSTRATIF / BELUM TERVALIDASI','overview.record':'Buka CCTV AI','overview.survey':'Rencana survei','overview.quality':'Kualitas bukti','overview.locationTitle':'Satu lokasi: MRT Fatmawati','overview.locationDescription':'Peta tiga zona CCTV AI di bawah stasiun.','overview.map':'Peta interaktif','overview.pdf':'Cari laporan PDF','overview.optionsTitle':'Tiga alternatif yang diuji','overview.optionsDescription':'Bandingkan intervensi terhadap permintaan lalu lintas setara.','overview.a0':'Kondisi eksisting','overview.a0Text':'Titik pembanding sebelum intervensi.','overview.a1':'Penataan area jemput','overview.a1Text':'Optimasi pemanfaatan ruang yang tersedia.','overview.a2':'Aturan lokasi dan durasi berhenti','overview.a2Text':'Uji batas waktu atau perpindahan titik.','overview.compare':'Jalankan perbandingan','overview.limit':'Hasil cepat berupa estimasi simulasi, siap dikalibrasi dengan data CCTV Fatmawati.','overview.supportTitle':'Fitur pendukung','overview.supportText':'Gunakan dashboard lanjutan setelah alur diagnosis dan simulasi dipahami. Integrasi API memerlukan konfigurasi server.','overview.monitoring':'Monitoring','overview.classification':'Klasifikasi kejadian','overview.reports':'Laporan','overview.business':'Model bisnis','overview.integrity':'Integritas data: hasil simulasi dan deteksi CCTV AI nyata selalu diberi label terpisah. Tidak ada pelacakan identitas kendaraan, pengenalan wajah, atau penetapan pelanggaran otomatis.','overview.creatorsTitle':'About the Creators','overview.creatorsText':'Kenali tim dan pembagian perannya pada bagian terakhir aplikasi.','overview.creatorsAction':'Kenali tim',
  }
 };
 
@@ -42,13 +42,13 @@ function labelForGroup(id,fallback){return t(`nav.group.${id}`)===`nav.group.${i
 
 const INTRO_STAGES={
  en:Object.freeze([
-  {label:'Observe',title:'Start with what is visible.',text:'The CCTV AI records vehicle activity, stopping duration and queues automatically. Illustrative and real sources stay separate.',route:'cctv',cta:'Open CCTV AI'},
+  {label:'Observe',title:'Start with what is visible.',text:'The CCTV AI records vehicle activity, stopping duration and queues automatically. Real CCTV data and simulation are always labelled.',route:'cctv',cta:'Open CCTV AI'},
   {label:'Analyze',title:'Turn records into questions.',text:'Review patterns and evidence quality. The summary supports review; it does not determine violations or causation automatically.',route:'diagnosis',cta:'Open diagnosis'},
   {label:'Simulate',title:'Test options before changing the street.',text:'Compare A0, A1, and A2 under equivalent assumptions. The illustrative model is not calibrated for Fatmawati.',route:'simulation',cta:'Compare scenarios'},
   {label:'Evaluate',title:'People remain accountable for decisions.',text:'Review pedestrian access, queues, assumptions, and evidence quality. Use results for evaluation, not as proof of field impact.',route:'evaluation',cta:'Review evaluation'}
  ]),
  id:Object.freeze([
-  {label:'Observasi',title:'Mulai dari yang terlihat.',text:'AI CCTV mencatat aktivitas kendaraan, durasi berhenti, dan antrean secara otomatis. Sumber nyata dan data ilustratif tetap dibedakan.',route:'cctv',cta:'Buka CCTV AI'},
+  {label:'Observasi',title:'Mulai dari yang terlihat.',text:'AI CCTV mencatat aktivitas kendaraan, durasi berhenti, dan antrean secara otomatis. Data CCTV nyata dan simulasi selalu diberi label.',route:'cctv',cta:'Buka CCTV AI'},
   {label:'Analisis',title:'Ubah catatan menjadi pertanyaan.',text:'Periksa pola dan kualitas bukti. Ringkasan membantu peninjauan, bukan menetapkan pelanggaran atau sebab secara otomatis.',route:'diagnosis',cta:'Periksa diagnosis'},
   {label:'Simulasi',title:'Uji pilihan sebelum menata.',text:'Bandingkan A0, A1, dan A2 pada asumsi yang setara. Model ilustratif belum terkalibrasi untuk Fatmawati.',route:'simulation',cta:'Bandingkan skenario'},
   {label:'Evaluasi',title:'Keputusan tetap pada manusia.',text:'Tinjau akses pejalan, antrean, asumsi, dan mutu bukti. Gunakan hasil sebagai bahan evaluasi, bukan bukti dampak lapangan.',route:'evaluation',cta:'Tinjau evaluasi'}
@@ -122,20 +122,14 @@ const views = [
   {id:'cctv',label:'CCTV AI Live',icon:'cctv',group:'WORKSPACE'},
   {id:'vehicles',label:'Masalah Kendaraan',icon:'car-front',group:'WORKSPACE'},
   {id:'project',label:'Cara kerja SIMPUL',icon:'workflow',group:'WORKSPACE'},
-  {id:'survey',label:'Rencana survei & cakupan',icon:'calendar-check',group:'WORKSPACE'},
-  {id:'operations',label:'Tindak lanjut hambatan',icon:'list-checks',group:'WORKSPACE'},
-  {id:'monitor',label:'Monitoring & data log',icon:'activity',group:'WORKSPACE'},
-  {id:'classification',label:'Klasifikasi & Tinjauan',icon:'clipboard-list',group:'WORKSPACE'},
   {id:'publicintel',label:'Konteks Publik / OSINT',icon:'newspaper',group:'WORKSPACE'},
   {id:'diagnosis',label:'Diagnosis Hambatan',icon:'scan-search',group:'WORKSPACE'},
   {id:'context',label:'Peta & data konteks',icon:'map-pinned',group:'WORKSPACE'},
   {id:'mapview',label:'Peta koridor interaktif',icon:'map',group:'WORKSPACE'},
-  {id:'documents',label:'Pencarian catatan PDF',icon:'file-text',group:'WORKSPACE'},
   {id:'contextplus',label:'Context Intelligence Lab',icon:'waypoints',group:'WORKSPACE'},
   {id:'simulation',label:'Simulasi skenario',icon:'git-compare-arrows',group:'WORKSPACE'},
   {id:'evaluation',label:'Rencana & Dampak',icon:'clipboard-check',group:'WORKSPACE'},
   {id:'insights',label:'Temuan & keputusan',icon:'brain-circuit',group:'WORKSPACE'},
-  {id:'standards',label:'Standar & kualitas bukti',icon:'shield-check',group:'SISTEM'},
   {id:'reports',label:'Laporan & ekspor',icon:'files',group:'SISTEM'},
   {id:'integrations',label:'API & integrasi',icon:'plug-zap',group:'SISTEM'},
   {id:'settings',label:'Pengaturan & data',icon:'settings-2',group:'SISTEM'},
@@ -191,7 +185,8 @@ function importState(raw){let p=JSON.parse(raw),d=p.data??p;if(d.version!==2||!A
 
 
 // SOURCE MODULE: js/diagnostics.js
-/** Evidence-first field diagnostics. Measurements are entered by human surveyors, not automatically inferred.
+/** Evidence-first diagnostics on interval data from the CCTV AI (source 'ai'), field entries ('manual')
+ * or the labelled 3D simulation ('simulation', see js/sim-readings.js). Views never mix simulation with real data.
  * Never merge synthetic observation events with field readings or attribute causality to before/after changes.
  */
 const finite = v => typeof v === 'number' && Number.isFinite(v);
@@ -199,8 +194,14 @@ const avg = xs => xs.length ? xs.reduce((a,b)=>a+b,0)/xs.length : null;
 const round = (v,d=1) => v===null ? null : Number(v.toFixed(d));
 const PERIODS=['Jam sibuk','Luar jam sibuk'];
 const PHASES=['baseline','followup'];
+const ANALYSABLE_SOURCES=Object.freeze(['manual','ai','simulation']);
+/** Real interval data wins; the labelled simulation is only used when no real interval exists. */
+function analysisReadings(stored=[],simulated=[]){
+  const real=stored.filter(r=>r.source==='manual'||r.source==='ai');
+  return real.length?{readings:stored,simulated:false}:{readings:simulated,simulated:true};
+}
 function summarizeReadings(records=[], filter={}) {
-  const rows=records.filter(r=>r.source==='manual'&&PHASES.includes(r.phase)&&finite(r.minutes)&&r.minutes>0&&(!filter.phase||r.phase===filter.phase)&&(!filter.zone||r.zone===filter.zone)&&(!filter.period||r.period===filter.period)&&(!filter.scenario||r.scenario===filter.scenario));
+  const rows=records.filter(r=>ANALYSABLE_SOURCES.includes(r.source)&&PHASES.includes(r.phase)&&finite(r.minutes)&&r.minutes>0&&(!filter.phase||r.phase===filter.phase)&&(!filter.zone||r.zone===filter.zone)&&(!filter.period||r.period===filter.period)&&(!filter.scenario||r.scenario===filter.scenario));
   const minutes=rows.reduce((s,r)=>s+r.minutes,0);
   const count=k=>rows.reduce((s,r)=>s+Number(r[k]||0),0);
   const mean=k=>avg(rows.filter(r=>finite(r[k])).map(r=>r[k]));
@@ -241,13 +242,13 @@ function diagnose(records=[],events=[],settings={}) {
  const long=manual.filter(e=>Number(e.duration)>threshold);
  const groups=[...new Set(base.rows.map(r=>r.zone))].map(zone=>({zone,...summarizeReadings(base.rows,{zone})})).sort((a,b)=>(b.stopPerHour??-1)-(a.stopPerHour??-1));
  const warnings=[];
- if(!base.samples)warnings.push({kind:'missing',title:'Belum ada pengukuran interval baseline',detail:'Catat volume kendaraan, antrean dan akses dengan durasi interval yang jelas.'});
- if(wait.length)warnings.push({kind:'observed',title:`${wait.length} peristiwa menunggu tercatat`,detail:'Peristiwa manual, bukan klasifikasi kamera. Periksa posisi dan waktu terhadap arus utama.'});
+ if(!base.samples)warnings.push({kind:'missing',title:'Belum ada pengukuran interval baseline',detail:'Data interval (volume, antrean, akses) akan terisi otomatis dari deteksi CCTV AI.'});
+ if(wait.length)warnings.push({kind:'observed',title:`${wait.length} peristiwa menunggu tercatat`,detail:'Dari data kejadian yang tersimpan. Periksa posisi dan waktu terhadap arus utama.'});
  if(long.length)warnings.push({kind:'observed',title:`${long.length} peristiwa melewati ${threshold} detik`,detail:'Batas adalah ambang analisis yang dapat diubah, bukan ketentuan hukum lalu lintas.'});
  if(base.rows.some(r=>r.blockedAccess))warnings.push({kind:'observed',title:'Ada interval dengan hambatan akses pejalan kaki',detail:'Catat posisi dan lakukan inspeksi keselamatan sebelum merekomendasikan lokasi jemput.'});
  if(base.rows.some(r=>r.availableBays>0&&r.occupiedBays>=r.availableBays))warnings.push({kind:'observed',title:'Fasilitas jemput terisi penuh pada sedikitnya satu interval',detail:'Periksa ketersediaan ruang, perputaran kendaraan dan perpindahan penumpang.'});
  const hypotheses=[];
- if(base.samples===0)hypotheses.push({id:'H0',title:'Lengkapi baseline terlebih dahulu',basis:'Belum ada interval pengukuran volume, antrean dan akses.',next:'Amati jam sibuk dan non-sibuk selama durasi sesi yang dinyatakan.',scenario:'A0'});
+ if(base.samples===0)hypotheses.push({id:'H0',title:'Lengkapi baseline terlebih dahulu',basis:'Belum ada interval pengukuran volume, antrean dan akses.',next:'Hubungkan CCTV AI untuk mengisi data jam sibuk dan non-sibuk.',scenario:'A0'});
  if(wait.length||long.length)hypotheses.push({id:'H1',title:'Uji batas waktu tunggu/berhenti',basis:`${wait.length} kejadian Menunggu; ${long.length} kejadian melewati ambang ${threshold} detik`,next:'Bandingkan A2 dengan A0 menggunakan volume dan waktu kedatangan sebanding.',scenario:'A2'});
  if(base.rows.some(r=>r.availableBays>0&&r.occupiedBays>=r.availableBays)||base.stopPerHour!==null&&base.stopPerHour>0)hypotheses.push({id:'H2',title:'Periksa penataan ruang jemput yang sudah tersedia',basis:`${base.samples} interval baseline, ${base.stopped} kendaraan berhenti teramati`,next:'Verifikasi kapasitas area jemput dan detour pejalan sebelum menguji A1.',scenario:'A1'});
  if(base.rows.some(r=>r.blockedAccess))hypotheses.push({id:'H3',title:'Prioritaskan lintasan pejalan kaki',basis:`${base.blockedSamples} interval baseline tercatat akses terhalang`,next:'Cek jalur penyeberangan, akses disabilitas dan titik konflik langsung di lapangan.',scenario:'A1/A2'});
@@ -258,8 +259,7 @@ function evidenceGate(readings=[],sessions=[],events=[]) {
  const completed=sessions.filter(s=>s.source==='manual'&&s.status==='Selesai').length;
  return {completed,baselineCount:baseline.samples,followupCount:followup.samples,pairedGroups,manualEvents:events.filter(e=>e.source==='manual').length,
   targetSessions:12, // proposed survey plan, not verified performance target
-  checks:[{label:'Sesi observasi manual selesai',value:`${completed}/12`,met:completed>=12},
-   {label:'Interval baseline berisi antrean dan akses',value:`${baseline.samples} interval`,met:baseline.samples>=2},
+  checks:[{label:'Interval baseline berisi antrean dan akses',value:`${baseline.samples} interval`,met:baseline.samples>=2},
    {label:'Data pembanding sesudah intervensi',value:`${followup.samples} interval`,met:followup.samples>=2},
    {label:'Zona dan periode berpasangan',value:`${pairedGroups} pasangan skenario–zona–periode`,met:pairedGroups>0},
    {label:'Kalibrasi SUMO terhadap lapangan',value:'Belum terverifikasi',met:false}]
@@ -270,742 +270,6 @@ function screenScenario(results,criteria={}) {
  const ranked=candidates.map(s=>({ ...s, passesQueue:s.queue<=maxQueue,passesAccess:s.access<=maxDetour,eligible:s.queue<=maxQueue&&s.access<=maxDetour,
    caveat:results?.engine==='heuristic'?'Hanya screening model ilustratif': 'Keluaran simulator memerlukan validasi koridor' }));
  return ranked.sort((a,b)=>Number(b.eligible)-Number(a.eligible)||a.delay-b.delay);
-}
-
-
-// SOURCE MODULE: js/util.js
-const rupiah=n=>new Intl.NumberFormat('id-ID',{style:'currency',currency:'IDR',maximumFractionDigits:0}).format(Number(n)||0);
-const compact=n=>new Intl.NumberFormat('id-ID',{notation:'compact',maximumFractionDigits:1}).format(Number(n)||0);
-const num=n=>new Intl.NumberFormat('id-ID',{maximumFractionDigits:1}).format(Number(n)||0);
-const pct=n=>(Number(n)||0).toFixed(1).replace('.',',')+'%';
-const shortDate=s=>new Intl.DateTimeFormat('id-ID',{day:'2-digit',month:'short',year:'numeric'}).format(new Date(s));
-const clock=s=>new Intl.DateTimeFormat('id-ID',{hour:'2-digit',minute:'2-digit',hour12:false,timeZone:'Asia/Jakarta'}).format(new Date(s));
-const safe=s=>String(s??'').replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;').replaceAll('"','&quot;').replaceAll("'",'&#39;');
-const clamp=(x,min,max)=>Math.min(max,Math.max(min,Number(x)||0));
-const uid=(prefix='id')=>`${prefix}-${Math.random().toString(36).slice(2,10)}`;
-function download(name,content,mime='application/json'){const blob=new Blob([content],{type:mime});const link=document.createElement('a');link.href=URL.createObjectURL(blob);link.download=name;document.body.append(link);link.click();link.remove();setTimeout(()=>URL.revokeObjectURL(link.href),3000)}
-const nowIso=()=>new Date().toISOString();
-const isDemo=s=>s?.source==='demo';
-function icon(name,size=20){
-const paths={
- 'cpu':'<rect x="5" y="5" width="14" height="14" rx="2"/><path d="M9 9h6v6H9zM9 1v4m6-4v4M9 19v4m6-4v4M19 9h4m-4 6h4M1 9h4m-4 6h4"/>',
- 'plug-zap':'<path d="M12 3v7l-3 2 4 1-2 8 6-11-4-1 1-6M5 5l3 3m11-3-3 3"/>',
- 'clipboard-list':'<rect x="5" y="4" width="14" height="18" rx="2"/><path d="M9 4a3 3 0 0 1 6 0M9 10h6M9 14h6M9 18h4"/>',
- 'layout-dashboard':'<rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/>',
- 'scan-line':'<path d="M4 7V5a2 2 0 0 1 2-2h3M15 3h3a2 2 0 0 1 2 2v2M20 17v2a2 2 0 0 1-2 2h-3M9 21H6a2 2 0 0 1-2-2v-2M4 12h16"/>',
- 'git-compare-arrows':'<path d="M3 6h17M20 6l-3-3M20 6l-3 3M21 18H4m0 0 3-3m-3 3 3 3"/>',
- 'brain-circuit':'<path d="M12 18V5a3 3 0 0 0-6 0 3 3 0 0 0-2 5 4 4 0 0 0 0 7 3 3 0 0 0 5 3l3-2Zm0 0V5a3 3 0 0 1 6 0 3 3 0 0 1 2 5 4 4 0 0 1 0 7 3 3 0 0 1-5 3l-3-2Z"/>',
- 'chart-no-axes-combined':'<path d="m3 17 6-6 4 4 8-8M17 7h4v4M3 3v18h18"/>',
- 'users':'<path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2M9 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8ZM22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/>',
- 'smartphone':'<rect x="5" y="2" width="14" height="20" rx="3"/><path d="M11 18h2"/>',
- 'map':'<path d="M3 5 9 3l6 3 6-2v15l-6 2-6-3-6 2V5ZM9 3v15m6-12v15"/>',
- 'file-text':'<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6Zm0 0v6h6M8 13h8M8 17h8"/>',
- 'files':'<path d="M6 3h9l4 4v13a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2ZM14 3v5h5M8 13h8M8 17h7"/>',
- 'settings-2':'<path d="M4 7h16M4 17h16M8 4v6M16 14v6"/>',
- 'arrow-right':'<path d="M5 12h14m-6-6 6 6-6 6"/>',
- 'arrow-up-right':'<path d="M7 17 17 7M7 7h10v10"/>',
- 'chevron-right':'<path d="m9 18 6-6-6-6"/>',
- 'chevron-down':'<path d="m6 9 6 6 6-6"/>',
- 'plus':'<path d="M12 5v14M5 12h14"/>',
- 'minus':'<path d="M5 12h14"/>',
- 'play':'<path d="m8 5 11 7-11 7V5Z"/>',
- 'clock':'<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>',
- 'map-pin':'<path d="M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 1 1 16 0ZM12 10h.01"/>',
- 'shield-check':'<path d="M12 2 4 5v6c0 5.5 4 9 8 11 4-2 8-5.5 8-11V5l-8-3Zm-4 10 3 3 5-6"/>',
- 'activity':'<path d="M2 12h4l3-7 5 14 3-7h5"/>',
- 'car':'<path d="m5 11 2-6h10l2 6M4 11h16v7H4zm2 7v2m12-2v2M7 14h.01M17 14h.01"/>',
- 'route':'<circle cx="6" cy="18" r="2"/><circle cx="18" cy="6" r="2"/><path d="M8 18h6a4 4 0 0 0 0-8h-4a4 4 0 0 1 0-8h6"/>',
- 'target':'<circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1"/>',
- 'check':'<path d="m5 12 4 4L19 6"/>',
- 'alert-circle':'<circle cx="12" cy="12" r="9"/><path d="M12 7v6M12 17h.01"/>',
- 'info':'<circle cx="12" cy="12" r="9"/><path d="M12 11v6m0-10h.01"/>',
- 'download':'<path d="M12 3v12m-4-4 4 4 4-4M4 17v4h16v-4"/>',
- 'refresh-cw':'<path d="M20 7v5h-5M4 17v-5h5M6 9a7 7 0 0 1 12-2l2 5M4 12l2 5a7 7 0 0 0 12-2"/>',
- 'more-horizontal':'<circle cx="5" cy="12" r="1"/><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/>',
- 'menu':'<path d="M3 6h18M3 12h18M3 18h18"/>',
- 'x':'<path d="M5 5 19 19M19 5 5 19"/>',
- 'search':'<circle cx="10" cy="10" r="7"/><path d="m15 15 6 6"/>',
- 'calculator':'<rect x="4" y="2" width="16" height="20" rx="2"/><path d="M7 6h10v4H7zm1 8h1m4 0h1m4 0h.01M8 18h1m4 0h1m4 0h.01"/>',
- 'layers':'<path d="m12 2 9 5-9 5-9-5 9-5Zm-9 9 9 5 9-5M3 16l9 5 9-5"/>',
- 'database':'<ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v14c0 4 18 4 18 0V5M3 12c0 4 18 4 18 0"/>',
- 'cloud':'<path d="M20 17a4 4 0 0 0-1-7.87A7 7 0 0 0 5 10a4 4 0 0 0 0 8h13"/>',
- 'external-link':'<path d="M13 5h6v6M19 5l-9 9M19 14v4a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2h4"/>',
- 'trash-2':'<path d="M3 6h18M8 6V4h8v2m3 0-1 15H6L5 6m5 4v7m4-7v7"/>',
- 'filter':'<path d="M3 4h18l-7 8v8l-4-2v-6L3 4Z"/>',
- 'copy':'<rect x="8" y="8" width="12" height="12" rx="2"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"/>',
- 'sliders-horizontal':'<path d="M4 7h16M4 17h16M9 4v6M15 14v6"/>',
- 'file-check':'<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6Zm0 0v6h6M8 15l3 3 5-6"/>',
- 'wifi-off':'<path d="M2 2l20 20M8 9a11 11 0 0 1 9-1M4 12a17 17 0 0 1 6-3m4 4a6 6 0 0 1 4 2M12 20h.01"/>',
- 'sparkles':'<path d="m12 3 2 6 6 2-6 2-2 6-2-6-6-2 6-2 2-6ZM20 17v5m-2-3h4"/>',
- 'cctv':'<path d="M3 7.5 15.5 4l2 6.5L5 14 3 7.5ZM17 7.6l3.5-1 1 3.4-3.6 1M7 13.5 8 18H3m5 0v3"/>',
- 'video':'<rect x="2" y="6" width="14" height="12" rx="2"/><path d="m16 10 6-3v10l-6-3"/>',
- 'upload':'<path d="M12 15V3m-5 5 5-5 5 5M4 15v4a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-4"/>',
- 'pause':'<rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/>',
- 'eye':'<path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/>',
- 'radar':'<path d="M19.1 4.9A10 10 0 1 0 22 12M16.2 7.8A6 6 0 1 0 18 12M12 12l7-7"/><circle cx="12" cy="12" r="1.5"/>',
- 'car-front':'<path d="m5 11 1.6-4.4A2 2 0 0 1 8.5 5h7a2 2 0 0 1 1.9 1.6L19 11M3 17v-4a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v4H3Zm2 0v2m14-2v2M7 14h.01M17 14h.01"/>',
- 'scan-search':'<path d="M4 7V5a2 2 0 0 1 2-2h3M15 3h3a2 2 0 0 1 2 2v2M20 17v2a2 2 0 0 1-2 2h-3M9 21H6a2 2 0 0 1-2-2v-2"/><circle cx="11" cy="11" r="3"/><path d="m16 16-2.8-2.8"/>',
- 'map-pinned':'<path d="M18 8c0 4.5-6 9-6 9s-6-4.5-6-9a6 6 0 0 1 12 0Z"/><circle cx="12" cy="8" r="2"/><path d="M8.7 14.5 4 16v6l5-2 6 2 5-2v-6l-4.7 1.5"/>',
- 'clipboard-check':'<rect x="5" y="4" width="14" height="18" rx="2"/><path d="M9 4a3 3 0 0 1 6 0M9 14l2 2 4-4"/>',
- 'arrow-down':'<path d="M12 5v14m-6-6 6 6 6-6"/>',
- 'arrow-left':'<path d="M19 12H5m6 6-6-6 6-6"/>',
- 'calendar-check':'<rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4m8-4v4M3 10h18m-12 5 2 2 4-4"/>',
- 'check-circle':'<circle cx="12" cy="12" r="9"/><path d="m8 12 3 3 5-6"/>',
- 'clipboard-plus':'<rect x="5" y="4" width="14" height="18" rx="2"/><path d="M9 4a3 3 0 0 1 6 0M12 11v6m-3-3h6"/>',
- 'cloud-sun':'<path d="M12 2v2M4.9 4.9l1.4 1.4M20 12h2M17.7 6.3l1.4-1.4M15.9 11.4A4 4 0 0 0 8.5 9M17 21H8a5 5 0 1 1 4.5-7.2A4 4 0 1 1 17 21Z"/>',
- 'download-cloud':'<path d="M12 12v9m-4-4 4 4 4-4M20 16.6A5 5 0 0 0 18 7h-1.3A8 8 0 1 0 4 15.2"/>',
- 'upload-cloud':'<path d="M12 21v-9m-4 4 4-4 4 4M20 16.6A5 5 0 0 0 18 7h-1.3A8 8 0 1 0 4 15.2"/>',
- 'file-check-2':'<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6Zm0 0v6h6M9 15l2 2 4-4"/>',
- 'gauge':'<path d="m12 14 4-4M3.3 19a10 10 0 1 1 17.4 0"/><circle cx="12" cy="14" r="1.5"/>',
- 'linkedin':'<rect x="2" y="2" width="20" height="20" rx="3"/><path d="M7 10v7M7 7h.01M11 17v-7m0 3a3 3 0 0 1 6 0v4"/>',
- 'list-checks':'<path d="m3 6 2 2 3-3M3 13l2 2 3-3M11 6h10M11 13h10M11 20h10"/>',
- 'list-clock':'<path d="M3 6h11M3 12h7M3 18h7"/><circle cx="17" cy="16" r="5"/><path d="M17 14v2l1.5 1"/>',
- 'locate-fixed':'<path d="M2 12h3m14 0h3M12 2v3m0 14v3"/><circle cx="12" cy="12" r="7"/><circle cx="12" cy="12" r="3"/>',
- 'maximize':'<path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/>',
- 'newspaper':'<path d="M4 22h14a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-4 0v-9h4M10 6h6M10 10h6M10 14h6M10 18h3"/>',
- 'save':'<path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2Z"/><path d="M17 21v-8H7v8M7 3v5h8"/>',
- 'send':'<path d="M22 2 11 13M22 2l-7 20-4-9-9-4 20-7Z"/>',
- 'shield-alert':'<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10ZM12 8v4m0 4h.01"/>',
- 'train-front':'<rect x="5" y="3" width="14" height="14" rx="3"/><path d="M5 10h14M9 14h.01M15 14h.01M8 21l2-4m6 4-2-4"/>',
- 'waypoints':'<circle cx="12" cy="4.5" r="2.5"/><circle cx="4.5" cy="19.5" r="2.5"/><circle cx="19.5" cy="19.5" r="2.5"/><path d="M10.6 6.6 5.9 17.4M13.4 6.6l4.7 10.8M7 19.5h10"/>',
- 'bike':'<circle cx="5.5" cy="17" r="3.5"/><circle cx="18.5" cy="17" r="3.5"/><path d="M15 6h2l3 11M5.5 17 9 10h6l-3 7M9 10 8 7H6"/>',
- 'workflow':'<rect x="3" y="3" width="8" height="8" rx="2"/><rect x="13" y="13" width="8" height="8" rx="2"/><path d="M7 11v4a2 2 0 0 0 2 2h4"/>'};
-return `<svg width="${size}" height="${size}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${paths[name]||paths.info}</svg>`;
-}
-
-
-// SOURCE MODULE: js/views/shared.js
-
-const pageHead=(eyebrow,title,description,actions='')=>`<header class="main-head"><div><div class="eyebrow">${eyebrow}</div><h1>${title}</h1><p>${description}</p></div>${actions?`<div class="head-buttons">${actions}</div>`:''}</header>`;
-const note=(body,kind='')=>`<div class="banner-note ${kind}">${icon(kind==='warning'?'alert-circle':'info',17)}<div>${body}</div></div>`;
-const cardHeading=(title,description='',right='')=>`<header class="card-title"><div><h2>${title}</h2>${description?`<p>${description}</p>`:''}</div>${right}</header>`;
-const button=(text,action,klass='')=>`<button type="button" class="btn ${klass}" data-action="${action}">${text}</button>`;
-const tag=(text,klass='')=>`<span class="tag ${klass}">${safe(text)}</span>`;
-const statCard=(ico,label,value,foot,variant='')=>`<article class="card"><div class="stat-top"><div class="stat-icon ${variant}">${icon(ico,19)}</div>${tag('PROYEK SINTETIS','slate')}</div><div class="stat-label">${label}</div><div class="stat-value">${value}</div><div class="stat-foot">${foot}</div></article>`;
-const emptyState=(title,description,action='')=>`<div class="no-data"><div class="empty-icon">${icon('database',22)}</div><strong>${title}</strong><div>${description}</div>${action?`<div style="margin-top:17px">${action}</div>`:''}</div>`;
-const rangeField=(id,label,min,max,val,step=1,suffix='')=>`<div class="field"><label for="${id}">${label}</label><div class="slider-row"><input id="${id}" class="scenario-input" type="range" min="${min}" max="${max}" step="${step}" value="${val}"/><strong data-range-out="${id}">${val}${suffix}</strong></div><div class="range-help"><span>${min}${suffix}</span><span>${max}${suffix}</span></div></div>`;
-const numberField=(id,label,value,step=1,desc='',min=0)=>`<div class="field"><label for="${id}">${label}</label><input class="control" id="${id}" type="number" min="${min}" step="${step}" value="${value}" />${desc?`<small>${desc}</small>`:''}</div>`;
-const selectField=(id,label,options,selected)=>`<div class="field"><label for="${id}">${label}</label><select id="${id}" class="control">${options.map(x=>`<option value="${safe(x)}" ${selected===x?'selected':''}>${safe(x)}</option>`).join('')}</select></div>`;
-
-
-// SOURCE MODULE: js/views/diagnosis.js
-
-
-
-
-const fmtDiag=x=>x===null||x===undefined?'-':num(x);
-const viewDate=x=>{try{return `${shortDate(x)} / ${clock(x)} WIB`;}catch{return '-'}};
-const warnings=(flags)=>flags.length?flags.map(x=>`<div class="dia-alert ${x.kind}">${icon(x.kind==='missing'?'alert-circle':'alert-triangle',18)}<div><strong>${safe(x.title)}</strong><p>${safe(x.detail)}</p></div></div>`).join(''):'<div class="dia-alert positive">Belum ada indikator masalah pada data yang tercatat. Ini bukan bukti bahwa koridor bebas hambatan.</div>';
-function bars(groups){if(!groups.length)return `<div class="dia-empty">Belum ada baseline. Input interval lapangan untuk melihat zona yang memerlukan perhatian.</div>`;
- const max=Math.max(1,...groups.map(x=>x.stopPerHour||0));return `<div class="dia-zones">${groups.map(g=>`<div class="dia-zone"><div class="dia-zone-head"><strong>${safe(g.zone)}</strong><span>${g.samples} interval / ${fmtDiag(g.minutes)} menit</span></div><div class="dia-bar-wrap"><div class="dia-bar" style="width:${Math.max(1,Math.round(100*(g.stopPerHour||0)/max))}%"></div></div><div class="dia-zone-meta"><span>Berhenti: ${fmtDiag(g.stopPerHour)} kejadian/jam</span><span>Antrean maks.: ${fmtDiag(g.peakQueue)} kendaraan</span><span>Okupansi ruang: ${fmtDiag(g.avgBayOccupancy)}${g.avgBayOccupancy===null?'':'%'}</span></div></div>`).join('')}</div>`}
-function renderDiagnosis(){
- const s=getState(),d=diagnose(s.fieldReadings,s.observations,s.fieldSettings),gate=evidenceGate(s.fieldReadings,s.sessions,s.observations),b=d.base,f=d.full;
- return `${pageHead('ANALISIS / IDENTIFIKASI HAMBATAN','Diagnosis Hambatan','Telusuri sumber hambatan kendaraan yang menjemput, menurunkan, dan menunggu penumpang berdasarkan interval observasi.',`${button(`${icon('plus',16)} Tambah interval`,'add-field-reading','primary')} ${button(`${icon('download',15)} Ekspor CSV`,'export-field-readings')}`)}
-<section class="dia-hero"><div><span class="dia-kicker">MENGAPA SIMPUL DIBUTUHKAN</span><h2>Titik jemput dapat padat.<br/><em>Akses menuju MRT harus tetap terjaga.</em></h2><p>Periksa hubungan antara aktivitas berhenti, ketersediaan ruang tepi jalan, antrean, dan hambatan akses pejalan kaki sebelum menguji A0, A1, dan A2.</p><div class="dia-hero-actions">${button('Catat pengukuran interval','add-field-reading','light')} ${button('Evaluasi alternatif','goto-evaluation','outline-light')}</div></div><div class="dia-chain"><div><small>01 / INPUT</small><b>Kendaraan berhenti</b><span>jumlah, durasi, titik kejadian</span></div>${icon('arrow-down',17)}<div><small>02 / KONDISI</small><b>Ruang & antrean</b><span>kapasitas zona, antrean maksimum</span></div>${icon('arrow-down',17)}<div><small>03 / DAMPAK</small><b>Akses ke MRT</b><span>jarak tempuh & hambatan pejalan</span></div></div></section>
-${note('<strong>Makna angka:</strong> baseline di bawah hanya menghitung interval yang dimasukkan manual. Data sintetis delapan kejadian dari versi awal <strong>tidak</strong> digunakan dalam statistik lapangan ini. Jumlah berhenti per jam adalah normalisasi durasi pengamatan, bukan pengukuran tundaan kendaraan atau bukti sebab-akibat.')}
-<div class="dia-stats"><article class="dia-stat"><span>INTERVAL BASELINE</span><strong>${b.samples}</strong><small>${fmtDiag(b.minutes)} menit pengamatan</small></article><article class="dia-stat"><span>AKTIVITAS BERHENTI</span><strong>${fmtDiag(b.stopPerHour)}</strong><small>kejadian/jam, manual</small></article><article class="dia-stat"><span>ANTREAN MAKSIMUM</span><strong>${fmtDiag(b.peakQueue)}</strong><small>kendaraan pada interval</small></article><article class="dia-stat"><span>AKSES TERHAMBAT</span><strong>${fmtDiag(b.blockedPercent)}${b.blockedPercent===null?'':'%'}</strong><small>proporsi interval teramati</small></article></div>
-<div class="dia-grid"><section class="dia-panel"><div class="dia-panel-head"><div><span class="dia-kicker dark">HOTSPOT / DURASI-TERNORMALISASI</span><h3>Perbandingan aktivitas per zona</h3><p>Hanya fase sebelum intervensi. Zona dengan durasi observasi berbeda dibandingkan menggunakan kejadian/jam.</p></div>${tag('BASELINE','blue')}</div>${bars(d.groups)}</section>
-<section class="dia-panel"><div class="dia-panel-head"><div><span class="dia-kicker dark">MEKANISME / FIELD EVIDENCE</span><h3>Indikator yang perlu ditindaklanjuti</h3><p>Ambang durasi ditetapkan tim untuk analisis, bukan regulasi.</p></div></div><div class="dia-alerts">${warnings(d.warnings)}</div><div class="dia-threshold"><label for="field-dwell-threshold">Ambang durasi berhenti <strong>${fmtDiag(d.threshold)} detik</strong></label><input id="field-dwell-threshold" class="control" type="number" min="5" max="600" step="5" value="${d.threshold}" /></div></section></div>
-<section class="dia-panel dia-hypotheses"><div class="dia-panel-head"><div><span class="dia-kicker dark">DIAGNOSIS → ACTIONABLE HYPOTHESIS</span><h3>Langkah analisis yang disarankan</h3><p>Aturan transparan dari data yang tersedia; bukan rekomendasi AI atau keputusan rekayasa final.</p></div>${button('Buka perbandingan alternatif','goto-evaluation','primary')}</div><div class="dia-hypothesis-grid">${d.hypotheses.map(h=>`<article class="dia-hypothesis"><span>${safe(h.id)} / HIPOTESIS KERJA</span><strong>${safe(h.title)}</strong><p>${safe(h.basis)}</p><div><small>Tindakan berikutnya</small><b>${safe(h.next)}</b></div><em>${safe(h.scenario)}</em></article>`).join('')}</div></section>
-<div class="dia-grid dia-data-grid"><section class="dia-panel"><div class="dia-panel-head"><div><span class="dia-kicker dark">REKAMAN LAPANGAN</span><h3>Ledger interval pengamatan</h3><p>Fase baseline dan tindak lanjut dicatat terpisah; semua berasal dari input manusia.</p></div>${button(`${icon('upload-cloud',15)} Sinkronkan`,'sync-field-readings')}</div>
-<div class="table-wrap"><table class="data-table dia-table"><thead><tr><th>Waktu diamati</th><th>Fase</th><th>Skenario</th><th>Zona & periode</th><th>Durasi</th><th>Lewat</th><th>Berhenti</th><th>Antrean</th><th>Akses</th><th></th></tr></thead><tbody>${[...s.fieldReadings].reverse().slice(0,35).map(r=>`<tr><td>${safe(viewDate(r.at))}</td><td>${tag(r.phase==='baseline'?'SEBELUM':'SESUDAH',r.phase==='baseline'?'blue':'')}</td><td>${safe(r.scenario||'Tidak ditandai')}</td><td>${safe(r.zone)}<div class="dia-cell-minor">${safe(r.period)}</div></td><td>${fmtDiag(r.minutes)} mnt</td><td>${fmtDiag(r.passingVehicles)}</td><td>${fmtDiag(r.stoppedVehicles)}</td><td>${fmtDiag(r.maxQueue)}</td><td>${fmtDiag(r.accessMeters)} m</td><td><button class="btn sm" data-action="delete-field-reading" data-id="${safe(r.id)}" title="Hapus interval">${icon('trash-2',14)}</button></td></tr>`).join('')}</tbody></table>${!s.fieldReadings.length?'<div class="dia-empty">Belum ada interval pengamatan. Mulai dari mencatat volume, antrean, dan akses pada satu zona.</div>':''}</div></section>
-<section class="dia-panel"><div class="dia-panel-head"><div><span class="dia-kicker dark">KELENGKAPAN BUKTI</span><h3>Evidence readiness</h3><p>Target proposal 12 sesi terpisah dari jumlah interval.</p></div></div><div class="dia-readiness">${gate.checks.map(c=>`<div class="dia-check"><span class="dia-check-icon ${c.met?'met':''}">${icon(c.met?'check':'circle-dashed',15)}</span><div><strong>${safe(c.label)}</strong><small>${safe(c.value)}</small></div></div>`).join('')}</div><div class="dia-gate-note">Belum memenuhi semua pemeriksaan bukan berarti studi gagal. Artinya kesimpulan belum layak diperlakukan sebagai rekomendasi operasional yang tervalidasi.</div></section></div>`
-}
-const fieldReadingModal=()=>`<div class="modal-header"><div><div class="eyebrow">SURVEI / INTERVAL TERUKUR</div><h2>Tambah pengamatan interval</h2></div><button class="btn sm" type="button" data-action="close-modal" aria-label="Tutup">${icon('x')}</button></div><form id="field-reading-form"><p class="helper">Masukkan hasil hitung manual untuk satu zona dan periode. Catat sebelum atau sesudah intervensi; jangan mengisi perkiraan sebagai pengamatan.</p><div class="form-grid"><div class="field"><label for="fld-observed-at">Awal interval (waktu lokal perangkat)</label><input required id="fld-observed-at" class="control" type="datetime-local" value="${new Date(Date.now()-30*60000-new Date().getTimezoneOffset()*60000).toISOString().slice(0,16)}" /></div><div class="field"><label for="fld-phase">Fase pengamatan</label><select id="fld-phase" class="control"><option value="baseline">Sebelum intervensi (baseline)</option><option value="followup">Sesudah intervensi (follow-up)</option></select></div><div class="field"><label for="fld-scenario">Kondisi saat diamati</label><select id="fld-scenario" class="control"><option value="A0">A0 – kondisi eksisting</option><option value="A1">A1 – pemanfaatan area jemput</option><option value="A2">A2 – aturan berhenti</option></select></div><div class="field"><label for="fld-period">Periode</label><select id="fld-period" class="control">${PERIODS.map(p=>`<option>${p}</option>`).join('')}</select></div><div class="field"><label for="fld-zone">Zona</label><select id="fld-zone" class="control"><option>Zona A</option><option>Zona B</option><option>Zona C</option></select></div><div class="field"><label for="fld-minutes">Durasi pengamatan (menit)</label><input required id="fld-minutes" class="control" type="number" min="5" max="240" value="30" /></div><div class="field"><label for="fld-passing">Kendaraan lewat (unit)</label><input required id="fld-passing" class="control" type="number" min="0" max="50000" value="0" /></div><div class="field"><label for="fld-stopped">Kendaraan berhenti (unit)</label><input required id="fld-stopped" class="control" type="number" min="0" max="50000" value="0" /></div><div class="field"><label for="fld-queue">Antrean maksimum (kendaraan)</label><input required id="fld-queue" class="control" type="number" min="0" max="2000" value="0" /></div><div class="field"><label for="fld-access">Jarak/detour akses pejalan (meter)</label><input required id="fld-access" class="control" type="number" min="0" max="10000" value="0" /></div><div class="field"><label for="fld-pedestrians">Pejalan kaki teramati (orang)</label><input required id="fld-pedestrians" class="control" type="number" min="0" max="50000" value="0" /></div><div class="field"><label for="fld-blocked">Akses pejalan terhalang?</label><select id="fld-blocked" class="control"><option value="no">Tidak</option><option value="yes">Ya</option></select></div><div class="field"><label for="fld-bays">Kapasitas ruang jemput (unit, 0 = tidak diketahui)</label><input required id="fld-bays" class="control" type="number" min="0" max="1000" value="0" /></div><div class="field"><label for="fld-occupied">Ruang jemput terisi (unit)</label><input required id="fld-occupied" class="control" type="number" min="0" max="1000" value="0" /></div></div><div class="field" style="margin-top:12px"><label for="fld-note">Keterangan pengamatan</label><textarea id="fld-note" class="control" maxlength="400" placeholder="Lokasi, kondisi akses, cuaca, atau catatan pengukuran (tanpa identitas pribadi)"></textarea></div><p class="helper">Waktu pengamatan diisi sesuai awal interval; waktu penyimpanan dicatat otomatis secara terpisah. Fase sebelum harus A0; setelah pilih kondisi yang benar-benar telah diterapkan. Untuk perbandingan adil, gunakan definisi zona, metode, durasi dan periode yang konsisten. Pengamatan manual memerlukan izin serta prosedur keselamatan.</p><div class="modal-foot"><button type="button" class="btn" data-action="close-modal">Batal</button><button type="submit" class="btn primary">${icon('check',16)} Simpan interval</button></div></form>`;
-
-
-// SOURCE MODULE: js/pilot.js
-/**
- * Pilot survey coverage and evidence-quality rules.
- * Proposal basis: 12 sessions of 30–60 min. Zone/period allocation below is
- * a configurable planning ASSUMPTION, not a requirement dictated by the PDF.
- * All counts come from explicitly reviewed, non-synthetic manual sessions.
- */
-const DEFAULT_PROTOCOL = Object.freeze({
-  zones:['Zona A','Zona B','Zona C'],
-  periods:['Jam sibuk','Luar jam sibuk'],
-  replicates:2,
-  minMinutes:30,
-  maxMinutes:60
-});
-
-function normalizeProtocol(input={}) {
-  const zones=Array.isArray(input.zones)?input.zones.filter(x=>DEFAULT_PROTOCOL.zones.includes(x)):DEFAULT_PROTOCOL.zones;
-  const periods=Array.isArray(input.periods)?input.periods.filter(x=>DEFAULT_PROTOCOL.periods.includes(x)):DEFAULT_PROTOCOL.periods;
-  const replicates=Number(input.replicates??2);
-  const minMinutes=Number(input.minMinutes??30),maxMinutes=Number(input.maxMinutes??60);
-  if(!zones.length || !periods.length || !Number.isInteger(replicates)||replicates<1||replicates>5||
-     !Number.isInteger(minMinutes)||!Number.isInteger(maxMinutes)||minMinutes<5||maxMinutes>240||maxMinutes<minMinutes) {
-    throw new Error('Protokol survei tidak valid. Periksa zona, periode, replikasi, dan batas menit.');
-  }
-  return {zones:[...new Set(zones)],periods:[...new Set(periods)],replicates,minMinutes,maxMinutes};
-}
-function sessionQuality(session,review,events=[],protocol=DEFAULT_PROTOCOL) {
-  const reasons=[];
-  if(session?.source!=='manual')reasons.push('Bukan sesi manual');
-  if(!protocol.zones.includes(session?.zone))reasons.push('Zona tidak tercakup protokol');
-  if(!protocol.periods.includes(session?.period))reasons.push('Periode belum diberi label');
-  const start=Date.parse(session?.startedAt??''),end=Date.parse(session?.endedAt??'');
-  const duration=Number.isFinite(start)&&Number.isFinite(end)?(end-start)/60000:null;
-  if(duration===null||duration<=0)reasons.push('Sesi belum selesai atau timestamp tidak sah');
-  else if(duration<protocol.minMinutes||duration>protocol.maxMinutes)reasons.push('Durasi di luar batas protokol');
-  const sessionEvents=events.filter(x=>x.source==='manual'&&x.sessionId===session?.id);
-  const inconsistent=sessionEvents.filter(x=>x.zone!==session?.zone || !Number.isFinite(Date.parse(x.at??'')) || Date.parse(x.at)<start || Date.parse(x.at)>end);
-  if(inconsistent.length)reasons.push(`${inconsistent.length} kejadian terhubung memiliki zona atau waktu di luar sesi`);
-  if(!sessionEvents.length && review?.zeroConfirmed!==true)reasons.push('Tidak ada kejadian; konfirmasi observasi nol secara eksplisit melalui review.');
-  if(review?.status!=='approved')reasons.push('Belum disetujui melalui peninjauan internal');
-  if(review?.status==='approved'&&!String(review?.reviewer||'').trim())reasons.push('Label peninjau tidak ada');
-  return {accepted:!reasons.length,minutes:duration,events:sessionEvents.length,reasons};
-}
-function surveyCoverage(state) {
-  const protocol=normalizeProtocol(state.surveyProtocol||DEFAULT_PROTOCOL);
-  const reviews=state.sessionReviews||{};
-  const observations=state.observations||[];
-  const rows=(state.sessions||[]).filter(s=>s.source==='manual').map(session=>({
-    session,...sessionQuality(session,reviews[session.id],observations,protocol)
-  }));
-  const slots=[];
-  for(const zone of protocol.zones)for(const period of protocol.periods){
-    const eligible=rows.filter(r=>r.accepted&&r.session.zone===zone&&r.session.period===period);
-    slots.push({zone,period,target:protocol.replicates,completed:Math.min(eligible.length,protocol.replicates),available:eligible.length});
-  }
-  const target=slots.reduce((s,r)=>s+r.target,0);
-  const completed=slots.reduce((s,r)=>s+r.completed,0);
-  const pending=rows.filter(r=>!r.accepted).length;
-  const issues=[];
-  if(!completed)issues.push('Belum ada sesi manual yang memenuhi protokol dan ditinjau internal.');
-  if(completed<target)issues.push(`${target-completed} slot observasi masih belum terpenuhi.`);
-  if(pending)issues.push(`${pending} sesi manual belum memenuhi seluruh kriteria.`);
-  const baseline=(state.fieldReadings||[]).filter(r=>r.source==='manual'&&r.phase==='baseline').length;
-  if(!baseline)issues.push('Belum ada interval baseline manual untuk kalibrasi lalu lintas.');
-  return {protocol,slots,rows,target,completed,pending,baseline,coveragePct:target?Math.round(completed/target*100):0,issues,
-    // A complete survey schedule is *not* sufficient to validate a digital twin.
-    surveyReady:completed===target&&baseline>0,
-    calibrationVerified:false};
-}
-function exportSurveyCoverage(state){
-  const c=surveyCoverage(state);
-  return {schema:'simpul.survey_coverage.v1',generatedAt:new Date().toISOString(),projectId:state.project?.id||null,
-    scope:'Local planning and review only; not evidence of third-party approval or SUMO validation.',
-    protocol:c.protocol,slots:c.slots,summary:{target:c.target,completed:c.completed,coveragePct:c.coveragePct,baselineIntervals:c.baseline,calibrationVerified:false},
-    sessionAssessments:c.rows.map(r=>({id:r.session.id,zone:r.session.zone,period:r.session.period,
-      startedAt:r.session.startedAt,endedAt:r.session.endedAt,minutes:r.minutes,eventCount:r.events,
-      accepted:r.accepted,reviewStatus:state.sessionReviews?.[r.session.id]?.status||'pending',reasons:r.reasons}))};
-}
-
-
-// SOURCE MODULE: js/views/survey.js
-
-
-
-
-
-const minutes=v=>v===null?'-':`${Number(v).toFixed(1)} menit`;
-const progress=(done,target)=>`<div class="pilot-progress"><span style="width:${target?Math.min(100,Math.round(100*done/target)):0}%"></span></div>`;
-function renderSurvey(){
- const s=getState(),r=surveyCoverage(s);
- return `${pageHead('PILOT OPERATIONS / DATA COLLECTION','Rencana Survei & Coverage',
-  'Pastikan 12 sesi observasi yang direncanakan benar-benar mencakup zona dan periode yang diperlukan sebelum kalibrasi.',
-  `${button(`${icon('download',15)} Ekspor matriks`,'export-survey','')} ${button(`${icon('cctv',15)} Buka CCTV AI`,'goto-cctv','primary')}`)}
- <section class="pilot-hero"><div><div class="pilot-kicker">SI BRIDGES / EVIDENCE-FIRST FIELDWORK</div><h2>Pengamatan yang terencana menghasilkan perbandingan yang lebih dapat diuji.</h2><p>Proposal merencanakan 12 sesi, masing-masing 30–60 menit. Distribusi 3 zona × 2 periode × 2 pengulangan di bawah adalah <strong>asumsi rencana kerja yang dapat disesuaikan</strong>, bukan ketentuan proposal.</p></div><div class="pilot-meter"><small>CAKUPAN YANG DITINJAU INTERNAL</small><strong>${r.completed}<span> / ${r.target}</span></strong>${progress(r.completed,r.target)}<small>${r.coveragePct}% slot terpenuhi</small></div></section>
- ${note('<strong>Status validasi:</strong> peninjauan sesi di halaman ini adalah pemeriksaan internal pengguna aplikasi, bukan validasi oleh otoritas transportasi. Kelengkapan sesi juga tidak membuktikan bahwa model SUMO sudah terkalibrasi.')}
- <div class="pilot-stats"><div><span>Sesi memenuhi kriteria</span><strong>${r.completed}</strong><small>Dari ${r.target} slot rencana</small></div><div><span>Perlu pemeriksaan</span><strong>${r.pending}</strong><small>Sesi manual belum dapat dihitung</small></div><div><span>Interval baseline</span><strong>${r.baseline}</strong><small>Pengukuran manual per interval</small></div><div><span>Kesiapan survei</span><strong class="pilot-compact">${r.surveyReady?'Cakupan lengkap':'Belum lengkap'}</strong><small>Kalibrasi SUMO tetap diperlukan</small></div></div>
- <div class="pilot-grid"><section class="card">${cardHeading('Matriks cakupan studi','Setiap sel memerlukan sesi selesai, durasi sesuai, serta review internal.')}
- <div class="table-wrap"><table class="data-table"><thead><tr><th>Zona</th><th>Periode</th><th>Target</th><th>Diterima</th><th>Status</th></tr></thead><tbody>
- ${r.slots.map(slot=>`<tr><td><strong>${safe(slot.zone)}</strong></td><td>${safe(slot.period)}</td><td>${slot.target}</td><td>${slot.completed}</td><td>${tag(slot.completed>=slot.target?'Lengkap':'Belum lengkap',slot.completed>=slot.target?'':'gold')}</td></tr>`).join('')}
- </tbody></table></div><p class="helper">Sesi lebih dari target pada satu sel tidak dapat menggantikan sesi yang masih kurang di zona/periode lain. Data sintetis tidak dihitung.</p></section>
- <section class="card">${cardHeading('Konfigurasi protokol','Ubah replikasi dan durasi sebelum pelaksanaan survei.',tag('ASUMSI RENCANA','gold'))}
- <form id="survey-protocol-form" class="pilot-form"><div class="field"><label for="survey-replicates">Pengulangan per kombinasi zona–periode</label><input class="control" id="survey-replicates" type="number" min="1" max="5" step="1" value="${r.protocol.replicates}" required/></div><div class="form-grid"><div class="field"><label for="survey-min">Durasi minimal (menit)</label><input class="control" id="survey-min" type="number" min="5" max="240" value="${r.protocol.minMinutes}" required/></div><div class="field"><label for="survey-max">Durasi maksimal (menit)</label><input class="control" id="survey-max" type="number" min="5" max="240" value="${r.protocol.maxMinutes}" required/></div></div><button type="submit" class="btn primary">${icon('save',15)} Simpan protokol</button></form>
- <div class="pilot-guidance"><strong>${icon('clipboard-list',16)} Hal yang belum terpenuhi</strong><ul>${r.issues.length?r.issues.map(x=>`<li>${safe(x)}</li>`).join(''):'<li>Cakupan survei dan interval baseline terpenuhi. Lanjutkan kalibrasi dan validasi terpisah.</li>'}</ul></div></section></div>
- <section class="card">${cardHeading('Daftar sesi & pemeriksaan','Hanya sesi manual yang dapat ditinjau dan dihitung sebagai cakupan.',tag(`${r.rows.length} SESI MANUAL`,'slate'))}
- ${r.rows.length?`<div class="table-wrap"><table class="data-table"><thead><tr><th>Sesi</th><th>Zona / periode</th><th>Durasi</th><th>Kejadian</th><th>Review</th><th>Catatan kualitas</th><th></th></tr></thead><tbody>${[...r.rows].reverse().map(q=>`<tr><td><strong>${safe(q.session.id)}</strong><small style="display:block;color:#7b8795">${safe(q.session.startedAt||'')}</small></td><td>${safe(q.session.zone||'-')}<small style="display:block">${safe(q.session.period||'Belum dilabeli')}</small></td><td>${minutes(q.minutes)}</td><td>${q.events}</td><td>${tag(s.sessionReviews?.[q.session.id]?.status||'pending',q.accepted?'':'gold')}</td><td>${q.reasons.length?safe(q.reasons.join(' / ')):'Memenuhi aturan kualitas internal'}</td><td><button class="btn sm" data-action="review-survey-session" data-id="${safe(q.session.id)}">Periksa</button></td></tr>`).join('')}</tbody></table></div>`:emptyState('Belum ada sesi manual','Mulai sesi melalui halaman Observasi. Sesi demo tidak dihitung.')}
- </section>`;
-}
-function reviewSessionModal(session,quality,record={}){
- return `<div class="modal-header"><div><div class="eyebrow">SURVEY QUALITY / INTERNAL REVIEW</div><h2>Periksa sesi ${safe(session.id)}</h2></div><button type="button" class="btn sm" data-action="close-modal">${icon('x')}</button></div>
- <form id="survey-review-form"><input type="hidden" id="survey-review-id" value="${safe(session.id)}"/><p class="helper">${safe(session.zone)} / ${safe(session.period||'Periode tidak diketahui')} / ${quality.minutes===null?'Durasi belum diketahui':minutes(quality.minutes)} / ${quality.events} kejadian.</p>
- <div class="field"><label for="survey-review-status">Hasil peninjauan</label><select class="control" id="survey-review-status"><option value="pending" ${record.status==='pending'?'selected':''}>Belum dinilai</option><option value="approved" ${record.status==='approved'?'selected':''}>Diterima untuk matriks</option><option value="rejected" ${record.status==='rejected'?'selected':''}>Perlu observasi ulang</option></select></div>
- <div class="field" style="margin-top:12px"><label for="survey-reviewer">Label pemeriksa internal</label><input class="control" maxlength="80" id="survey-reviewer" value="${safe(record.reviewer||'')}" placeholder="Contoh: koordinator survei" required/></div>
- <div class="field" style="margin-top:12px"><label class="class-check"><input type="checkbox" id="survey-zero" ${record.zeroConfirmed===true?'checked':''}/> Saya telah memastikan tidak ada kejadian selama sesi (jika hitungan 0)</label></div>
- <div class="field" style="margin-top:12px"><label for="survey-review-note">Dasar pemeriksaan / kualitas bukti</label><textarea class="control" id="survey-review-note" maxlength="500" placeholder="Tuliskan alasan menerima/menolak, misalnya gangguan pengamatan atau pengukuran nol." required>${safe(record.note||'')}</textarea></div>
- ${quality.reasons.length?`<div class="pilot-warning">${quality.reasons.map(x=>`<p>${safe(x)}</p>`).join('')}</div>`:''}
- <p class="helper">Status diterima tidak akan dihitung jika durasi, zona, atau periode tidak sesuai. Review ini bukan tanda tangan otoritas.</p>
- <div class="modal-foot"><button type="button" class="btn" data-action="close-modal">Batal</button><button type="submit" class="btn primary">Simpan pemeriksaan</button></div></form>`;
-}
-
-
-// SOURCE MODULE: js/classification.js
-/** Operational event classification for transit curbside monitoring.
- * This is deterministic triage, never an automated legal violation finding.
- * Unknown fields remain unknown; no personal identifiers are used.
- */
-const ZONE_CONTEXT = Object.freeze({
-  unknown:'Rambu / fungsi area belum diperiksa',
-  designated_pickup:'Area naik-turun yang ditetapkan (perlu verifikasi)',
-  general_road:'Tepi jalan umum',
-  signed_no_stopping:'Rambu larangan berhenti teramati',
-  signed_no_parking:'Rambu larangan parkir teramati'
-});
-const IMPACT_STATUS = Object.freeze({unknown:'Belum diperiksa',yes:'Teramati',no:'Tidak teramati'});
-const REVIEW_STATUS = Object.freeze({
-  pending:'Belum ditinjau',
-  needs_evidence:'Bukti tambahan diperlukan',
-  context_reviewed:'Konteks telah ditinjau',
-  field_check:'Perlu pemeriksaan lapangan',
-  closed:'Ditutup (catatan internal)'
-});
-const EVENT_TYPES = Object.freeze({Jemput:'Penjemputan',Turun:'Penurunan',Menunggu:'Menunggu penumpang'});
-const PRIORITY = Object.freeze({P1:'P1 / Periksa keselamatan',P2:'P2 / Tinjau hambatan',P3:'P3 / Observasi berulang',P4:'P4 / Pemantauan rutin'});
-const TERNARY=new Set(['yes','no','unknown']);
-const normalizeSignal=value=>TERNARY.has(value)?value:'unknown';
-function classifyTrafficEvent(event,review=null){
-  const context=Object.hasOwn(ZONE_CONTEXT,event?.zoneContext)?event.zoneContext:'unknown';
-  const lane=normalizeSignal(event?.laneBlocked),pedestrian=normalizeSignal(event?.pedestrianBlocked),queue=normalizeSignal(event?.queueObserved);
-  const duration=Number(event?.duration)||0;
-  const signVerified=event?.signageVerified===true && Boolean(String(event?.evidenceReference||'').trim());
-  let priority='P4',cause='Belum ada dampak terkonfirmasi; pemantauan rutin.';
-  if(pedestrian==='yes') {priority='P1';cause='Akses pejalan kaki dilaporkan terhalang. Perlu pemeriksaan keselamatan.';}
-  else if(lane==='yes'||queue==='yes'){priority='P2';cause='Hambatan lajur atau antrean dilaporkan teramati.';}
-  else if(event?.type==='Menunggu'&&duration>=120){priority='P3';cause='Durasi menunggu panjang; evaluasi pola dan kapasitas penjemputan.';}
-  let ruleFlag='unknown',ruleDescription='Belum cukup bukti mengenai aturan yang berlaku pada titik dan waktu pengamatan.';
-  if(context==='signed_no_stopping'&&signVerified){ruleFlag='review_rule';ruleDescription='Ada catatan rambu larangan berhenti terverifikasi oleh pengamat; pemeriksaan konteks dan kewenangan tetap diperlukan.';}
-  else if(context==='signed_no_parking'&&signVerified){ruleFlag='interpretation_needed';ruleDescription='Rambu larangan parkir tercatat; aktivitas berhenti/menunggu tidak boleh otomatis disamakan dengan parkir.';}
-  else if(context==='designated_pickup'&&signVerified){ruleFlag='area_documented';ruleDescription='Area penjemputan tercatat, namun kesesuaian perilaku tetap membutuhkan pemeriksaan aturan setempat.';}
-  else if(context!=='unknown' && !signVerified){ruleDescription='Konteks lokasi dicatat tetapi belum didukung referensi rambu/fasilitas yang diperiksa.';}
-  return {
-    eventId:String(event?.id||''),activity:EVENT_TYPES[event?.type]||'Aktivitas lain',
-    zone:String(event?.zone||'Tidak diketahui'),source:event?.source==='manual'?'manual':'demo',
-    priority,priorityLabel:PRIORITY[priority],priorityReason:cause,
-    context,contextLabel:ZONE_CONTEXT[context],ruleFlag,ruleDescription,
-    impact:{lane,pedestrian,queue},
-    evidenceStatus:event?.source!=='manual'?'SYNTHETIC':signVerified?'CONTEXT_RECORDED':'FIELD_UNVERIFIED',
-    reviewStatus:REVIEW_STATUS[review?.status]?review.status:'pending',
-    reviewLabel:REVIEW_STATUS[review?.status]||REVIEW_STATUS.pending,
-    legalConclusion:'NOT_DETERMINED'
-  };
-}
-function classifyTrafficDataset(observations=[],reviews={}){
-  return observations.map(event=>({event,classification:classifyTrafficEvent(event,reviews?.[event.id]),review:reviews?.[event.id]||null}));
-}
-function trafficClassSummary(observations=[],reviews={}){
-  const classified=classifyTrafficDataset(observations,reviews);
-  const manual=classified.filter(x=>x.event.source==='manual');
-  return {
-    total:classified.length,manual:manual.length,synthetic:classified.length-manual.length,
-    priorities:Object.fromEntries(['P1','P2','P3','P4'].map(p=>[p,manual.filter(x=>x.classification.priority===p).length])),
-    ruleReview:manual.filter(x=>['review_rule','interpretation_needed'].includes(x.classification.ruleFlag)).length,
-    pending:manual.filter(x=>x.classification.reviewStatus==='pending').length,
-    reviewed:manual.filter(x=>x.classification.reviewStatus!=='pending').length
-  };
-}
-function makePoliceReviewBundle(state){
-  const records=classifyTrafficDataset(state.observations,state.eventReviews).filter(x=>x.event.source==='manual');
-  return {
-    schema:'simpul.operational_traffic_review.v1',generatedAt:new Date().toISOString(),
-    project:{id:state.project?.id||'unknown',name:state.project?.name||'unknown'},
-    purpose:'Operational traffic and pedestrian-access review only; not enforcement evidence or automated offence determination.',
-    legalConclusion:'NOT_DETERMINED',
-    sourcePolicy:'Manual observation records only; synthetic samples excluded. Free-text notes and personal identifiers omitted.',
-    records:records.map(x=>({id:x.event.id,at:x.event.at,zone:x.event.zone,activity:x.event.type,vehicleCategory:x.event.vehicle,durationSec:x.event.duration,
-      fieldContext:x.classification.context,observedImpact:x.classification.impact,
-      contextReference:x.event.evidenceReference||null,signageVerifiedByObserver:x.event.signageVerified===true,
-      operationalPriority:x.classification.priority,priorityReason:x.classification.priorityReason,
-      ruleReviewFlag:x.classification.ruleFlag,ruleReviewExplanation:x.classification.ruleDescription,
-      evidenceStatus:x.classification.evidenceStatus,reviewStatus:x.classification.reviewStatus,
-      reviewedAt:x.review?.at||null,reviewerLabel:x.review?.reviewer||null,
-      legalConclusion:'NOT_DETERMINED'})),
-    reviewAudit:(state.classificationAudit||[]).filter(x=>records.some(r=>r.event.id===x.eventId)).map(x=>({eventId:x.eventId,at:x.at,action:x.action,status:x.status,reviewer:x.reviewer})),
-    disclaimer:'Not an official police record. Review by an authorized official and verify the applicable road signs, context and jurisdiction before any enforcement action.'
-  };
-}
-
-
-// SOURCE MODULE: js/operations.js
-/** Action board: operational response, not traffic law adjudication. */
-
-const CASE_STATUSES=Object.freeze({
-  open:'Perlu ditugaskan',assigned:'Ditugaskan',checking:'Pemeriksaan lapangan',resolved:'Selesai ditindaklanjuti',dismissed:'Ditutup tanpa tindakan'
-});
-function actionableEvents(state){
-  return (state.observations||[]).filter(e=>e.source==='manual')
-    .map(event=>({event,assessment:classifyTrafficEvent(event,state.eventReviews?.[event.id])}))
-    .filter(x=>['P1','P2'].includes(x.assessment.priority));
-}
-function operationalBoard(state,at=new Date()){
-  const candidates=actionableEvents(state),events=new Map((state.observations||[]).filter(x=>x.source==='manual').map(x=>[x.id,x]));
-  const cases=(state.responseCases||[]).map(record=>{
-    const event=events.get(record.eventId)||null;
-    const assessment=event?classifyTrafficEvent(event,state.eventReviews?.[event.id]):null;
-    const overdue=Boolean(record.dueAt&&Number.isFinite(Date.parse(record.dueAt))&&Date.parse(record.dueAt)<at.getTime()&&!['resolved','dismissed'].includes(record.status));
-    return {...record,event,assessment,overdue,sourceMissing:!event};
-  });
-  return {candidates,cases,open:cases.filter(x=>!['resolved','dismissed'].includes(x.status)).length,
-    overdue:cases.filter(x=>x.overdue).length,
-    unassigned:candidates.filter(c=>!cases.some(x=>x.eventId===c.event.id)).length,
-    closed:cases.filter(x=>['resolved','dismissed'].includes(x.status)).length};
-}
-function validateCaseDraft({eventId,owner,action,dueAt},state){
-  const candidate=actionableEvents(state).find(x=>x.event.id===eventId);
-  if(!candidate)throw new Error('Hanya kejadian manual prioritas P1/P2 yang dapat menjadi tindak lanjut.');
-  if((state.responseCases||[]).some(c=>c.eventId===eventId))throw new Error('Kejadian ini sudah memiliki catatan tindak lanjut.');
-  if(String(owner||'').trim().length<2||String(action||'').trim().length<10)throw new Error('Isi penanggung jawab dan rencana tindakan minimal 10 karakter.');
-  if(dueAt && (!Number.isFinite(Date.parse(dueAt))||Date.parse(dueAt)<Date.now()-60000))throw new Error('Batas tindak lanjut harus tanggal/waktu yang sah dan tidak di masa lalu.');
-  return {eventId,owner:String(owner).trim().slice(0,80),action:String(action).trim().slice(0,350),dueAt:dueAt?new Date(dueAt).toISOString():null};
-}
-function validateCaseUpdate(record,status,reason){
-  if(!record)throw new Error('Kasus operasional tidak ditemukan.');
-  if(!Object.hasOwn(CASE_STATUSES,status))throw new Error('Status tindak lanjut tidak dikenal.');
-  if(['resolved','dismissed'].includes(status)&&String(reason||'').trim().length<10)throw new Error('Penutupan memerlukan alasan minimal 10 karakter.');
-  return {status,reason:String(reason||'').trim().slice(0,500)};
-}
-function exportOperations(state){
-  const board=operationalBoard(state);
-  return {schema:'simpul.operational_response.v1',generatedAt:new Date().toISOString(),
-    notice:'Internal operational follow-up only; does not establish an offense or official police action.',
-    cases:board.cases.filter(c=>!c.sourceMissing).map(c=>({id:c.id,eventId:c.eventId,eventAt:c.event.at,zone:c.event.zone,
-      observedActivity:c.event.type,priority:c.assessment.priority,status:c.status,createdAt:c.createdAt,dueAt:c.dueAt,updatedAt:c.updatedAt||null,
-      evidenceStatus:c.assessment.evidenceStatus,legalConclusion:'NOT_DETERMINED'})),
-    statusHistory:(state.responseAudit||[]).filter(x=>board.cases.some(c=>!c.sourceMissing&&c.id===x.caseId)).map(x=>({caseId:x.caseId,eventId:x.eventId,at:x.at,status:x.status,action:x.action}))};
-}
-
-
-// SOURCE MODULE: js/views/operations.js
-
-
-
-
-const when=v=>v?new Intl.DateTimeFormat('id-ID',{dateStyle:'medium',timeStyle:'short',timeZone:'Asia/Jakarta'}).format(new Date(v)):'Belum ditentukan';
-function renderOperations(){const s=getState(),b=operationalBoard(s);
- return `${pageHead('OPERATIONS / HUMAN-IN-THE-LOOP','Tindak Lanjut Hambatan','Tindak lanjuti laporan akses pejalan kaki atau hambatan lajur, dengan penanggung jawab dan jejak status.',
- `${button(`${icon('download',15)} Ekspor daftar`,'export-operations')} ${button(`${icon('plus',15)} Buat tindak lanjut`,'create-operation','primary')}`)}
- <section class="pilot-hero"><div><div class="pilot-kicker">OPERATIONAL RESPONSE / NO AUTOMATED ENFORCEMENT</div><h2>Dari temuan prioritas menuju langkah pemeriksaan yang tercatat.</h2><p>P1 menunjukkan hambatan akses pejalan kaki dan P2 hambatan lajur atau antrean yang dilaporkan. <strong>Prioritas bukan kesimpulan hukum atau instruksi penindakan.</strong></p></div><div class="pilot-meter"><small>ANTREAN TINDAK LANJUT</small><strong>${b.open}</strong><small>${b.overdue} melewati batas waktu internal</small></div></section>
- ${note('<strong>Penggunaan yang bertanggung jawab:</strong> kasus dibuat hanya dari catatan manual P1/P2. Tinjauan dan status pada halaman ini adalah catatan operasional internal, bukan laporan kepolisian resmi, bukti pelanggaran, atau alarm keselamatan real-time.')}
- <div class="pilot-stats"><div><span>Temuan P1/P2</span><strong>${b.candidates.length}</strong><small>Manual dan dapat ditinjau</small></div><div><span>Belum dialokasikan</span><strong>${b.unassigned}</strong><small>Belum memiliki kasus tindak lanjut</small></div><div><span>Dalam penanganan</span><strong>${b.open}</strong><small>Termasuk kasus menunggu penugasan</small></div><div><span>Selesai / ditutup</span><strong>${b.closed}</strong><small>Memerlukan dasar penutupan</small></div></div>
- <div class="pilot-grid"><section class="card">${cardHeading('Kasus tindak lanjut','Berdasarkan pencatatan manual dengan status yang dapat diaudit.',tag('INTERNAL','slate'))}
- ${b.cases.length?`<div class="pilot-case-list">${[...b.cases].reverse().map(c=>`<article class="pilot-case ${c.overdue?'pilot-overdue':''}"><div class="pilot-case-top"><strong>${safe(c.id)}</strong>${tag(CASE_STATUSES[c.status]||c.status,c.overdue?'gold':'slate')}</div><p>${c.event?safe(c.event.type+' / '+c.event.zone):'SUMBER KEJADIAN TIDAK TERSEDIA'} / ${safe(c.assessment?.priority||'N/A')}</p><small>Penanggung jawab: ${safe(c.owner)} / Tenggat internal: ${safe(when(c.dueAt))}</small><div class="pilot-case-foot"><span>${safe(c.action)}</span><button type="button" class="btn sm" data-action="update-operation" data-id="${safe(c.id)}">Ubah status</button></div>${c.sourceMissing?'<div class="pilot-warning">Sumber telah dihapus. Tidak dapat diverifikasi secara mandiri.</div>':''}</article>`).join('')}</div>`:emptyState('Belum ada tindak lanjut','Buat catatan dari temuan manual P1/P2 setelah pemeriksaan awal.')}
- </section><section class="card">${cardHeading('Temuan yang menunggu tindak lanjut','Prioritas dihitung secara deterministik dari indikator dampak yang dicatat pengamat.')}
- ${b.candidates.length?`<div class="pilot-queue">${b.candidates.map(x=>`<div class="pilot-queue-row"><div><strong>${safe(x.assessment.priority)} / ${safe(x.event.type)}</strong><small>${safe(x.event.zone)} / ${safe(x.event.id)}</small><p>${safe(x.assessment.priorityReason)}</p></div>${b.cases.some(c=>c.eventId===x.event.id)?tag('SUDAH DITUGASKAN','slate'):`<button class="btn sm" data-action="create-operation" data-id="${safe(x.event.id)}">Tindak lanjuti</button>`}</div>`).join('')}</div>`:emptyState('Tidak ada kejadian P1/P2 manual','Pencatatan demo dan kejadian tanpa dampak tidak masuk antrean tindak lanjut.')}
- </section></div><div class="pilot-guidance"><strong>${icon('shield-alert',17)} Batas operasional</strong><p>Modul ini belum mendukung push notification, dispatch petugas, integrasi kepolisian, maupun pembuktian hukum. Tindakan nyata memerlukan pemeriksaan dan kewenangan institusi terkait. Semua data tersimpan pada browser pengguna sampai diekspor.</p></div>`;
-}
-function operationCreateModal(candidate,board){const available=board.candidates.filter(x=>!board.cases.some(c=>c.eventId===x.event.id));
- return `<div class="modal-header"><div><div class="eyebrow">OPERATIONS / FIELD REVIEW</div><h2>Buat tindak lanjut</h2></div><button type="button" class="btn sm" data-action="close-modal">${icon('x')}</button></div><form id="operation-form"><div class="field"><label for="operation-event">Kejadian manual P1/P2</label><select id="operation-event" class="control" required>${available.map(x=>`<option value="${safe(x.event.id)}" ${x.event.id===candidate?.event.id?'selected':''}>${safe(x.assessment.priority)} / ${safe(x.event.zone)} / ${safe(x.event.id)}</option>`).join('')}</select></div><div class="field" style="margin-top:12px"><label for="operation-owner">Penanggung jawab internal</label><input class="control" id="operation-owner" maxlength="80" placeholder="Contoh: tim lapangan" required/></div><div class="field" style="margin-top:12px"><label for="operation-action">Tindakan yang akan diperiksa</label><textarea class="control" id="operation-action" maxlength="350" placeholder="Contoh: Periksa hambatan akses dan ukur antrean pada slot jam yang sama." required></textarea></div><div class="field" style="margin-top:12px"><label for="operation-due">Tenggat internal (opsional)</label><input class="control" type="datetime-local" id="operation-due"/></div><p class="helper">Identitas pribadi dan nomor kendaraan tidak diperlukan. Membuat kasus tidak otomatis menghubungi polisi.</p><div class="modal-foot"><button type="button" class="btn" data-action="close-modal">Batal</button><button type="submit" class="btn primary">Simpan tindak lanjut</button></div></form>`;
-}
-function operationUpdateModal(c){return `<div class="modal-header"><div><div class="eyebrow">OPERATIONS / STATUS HISTORY</div><h2>Perbarui ${safe(c.id)}</h2></div><button type="button" class="btn sm" data-action="close-modal">${icon('x')}</button></div><form id="operation-update-form"><input type="hidden" id="operation-case-id" value="${safe(c.id)}"/><div class="field"><label for="operation-status">Status tindak lanjut</label><select class="control" id="operation-status">${Object.entries(CASE_STATUSES).map(([key,label])=>`<option value="${key}" ${c.status===key?'selected':''}>${label}</option>`).join('')}</select></div><div class="field" style="margin-top:12px"><label for="operation-reason">Temuan, alasan perubahan atau hasil pemeriksaan</label><textarea class="control" id="operation-reason" maxlength="500" placeholder="Isi dasar pemeriksaan; wajib minimal 10 karakter jika menutup kasus."></textarea></div><p class="helper">Riwayat perubahan dipertahankan di browser. Status selesai bukan persetujuan hukum.</p><div class="modal-foot"><button type="button" class="btn" data-action="close-modal">Batal</button><button type="submit" class="btn primary">Perbarui status</button></div></form>`;}
-
-
-// SOURCE MODULE: js/analytics.js
-
-function observationStats(obs){
-  const n=obs.length, total=obs.reduce((s,e)=>s+(Number(e.duration)||0),0);
-  return {count:n,avgDwell:n?total/n:0,pickup:obs.filter(e=>e.type==='Jemput').length,dropoff:obs.filter(e=>e.type==='Turun').length,waiting:obs.filter(e=>e.type==='Menunggu').length,real:obs.filter(e=>e.source==='manual').length,synthetic:obs.filter(e=>e.source==='demo').length,zoneCount:new Set(obs.map(e=>e.zone)).size};
-}
-/** Transparent illustrative capacity/queue heuristic. NOT a SUMO simulation or validated traffic model. */
-function heuristicSimulation(p){
-  const t=clamp(p.traffic,100,1800), pickup=clamp(p.pickupShare,0,60)/100;
-  const baselineDwell=clamp(p.dwell,5,300), redirected=clamp(p.diversion,0,100)/100;
-  const ruleDwell=clamp(p.ruleDwell,5,300), pedestrianDetour=clamp(p.pedestrianDetour,0,900);
-  function run(code,stopsOnRoad,dwell,detour){
-    const blockHours=(t*pickup*stopsOnRoad*dwell)/3600;
-    const pressure=1-Math.exp(-blockHours*0.72);
-    const capacity=1450*(1-0.50*pressure);
-    const ratio=t/capacity;
-    // Stylized congestion curve calibrated to no field data.
-    const delay=6+9*ratio/(Math.max(0.12,1-Math.min(.88,ratio)))+Math.max(0,ratio-1)*135;
-    const queue=Math.max(0,Math.round((Math.max(0,t-capacity)*.09)+Math.max(0,delay-12)*.23));
-    return {id:code,delay:+delay.toFixed(1),queue,capacity:Math.round(capacity),events:Math.round(t*pickup),access:Math.round(detour),estimated:true, model:'Ilustrasi matematis, bukan keluaran SUMO'};
-  }
-  const a0=run('A0',1,baselineDwell,pedestrianDetour),a1=run('A1',1-redirected,baselineDwell,pedestrianDetour+Math.round(redirected*65)),a2=run('A2',1,Math.min(baselineDwell,ruleDwell),pedestrianDetour);
-  return {engine:'heuristic',evidence:'synthetic',createdAt:new Date().toISOString(),assumptions:{...p},scenarios:[a0,a1,a2],valid:false,message:'Hasil ilustratif dari rumus antrean sederhana. Bukan prediksi atau validasi kondisi Fatmawati; simulasi SUMO sesungguhnya membutuhkan backend dan kalibrasi data lapangan.'};
-}
-function compareScenarios(results){if(!results?.scenarios?.length)return null;const s=results.scenarios;const a=s.find(x=>x.id==='A0')||s[0];return s.map(x=>({...x,delayChange:a.delay?100*(x.delay-a.delay)/a.delay:0,queueChange:a.queue?100*(x.queue-a.queue)/a.queue:0}));}
-function rankScenarios(results){const list=compareScenarios(results)||[];return [...list].sort((a,b)=>((a.delay/70)*.6+(a.queue/70)*.25+(a.access/400)*.15)-((b.delay/70)*.6+(b.queue/70)*.25+(b.access/400)*.15));}
-function eventByType(obs){const s=observationStats(obs);return[{name:'Jemput',count:s.pickup,color:'teal'},{name:'Turun',count:s.dropoff,color:'blue'},{name:'Menunggu',count:s.waiting,color:'navy'}]}
-
-
-// SOURCE MODULE: js/views/evaluation.js
-
-
-
-
-
-const fmtEval=v=>v===null||v===undefined?'-':num(v);
-const sign=v=>v===null?'-':(v>0?'+':'')+num(v);
-const statusLabel={draft:'Draft internal',review:'Dalam kajian',pilot:'Pilot terencana',closed:'Ditutup'};
-const scenarioNames={A0:'Kondisi eksisting',A1:'Optimasi area jemput',A2:'Aturan durasi berhenti'};
-const cmpCard=(name,before,after,change,unit='',lowerBetter=true)=>{
- const trend=change===null?'unknown':change===0?'neutral':(lowerBetter?change<0:change>0)?'good':'bad';
- return `<div class="eval-comparison"><span>${name}</span><div class="eval-metrics"><strong>${fmtEval(before)} <small>${unit}</small></strong>${icon('arrow-right',15)}<strong>${fmtEval(after)} <small>${unit}</small></strong></div><div class="eval-delta ${trend}">${change===null?'Belum dapat dibandingkan':sign(change)+' '+unit+' (selisih deskriptif)'}</div></div>`;
-};
-function renderEvaluation(){
- const s=getState(),p=comparePeriods(s.fieldReadings,s.comparisonScenario),gate=evidenceGate(s.fieldReadings,s.sessions,s.observations),res=s.lastAnalysis||heuristicSimulation(s.scenario),options=screenScenario(res,s.fieldSettings),last=s.decisions?.at(-1),measured=p.comparableSamples;
- return `${pageHead('REKAYASA / DECISION WORKFLOW','Rencana Intervensi & Dampak','Uji alternatif penjemputan, periksa batas akses pejalan kaki, catat keputusan tim, dan bandingkan hasil setelah implementasi.',`${button(`${icon('clipboard-plus',16)} Catat keputusan tim`,'add-decision','primary')}`)}
-<section class="eval-hero"><div class="eval-hero-mark">${icon('git-compare-arrows',25)}</div><div><span class="dia-kicker">PENGAMBILAN KEPUTUSAN / A0 - A2</span><h2>Kurangi hambatan kendaraan.<br/>Lindungi akses pengguna MRT.</h2><p>Alternatif yang dipilih perlu memenuhi kendala kelancaran, aksesibilitas, keselamatan, dan bukti pengamatan. Model heuristik hanya dipakai untuk screening, bukan izin implementasi.</p></div></section>
-${note('<strong>Provenance:</strong> skor dan status kelayakan di bawah berasal dari parameter skenario serta ambang yang ditetapkan pengguna. Jika sumbernya heuristik atau SUMO jaringan sintetis, hasil <strong>bukan prediksi lapangan Fatmawati</strong>. Catatan keputusan tidak menggantikan persetujuan pihak berwenang.')}
-<div class="eval-step-nav"><span class="active">01 / Diagnosa</span>${icon('arrow-right',14)}<span>02 / Bandingkan</span>${icon('arrow-right',14)}<span>03 / Tinjau</span>${icon('arrow-right',14)}<span>04 / Verifikasi sesudah</span></div>
-<div class="eval-layout"><section class="dia-panel"><div class="dia-panel-head"><div><span class="dia-kicker dark">SCREENING / PEMBATAS</span><h3>Kriteria operasional tim</h3><p>Ini merupakan ambang studi yang dapat diubah, bukan standar teknis pemerintah.</p></div></div><div class="eval-criteria"><div class="field"><label for="guard-queue">Batas antrean maksimum (kendaraan)</label><input id="guard-queue" class="control" type="number" min="0" max="1000" value="${fmtEval(s.fieldSettings.maxQueue)}"/></div><div class="field"><label for="guard-detour">Batas akses/detour (m)</label><input id="guard-detour" class="control" type="number" min="0" max="2000" value="${fmtEval(s.fieldSettings.maxDetour)}" /></div></div><div class="eval-safety"><strong>${icon('shield-check',17)} Gerbang kualitas bukti</strong><p>${gate.completed} dari 12 sesi rencana selesai; ${gate.baselineCount} interval baseline dan ${gate.followupCount} tindak lanjut. Kalibrasi lokal SUMO belum dibuktikan.</p><div class="eval-microbar"><div style="width:${Math.min(100,Math.round(gate.completed/12*100))}%"></div></div></div></section>
-<section class="dia-panel"><div class="dia-panel-head"><div><span class="dia-kicker dark">SKENARIO / PERBANDINGAN</span><h3>Mana yang layak dipelajari lebih lanjut?</h3><p>Sumber ${res.engine==='heuristic'?'rumus ilustratif':'SUMO pada jaringan uji sintetis'}, belum terkalibrasi lokasi.</p></div>${tag(res.engine==='heuristic'?'MODEL ILUSTRATIF':'SUMO SINTETIS','gold')}</div>
-<div class="eval-scenario-list">${options.map(a=>`<div class="eval-option ${a.eligible?'eligible':'risk'}"><div class="eval-option-title"><div><span class="eval-id">${a.id}</span><strong>${safe(scenarioNames[a.id]||a.id)}</strong></div><span class="eval-option-state">${a.eligible?'Lolos ambang input':'Perlu tinjauan'}</span></div><div class="eval-opt-metrics"><span>Delay model <strong>${fmtEval(a.delay)} s</strong></span><span>Antrean model <strong>${fmtEval(a.queue)}</strong></span><span>Akses model <strong>${fmtEval(a.access)} m</strong></span></div><div class="eval-option-foot">${a.eligible?'Lolos kriteria numerik yang ditetapkan, tetapi tetap memerlukan verifikasi.':'Salah satu batas antrean atau akses yang ditetapkan terlampaui.'}</div></div>`).join('')}</div><div class="form-actions">${button('Ubah simulasi A0/A1/A2','goto-simulation')}</div></section></div>
-<div class="eval-section-title"><div><span class="dia-kicker dark">MEASURE / BEFORE–AFTER</span><h3>Evaluasi dampak dari pengamatan, bukan asumsi</h3></div><div class="eval-phase-actions"><label>Bandingkan A0 dengan <select class="control" id="compare-scenario"><option value="A1" ${s.comparisonScenario==='A1'?'selected':''}>A1 – area jemput</option><option value="A2" ${s.comparisonScenario==='A2'?'selected':''}>A2 – aturan berhenti</option><option value="A0" ${s.comparisonScenario==='A0'?'selected':''}>A0 – kondisi kontrol</option></select></label>${button('Rekam interval tindak lanjut','add-field-reading','primary')}</div></div>
-<div class="eval-compare-status">${measured?`<span class="eval-status-ready">${icon('check-circle',16)} ${p.comparable.length} kombinasi zona–periode dapat dibandingkan</span>`:`<span class="eval-status-pending">${icon('alert-circle',16)} Belum ada pasangan pengamatan sebelum dan sesudah pada zona + periode yang sama</span>`}<small>${p.baseline.samples} baseline; ${p.followup.samples} follow-up ${safe(s.comparisonScenario)}. Seluruh data berasal dari entri manual.</small></div>
-<div class="eval-comparison-grid">${cmpCard('Kendaraan berhenti per jam',p.before.stopPerHour,p.after.stopPerHour,p.changes.stopPerHour,'unit/jam')}${cmpCard('Antrean rata-rata maksimum',p.before.avgQueue,p.after.avgQueue,p.changes.avgQueue,'kendaraan')}${cmpCard('Rerata jarak akses pejalan',p.before.meanAccess,p.after.meanAccess,p.changes.accessMeters,'m')}${cmpCard('Interval akses terhalang',p.before.blockedPercent,p.after.blockedPercent,p.changes.blockedPercentPoints,'p.p.')}</div>
-<div class="eval-disclaimer"><div>${icon('info',19)}</div><div><strong>Interpretasi hasil</strong><p>Selisih ini bersifat deskriptif. Perubahan belum membuktikan bahwa intervensi penyebabnya. Periksa volume lalu lintas, cuaca, hari, jam, metodologi, serta rentang ketidakpastian sebelum membentuk kesimpulan. Angka tidak ditampilkan jika tidak ada kelompok pembanding yang sepadan.</p></div></div>
-<div class="eval-layout eval-last"><section class="dia-panel"><div class="dia-panel-head"><div><span class="dia-kicker dark">DECISION REGISTER</span><h3>Catatan pilihan intervensi</h3><p>Keputusan internal tim dengan jejak alasan; bukan persetujuan otoritas lalu lintas.</p></div>${tag(`${s.decisions.length} catatan`,'slate')}</div>
-${!s.decisions.length?'<div class="dia-empty">Belum ada catatan keputusan. Dokumentasikan alasan memilih atau menolak A0/A1/A2.</div>':`<div class="eval-decisions">${[...s.decisions].reverse().slice(0,8).map(x=>`<div class="eval-decision"><div><strong>${safe(x.scenario)} / ${safe(scenarioNames[x.scenario]||'')}</strong><span>${safe(statusLabel[x.status]||'Draft')} / ${safe(shortDate(x.at))}</span></div><p>${safe(x.reason)}</p><small>Penanggung jawab: ${safe(x.owner)} / Tindak lanjut: ${safe(x.nextAction||'Belum ditetapkan')}</small></div>`).join('')}</div>`}</section>
-<section class="dia-panel"><div class="dia-panel-head"><div><span class="dia-kicker dark">WORKFLOW / FIELD PILOT</span><h3>Tahapan keputusan yang bertanggung jawab</h3><p>Urutan berikut dipakai untuk memastikan hasil benar-benar menjawab masalah.</p></div></div><ol class="eval-checklist"><li><strong>Baseline terukur</strong><span>Kumpulkan volume, dwell, antrean, dan akses pada jam sibuk serta non-sibuk.</span></li><li><strong>Uji dan kalibrasi</strong><span>Cocokkan SUMO dengan sesi observasi independen; ulang beberapa seed.</span></li><li><strong>Tinjau alternatif</strong><span>Periksa aksesibilitas dan keselamatan sebelum mengusulkan lokasi atau aturan berhenti.</span></li><li><strong>Persetujuan berwenang</strong><span>Implementasi di jalan publik harus mengikuti prosedur pihak terkait.</span></li><li><strong>Ukur sesudah</strong><span>Ulang pengamatan pada zona dan periode setara lalu bandingkan hasilnya.</span></li></ol></section></div>`
-}
-const decisionModal=()=>`<div class="modal-header"><div><div class="eyebrow">DECISION LOG / KAJIAN INTERNAL</div><h2>Catat pilihan tim</h2></div><button class="btn sm" data-action="close-modal" type="button">${icon('x')}</button></div><form id="decision-form"><div class="form-grid"><div class="field"><label for="dec-scenario">Alternatif</label><select id="dec-scenario" class="control"><option value="A0">A0 – kondisi eksisting</option><option value="A1">A1 – area penjemputan</option><option value="A2">A2 – aturan berhenti</option></select></div><div class="field"><label for="dec-status">Status kajian internal</label><select id="dec-status" class="control"><option value="draft">Draft internal</option><option value="review">Dalam kajian</option><option value="pilot">Pilot terencana (perlu izin)</option><option value="closed">Ditutup</option></select></div></div><div class="field" style="margin-top:14px"><label for="dec-owner">Penanggung jawab tim</label><input required id="dec-owner" maxlength="100" class="control" placeholder="Peran / tim pengkaji" /></div><div class="field" style="margin-top:14px"><label for="dec-reason">Alasan berbasis bukti / risiko yang masih terbuka</label><textarea id="dec-reason" required maxlength="700" class="control" placeholder="Sebutkan sumber pengamatan, batas akses, dan ketidakpastian."></textarea></div><div class="field" style="margin-top:14px"><label for="dec-next">Tindak lanjut</label><input id="dec-next" maxlength="200" class="control" placeholder="Contoh: verifikasi kapasitas ruang jemput, wawancara pengelola"/></div><p class="helper">Menyimpan keputusan ini tidak menyatakan intervensi sudah diizinkan atau diterapkan. Hanya catatan kajian tim.</p><div class="modal-foot"><button type="button" class="btn" data-action="close-modal">Batal</button><button class="btn primary" type="submit">${icon('check',16)} Simpan catatan</button></div></form>`;
-
-
-// SOURCE MODULE: js/views/observation.js
-
-function renderObservation(){const s=getState(),stats=observationStats(s.observations),active=s.activeSession;const rows=[...s.observations].sort((a,b)=>new Date(b.at)-new Date(a.at));return `${pageHead('OPERASI / MOBILE FIELDWORK','Observasi Lapangan','Catat aktivitas kendaraan secara manual dan terstruktur. Dapat digunakan lewat browser HP tanpa perangkat akuisisi khusus.',`${button(`${icon('download')} Ekspor CSV`,'export-observations')} ${button(`${icon('plus')} Tambah kejadian`,'quick-observation','primary')}`)}
-${note('<strong>Privasi dan asal data:</strong> tidak memerlukan foto, wajah, atau pelat nomor. Sumber <em>demo</em> dan <em>observasi manual</em> ditandai secara terpisah. Data browser disimpan secara lokal dan tidak otomatis terkirim ke server.')}
-<section class="card" style="margin-bottom:18px">${cardHeading('Sinkronisasi server lokal','Kirim hanya observasi manual ke SQLite melalui REST API.',tag('OPSIONAL / API','slate'))}<div class="form-actions">${button(`${icon('upload-cloud')} Kirim ke SQLite`,'sync-observations','primary')} ${button(`${icon('download-cloud')} Ambil dari SQLite`,'pull-observations')}</div><p class="helper">Perlu backend FastAPI aktif. Data data ilustratif tidak dikirim. Database demo ini belum memiliki autentikasi organisasi, sehingga jangan dipakai untuk data sensitif atau jaringan publik.</p></section>
-<div class="cards three" style="margin-bottom:18px">${statCard('scan-line','Total kejadian',num(stats.count),`${stats.real} pencatatan manual`)}${statCard('clock','Rata-rata dwell time',`${num(stats.avgDwell)} s`,'Hasil agregasi kejadian tercatat','blue')}${statCard('map-pin','Zona teramati',`${stats.zoneCount}`,'Zona dalam rekaman demo / manual','navy')}</div>
-<div class="two-cols" style="margin-bottom:18px"><section class="card">${cardHeading('Sesi observasi','Kelola sesi dan gunakan panel pencatatan untuk kerja lapangan.',tag(active?'SESI BERJALAN':'BELUM ADA SESI',''+(active?'':'slate')))}
-<div class="field" style="margin-bottom:12px"><label>Lokasi studi</label><input class="control" value="${safe(s.project.name)}" disabled /></div><div class="field" style="margin-bottom:12px"><label>Zona observasi aktif</label><select class="control" id="current-zone" ${active?'disabled':''}><option value="Zona A" ${active?.zone==='Zona A'?'selected':''}>Zona A – akses utama</option><option value="Zona B" ${active?.zone==='Zona B'?'selected':''}>Zona B – area tunggu</option><option value="Zona C" ${active?.zone==='Zona C'?'selected':''}>Zona C – koridor terdekat</option></select></div>
-<div class="field" style="margin-bottom:12px"><label for="current-period">Periode pencatatan</label><select class="control" id="current-period" ${active?'disabled':''}><option value="Jam sibuk" ${active?.period==='Jam sibuk'?'selected':''}>Jam sibuk (ditetapkan pengamat)</option><option value="Luar jam sibuk" ${active?.period==='Luar jam sibuk'?'selected':''}>Luar jam sibuk (ditetapkan pengamat)</option></select></div>
-<div class="callout ${active?'':'warning'}"><strong>${active?'Sesi sedang berjalan':'Belum ada sesi aktif'}</strong>${active?'Waktu mulai: '+shortDate(active.startedAt)+' - '+clock(active.startedAt)+' WIB - '+safe(active.period||'Periode belum dilabeli')+' / Kejadian baru dicatat sebagai observasi manual.':'Tekan Mulai sesi untuk membuat rekaman baru yang terpisah dari data sintetis.'}</div><div class="form-actions">${button(`${icon('play')} Mulai sesi`,'start-session',active?'':'primary')} ${button('Akhiri sesi','end-session',active?'':'',)} </div></section>
-<section class="card">${cardHeading('Quick Capture','Catat jenis aktivitas dengan satu langkah sederhana.')}
-<div class="cards three" style="gap:9px">${[['Jemput','car'],['Turun','route'],['Menunggu','clock']].map(x=>`<button class="btn" data-action="capture-type" data-value="${x[0]}" style="min-height:85px;display:flex;flex-direction:column;justify-content:center;gap:8px;border-color:#dce4eb;background:#fbfdfe;color:#0b4c82">${icon(x[1],23)}<span>${x[0]}</span></button>`).join('')}</div><div class="form-divider"></div><p class="helper">Pilih aktivitas untuk membuka input durasi, kategori kendaraan, dan zona. Informasi yang disimpan akan masuk ke tabel kejadian di bawah.</p><div class="result-pill"><span>Rekaman manual</span><strong>${stats.real} kejadian</strong></div><div class="result-pill"><span>Rekaman sintetis</span><strong>${stats.synthetic} kejadian</strong></div></section></div>
-<section class="card">${cardHeading('Log kejadian','Semua kejadian yang tersimpan pada browser saat ini.',`<button class="btn sm" data-action="clear-demo">${icon('filter',14)} Hapus data ilustratif</button>`)}<div class="table-wrap"><table class="data-table"><thead><tr><th>Waktu (WIB)</th><th>Aktivitas</th><th>Kendaraan</th><th>Durasi</th><th>Zona</th><th>Sumber</th><th></th></tr></thead><tbody>${rows.map(o=>`<tr><td>${shortDate(o.at)}<div style="color:#97a2af;font-size:9px;margin-top:4px">${clock(o.at)} WIB</div></td><td><strong>${safe(o.type)}</strong></td><td>${safe(o.vehicle)}</td><td>${num(o.duration)} s</td><td>${safe(o.zone)}</td><td>${tag(o.source==='demo'?'SINTETIS':'MANUAL',o.source==='demo'?'gold':'')}</td><td><button class="btn sm" title="Hapus kejadian" data-action="delete-event" data-id="${safe(o.id)}">${icon('trash-2',13)}</button></td></tr>`).join('')}</tbody></table>${!rows.length?emptyState('Belum ada kejadian','Mulai sesi dan rekam aktivitas pertama.') :''}</div><div class="note-line">Pencatatan di aplikasi bukan pengganti validasi lapangan dan izin observasi. F1-score serta galat volume merupakan target proposal yang belum diuji.</div></section>`}
-const eventModal=(type='Jemput')=>`<div class="modal-header"><div><div class="eyebrow">EVENT CAPTURE</div><h2>Catat aktivitas kendaraan</h2></div><button class="btn sm" data-action="close-modal" aria-label="Tutup">${icon('x')}</button></div><form id="event-form"><div class="form-grid"><div class="field"><label for="event-type">Jenis aktivitas</label><select id="event-type" class="control" required><option ${type==='Jemput'?'selected':''}>Jemput</option><option ${type==='Turun'?'selected':''}>Turun</option><option ${type==='Menunggu'?'selected':''}>Menunggu</option></select></div><div class="field"><label for="event-vehicle">Kategori kendaraan</label><select id="event-vehicle" class="control"><option>Mobil</option><option>Motor</option><option>Angkutan pengumpan</option><option>Lainnya</option></select></div><div class="field"><label for="event-zone">Zona</label><select id="event-zone" class="control"><option ${getState().activeSession?.zone==='Zona A'?'selected':''}>Zona A</option><option ${getState().activeSession?.zone==='Zona B'?'selected':''}>Zona B</option><option ${getState().activeSession?.zone==='Zona C'?'selected':''}>Zona C</option></select></div><div class="field"><label for="event-duration">Durasi berhenti (detik)</label><input type="number" min="0" max="3600" step="1" value="45" id="event-duration" class="control" required></div></div><div class="form-divider"></div><div class="eyebrow">PENANDA OPERASIONAL / PENGAMATAN</div><div class="form-grid" style="margin-top:12px"><div class="field"><label for="event-context">Kondisi lokasi / rambu</label><select id="event-context" class="control"><option value="unknown">Belum diperiksa</option><option value="designated_pickup">Area penjemputan</option><option value="general_road">Tepi jalan umum</option><option value="signed_no_stopping">Rambu dilarang berhenti</option><option value="signed_no_parking">Rambu dilarang parkir</option></select></div><div class="field"><label for="event-evidence">ID referensi rambu / fasilitas (opsional)</label><input id="event-evidence" class="control" maxlength="80" pattern="[A-Za-z0-9:_-]{0,80}" placeholder="Contoh: ZONE-A-SIGN-01"/><small>Jangan masukkan nomor pelat, nama atau identitas pribadi.</small></div><div class="field"><label for="event-lane">Lajur kendaraan terhalang?</label><select id="event-lane" class="control"><option value="unknown">Belum diperiksa</option><option value="yes">Ya, teramati</option><option value="no">Tidak teramati</option></select></div><div class="field"><label for="event-pedestrian">Akses pejalan kaki terhalang?</label><select id="event-pedestrian" class="control"><option value="unknown">Belum diperiksa</option><option value="yes">Ya, teramati</option><option value="no">Tidak teramati</option></select></div><div class="field"><label for="event-queue">Antrean terbentuk?</label><select id="event-queue" class="control"><option value="unknown">Belum diperiksa</option><option value="yes">Ya, teramati</option><option value="no">Tidak teramati</option></select></div><div class="field"><label class="class-check"><input type="checkbox" id="event-signage"/> Rambu/fasilitas sudah dicek langsung oleh pengamat</label><small>Memerlukan ID referensi yang ditulis di atas.</small></div></div><div class="field" style="margin-top:14px"><label for="event-note">Catatan lapangan (opsional)</label><textarea id="event-note" class="control" placeholder="Contoh: kendaraan berhenti di tepi jalan, tanpa data identitas pribadi."></textarea></div><p class="helper">Timestamp dicatat otomatis saat disimpan. Data berlabel MANUAL dan tersimpan pada perangkat ini.</p><div class="modal-foot"><button class="btn" data-action="close-modal" type="button">Batal</button><button class="btn primary" type="submit">${icon('check')} Simpan kejadian</button></div></form>`;
-
-
-// SOURCE MODULE: js/standards.js
-// SIMPUL international-practice module: quality gates and interoperable export.
-// These are implementation controls; they do NOT establish ISO/WCAG certification.
-const iso = value => { const parsed=new Date(value); return Number.isFinite(parsed.getTime())?parsed.toISOString():null; };
-const tzAware = value => typeof value==='string' && /(Z|[+-]\d{2}:?\d{2})$/i.test(value) && iso(value)!==null;
-const unique = items => new Set(items).size===items.length;
-const asNum = value => typeof value==='number' && Number.isFinite(value) && value>=0;
-const STANDARD_REFERENCES = [
- {code:'ISO 37120:2018',name:'City services & quality of life',application:'Konteks indikator mobilitas perkotaan; metrik SIMPUL adalah indikator studi lokal, bukan otomatis indikator ISO.',status:'Referensi metodologis',url:'https://www.iso.org/standard/68498.html'},
- {code:'ISO 37122:2019',name:'Smart city indicators',application:'Prinsip indikator terdefinisi dengan sumber, periode, dan metode yang dapat ditinjau.',status:'Referensi metodologis',url:'https://www.iso.org/standard/69050.html'},
- {code:'ISO 39001:2012',name:'Road traffic safety management',application:'Tinjauan risiko dan akses sebelum usulan perubahan pengaturan lalu lintas; bukan sertifikasi sistem.',status:'Referensi keselamatan',url:'https://www.iso.org/standard/44958.html'},
- {code:'ISO 19157-1:2023',name:'Geospatial data quality',application:'Pemeriksaan keterisian, konsistensi, validitas, dan provenance lokasi.',status:'Prinsip kualitas data',url:'https://www.iso.org/standard/78900.html'},
- {code:'ISO 8601-1:2019',name:'Date/time interchange',application:'Ekspor waktu pengamatan dan pencatatan ke UTC ISO 8601 dengan jejak zona waktu asal.',status:'Diterapkan pada ekspor',url:'https://www.iso.org/standard/70907.html'},
- {code:'RFC 7946',name:'GeoJSON',application:'Titik lokasi studi sebagai WGS84 [longitude, latitude], hanya jika koordinat tersedia; bukan posisi masing-masing event.',status:'Diterapkan pada ekspor',url:'https://www.rfc-editor.org/rfc/rfc7946'},
- {code:'W3C PROV-O',name:'Data provenance',application:'Identitas sumber, waktu, data turunan, metode dan status bukti dalam export bundle.',status:'Pemetaan provenance',url:'https://www.w3.org/TR/prov-o/'},
- {code:'WCAG 2.2 AA',name:'Web accessibility',application:'Target keyboard, kontras, focus state, label, dan responsivitas; memerlukan audit manual serta otomatis.',status:'Target, belum diaudit',url:'https://www.w3.org/TR/WCAG22/'}
-];
-const REGULATORY_REFERENCES = [
- {code:'UU No. 22 Tahun 2009',article:'Pasal 118',title:'Larangan berhenti yang mengganggu lalu lintas',summary:'Melarang kendaraan berhenti di lokasi tertentu, termasuk lokasi yang mengganggu keselamatan, ketertiban, dan kelancaran lalu lintas.',relevance:'Membantu memetakan aktivitas berhenti dan dampaknya pada koridor studi.',source:'Kementerian Keuangan Republik Indonesia',tone:'teal'},
- {code:'UU No. 22 Tahun 2009',article:'Pasal 287 ayat (1) dan (3)',title:'Rambu, marka, berhenti dan parkir',summary:'Mengatur sanksi pelanggaran rambu, marka, serta tata cara berhenti dan parkir.',relevance:'Menjadi konteks saat hasil observasi ditinjau oleh pihak berwenang.',source:'Kementerian Keuangan Republik Indonesia',tone:'amber'},
- {code:'Perda DKI Jakarta No. 5 Tahun 2014',article:'Pasal 38',title:'Parkir pada ruang milik jalan',summary:'Melarang parkir pada ruang milik jalan tanpa marka atau rambu parkir yang sesuai.',relevance:'Mendukung pemeriksaan kesesuaian lokasi berhenti dengan penataan ruang jalan.',source:'Jakarta Services',tone:'blue'},
- {code:'Perda DKI Jakarta No. 5 Tahun 2014',article:'Pasal 95',title:'Tindakan atas pelanggaran transportasi',summary:'Menjadi dasar tindakan terhadap sejumlah pelanggaran transportasi, termasuk parkir tidak pada tempatnya dan aktivitas angkutan umum pada lokasi yang tidak ditetapkan.',relevance:'Memberi konteks kebijakan untuk tindak lanjut manual, bukan keputusan otomatis SIMPUL.',source:'Pemerintah Provinsi DKI Jakarta',tone:'violet'},
- {code:'UU No. 27 Tahun 2022',article:'Pasal 17',title:'Kamera pemantau dan perlindungan privasi',summary:'Mengatur penggunaan kamera pemantau di ruang publik, termasuk tujuan pengelolaan informasi lalu lintas dan perlindungan privasi.',relevance:'Menjadi pengingat untuk minimisasi data, izin pengumpulan, dan perlindungan subjek data.',source:'Kerangka perlindungan data Indonesia',tone:'rose'}
-];
-function assessQuality(state){
- const observations=(state.observations||[]).filter(x=>x?.source==='manual');
- const intervals=(state.fieldReadings||[]).filter(x=>x?.source==='manual');
- const all=[...observations,...intervals];
- const invalidTime=all.filter(x=>!tzAware(x.at)|| (x.recordedAt&&!tzAware(x.recordedAt)));
- const ids=all.map(x=>x.id);
- const invalidNumeric=intervals.filter(x=>!Number.isInteger(Number(x.minutes))||Number(x.minutes)<5||Number(x.minutes)>240 || ['passingVehicles','stoppedVehicles','maxQueue','accessMeters','pedestrians','availableBays','occupiedBays'].some(k=>!asNum(Number(x[k]))));
- const invalidCapacity=intervals.filter(x=>Number(x.occupiedBays)>Number(x.availableBays)&&Number(x.availableBays)>0);
- const invalidPhase=intervals.filter(x=>x.phase==='baseline'&&x.scenario!=='A0'||x.phase==='followup'&&x.scenario==='A0');
- const pairs=[];
- const base=new Set(intervals.filter(x=>x.phase==='baseline'&&x.scenario==='A0').map(x=>`${x.zone}|${x.period}`));
- for(const x of intervals.filter(x=>x.phase==='followup'&&['A1','A2'].includes(x.scenario))){if(base.has(`${x.zone}|${x.period}`))pairs.push(x)}
- const observedSessions=(state.sessions||[]).filter(x=>x.source==='manual'&&x.endedAt);
- const issues=[];
- if(!all.length) issues.push({severity:'block',code:'NO_FIELD_DATA',message:'Belum ada observasi manual. Data sintetis tidak digunakan untuk evidence review.'});
- if(invalidTime.length)issues.push({severity:'block',code:'INVALID_TIME',message:`${invalidTime.length} rekaman memiliki timestamp tidak valid atau tanpa zona waktu.`});
- if(!unique(ids))issues.push({severity:'block',code:'DUPLICATE_ID',message:'ID rekaman tidak unik di dataset manual.'});
- if(invalidNumeric.length)issues.push({severity:'block',code:'INVALID_METRIC',message:`${invalidNumeric.length} interval memiliki nilai numerik di luar kontrak input.`});
- if(invalidCapacity.length)issues.push({severity:'block',code:'CAPACITY_CONFLICT',message:`${invalidCapacity.length} interval memiliki okupansi ruang jemput melebihi kapasitas tercatat; perlu konfirmasi.`});
- if(invalidPhase.length)issues.push({severity:'block',code:'SCENARIO_CONFLICT',message:'Penandaan baseline dan skenario tidak konsisten.'});
- if(observedSessions.length<12)issues.push({severity:'review',code:'SESSION_TARGET',message:`${observedSessions.length}/12 sesi manual selesai; angka 12 adalah rencana sampel pada proposal, bukan syarat ISO.`});
- if(!pairs.length)issues.push({severity:'review',code:'NO_MATCHED_FOLLOWUP',message:'Belum ada pasangan before–after pada zona dan periode yang sama.'});
- issues.push({severity:'review',code:'INDEPENDENT_VALIDATION',message:'Data kalibrasi/validasi terpisah, anotasi ground truth, serta kesesuaian jaringan SUMO belum dibuktikan.'});
- issues.push({severity:'review',code:'SAFETY_REVIEW',message:'Persetujuan rekayasa lalu lintas dan audit aksesibilitas pejalan kaki belum diverifikasi.'});
- const blocks=issues.filter(x=>x.severity==='block');
- return {status:blocks.length?'not_ready':'exploratory_only',manualEvents:observations.length,manualIntervals:intervals.length,completedManualSessions:observedSessions.length,syntheticEvents:(state.observations||[]).filter(x=>x?.source==='demo').length,matchedFollowups:pairs.length,invalidTime:invalidTime.length,duplicateIds:ids.length-new Set(ids).size,issues,scope:'Data manual saja; tidak ada validasi kalibrasi, klaim sebab-akibat, atau sertifikasi'};
-}
-function buildStandardsBundle(state){
- const quality=assessQuality(state);
- const obs=(state.observations||[]).filter(x=>x.source==='manual').map(x=>({id:x.id,observed_at_utc:iso(x.at),source_timestamp:x.at,category:x.type,vehicle_category:x.vehicle,zone:x.zone,dwell_seconds:Number(x.duration),source:'manual',session_id:x.sessionId||null,note:x.note||''}));
- const fields=(state.fieldReadings||[]).filter(x=>x.source==='manual').map(x=>({id:x.id,observed_at_utc:iso(x.at),recorded_at_utc:x.recordedAt?iso(x.recordedAt):null,source_timestamp:x.at,phase:x.phase,scenario:x.scenario,period:x.period,zone:x.zone,observation_minutes:Number(x.minutes),passing_vehicles:Number(x.passingVehicles),stopped_vehicles:Number(x.stoppedVehicles),stopping_events_per_hour:Number(x.minutes)>0?Number((Number(x.stoppedVehicles)*60/Number(x.minutes)).toFixed(3)):null,max_queue_vehicles:Number(x.maxQueue),pedestrian_access_distance_m:Number(x.accessMeters),pedestrians_observed:Number(x.pedestrians),access_blocked:Boolean(x.blockedAccess),available_pickup_bays:Number(x.availableBays),occupied_pickup_bays:Number(x.occupiedBays),source:'manual',session_id:x.sessionId||null,note:x.note||''}));
- const generatedAt=new Date().toISOString();
- return {schema:'https://simpul.local/schemas/evidence-bundle/v1',schema_version:'1.0.0',generated_at_utc:generatedAt,report_kind:'research_evidence_export',validation_status:'NOT_FIELD_VALIDATED',project:{id:state.project.id,name:state.project.name,district:state.project.district,spatial_reference:'WGS84 / EPSG:4326 only if coordinate supplied'},data_provenance:{manual_only:true,synthetic_records_excluded:quality.syntheticEvents,source_data_types:['manual_observation','manual_interval'],source_version:'SIMPUL v0.9',basis:'Local project proposal; independent calibration/validation pending'},quality,units:{observation_minutes:'min',dwell_seconds:'s',stopping_events_per_hour:'events/h',pedestrian_access_distance_m:'m',passing_vehicles:'vehicle count',max_queue_vehicles:'vehicle count'},observations:obs,field_intervals:fields,provenance:{'@context':{'prov':'http://www.w3.org/ns/prov#','dcterms':'http://purl.org/dc/terms/'},'@graph':[...obs,...fields].map(x=>({'@id':`urn:simpul:record:${encodeURIComponent(x.id)}`,'@type':'prov:Entity','prov:generatedAtTime':x.recorded_at_utc||x.observed_at_utc,'dcterms:source':'manual field input', 'dcterms:identifier':x.id}))},limitations:['ISO references inform design, not certification','No confirmed Fatmawati SUMO calibration','No independent field validation','Before/after metrics are descriptive, not causal','Manual observations are not automatically verified']};
-}
-function buildProjectGeoJSON(state){
- const geo=state.project?.geo, lat=Number(geo?.lat), lon=Number(geo?.lon);
- if(!geo||!Number.isFinite(lat)||!Number.isFinite(lon)||Math.abs(lat)>90||Math.abs(lon)>180)throw new Error('Koordinat lokasi proyek belum tersedia atau tidak valid. Pilih lokasi pada halaman Peta terlebih dahulu.');
- return {type:'FeatureCollection',name:'SIMPUL study reference (not observed event coordinates)',features:[{type:'Feature',id:state.project.id,geometry:{type:'Point',coordinates:[lon,lat]},properties:{name:state.project.name,location_type:'project_reference_point',coordinate_accuracy:'not_verified',observation_location:'not_per_event',source:'user-selected geocoding',recorded_at_utc:new Date().toISOString()}}]};
-}
-function buildExecutiveBriefHTML(state){
- const q=assessQuality(state);
- const escape=v=>String(v??'').replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;').replaceAll('"','&quot;');
- const rows=[['Manual event records',q.manualEvents],['Manual interval records',q.manualIntervals],['Completed manual sessions',q.completedManualSessions],['Matched before-after follow-ups',q.matchedFollowups],['Synthetic events excluded',q.syntheticEvents]];
- return `<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>SIMPUL | International Research Brief</title><style>
- @page{size:A4;margin:18mm}*{box-sizing:border-box}body{margin:0;font:12px/1.6 Arial,sans-serif;color:#1b3354;background:#f0f4f7}.sheet{max-width:800px;margin:20px auto;padding:40px 48px;background:#fff;box-shadow:0 6px 22px #17265e12}header{border-top:9px solid #0961ad;padding-top:20px}.eyebrow{color:#0961ad;font-size:10px;letter-spacing:1.5px;font-weight:800}h1{font-size:30px;line-height:1.2;margin:14px 0;color:#042573}h2{font-size:15px;margin-top:27px;color:#042573;border-bottom:1px solid #e1e9ee;padding-bottom:6px}p{margin:9px 0}table{border-collapse:collapse;width:100%;margin:15px 0}th,td{text-align:left;padding:8px 10px;border-bottom:1px solid #e6edf1}th{background:#042573;color:#fff}.warn{background:#fcf7eb;border-left:4px solid #d19c42;padding:14px}.foot{font-size:10px;color:#71869c;margin-top:30px;padding-top:12px;border-top:1px solid #dce8ed}@media print{body{background:#fff}.sheet{box-shadow:none;margin:0;max-width:none;padding:0}}</style></head><body><article class="sheet"><header><div class="eyebrow">SIMPUL / iSeeDesignITB / STUDY TECHNICAL BRIEF</div><h1>Mobility Access &amp; Pickup Management</h1><p><b>Case study:</b> ${escape(state.project?.name)} / ${escape(state.project?.district)}</p><p><b>Prepared (UTC):</b> ${escape(new Date().toISOString())}</p></header>
- <div class="warn"><b>Evidence status: ${q.status==='not_ready'?'NOT READY':'EXPLORATORY ONLY'}</b><p>This document is generated from a research prototype. No real-world impact, certified standard conformance, traffic safety approval, or calibrated SUMO model is claimed.</p></div>
- <h2>1. Problem and intended users</h2><p>SIMPUL is a mobile-first decision-support system for assessing vehicle pickup, drop-off and waiting activity near MRT Fatmawati, Jakarta, while monitoring implications for pedestrian access. Intended users include field surveyors, transport analysts, and transit operators.</p>
- <h2>2. Engineering workflow</h2><p>Field observations → deterministic/AI-assisted analysis → A0 existing conditions, A1 pickup area optimization, A2 stopping rule evaluation → human review and follow-up measurement.</p>
- <h2>3. Evidence inventory</h2><table><thead><tr><th>Data category</th><th>Count</th></tr></thead><tbody>${rows.map(([a,b])=>`<tr><td>${escape(a)}</td><td>${escape(b)}</td></tr>`).join('')}</tbody></table><p>Time representations follow ISO 8601 conventions; spatial exports use GeoJSON per RFC 7946 where reference coordinates exist. Data source metadata and caveats accompany the machine-readable evidence bundle.</p>
- <h2>4. Quality findings</h2><table><thead><tr><th>Level</th><th>Finding</th></tr></thead><tbody>${q.issues.map(x=>`<tr><td>${escape(x.severity.toUpperCase())}</td><td>${escape(x.message)}</td></tr>`).join('')}</tbody></table>
- <h2>5. Verification still required</h2><p>Independent vehicle-count annotations, calibrated and separately validated SUMO geometry/demand, accessibility and safety review, authorized field data collection, and a defensible before-after study are required before operational deployment.</p>
- <h2>6. Standard references</h2><p>${STANDARD_REFERENCES.map(x=>escape(x.code)).join(' / ')}. These references inform engineering practices only; this application is not certified against any of them.</p>
- <footer class="foot">Automatically generated / SIMPUL research prototype / No personal identifiers included in this brief / Methodology and field data require independent review.</footer></article></body></html>`;
-}
-
-
-// SOURCE MODULE: js/finance.js
-const nonneg=x=>Math.max(0,Number(x)||0);
-/**
- * Forward-looking financial assumptions. Not booked revenue or actual invoices.
- * 12-month model: assume opening sites are onboarded and billed for all 12 months;
- * incremental monthly signups begin at month 1 and are billed from that month.
- * Pilot conversions shown separately, not added to subscribed sites unless chosen by user.
- */
-function forecast(f){
-  const count=Math.floor(nonneg(f.sites)),newPerMonth=nonneg(f.newSitesPerMonth),churn=Math.min(100,nonneg(f.churn))/100;
-  const monthly=nonneg(f.monthly), setup=nonneg(f.setup),pilotFee=nonneg(f.pilotFee),pilots=nonneg(f.pilots);
-  let active=count;const rows=[];
-  for(let i=1;i<=12;i++){
-    // Existing opening sites are present from month 1; additional signups join from month 2.
-    const newSites=i===1?0:newPerMonth;
-    active=Math.max(0,active*(1-churn)+newSites);
-    const pilotCount=i===1?pilots:0;
-    const setupRevenue=(i===1?count:newSites)*setup;
-    const recurring=active*monthly;
-    const pilotRevenue=pilotCount*pilotFee;
-    const revenue=setupRevenue+recurring+pilotRevenue;
-    const direct=nonneg(f.cloudMonthly)+active*nonneg(f.supportPerSite)+(i===1?count:newSites)*nonneg(f.implementationCostPerSite)+pilotCount*nonneg(f.pilotCost);
-    const fixed=nonneg(f.fixedMonthly)+nonneg(f.salesMonthly);
-    const costs=direct+fixed;
-    rows.push({month:i,active,recurring,setupRevenue,pilotRevenue,revenue,direct,fixed,costs,grossProfit:revenue-direct,net:revenue-costs});
-  }
-  const sum=k=>rows.reduce((s,r)=>s+r[k],0);
-  const revenue=sum('revenue'),grossProfit=sum('grossProfit'),net=sum('net'),direct=sum('direct'),costs=sum('costs');
-  const mrr=rows[11].recurring,arr=mrr*12;
-  const breakEven=rows.find(r=>r.net>=0)?.month??null;
-  let cumulative=0;let cashBreakEven=null;
-  for(const r of rows){cumulative+=r.net;if(cashBreakEven===null&&cumulative>=0)cashBreakEven=r.month;}
-  return {rows,revenue,grossProfit,net,direct,costs,grossMargin:revenue?grossProfit/revenue*100:0,netMargin:revenue?net/revenue*100:0,mrr,arr,breakEven,cashBreakEven,yearEndSites:rows[11].active,recurringTotal:sum('recurring'),setupTotal:sum('setupRevenue'),pilotTotal:sum('pilotRevenue')};
-}
-function directCostShare(f,siteCount){const count=Math.max(0,Number(siteCount)||0);const cloud=nonneg(f.cloudMonthly),support=count*nonneg(f.supportPerSite),fixed=nonneg(f.fixedMonthly),sales=nonneg(f.salesMonthly);const tot=cloud+support+fixed+sales||1;return [{label:'Cloud',value:cloud/tot*100,amount:cloud,css:'a'},{label:'Dukungan pelanggan',value:support/tot*100,amount:support,css:'b'},{label:'Operasional',value:fixed/tot*100,amount:fixed,css:'c'},{label:'Akuisisi',value:sales/tot*100,amount:sales,css:'d'}]}
-
-
-// SOURCE MODULE: js/views/reports.js
-
-
-function makeReport(){const s=getState(),o=observationStats(s.observations),r=s.lastAnalysis||heuristicSimulation(s.scenario),f=forecast(s.finance);return {meta:{title:'SIMPUL – Laporan kajian demonstrasi',createdAt:new Date().toISOString(),project:s.project.name,classification:'DATA SINTETISNSTRASI / BELUM TERVALIDASI',source:'Proposal SIMPUL iSeeDesignITB'},observations:{summary:o,records:s.observations},fieldAssessment:{manualIntervals:s.fieldReadings,baselineDiagnosis:diagnose(s.fieldReadings,s.observations,s.fieldSettings),beforeAfter:Object.fromEntries(['A0','A1','A2'].map(x=>[x,comparePeriods(s.fieldReadings,x)])),evidenceGate:evidenceGate(s.fieldReadings,s.sessions,s.observations),screeningCriteria:s.fieldSettings},internalDecisionLog:s.decisions,scenarios:r,financialModel:{assumptions:s.finance,forecast:f},evidenceQuality:assessQuality(s),limitations:['Kondisi Fatmawati belum diverifikasi dengan observasi lapangan yang memadai.','Model browser merupakan ilustrasi heuristik, bukan keluaran SUMO.','Jika backend SUMO digunakan, jaringannya adalah jaringan sintetis, belum terkalibrasi terhadap lokasi sebenarnya.','Pengamatan sebelum-sesudah bersifat deskriptif dan tidak cukup untuk membuktikan kausalitas.','Prediksi tidak sama dengan hasil implementasi.','Harga dan revenue merupakan asumsi bisnis, bukan transaksi.']};}
-function renderReports(){const s=getState(),o=observationStats(s.observations),r=s.lastAnalysis||heuristicSimulation(s.scenario),f=forecast(s.finance);return `${pageHead('DOCUMENTATION / EVIDENCE','Laporan & Ekspor','Unduh data dan hasil analisis beserta asumsi yang diperlukan untuk mereproduksi evaluasi.',`${button(`${icon('download')} Unduh JSON lengkap`,'export-report','primary')}`)}
-${note('<strong>Periksa keterbatasan sebelum dibagikan:</strong> laporan memuat catatan sintetis dan/atau input manual, simulasi ilustratif atau SUMO demo. Dokumen ini belum setara dengan hasil survei terkalibrasi.')}
-<div class="cards three">${[['Ekspor observasi','CSV untuk ditinjau atau dikalibrasi lebih lanjut.','export-observations','database'],['Laporan proyek','JSON: asumsi, rekaman, skenario, dan keterbatasan.','export-report','files']].map(x=>`<article class="card"><div class="stat-top"><div class="stat-icon">${icon(x[3],20)}</div>${tag('READY','blue')}</div><h2 style="font-size:13px;color:#273a5d">${x[0]}</h2><p class="helper">${x[1]}</p><div style="margin-top:15px">${button(`${icon('download')} Unduh` ,x[2])}</div></article>`).join('')}</div>
-<div class="section-h"><h2>Ekspor dengan standar data internasional</h2></div><section class="card"><p class="helper">Untuk pertukaran dengan analis atau institusi lain, gunakan evidence bundle (UTC, unit SI, provenance, data manual) dan GeoJSON untuk titik referensi lokasi proyek. Keduanya tidak mengklaim validasi lapangan.</p><div class="head-buttons" style="margin-top:14px">${button('Unduh evidence bundle','export-evidence-package','primary')}${button('GeoJSON lokasi studi','export-study-geojson')}${button('Periksa kualitas bukti','goto-standards')}${button('Executive brief (EN)','export-executive-brief')}${button('Klasifikasi untuk tinjauan','goto-classification')}</div></section><div class="section-h"><h2>Ringkasan lampiran bukti</h2></div><div class="two-cols"><section class="card">${cardHeading('Informasi studi','Sumber: workspace browser')}<div class="result-pill"><span>Proyek</span><strong>${safe(s.project.name)}</strong></div><div class="result-pill"><span>Data observasi</span><strong>${o.count} kejadian</strong></div><div class="result-pill"><span>Data manual</span><strong>${o.real} kejadian</strong></div><div class="result-pill"><span>Keluaran skenario</span><strong>${r.engine==='sumo'?'SUMO sintetis':'Heuristik ilustratif'}</strong></div><div class="result-pill"><span>Status kajian</span><strong>Belum tervalidasi</strong></div></section></div>
-<div class="section-h"><h2>Ringkasan bukti verifikasi dan kekurangan</h2></div><section class="card"><ul class="list-clean">${[['Peta dan geometri','Peta skematis antarmuka hanya ilustrasi. Data OSM perlu diverifikasi dan diatribusikan pada peta produksi.'],['Deteksi peristiwa','Mode manual belum memberikan nilai F1. Perlu ground truth dan anotasi independen.'],['Kalibrasi SUMO','Belum tersedia data observasi dan model ruas Fatmawati yang tervalidasi.'],['Analisis SI / Gemini','Integrasi cloud dapat ditambahkan pada backend; demo browser tidak mengaku sebagai keluaran Gemini.'],['Manfaat bagi pengguna','Perlu uji waktu kerja serta wawancara penerimaan dengan pengguna aktual.']].map(x=>`<li><div class="li-ico">${icon('alert-circle',15)}</div><div><strong>${x[0]}</strong><p>${x[1]}</p></div></li>`).join('')}</ul></section>`}
-
-
-// SOURCE MODULE: js/views/classification.js
-
-
-
-
-
-const opts=(items,current)=>items.map(([v,label])=>`<option value="${safe(v)}" ${current===v?'selected':''}>${safe(label)}</option>`).join('');
-const priorityColor=p=>({P1:'red',P2:'amber',P3:'blue',P4:'teal'})[p]||'slate';
-function renderClassification(){
- const s=getState(),filter=s.policeFilter||{},all=classifyTrafficDataset(s.observations,s.eventReviews),sum=trafficClassSummary(s.observations,s.eventReviews);
- const selected=all.filter(x=>(filter.source||'all')==='all'||x.event.source===filter.source)
-  .filter(x=>(filter.priority||'all')==='all'||x.classification.priority===filter.priority)
-  .filter(x=>(filter.zone||'all')==='all'||x.event.zone===filter.zone)
-  .filter(x=>(filter.review||'all')==='all'||x.classification.reviewStatus===filter.review)
-  .sort((a,b)=>(a.event.source==='demo')-(b.event.source==='demo') || a.classification.priority.localeCompare(b.classification.priority) || new Date(b.event.at)-new Date(a.event.at));
- const zones=[...new Set(s.observations.map(x=>x.zone))].sort();
- const zoneCounts=zones.map(z=>({name:z,count:all.filter(x=>x.event.source==='manual'&&x.event.zone===z).length}));
- const largest=Math.max(1,...zoneCounts.map(x=>x.count));
- const unreviewed=all.filter(x=>x.event.source==='manual'&&x.classification.reviewStatus==='pending').length;
- return `${pageHead('OPERASI / REVIEW WORKSPACE','Klasifikasi & Tinjauan Lalu Lintas','Kategori observasi yang konsisten untuk petugas lapangan, pengelola transit, kepolisian, dan Dishub. Fitur ini membantu pemilahan kasus, bukan penerbitan tilang.',`${button(`${icon('download',15)} CSV untuk tinjauan`,'export-police-csv')} ${button(`${icon('files',15)} Evidence JSON`,'export-police-json','primary')}`)}
- <section class="class-hero"><div><div class="class-eyebrow">OPERATIONAL REVIEW / SIMPUL v1.0</div><h2>From recorded events to <em>clear operational priorities.</em></h2><p>Klasifikasi memisahkan aktivitas, hambatan lalu lintas, kondisi rambu, dan keputusan pemeriksa. Bukti yang tidak diketahui tetap berlabel <strong>belum diperiksa</strong>.</p><div class="class-hero-tags"><span>01 / Observasi</span><span>02 / Prioritas operasional</span><span>03 / Tinjauan manusia</span><span>04 / Ekspor tersaring</span></div></div><div class="class-hero-aside"><span>DATASET STATUS</span><strong>${sum.manual}</strong><small>kejadian manual - ${sum.synthetic} data ilustratif</small><div class="class-progress"><i style="width:${sum.manual?Math.round(sum.reviewed/sum.manual*100):0}%"></i></div><small>${sum.reviewed} / ${sum.manual} catatan sudah ditinjau secara internal</small></div></section>
- ${note('<strong>Penting untuk kepolisian / Dishub:</strong> prioritas P1–P4 adalah skor operasional berbasis kondisi yang dicatat, bukan tingkatan pelanggaran hukum. Larangan berhenti dan larangan parkir tidak boleh disamakan. Tidak ada pengenalan wajah, pelat nomor, atau pengiriman otomatis kepada aparat.','warning')}
- <section class="card classifier-lab"><div><span class="solution-kicker">CLASSIFIER LAB / BERBASIS ATURAN</span><h2>Uji prioritas sebuah situasi</h2><p>Masukkan kondisi ilustratif untuk melihat alasan prioritas operasional. Percobaan ini tidak disimpan sebagai observasi lapangan.</p></div><div class="classifier-inputs"><label>Aktivitas<select class="control" id="lab-activity"><option>Jemput</option><option>Turun</option><option>Menunggu</option></select></label><label>Durasi (detik)<input class="control" id="lab-duration" type="number" min="0" max="86400" value="60"></label>${[['pedestrian','Akses pejalan kaki terhalang'],['lane','Lajur terhalang'],['queue','Antrean teramati']].map(([id,label])=>`<label>${label}<select class="control" id="lab-${id}"><option value="unknown">Belum diperiksa</option><option value="yes">Teramati</option><option value="no">Tidak teramati</option></select></label>`).join('')}</div><button type="button" class="btn primary" data-action="preview-classifier">Analisis prioritas</button><output id="classifier-result" class="classifier-result" aria-live="polite">Hasil dan penjelasan akan tampil di sini.</output><small>Aturan deterministik P1–P4. Kesimpulan hukum: belum ditentukan.</small></section>
- <div class="class-kpis"><article class="class-kpi"><span>DATA LAPANGAN</span><strong>${sum.manual}</strong><small>Rekaman manual, tidak termasuk demo</small></article><article class="class-kpi"><span>AKSES PEJALAN KAKI / P1</span><strong>${sum.priorities.P1}</strong><small>Laporan hambatan akses yang perlu dicek</small></article><article class="class-kpi"><span>PERLU TINJAUAN ATURAN</span><strong>${sum.ruleReview}</strong><small>Rambu tercatat, bukan putusan hukum</small></article><article class="class-kpi"><span>MENUNGGU TINJAUAN</span><strong>${unreviewed}</strong><small>Belum memperoleh catatan pemeriksa</small></article></div>
- <div class="class-grid"><section class="card class-panel">${cardHeading('Taksonomi aktivitas','Satu kejadian bisa memiliki beberapa dampak, tetapi hanya satu jenis aktivitas.')}
- <div class="class-taxonomy"><div><span class="class-number">01</span><strong>Aktivitas</strong><small>Jemput / turun / menunggu</small></div><div><span class="class-number">02</span><strong>Dampak</strong><small>Lajur / akses pejalan kaki / antrean</small></div><div><span class="class-number">03</span><strong>Konteks aturan</strong><small>Rambu / area / belum diperiksa</small></div><div><span class="class-number">04</span><strong>Status tinjauan</strong><small>Belum ditinjau / perlu bukti / ditutup</small></div></div><p class="class-hint">Prioritas dihitung secara deterministik dari dampak yang <em>dilaporkan</em>. P1 akses pejalan kaki, P2 hambatan lajur/antrean, P3 menunggu ≥120 detik, P4 lainnya. Batas 120 detik merupakan parameter penyaringan internal, bukan batas hukum.</p></section>
- <section class="card class-panel">${cardHeading('Distribusi berdasarkan zona','Hanya rekaman manual; gunakan filter untuk menelusuri kejadian individual.')}
- ${zoneCounts.length?`<div class="class-bars">${zoneCounts.map(z=>`<div class="class-bar-row"><span>${safe(z.name)}</span><div class="class-bar-track"><i style="width:${Math.max(0,z.count/largest*100)}%"></i></div><b>${z.count}</b></div>`).join('')}</div>`:emptyState('Belum ada zona','Catat observasi manual terlebih dahulu.')}
- <div class="class-legend"><span><i class="class-dot teal"></i> Manual</span><span><i class="class-dot gold"></i> Sintetis tidak dihitung</span></div></section></div>
- <section class="card class-panel" style="margin-top:18px">${cardHeading('Antrean tinjauan peristiwa','Saring menurut tingkat perhatian, jenis sumber, zona, dan status pemeriksaan.',tag(`${selected.length} RECORDS`,'slate'))}
- <div class="class-filters"><div class="field"><label for="class-source">Sumber</label><select class="control" id="class-source">${opts([['all','Semua sumber'],['manual','Manual'],['demo','Data sintetis']],filter.source||'all')}</select></div><div class="field"><label for="class-priority">Prioritas</label><select class="control" id="class-priority">${opts([['all','Semua prioritas'],...Object.entries(PRIORITY)],filter.priority||'all')}</select></div><div class="field"><label for="class-zone">Zona</label><select class="control" id="class-zone">${opts([['all','Semua zona'],...zones.map(z=>[z,z])],filter.zone||'all')}</select></div><div class="field"><label for="class-review">Review</label><select class="control" id="class-review">${opts([['all','Semua status'],...Object.entries(REVIEW_STATUS)],filter.review||'all')}</select></div></div>
- <div class="table-wrap"><table class="data-table class-table"><thead><tr><th>Waktu / Zona</th><th>Aktivitas</th><th>Dampak teramati</th><th>Prioritas</th><th>Konteks aturan</th><th>Status</th><th></th></tr></thead><tbody>${selected.map(({event,classification:c})=>`<tr><td><strong>${safe(event.zone)}</strong><small>${shortDate(event.at)} / ${clock(event.at)} WIB</small></td><td><strong>${safe(event.type)}</strong><small>${num(event.duration)} s / ${safe(event.vehicle)}</small></td><td>${[['Pejalan kaki',c.impact.pedestrian],['Lajur',c.impact.lane],['Antrean',c.impact.queue]].map(([label,value])=>value==='yes'?`<span class="class-impact">${label}</span>`:'').filter(Boolean).join('')||'<span class="class-muted">Belum ada konfirmasi</span>'}</td><td><span class="class-priority ${priorityColor(c.priority)}">${c.priority}</span><small>${safe(PRIORITY[c.priority].split(' / ')[1])}</small></td><td><span class="class-rule">${safe(ZONE_CONTEXT[c.context])}</span><small>${safe(c.ruleFlag==='review_rule'?'Perlu pemeriksaan aturan':c.ruleFlag==='interpretation_needed'?'Perlu interpretasi':'Belum dipastikan')}</small></td><td>${tag(event.source==='demo'?'SINTETIS':c.reviewLabel,event.source==='demo'?'gold':'slate')}</td><td>${event.source==='demo'?'<span class="class-muted">Contoh saja</span>':`<button class="btn sm" type="button" data-action="review-traffic" data-id="${safe(event.id)}">${icon('clipboard-list',14)} Tinjau</button>`}</td></tr>`).join('')}</tbody></table>${!selected.length?emptyState('Tidak ditemukan','Ubah filter atau catat kejadian baru di Observasi Lapangan.'):''}</div>
- <p class="class-hint">Review disimpan secara lokal sebagai catatan internal. Ekspor untuk tinjauan resmi hanya memuat observasi manual dan tidak menyertakan catatan bebas atau data identitas individu.</p></section>
- <section class="class-explain"><div><div class="class-eyebrow">HANDOFF / POLICY CONTROL</div><h3>Siapa yang dapat menggunakan data ini?</h3><p><strong>Petugas survei:</strong> memasukkan kejadian dan kondisi yang teramati. <strong>Pengelola MRT / Dishub:</strong> memeriksa hambatan operasional, kapasitas fasilitas, dan kebutuhan pengaturan. <strong>Kepolisian:</strong> dapat menerima ringkasan yang telah diperiksa dan menilai dugaan masalah sesuai kewenangan, dengan verifikasi independen.</p></div><div class="class-handoff-status"><strong>NO AUTOMATED ENFORCEMENT</strong><span>Tanpa pengenalan individu / tanpa keputusan pelanggaran otomatis / tanpa integrasi langsung ke sistem polisi</span></div></section>`;
-}
-function trafficReviewModal(event,review){
- const c=classifyTrafficDataset([event],{[event.id]:review||{}})[0].classification;
- return `<div class="modal-header"><div><div class="eyebrow">MANUAL REVIEW / ${safe(event.id)}</div><h2>Catatan pemeriksaan kejadian</h2></div><button class="btn sm" data-action="close-modal" aria-label="Tutup">${icon('x')}</button></div>
- <div class="class-review-summary"><div><span>Aktivitas</span><strong>${safe(c.activity)}</strong></div><div><span>Prioritas operasional</span><strong>${safe(c.priorityLabel)}</strong></div><div><span>Konteks aturan</span><strong>${safe(c.contextLabel)}</strong></div></div>
- <p class="helper" style="margin:15px 0">${safe(c.priorityReason)} ${safe(c.ruleDescription)} Data ini tidak dapat digunakan sebagai bukti pelanggaran otomatis.</p>
- <form id="traffic-review-form"><input type="hidden" id="traffic-review-id" value="${safe(event.id)}"/><div class="form-grid"><div class="field"><label for="traffic-review-status">Status pemeriksaan internal</label><select class="control" id="traffic-review-status">${opts(Object.entries(REVIEW_STATUS),review?.status||'pending')}</select></div><div class="field"><label for="traffic-reviewer">Inisial / label pemeriksa</label><input class="control" id="traffic-reviewer" value="${safe(review?.reviewer||'')}" maxlength="80" placeholder="Misal: SURVEY-01" autocomplete="off" /></div></div><div class="field" style="margin-top:12px"><label for="traffic-review-note">Alasan dan tindakan berikutnya</label><textarea class="control" id="traffic-review-note" maxlength="600" placeholder="Contoh: verifikasi rambu dan kapasitas penjemputan pada sesi berikutnya.">${safe(review?.note||'')}</textarea></div><div class="callout warning"><strong>Review bukan penindakan</strong> Status internal tidak menyatakan pelanggaran, persetujuan kepolisian, atau laporan yang sudah dikirim.</div><div class="modal-foot"><button class="btn" type="button" data-action="close-modal">Batal</button><button class="btn primary" type="submit">Simpan catatan review</button></div></form>`;
-}
-
-
-// SOURCE MODULE: js/vehicle-problem.js
-/** Vehicle-first operational diagnostics, using only logged events.
- * This module never identifies drivers or assigns offences. The observer's
- * yes/no/unknown impact fields are retained exactly (unknown != no).
- */
-const ACTIVITIES=Object.freeze(['Jemput','Turun','Menunggu']);
-const ACTIVITY_NAMES=Object.freeze({Jemput:'Menjemput penumpang',Turun:'Menurunkan penumpang',Menunggu:'Menunggu penumpang'});
-const impactFields=Object.freeze({lane:'laneBlocked',pedestrian:'pedestrianBlocked',queue:'queueObserved'});
-const numeric=value=>(value===null||value===undefined||value==='')?null:(Number.isFinite(Number(value))&&Number(value)>=0?Number(value):null);
-function vehicleProblemSummary(events=[],filter={},thresholdSec=60){
- const source=filter.source==='manual'?'manual':'demo';
- const available=events.filter(e=>e?.source===source);
- const zones=[...new Set(available.map(e=>e.zone).filter(Boolean))].sort();
- const filtered=available.filter(e=>(!filter.type||filter.type==='all'||e.type===filter.type)&&(!filter.zone||filter.zone==='all'||e.zone===filter.zone));
- const threshold=Math.max(5,Math.min(600,Number(thresholdSec)||60));
- const counts=Object.fromEntries(ACTIVITIES.map(k=>[k,filtered.filter(e=>e.type===k).length]));
- const validDurations=filtered.map(e=>numeric(e.duration)).filter(x=>x!==null);
- const avgDwell=validDurations.length?Math.round(validDurations.reduce((a,b)=>a+b,0)/validDurations.length):null;
- const overThreshold=filtered.filter(e=>numeric(e.duration)!==null&&numeric(e.duration)>threshold).length;
- const impacts=Object.fromEntries(Object.entries(impactFields).map(([key,field])=>{
-   const yes=filtered.filter(e=>e[field]==='yes').length;
-   const no=filtered.filter(e=>e[field]==='no').length;
-   return [key,{yes,no,unknown:filtered.length-yes-no}];
- }));
- const zoneRows=[...new Set(filtered.map(e=>e.zone).filter(Boolean))].map(zone=>{
-   const group=filtered.filter(e=>e.zone===zone),known=group.filter(e=>e.pedestrianBlocked==='yes'||e.laneBlocked==='yes'||e.queueObserved==='yes').length;
-   return {zone,count:group.length,waiting:group.filter(e=>e.type==='Menunggu').length,aboveThreshold:group.filter(e=>numeric(e.duration)!==null&&numeric(e.duration)>threshold).length,knownImpact:known};
- }).sort((a,b)=>b.knownImpact-a.knownImpact||b.aboveThreshold-a.aboveThreshold||b.count-a.count);
- const hypotheses=[];
- if(!filtered.length){hypotheses.push({code:'A0',title:'Kumpulkan bukti awal',reason:'Belum ada kejadian untuk filter yang dipilih.',action:'Mulai observasi kendaraan pada zona dan periode yang terdefinisi.'});}
- else {
-   if(counts.Menunggu>0||overThreshold>0)hypotheses.push({code:'A2',title:'Uji aturan durasi dan lokasi berhenti',reason:`${counts.Menunggu} laporan menunggu dan ${overThreshold} durasi di atas ambang analitis ${threshold} detik.`,action:'Periksa durasi dan titik berhenti, lalu bandingkan A2 dengan A0 melalui simulasi.'});
-   if(zoneRows.length)hypotheses.push({code:'A1',title:'Periksa kapasitas dan penempatan area jemput',reason:`${zoneRows[0].zone} memiliki ${zoneRows[0].count} kejadian pada filter ini.`,action:'Ukur kapasitas area jemput dan akses sebelum menguji pemanfaatan fasilitas pada A1.'});
-   if(impacts.pedestrian.yes>0||impacts.lane.yes>0)hypotheses.unshift({code:'SAFETY',title:'Prioritaskan inspeksi keselamatan',reason:`${impacts.pedestrian.yes} laporan akses pejalan kaki terhalang; ${impacts.lane.yes} laporan lajur terhalang.`,action:'Lakukan tinjauan manusia di lapangan sebelum menyimpulkan kelayakan penataan.'});
- }
- return {source,sourceCount:available.length,filtered,counts,zones,threshold,avgDwell,overThreshold,impacts,zoneRows,hypotheses,manualAvailable:events.filter(e=>e.source==='manual').length,demoAvailable:events.filter(e=>e.source==='demo').length};
-}
-
-
-// SOURCE MODULE: js/views/vehicles.js
-
-
-
-
-const options=(values,active)=>values.map(([id,label])=>`<option value="${safe(id)}" ${id===active?'selected':''}>${safe(label)}</option>`).join('');
-const dash=n=>n===null?'–':String(n);
-const bar=(n,max)=>`<span class="vehicle-bar"><i style="width:${max?Math.max(3,Math.round(n/max*100)):0}%"></i></span>`;
-function renderVehicles(){
- const s=getState(),filter=s.vehicleView||{source:'demo',type:'all',zone:'all'},d=vehicleProblemSummary(s.observations,filter,s.fieldSettings?.dwellThresholdSec);
- const max=Math.max(1,...Object.values(d.counts)),context=d.source==='demo';
- return `${pageHead('PROBLEM SOLVING / TRANSPORTASI','Masalah Kendaraan di Titik Jemput','Dari aktivitas kendaraan yang teramati, telusuri dampaknya pada arus lalu lintas dan akses pejalan kaki. SIMPUL membantu memilih alternatif yang perlu diuji.',`${button(`${icon('cctv',16)} Buka CCTV AI`,'goto-cctv','primary')} ${button(`${icon('map-pinned',16)} Peta koridor`,'goto-mapview')}`)}
- <section class="vehicle-story" aria-label="Alur penyebab dan keputusan"><div class="vehicle-story-top"><div><span class="vehicle-eyebrow">PERTANYAAN PENELITIAN</span><h2>Ketika kendaraan berhenti atau menunggu, apa yang terjadi pada jalan dan akses MRT?</h2><p>Kendaraan pengumpan membutuhkan ruang untuk naik-turun penumpang. Jika ruang dan permintaan tidak seimbang, antrean atau hambatan akses dapat terjadi. Hubungan tersebut harus diperiksa melalui observasi dan simulasi.</p></div><div class="vehicle-story-illustration" aria-hidden="true"><svg viewBox="0 0 280 155" fill="none"><rect x="8" y="14" width="264" height="127" rx="18" fill="#fff" opacity=".12"/><path d="M12 92H268" stroke="#deebf6" stroke-width="36" opacity=".65"/><path d="M16 92H264" stroke="#174e76" stroke-width="2" stroke-dasharray="10 9"/><rect x="75" y="69" width="60" height="31" rx="8" fill="#0963ac" stroke="#ffffff" stroke-width="3"/><rect x="145" y="77" width="49" height="24" rx="7" fill="#f5b84b" stroke="#ffffff" stroke-width="3"/><path d="M104 58v-24" stroke="#f5b84b" stroke-width="3" stroke-linecap="round"/><path d="m96 42 8-8 8 8" stroke="#f5b84b" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><text x="20" y="45" fill="white" font-size="11" font-weight="700">BERHENTI</text><text x="182" y="126" fill="white" font-size="11">ARUS MELINTAS</text></svg></div></div>
- <div class="vehicle-causal"><div><span>01 / PERILAKU</span><b>Jemput / Turun / Menunggu</b><small>Kejadian dan durasi kendaraan</small></div><span class="vehicle-causal-arrow">${icon('arrow-right',20)}</span><div><span>02 / KONDISI</span><b>Ruang tepi jalan & antrean</b><small>Hambatan yang dilaporkan pengamat</small></div><span class="vehicle-causal-arrow">${icon('arrow-right',20)}</span><div><span>03 / DAMPAK</span><b>Arus dan akses pejalan</b><small>Harus diukur, bukan diasumsikan</small></div><span class="vehicle-causal-arrow">${icon('arrow-right',20)}</span><div><span>04 / PENANGANAN</span><b>Uji A1 / A2 terhadap A0</b><small>Simulasi & keputusan dengan bukti</small></div></div></section>
- <section class="vehicle-filter-panel" aria-label="Filter catatan kendaraan"><div><span class="vehicle-eyebrow dark">PILIH DATA YANG DIANALISIS</span><h3>Eksplorasi kejadian kendaraan</h3></div><div class="vehicle-filter-grid"><label>Sumber data<select id="vehicle-source" class="control">${options([['demo','Data ilustratif (demo)'],['manual','Observasi lapangan manual']],d.source)}</select></label><label>Aktivitas<select id="vehicle-type" class="control">${options([['all','Semua aktivitas'],...ACTIVITIES.map(t=>[t,ACTIVITY_NAMES[t]])],filter.type||'all')}</select></label><label>Zona<select id="vehicle-zone" class="control">${options([['all','Semua zona'],...d.zones.map(z=>[z,z])],filter.zone||'all')}</select></label></div></section>
- <div class="vehicle-mode-status ${context?'demo':''}">${icon(context?'flask-conical':'clipboard-check',17)} <b>${context?'SIMULASI ANTARMUKA / CONTOH SINTETIS':'OBSERVASI MANUAL / BELUM DIVERIFIKASI'}</b><span>${context?'Angka di bawah berasal dari delapan contoh data, bukan kondisi Fatmawati.':'Data input pengamat; dampak dan aturan masih memerlukan pemeriksaan.'}</span></div>
- <section class="vehicle-kpis" aria-label="Indikator kejadian"><article><span>Kejadian tercatat</span><strong>${d.filtered.length}</strong><small>${d.sourceCount} kejadian pada sumber terpilih</small></article><article><span>Durasi berhenti rata-rata</span><strong>${dash(d.avgDwell)}<em> s</em></strong><small>Hanya dari durasi yang tercatat</small></article><article><span>Lewati ambang analitis</span><strong>${d.overThreshold}</strong><small>Durasi &gt; ${d.threshold} detik, bukan pelanggaran</small></article><article><span>Laporan akses pejalan terhalang</span><strong>${d.impacts.pedestrian.yes}</strong><small>${d.impacts.pedestrian.unknown} belum diperiksa</small></article></section>
- <div class="vehicle-columns"><section class="vehicle-panel"><header><div><span class="vehicle-eyebrow dark">PERILAKU KENDARAAN</span><h3>Aktivitas yang tercatat</h3></div><button class="vehicle-text-link" data-route="monitor">Buka log data ${icon('arrow-right',15)}</button></header><div class="vehicle-bars">${ACTIVITIES.map(t=>`<div class="vehicle-bar-row"><div><b>${ACTIVITY_NAMES[t]}</b><span>${d.counts[t]} kejadian</span></div>${bar(d.counts[t],max)}</div>`).join('')}</div><div class="vehicle-notice">${icon('alert-circle',16)} Periode pengamatan tidak selalu sama. Gunakan Diagnosis Hambatan untuk membandingkan kejadian per jam berdasarkan interval.</div></section>
- <section class="vehicle-panel"><header><div><span class="vehicle-eyebrow dark">DAMPAK YANG DILAPORKAN</span><h3>Indikator hambatan</h3></div></header><div class="vehicle-impact-list">${[['Jalur pejalan terhalang',d.impacts.pedestrian],['Lajur kendaraan terhalang',d.impacts.lane],['Antrean terbentuk',d.impacts.queue]].map(([name,entry])=>`<div class="vehicle-impact"><strong>${name}</strong><div><span class="vehicle-confirmed">${entry.yes} dilaporkan</span><span>${entry.unknown} tidak diketahui</span></div></div>`).join('')}</div><p class="vehicle-hint">Status <b>tidak diketahui</b> tidak boleh dihitung sebagai bukti tidak terjadi hambatan. Ini adalah laporan pengamat, belum pembuktian kausal.</p></section></div>
- <section class="vehicle-panel vehicle-zone-panel"><header><div><span class="vehicle-eyebrow dark">DI MANA PERLU DIPERIKSA</span><h3>Zona kejadian kendaraan</h3><p>Peringkat ini menunjukkan jumlah catatan terpilih, bukan tingkat kemacetan. Untuk perbandingan intensitas antarzona, gunakan interval observasi dengan durasi jelas.</p></div><button class="vehicle-text-link" data-route="mapview">Buka peta ${icon('arrow-right',15)}</button></header><div class="vehicle-zone-grid">${d.zoneRows.length?d.zoneRows.map((z,i)=>`<article class="vehicle-zone-card"><span class="vehicle-zone-rank">ZONA ${String(i+1).padStart(2,'0')}</span><strong>${safe(z.zone)}</strong><div><b>${z.count}</b><span>kejadian tercatat</span></div><small>${z.waiting} menunggu / ${z.aboveThreshold} melebihi ambang / ${z.knownImpact} laporan hambatan</small></article>`).join(''):'<p class="vehicle-empty">Belum ada zona dengan kejadian sesuai filter.</p>'}</div></section>
- <section class="vehicle-panel vehicle-solution-panel"><header><div><span class="vehicle-eyebrow dark">DARI GEJALA KE INTERVENSI</span><h3>Opsi penyelesaian yang perlu diuji</h3><p>Tindakan berikut berasal dari aturan penapisan transparan, bukan keputusan otomatis.</p></div></header><div class="vehicle-actions-grid">${d.hypotheses.map(h=>`<article class="vehicle-action"><span class="vehicle-scenario">${safe(h.code)}</span><h4>${safe(h.title)}</h4><p>${safe(h.reason)}</p><small>${safe(h.action)}</small></article>`).join('')}</div><div class="vehicle-solution-buttons"><button class="btn primary" data-route="diagnosis">Periksa bukti interval ${icon('arrow-right',16)}</button><button class="btn" data-route="simulation">Uji A0 / A1 / A2 ${icon('arrow-right',16)}</button><button class="btn" data-route="evaluation">Tinjau akses & keputusan ${icon('arrow-right',16)}</button></div></section>
- <section class="vehicle-panel vehicle-ledger"><header><div><span class="vehicle-eyebrow dark">SOURCE TRACEABILITY</span><h3>Jejak kejadian kendaraan</h3><p>Waktu, zona, aktivitas, dan durasi. Tidak mencatat pelat nomor atau identitas pengemudi.</p></div></header><div class="table-wrap"><table class="data-table"><thead><tr><th>Waktu</th><th>Zona</th><th>Jenis</th><th>Kendaraan</th><th>Durasi</th><th>Sumber</th></tr></thead><tbody>${d.filtered.slice().sort((a,b)=>new Date(b.at)-new Date(a.at)).slice(0,30).map(e=>`<tr><td>${safe(shortDate(e.at))} / ${safe(clock(e.at))}</td><td>${safe(e.zone||'-')}</td><td>${safe(e.type||'-')}</td><td>${safe(e.vehicle||'-')}</td><td>${Number.isFinite(Number(e.duration))?Number(e.duration):'-'} s</td><td>${context?'Sintetis':'Manual'}</td></tr>`).join('')}</tbody></table>${!d.filtered.length?'<div class="vehicle-empty">Tidak ada kejadian untuk filter ini. Catat observasi manual atau pilih data ilustratif.</div>':''}</div></section>
- ${note('<strong>Batas interpretasi:</strong> SIMPUL mengkaji aktivitas berhenti kendaraan dan keterbatasan ruang penjemputan. Pencarian kejadian tidak membuktikan pelanggaran atau identitas kendaraan. Simulasi A0/A1/A2 belum terkalibrasi untuk Fatmawati.')}`;
 }
 
 
@@ -1501,6 +765,725 @@ function runScenario(opts, seconds = 600, warmup = 120){
 
 
 
+// SOURCE MODULE: js/sim-readings-data.js
+/** Generated by tools/gen_sim_readings.mjs from the SIMPUL traffic simulation. Do not edit by hand.
+ * Interval data per zone, period and scenario; labelled source:'simulation', never field data. */
+const SIM_READINGS=Object.freeze([
+  {"id":"sim-A0-peak-A","at":"2026-11-16T10:00:00.000Z","recordedAt":"2026-11-16T10:00:00.000Z","phase":"baseline","scenario":"A0","period":"Jam sibuk","zone":"Zona A","minutes":10,"passingVehicles":315,"stoppedVehicles":25,"maxQueue":15,"accessMeters":84,"pedestrians":12,"blockedAccess":true,"availableBays":0,"occupiedBays":0,"source":"simulation","sessionId":null,"note":"Simulasi CCTV AI"},
+  {"id":"sim-A0-peak-B","at":"2026-11-16T10:00:00.000Z","recordedAt":"2026-11-16T10:00:00.000Z","phase":"baseline","scenario":"A0","period":"Jam sibuk","zone":"Zona B","minutes":10,"passingVehicles":297,"stoppedVehicles":12,"maxQueue":9,"accessMeters":59,"pedestrians":12,"blockedAccess":false,"availableBays":0,"occupiedBays":0,"source":"simulation","sessionId":null,"note":"Simulasi CCTV AI"},
+  {"id":"sim-A0-peak-C","at":"2026-11-16T10:00:00.000Z","recordedAt":"2026-11-16T10:00:00.000Z","phase":"baseline","scenario":"A0","period":"Jam sibuk","zone":"Zona C","minutes":10,"passingVehicles":295,"stoppedVehicles":4,"maxQueue":7,"accessMeters":23,"pedestrians":12,"blockedAccess":false,"availableBays":0,"occupiedBays":0,"source":"simulation","sessionId":null,"note":"Simulasi CCTV AI"},
+  {"id":"sim-A1-peak-A","at":"2026-11-16T10:00:00.000Z","recordedAt":"2026-11-16T10:00:00.000Z","phase":"followup","scenario":"A1","period":"Jam sibuk","zone":"Zona A","minutes":10,"passingVehicles":368,"stoppedVehicles":2,"maxQueue":6,"accessMeters":20,"pedestrians":20,"blockedAccess":true,"availableBays":14,"occupiedBays":11,"source":"simulation","sessionId":null,"note":"Simulasi CCTV AI"},
+  {"id":"sim-A1-peak-B","at":"2026-11-16T10:00:00.000Z","recordedAt":"2026-11-16T10:00:00.000Z","phase":"followup","scenario":"A1","period":"Jam sibuk","zone":"Zona B","minutes":10,"passingVehicles":309,"stoppedVehicles":5,"maxQueue":3,"accessMeters":20,"pedestrians":20,"blockedAccess":false,"availableBays":14,"occupiedBays":11,"source":"simulation","sessionId":null,"note":"Simulasi CCTV AI"},
+  {"id":"sim-A1-peak-C","at":"2026-11-16T10:00:00.000Z","recordedAt":"2026-11-16T10:00:00.000Z","phase":"followup","scenario":"A1","period":"Jam sibuk","zone":"Zona C","minutes":10,"passingVehicles":308,"stoppedVehicles":2,"maxQueue":3,"accessMeters":20,"pedestrians":20,"blockedAccess":false,"availableBays":14,"occupiedBays":11,"source":"simulation","sessionId":null,"note":"Simulasi CCTV AI"},
+  {"id":"sim-A2-peak-A","at":"2026-11-16T10:00:00.000Z","recordedAt":"2026-11-16T10:00:00.000Z","phase":"followup","scenario":"A2","period":"Jam sibuk","zone":"Zona A","minutes":10,"passingVehicles":322,"stoppedVehicles":5,"maxQueue":8,"accessMeters":84,"pedestrians":15,"blockedAccess":true,"availableBays":0,"occupiedBays":0,"source":"simulation","sessionId":null,"note":"Simulasi CCTV AI"},
+  {"id":"sim-A2-peak-B","at":"2026-11-16T10:00:00.000Z","recordedAt":"2026-11-16T10:00:00.000Z","phase":"followup","scenario":"A2","period":"Jam sibuk","zone":"Zona B","minutes":10,"passingVehicles":313,"stoppedVehicles":17,"maxQueue":12,"accessMeters":59,"pedestrians":15,"blockedAccess":true,"availableBays":0,"occupiedBays":0,"source":"simulation","sessionId":null,"note":"Simulasi CCTV AI"},
+  {"id":"sim-A2-peak-C","at":"2026-11-16T10:00:00.000Z","recordedAt":"2026-11-16T10:00:00.000Z","phase":"followup","scenario":"A2","period":"Jam sibuk","zone":"Zona C","minutes":10,"passingVehicles":309,"stoppedVehicles":24,"maxQueue":10,"accessMeters":23,"pedestrians":15,"blockedAccess":true,"availableBays":0,"occupiedBays":0,"source":"simulation","sessionId":null,"note":"Simulasi CCTV AI"},
+  {"id":"sim-A0-offpeak-A","at":"2026-11-16T06:00:00.000Z","recordedAt":"2026-11-16T06:00:00.000Z","phase":"baseline","scenario":"A0","period":"Luar jam sibuk","zone":"Zona A","minutes":10,"passingVehicles":230,"stoppedVehicles":6,"maxQueue":4,"accessMeters":84,"pedestrians":5,"blockedAccess":true,"availableBays":0,"occupiedBays":0,"source":"simulation","sessionId":null,"note":"Simulasi CCTV AI"},
+  {"id":"sim-A0-offpeak-B","at":"2026-11-16T06:00:00.000Z","recordedAt":"2026-11-16T06:00:00.000Z","phase":"baseline","scenario":"A0","period":"Luar jam sibuk","zone":"Zona B","minutes":10,"passingVehicles":232,"stoppedVehicles":6,"maxQueue":3,"accessMeters":59,"pedestrians":5,"blockedAccess":false,"availableBays":0,"occupiedBays":0,"source":"simulation","sessionId":null,"note":"Simulasi CCTV AI"},
+  {"id":"sim-A0-offpeak-C","at":"2026-11-16T06:00:00.000Z","recordedAt":"2026-11-16T06:00:00.000Z","phase":"baseline","scenario":"A0","period":"Luar jam sibuk","zone":"Zona C","minutes":10,"passingVehicles":232,"stoppedVehicles":5,"maxQueue":3,"accessMeters":23,"pedestrians":5,"blockedAccess":false,"availableBays":0,"occupiedBays":0,"source":"simulation","sessionId":null,"note":"Simulasi CCTV AI"},
+  {"id":"sim-A1-offpeak-A","at":"2026-11-16T06:00:00.000Z","recordedAt":"2026-11-16T06:00:00.000Z","phase":"followup","scenario":"A1","period":"Luar jam sibuk","zone":"Zona A","minutes":10,"passingVehicles":237,"stoppedVehicles":0,"maxQueue":0,"accessMeters":20,"pedestrians":5,"blockedAccess":false,"availableBays":14,"occupiedBays":5,"source":"simulation","sessionId":null,"note":"Simulasi CCTV AI"},
+  {"id":"sim-A1-offpeak-B","at":"2026-11-16T06:00:00.000Z","recordedAt":"2026-11-16T06:00:00.000Z","phase":"followup","scenario":"A1","period":"Luar jam sibuk","zone":"Zona B","minutes":10,"passingVehicles":218,"stoppedVehicles":0,"maxQueue":2,"accessMeters":20,"pedestrians":5,"blockedAccess":false,"availableBays":14,"occupiedBays":5,"source":"simulation","sessionId":null,"note":"Simulasi CCTV AI"},
+  {"id":"sim-A1-offpeak-C","at":"2026-11-16T06:00:00.000Z","recordedAt":"2026-11-16T06:00:00.000Z","phase":"followup","scenario":"A1","period":"Luar jam sibuk","zone":"Zona C","minutes":10,"passingVehicles":214,"stoppedVehicles":0,"maxQueue":2,"accessMeters":20,"pedestrians":5,"blockedAccess":false,"availableBays":14,"occupiedBays":5,"source":"simulation","sessionId":null,"note":"Simulasi CCTV AI"},
+  {"id":"sim-A2-offpeak-A","at":"2026-11-16T06:00:00.000Z","recordedAt":"2026-11-16T06:00:00.000Z","phase":"followup","scenario":"A2","period":"Luar jam sibuk","zone":"Zona A","minutes":10,"passingVehicles":226,"stoppedVehicles":0,"maxQueue":0,"accessMeters":84,"pedestrians":6,"blockedAccess":false,"availableBays":0,"occupiedBays":0,"source":"simulation","sessionId":null,"note":"Simulasi CCTV AI"},
+  {"id":"sim-A2-offpeak-B","at":"2026-11-16T06:00:00.000Z","recordedAt":"2026-11-16T06:00:00.000Z","phase":"followup","scenario":"A2","period":"Luar jam sibuk","zone":"Zona B","minutes":10,"passingVehicles":220,"stoppedVehicles":9,"maxQueue":3,"accessMeters":59,"pedestrians":6,"blockedAccess":false,"availableBays":0,"occupiedBays":0,"source":"simulation","sessionId":null,"note":"Simulasi CCTV AI"},
+  {"id":"sim-A2-offpeak-C","at":"2026-11-16T06:00:00.000Z","recordedAt":"2026-11-16T06:00:00.000Z","phase":"followup","scenario":"A2","period":"Luar jam sibuk","zone":"Zona C","minutes":10,"passingVehicles":217,"stoppedVehicles":11,"maxQueue":3,"accessMeters":23,"pedestrians":6,"blockedAccess":false,"availableBays":0,"occupiedBays":0,"source":"simulation","sessionId":null,"note":"Simulasi CCTV AI"}
+].map(r=>Object.freeze(r)));
+
+
+// SOURCE MODULE: js/sim-readings.js
+/**
+ * Interval data from the 3D traffic simulation, in the same shape the CCTV AI will send.
+ * Used by Obstacle Diagnosis and Plan & Impact only while no real AI/field intervals
+ * exist, and always labelled `source:'simulation'`. Nothing here is written to the store.
+ *
+ * Each run simulates one period (peak = evening commute, off-peak = midday) for one
+ * scenario (A0 baseline, A1/A2 follow-up) with the same seed, so before/after pairs are
+ * matched on zone + period. Deterministic: the same inputs always give the same numbers.
+ */
+
+
+
+
+const SIM_INTERVAL_MINUTES=10;
+const SIM_PERIOD_RUNS=Object.freeze([
+  Object.freeze({period:'Jam sibuk',preset:TIME_PRESETS.sore,hour:17}),
+  Object.freeze({period:'Luar jam sibuk',preset:TIME_PRESETS.siang,hour:13})
+]);
+const SIM_PHASE_RUNS=Object.freeze([['A0','baseline'],['A1','followup'],['A2','followup']]);
+const SIM_SEED=11,SIM_WARMUP_SEC=90,SIM_STEP=0.5,SIM_QUEUE_UPSTREAM_M=60;
+// Fixed reference day so the ledger reads like one observation day (not a claim about a real date).
+const SIM_DAY='2026-11-16';
+
+function simAccessMeters(zone,scenario){
+  if(scenario==='A1')return 20; // dedicated bay under the station, next to the stairs
+  const centre=(zone.x0+zone.x1)/2;
+  const nearest=Math.min(...LAYOUT.entrances.map(e=>Math.abs(e.x-centre)));
+  return Math.round(nearest+15);
+}
+
+/** One simulated interval per zone for a scenario + period. */
+function simulateInterval(scenario,phase,run,minutes=SIM_INTERVAL_MINUTES){
+  const sim=createSim({scenario,volume:run.preset.volume,pickupShare:run.preset.pickupShare,seed:SIM_SEED});
+  for(let t=0;t<SIM_WARMUP_SEC;t+=SIM_STEP)stepSim(sim,SIM_STEP);
+  const alightStart=sim.stats.alight;
+  const zones=LAYOUT.zones.map(z=>({z,passing:new Set(),stops:new Set(),midRoad:new Set(),maxQueue:0}));
+  let bayPeak=0,sampleClock=0;
+  for(let t=0;t<minutes*60;t+=SIM_STEP){
+    stepSim(sim,SIM_STEP);
+    sampleClock+=SIM_STEP;
+    const sample=sampleClock>=2;if(sample)sampleClock=0;
+    let inBay=0;
+    for(const v of sim.vehicles){
+      if(v.state==='bayStop')inBay++;
+      if(v.road!=='S'||!Number.isFinite(v.x))continue;
+      for(const zs of zones){
+        if(v.x>=zs.z.x0&&v.x<=zs.z.x1)zs.passing.add(v.id);
+        if(v.state==='stopped'&&v.plan?.zone===zs.z.id){zs.stops.add(v.id);if(v.lane>=1)zs.midRoad.add(v.id);}
+      }
+    }
+    bayPeak=Math.max(bayPeak,inBay);
+    if(sample)for(const zs of zones){
+      const queue=sim.vehicles.filter(v=>v.road==='S'&&v.state!=='stopped'&&v.v<2&&v.x>=zs.z.x0-SIM_QUEUE_UPSTREAM_M&&v.x<=zs.z.x1).length;
+      zs.maxQueue=Math.max(zs.maxQueue,queue);
+    }
+  }
+  const pedestrians=sim.stats.alight-alightStart;
+  const at=new Date(`${SIM_DAY}T${String(run.hour).padStart(2,'0')}:00:00+07:00`).toISOString();
+  const bays=scenario==='A1'?LAYOUT.bay.slots?.length||14:0;
+  return zones.map(zs=>Object.freeze({
+    id:`sim-${scenario}-${run.period==='Jam sibuk'?'peak':'offpeak'}-${zs.z.id.slice(-1)}`,
+    at,recordedAt:at,phase,scenario,period:run.period,zone:zs.z.id,minutes,
+    passingVehicles:zs.passing.size,stoppedVehicles:zs.stops.size,maxQueue:zs.maxQueue,
+    accessMeters:simAccessMeters(zs.z,scenario),pedestrians:Math.round(pedestrians/zones.length),
+    blockedAccess:zs.midRoad.size>0,availableBays:bays,occupiedBays:bays?Math.min(bays,bayPeak):0,
+    source:'simulation',sessionId:null,note:'Simulasi CCTV AI'
+  }));
+}
+
+function simJobs(){return SIM_PERIOD_RUNS.flatMap(run=>SIM_PHASE_RUNS.map(([scenario,phase])=>({scenario,phase,run})));}
+
+/** All simulated intervals at once (used by tests and non-browser callers). */
+function computeSimReadings(minutes=SIM_INTERVAL_MINUTES){
+  return simJobs().flatMap(j=>simulateInterval(j.scenario,j.phase,j.run,minutes));
+}
+/** Precomputed intervals shipped with the app (regenerate: node tools/gen_sim_readings.mjs). */
+function getSimReadings(){return SIM_READINGS;}
+
+
+// SOURCE MODULE: js/util.js
+const rupiah=n=>new Intl.NumberFormat('id-ID',{style:'currency',currency:'IDR',maximumFractionDigits:0}).format(Number(n)||0);
+const compact=n=>new Intl.NumberFormat('id-ID',{notation:'compact',maximumFractionDigits:1}).format(Number(n)||0);
+const num=n=>new Intl.NumberFormat('id-ID',{maximumFractionDigits:1}).format(Number(n)||0);
+const pct=n=>(Number(n)||0).toFixed(1).replace('.',',')+'%';
+const shortDate=s=>new Intl.DateTimeFormat('id-ID',{day:'2-digit',month:'short',year:'numeric'}).format(new Date(s));
+const clock=s=>new Intl.DateTimeFormat('id-ID',{hour:'2-digit',minute:'2-digit',hour12:false,timeZone:'Asia/Jakarta'}).format(new Date(s));
+const safe=s=>String(s??'').replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;').replaceAll('"','&quot;').replaceAll("'",'&#39;');
+const clamp=(x,min,max)=>Math.min(max,Math.max(min,Number(x)||0));
+const uid=(prefix='id')=>`${prefix}-${Math.random().toString(36).slice(2,10)}`;
+function download(name,content,mime='application/json'){const blob=new Blob([content],{type:mime});const link=document.createElement('a');link.href=URL.createObjectURL(blob);link.download=name;document.body.append(link);link.click();link.remove();setTimeout(()=>URL.revokeObjectURL(link.href),3000)}
+const nowIso=()=>new Date().toISOString();
+const isDemo=s=>s?.source==='demo';
+function icon(name,size=20){
+const paths={
+ 'cpu':'<rect x="5" y="5" width="14" height="14" rx="2"/><path d="M9 9h6v6H9zM9 1v4m6-4v4M9 19v4m6-4v4M19 9h4m-4 6h4M1 9h4m-4 6h4"/>',
+ 'plug-zap':'<path d="M12 3v7l-3 2 4 1-2 8 6-11-4-1 1-6M5 5l3 3m11-3-3 3"/>',
+ 'clipboard-list':'<rect x="5" y="4" width="14" height="18" rx="2"/><path d="M9 4a3 3 0 0 1 6 0M9 10h6M9 14h6M9 18h4"/>',
+ 'layout-dashboard':'<rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/>',
+ 'scan-line':'<path d="M4 7V5a2 2 0 0 1 2-2h3M15 3h3a2 2 0 0 1 2 2v2M20 17v2a2 2 0 0 1-2 2h-3M9 21H6a2 2 0 0 1-2-2v-2M4 12h16"/>',
+ 'git-compare-arrows':'<path d="M3 6h17M20 6l-3-3M20 6l-3 3M21 18H4m0 0 3-3m-3 3 3 3"/>',
+ 'brain-circuit':'<path d="M12 18V5a3 3 0 0 0-6 0 3 3 0 0 0-2 5 4 4 0 0 0 0 7 3 3 0 0 0 5 3l3-2Zm0 0V5a3 3 0 0 1 6 0 3 3 0 0 1 2 5 4 4 0 0 1 0 7 3 3 0 0 1-5 3l-3-2Z"/>',
+ 'chart-no-axes-combined':'<path d="m3 17 6-6 4 4 8-8M17 7h4v4M3 3v18h18"/>',
+ 'users':'<path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2M9 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8ZM22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/>',
+ 'smartphone':'<rect x="5" y="2" width="14" height="20" rx="3"/><path d="M11 18h2"/>',
+ 'map':'<path d="M3 5 9 3l6 3 6-2v15l-6 2-6-3-6 2V5ZM9 3v15m6-12v15"/>',
+ 'file-text':'<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6Zm0 0v6h6M8 13h8M8 17h8"/>',
+ 'files':'<path d="M6 3h9l4 4v13a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2ZM14 3v5h5M8 13h8M8 17h7"/>',
+ 'settings-2':'<path d="M4 7h16M4 17h16M8 4v6M16 14v6"/>',
+ 'arrow-right':'<path d="M5 12h14m-6-6 6 6-6 6"/>',
+ 'arrow-up-right':'<path d="M7 17 17 7M7 7h10v10"/>',
+ 'chevron-right':'<path d="m9 18 6-6-6-6"/>',
+ 'chevron-down':'<path d="m6 9 6 6 6-6"/>',
+ 'plus':'<path d="M12 5v14M5 12h14"/>',
+ 'minus':'<path d="M5 12h14"/>',
+ 'play':'<path d="m8 5 11 7-11 7V5Z"/>',
+ 'clock':'<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>',
+ 'map-pin':'<path d="M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 1 1 16 0ZM12 10h.01"/>',
+ 'shield-check':'<path d="M12 2 4 5v6c0 5.5 4 9 8 11 4-2 8-5.5 8-11V5l-8-3Zm-4 10 3 3 5-6"/>',
+ 'activity':'<path d="M2 12h4l3-7 5 14 3-7h5"/>',
+ 'car':'<path d="m5 11 2-6h10l2 6M4 11h16v7H4zm2 7v2m12-2v2M7 14h.01M17 14h.01"/>',
+ 'route':'<circle cx="6" cy="18" r="2"/><circle cx="18" cy="6" r="2"/><path d="M8 18h6a4 4 0 0 0 0-8h-4a4 4 0 0 1 0-8h6"/>',
+ 'target':'<circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1"/>',
+ 'check':'<path d="m5 12 4 4L19 6"/>',
+ 'alert-circle':'<circle cx="12" cy="12" r="9"/><path d="M12 7v6M12 17h.01"/>',
+ 'info':'<circle cx="12" cy="12" r="9"/><path d="M12 11v6m0-10h.01"/>',
+ 'download':'<path d="M12 3v12m-4-4 4 4 4-4M4 17v4h16v-4"/>',
+ 'refresh-cw':'<path d="M20 7v5h-5M4 17v-5h5M6 9a7 7 0 0 1 12-2l2 5M4 12l2 5a7 7 0 0 0 12-2"/>',
+ 'more-horizontal':'<circle cx="5" cy="12" r="1"/><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/>',
+ 'menu':'<path d="M3 6h18M3 12h18M3 18h18"/>',
+ 'x':'<path d="M5 5 19 19M19 5 5 19"/>',
+ 'search':'<circle cx="10" cy="10" r="7"/><path d="m15 15 6 6"/>',
+ 'calculator':'<rect x="4" y="2" width="16" height="20" rx="2"/><path d="M7 6h10v4H7zm1 8h1m4 0h1m4 0h.01M8 18h1m4 0h1m4 0h.01"/>',
+ 'layers':'<path d="m12 2 9 5-9 5-9-5 9-5Zm-9 9 9 5 9-5M3 16l9 5 9-5"/>',
+ 'database':'<ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v14c0 4 18 4 18 0V5M3 12c0 4 18 4 18 0"/>',
+ 'cloud':'<path d="M20 17a4 4 0 0 0-1-7.87A7 7 0 0 0 5 10a4 4 0 0 0 0 8h13"/>',
+ 'external-link':'<path d="M13 5h6v6M19 5l-9 9M19 14v4a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2h4"/>',
+ 'trash-2':'<path d="M3 6h18M8 6V4h8v2m3 0-1 15H6L5 6m5 4v7m4-7v7"/>',
+ 'filter':'<path d="M3 4h18l-7 8v8l-4-2v-6L3 4Z"/>',
+ 'copy':'<rect x="8" y="8" width="12" height="12" rx="2"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"/>',
+ 'sliders-horizontal':'<path d="M4 7h16M4 17h16M9 4v6M15 14v6"/>',
+ 'file-check':'<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6Zm0 0v6h6M8 15l3 3 5-6"/>',
+ 'wifi-off':'<path d="M2 2l20 20M8 9a11 11 0 0 1 9-1M4 12a17 17 0 0 1 6-3m4 4a6 6 0 0 1 4 2M12 20h.01"/>',
+ 'sparkles':'<path d="m12 3 2 6 6 2-6 2-2 6-2-6-6-2 6-2 2-6ZM20 17v5m-2-3h4"/>',
+ 'cctv':'<path d="M3 7.5 15.5 4l2 6.5L5 14 3 7.5ZM17 7.6l3.5-1 1 3.4-3.6 1M7 13.5 8 18H3m5 0v3"/>',
+ 'video':'<rect x="2" y="6" width="14" height="12" rx="2"/><path d="m16 10 6-3v10l-6-3"/>',
+ 'upload':'<path d="M12 15V3m-5 5 5-5 5 5M4 15v4a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-4"/>',
+ 'pause':'<rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/>',
+ 'eye':'<path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/>',
+ 'radar':'<path d="M19.1 4.9A10 10 0 1 0 22 12M16.2 7.8A6 6 0 1 0 18 12M12 12l7-7"/><circle cx="12" cy="12" r="1.5"/>',
+ 'car-front':'<path d="m5 11 1.6-4.4A2 2 0 0 1 8.5 5h7a2 2 0 0 1 1.9 1.6L19 11M3 17v-4a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v4H3Zm2 0v2m14-2v2M7 14h.01M17 14h.01"/>',
+ 'scan-search':'<path d="M4 7V5a2 2 0 0 1 2-2h3M15 3h3a2 2 0 0 1 2 2v2M20 17v2a2 2 0 0 1-2 2h-3M9 21H6a2 2 0 0 1-2-2v-2"/><circle cx="11" cy="11" r="3"/><path d="m16 16-2.8-2.8"/>',
+ 'map-pinned':'<path d="M18 8c0 4.5-6 9-6 9s-6-4.5-6-9a6 6 0 0 1 12 0Z"/><circle cx="12" cy="8" r="2"/><path d="M8.7 14.5 4 16v6l5-2 6 2 5-2v-6l-4.7 1.5"/>',
+ 'clipboard-check':'<rect x="5" y="4" width="14" height="18" rx="2"/><path d="M9 4a3 3 0 0 1 6 0M9 14l2 2 4-4"/>',
+ 'arrow-down':'<path d="M12 5v14m-6-6 6 6 6-6"/>',
+ 'arrow-left':'<path d="M19 12H5m6 6-6-6 6-6"/>',
+ 'calendar-check':'<rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4m8-4v4M3 10h18m-12 5 2 2 4-4"/>',
+ 'check-circle':'<circle cx="12" cy="12" r="9"/><path d="m8 12 3 3 5-6"/>',
+ 'clipboard-plus':'<rect x="5" y="4" width="14" height="18" rx="2"/><path d="M9 4a3 3 0 0 1 6 0M12 11v6m-3-3h6"/>',
+ 'cloud-sun':'<path d="M12 2v2M4.9 4.9l1.4 1.4M20 12h2M17.7 6.3l1.4-1.4M15.9 11.4A4 4 0 0 0 8.5 9M17 21H8a5 5 0 1 1 4.5-7.2A4 4 0 1 1 17 21Z"/>',
+ 'download-cloud':'<path d="M12 12v9m-4-4 4 4 4-4M20 16.6A5 5 0 0 0 18 7h-1.3A8 8 0 1 0 4 15.2"/>',
+ 'upload-cloud':'<path d="M12 21v-9m-4 4 4-4 4 4M20 16.6A5 5 0 0 0 18 7h-1.3A8 8 0 1 0 4 15.2"/>',
+ 'file-check-2':'<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6Zm0 0v6h6M9 15l2 2 4-4"/>',
+ 'gauge':'<path d="m12 14 4-4M3.3 19a10 10 0 1 1 17.4 0"/><circle cx="12" cy="14" r="1.5"/>',
+ 'linkedin':'<rect x="2" y="2" width="20" height="20" rx="3"/><path d="M7 10v7M7 7h.01M11 17v-7m0 3a3 3 0 0 1 6 0v4"/>',
+ 'list-checks':'<path d="m3 6 2 2 3-3M3 13l2 2 3-3M11 6h10M11 13h10M11 20h10"/>',
+ 'list-clock':'<path d="M3 6h11M3 12h7M3 18h7"/><circle cx="17" cy="16" r="5"/><path d="M17 14v2l1.5 1"/>',
+ 'locate-fixed':'<path d="M2 12h3m14 0h3M12 2v3m0 14v3"/><circle cx="12" cy="12" r="7"/><circle cx="12" cy="12" r="3"/>',
+ 'maximize':'<path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/>',
+ 'newspaper':'<path d="M4 22h14a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-4 0v-9h4M10 6h6M10 10h6M10 14h6M10 18h3"/>',
+ 'save':'<path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2Z"/><path d="M17 21v-8H7v8M7 3v5h8"/>',
+ 'send':'<path d="M22 2 11 13M22 2l-7 20-4-9-9-4 20-7Z"/>',
+ 'shield-alert':'<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10ZM12 8v4m0 4h.01"/>',
+ 'train-front':'<rect x="5" y="3" width="14" height="14" rx="3"/><path d="M5 10h14M9 14h.01M15 14h.01M8 21l2-4m6 4-2-4"/>',
+ 'waypoints':'<circle cx="12" cy="4.5" r="2.5"/><circle cx="4.5" cy="19.5" r="2.5"/><circle cx="19.5" cy="19.5" r="2.5"/><path d="M10.6 6.6 5.9 17.4M13.4 6.6l4.7 10.8M7 19.5h10"/>',
+ 'bike':'<circle cx="5.5" cy="17" r="3.5"/><circle cx="18.5" cy="17" r="3.5"/><path d="M15 6h2l3 11M5.5 17 9 10h6l-3 7M9 10 8 7H6"/>',
+ 'workflow':'<rect x="3" y="3" width="8" height="8" rx="2"/><rect x="13" y="13" width="8" height="8" rx="2"/><path d="M7 11v4a2 2 0 0 0 2 2h4"/>'};
+return `<svg width="${size}" height="${size}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${paths[name]||paths.info}</svg>`;
+}
+
+
+// SOURCE MODULE: js/views/shared.js
+
+const pageHead=(eyebrow,title,description,actions='')=>`<header class="main-head"><div><div class="eyebrow">${eyebrow}</div><h1>${title}</h1><p>${description}</p></div>${actions?`<div class="head-buttons">${actions}</div>`:''}</header>`;
+const note=(body,kind='')=>`<div class="banner-note ${kind}">${icon(kind==='warning'?'alert-circle':'info',17)}<div>${body}</div></div>`;
+const cardHeading=(title,description='',right='')=>`<header class="card-title"><div><h2>${title}</h2>${description?`<p>${description}</p>`:''}</div>${right}</header>`;
+const button=(text,action,klass='')=>`<button type="button" class="btn ${klass}" data-action="${action}">${text}</button>`;
+const tag=(text,klass='')=>`<span class="tag ${klass}">${safe(text)}</span>`;
+const statCard=(ico,label,value,foot,variant='')=>`<article class="card"><div class="stat-top"><div class="stat-icon ${variant}">${icon(ico,19)}</div>${tag('PROYEK SINTETIS','slate')}</div><div class="stat-label">${label}</div><div class="stat-value">${value}</div><div class="stat-foot">${foot}</div></article>`;
+const emptyState=(title,description,action='')=>`<div class="no-data"><div class="empty-icon">${icon('database',22)}</div><strong>${title}</strong><div>${description}</div>${action?`<div style="margin-top:17px">${action}</div>`:''}</div>`;
+const rangeField=(id,label,min,max,val,step=1,suffix='')=>`<div class="field"><label for="${id}">${label}</label><div class="slider-row"><input id="${id}" class="scenario-input" type="range" min="${min}" max="${max}" step="${step}" value="${val}"/><strong data-range-out="${id}">${val}${suffix}</strong></div><div class="range-help"><span>${min}${suffix}</span><span>${max}${suffix}</span></div></div>`;
+const numberField=(id,label,value,step=1,desc='',min=0)=>`<div class="field"><label for="${id}">${label}</label><input class="control" id="${id}" type="number" min="${min}" step="${step}" value="${value}" />${desc?`<small>${desc}</small>`:''}</div>`;
+const selectField=(id,label,options,selected)=>`<div class="field"><label for="${id}">${label}</label><select id="${id}" class="control">${options.map(x=>`<option value="${safe(x)}" ${selected===x?'selected':''}>${safe(x)}</option>`).join('')}</select></div>`;
+
+
+// SOURCE MODULE: js/views/diagnosis.js
+
+
+
+
+
+const fmtDiag=x=>x===null||x===undefined?'-':num(x);
+const viewDate=x=>{try{return `${shortDate(x)} / ${clock(x)} WIB`;}catch{return '-'}};
+const warnings=(flags)=>flags.length?flags.map(x=>`<div class="dia-alert ${x.kind}">${icon(x.kind==='missing'?'alert-circle':'alert-triangle',18)}<div><strong>${safe(x.title)}</strong><p>${safe(x.detail)}</p></div></div>`).join(''):'<div class="dia-alert positive">Belum ada indikator masalah pada data yang tercatat. Ini bukan bukti bahwa koridor bebas hambatan.</div>';
+function bars(groups){if(!groups.length)return `<div class="dia-empty">Belum ada baseline. Data interval dari CCTV AI akan menampilkan zona yang memerlukan perhatian.</div>`;
+ const max=Math.max(1,...groups.map(x=>x.stopPerHour||0));return `<div class="dia-zones">${groups.map(g=>`<div class="dia-zone"><div class="dia-zone-head"><strong>${safe(g.zone)}</strong><span>${g.samples} interval / ${fmtDiag(g.minutes)} menit</span></div><div class="dia-bar-wrap"><div class="dia-bar" style="width:${Math.max(1,Math.round(100*(g.stopPerHour||0)/max))}%"></div></div><div class="dia-zone-meta"><span>Berhenti: ${fmtDiag(g.stopPerHour)} kejadian/jam</span><span>Antrean maks.: ${fmtDiag(g.peakQueue)} kendaraan</span><span>Okupansi ruang: ${fmtDiag(g.avgBayOccupancy)}${g.avgBayOccupancy===null?'':'%'}</span></div></div>`).join('')}</div>`}
+function renderDiagnosis(){
+ const s=getState(),src=analysisReadings(s.fieldReadings,getSimReadings()),readings=src.readings,d=diagnose(readings,s.observations,s.fieldSettings),gate=evidenceGate(readings,s.sessions,s.observations),b=d.base,f=d.full;
+ return `${pageHead('ANALISIS / IDENTIFIKASI HAMBATAN','Diagnosis Hambatan','Telusuri sumber hambatan kendaraan yang menjemput, menurunkan, dan menunggu penumpang berdasarkan data interval dari deteksi CCTV AI.',`${button(`${icon('cctv',16)} Buka CCTV AI`,'goto-cctv','primary')} ${button(`${icon('download',15)} Ekspor CSV`,'export-field-readings')}`)}
+${src.simulated?`<div class="sim-source-banner">${icon('cctv',18)}<div><strong>Sumber data: Simulasi CCTV AI</strong><span>Interval ${SIM_INTERVAL_MINUTES} menit per zona (jam sibuk &amp; luar jam sibuk) dihasilkan otomatis dari simulasi lalu lintas 3D Fatmawati, dengan format yang sama seperti keluaran model AI. Akan diganti otomatis oleh deteksi CCTV AI nyata.</span></div>${tag('SIMULASI','gold')}</div>`:''}<section class="dia-hero"><div><span class="dia-kicker">MENGAPA SIMPUL DIBUTUHKAN</span><h2>Titik jemput dapat padat.<br/><em>Akses menuju MRT harus tetap terjaga.</em></h2><p>Periksa hubungan antara aktivitas berhenti, ketersediaan ruang tepi jalan, antrean, dan hambatan akses pejalan kaki sebelum menguji A0, A1, dan A2.</p><div class="dia-hero-actions">${button('Lihat deteksi CCTV AI','goto-cctv','light')} ${button('Evaluasi alternatif','goto-evaluation','outline-light')}</div></div><div class="dia-chain"><div><small>01 / INPUT</small><b>Kendaraan berhenti</b><span>jumlah, durasi, titik kejadian</span></div>${icon('arrow-down',17)}<div><small>02 / KONDISI</small><b>Ruang & antrean</b><span>kapasitas zona, antrean maksimum</span></div>${icon('arrow-down',17)}<div><small>03 / DAMPAK</small><b>Akses ke MRT</b><span>jarak tempuh & hambatan pejalan</span></div></div></section>
+${note('<strong>Makna angka:</strong> baseline di bawah menghitung data interval yang masuk ke SIMPUL; nantinya terisi otomatis dari deteksi CCTV AI. Selama model AI belum terhubung, interval berasal dari simulasi lalu lintas 3D Fatmawati dan diberi label SIMULASI; simulasi dan data AI nyata <strong>tidak</strong> pernah dicampur. Jumlah berhenti per jam adalah normalisasi durasi pengamatan, bukan pengukuran tundaan kendaraan atau bukti sebab-akibat.')}
+<div class="dia-stats"><article class="dia-stat"><span>INTERVAL BASELINE</span><strong>${b.samples}</strong><small>${fmtDiag(b.minutes)} menit data</small></article><article class="dia-stat"><span>AKTIVITAS BERHENTI</span><strong>${fmtDiag(b.stopPerHour)}</strong><small>kejadian/jam</small></article><article class="dia-stat"><span>ANTREAN MAKSIMUM</span><strong>${fmtDiag(b.peakQueue)}</strong><small>kendaraan pada interval</small></article><article class="dia-stat"><span>AKSES TERHAMBAT</span><strong>${fmtDiag(b.blockedPercent)}${b.blockedPercent===null?'':'%'}</strong><small>proporsi interval teramati</small></article></div>
+<div class="dia-grid"><section class="dia-panel"><div class="dia-panel-head"><div><span class="dia-kicker dark">HOTSPOT / DURASI-TERNORMALISASI</span><h3>Perbandingan aktivitas per zona</h3><p>Hanya fase sebelum intervensi. Zona dengan durasi observasi berbeda dibandingkan menggunakan kejadian/jam.</p></div>${tag('BASELINE','blue')}</div>${bars(d.groups)}</section>
+<section class="dia-panel"><div class="dia-panel-head"><div><span class="dia-kicker dark">MEKANISME / FIELD EVIDENCE</span><h3>Indikator yang perlu ditindaklanjuti</h3><p>Ambang durasi ditetapkan tim untuk analisis, bukan regulasi.</p></div></div><div class="dia-alerts">${warnings(d.warnings)}</div><div class="dia-threshold"><label for="field-dwell-threshold">Ambang durasi berhenti <strong>${fmtDiag(d.threshold)} detik</strong></label><input id="field-dwell-threshold" class="control" type="number" min="5" max="600" step="5" value="${d.threshold}" /></div></section></div>
+<section class="dia-panel dia-hypotheses"><div class="dia-panel-head"><div><span class="dia-kicker dark">DIAGNOSIS → ACTIONABLE HYPOTHESIS</span><h3>Langkah analisis yang disarankan</h3><p>Aturan transparan dari data yang tersedia; bukan rekomendasi AI atau keputusan rekayasa final.</p></div>${button('Buka perbandingan alternatif','goto-evaluation','primary')}</div><div class="dia-hypothesis-grid">${d.hypotheses.map(h=>`<article class="dia-hypothesis"><span>${safe(h.id)} / HIPOTESIS KERJA</span><strong>${safe(h.title)}</strong><p>${safe(h.basis)}</p><div><small>Tindakan berikutnya</small><b>${safe(h.next)}</b></div><em>${safe(h.scenario)}</em></article>`).join('')}</div></section>
+<div class="dia-grid dia-data-grid"><section class="dia-panel"><div class="dia-panel-head"><div><span class="dia-kicker dark">DATA INTERVAL</span><h3>Ledger interval data</h3><p>Fase baseline dan tindak lanjut dicatat terpisah. Sumber utama: deteksi CCTV AI.</p></div>${button(`${icon('upload-cloud',15)} Sinkronkan`,'sync-field-readings')}</div>
+<div class="table-wrap"><table class="data-table dia-table"><thead><tr><th>Waktu diamati</th><th>Fase</th><th>Skenario</th><th>Zona & periode</th><th>Durasi</th><th>Lewat</th><th>Berhenti</th><th>Antrean</th><th>Akses</th><th></th></tr></thead><tbody>${[...readings].reverse().slice(0,35).map(r=>`<tr><td>${safe(viewDate(r.at))}</td><td>${tag(r.phase==='baseline'?'SEBELUM':'SESUDAH',r.phase==='baseline'?'blue':'')}</td><td>${safe(r.scenario||'Tidak ditandai')}</td><td>${safe(r.zone)}<div class="dia-cell-minor">${safe(r.period)}</div></td><td>${fmtDiag(r.minutes)} mnt</td><td>${fmtDiag(r.passingVehicles)}</td><td>${fmtDiag(r.stoppedVehicles)}</td><td>${fmtDiag(r.maxQueue)}</td><td>${fmtDiag(r.accessMeters)} m</td><td>${r.source==='simulation'?tag('SIMULASI',''):`<button class="btn sm" data-action="delete-field-reading" data-id="${safe(r.id)}" title="Hapus interval">${icon('trash-2',14)}</button>`}</td></tr>`).join('')}</tbody></table>${!readings.length?'<div class="dia-empty">Belum ada interval data. Hubungkan CCTV AI untuk mengisi volume, antrean, dan akses per zona.</div>':''}</div></section>
+<section class="dia-panel"><div class="dia-panel-head"><div><span class="dia-kicker dark">KELENGKAPAN BUKTI</span><h3>Evidence readiness</h3><p>Kelengkapan data interval sebelum dan sesudah intervensi.</p></div></div><div class="dia-readiness">${gate.checks.map(c=>`<div class="dia-check"><span class="dia-check-icon ${c.met?'met':''}">${icon(c.met?'check':'circle-dashed',15)}</span><div><strong>${safe(c.label)}</strong><small>${safe(c.value)}</small></div></div>`).join('')}</div><div class="dia-gate-note">Belum memenuhi semua pemeriksaan bukan berarti studi gagal. Artinya kesimpulan belum layak diperlakukan sebagai rekomendasi operasional yang tervalidasi.</div></section></div><details class="cctv-dev dia-dev" id="dia-dev"><summary>${icon('plug-zap',16)} Untuk tim AI: format data interval</summary><p>Model CCTV AI mengirim ringkasan per zona dan periode (volume lewat, kendaraan berhenti, antrean maksimum, jarak akses). Tombol di bawah hanya untuk menguji format data, bukan pencatatan lapangan.</p>${button(`${icon('plus',15)} Masukkan interval uji`,'add-field-reading','')}</details>`
+}
+const fieldReadingModal=()=>`<div class="modal-header"><div><div class="eyebrow">SURVEI / INTERVAL TERUKUR</div><h2>Tambah pengamatan interval</h2></div><button class="btn sm" type="button" data-action="close-modal" aria-label="Tutup">${icon('x')}</button></div><form id="field-reading-form"><p class="helper">Masukkan hasil hitung manual untuk satu zona dan periode. Catat sebelum atau sesudah intervensi; jangan mengisi perkiraan sebagai pengamatan.</p><div class="form-grid"><div class="field"><label for="fld-observed-at">Awal interval (waktu lokal perangkat)</label><input required id="fld-observed-at" class="control" type="datetime-local" value="${new Date(Date.now()-30*60000-new Date().getTimezoneOffset()*60000).toISOString().slice(0,16)}" /></div><div class="field"><label for="fld-phase">Fase pengamatan</label><select id="fld-phase" class="control"><option value="baseline">Sebelum intervensi (baseline)</option><option value="followup">Sesudah intervensi (follow-up)</option></select></div><div class="field"><label for="fld-scenario">Kondisi saat diamati</label><select id="fld-scenario" class="control"><option value="A0">A0 – kondisi eksisting</option><option value="A1">A1 – pemanfaatan area jemput</option><option value="A2">A2 – aturan berhenti</option></select></div><div class="field"><label for="fld-period">Periode</label><select id="fld-period" class="control">${PERIODS.map(p=>`<option>${p}</option>`).join('')}</select></div><div class="field"><label for="fld-zone">Zona</label><select id="fld-zone" class="control"><option>Zona A</option><option>Zona B</option><option>Zona C</option></select></div><div class="field"><label for="fld-minutes">Durasi pengamatan (menit)</label><input required id="fld-minutes" class="control" type="number" min="5" max="240" value="30" /></div><div class="field"><label for="fld-passing">Kendaraan lewat (unit)</label><input required id="fld-passing" class="control" type="number" min="0" max="50000" value="0" /></div><div class="field"><label for="fld-stopped">Kendaraan berhenti (unit)</label><input required id="fld-stopped" class="control" type="number" min="0" max="50000" value="0" /></div><div class="field"><label for="fld-queue">Antrean maksimum (kendaraan)</label><input required id="fld-queue" class="control" type="number" min="0" max="2000" value="0" /></div><div class="field"><label for="fld-access">Jarak/detour akses pejalan (meter)</label><input required id="fld-access" class="control" type="number" min="0" max="10000" value="0" /></div><div class="field"><label for="fld-pedestrians">Pejalan kaki teramati (orang)</label><input required id="fld-pedestrians" class="control" type="number" min="0" max="50000" value="0" /></div><div class="field"><label for="fld-blocked">Akses pejalan terhalang?</label><select id="fld-blocked" class="control"><option value="no">Tidak</option><option value="yes">Ya</option></select></div><div class="field"><label for="fld-bays">Kapasitas ruang jemput (unit, 0 = tidak diketahui)</label><input required id="fld-bays" class="control" type="number" min="0" max="1000" value="0" /></div><div class="field"><label for="fld-occupied">Ruang jemput terisi (unit)</label><input required id="fld-occupied" class="control" type="number" min="0" max="1000" value="0" /></div></div><div class="field" style="margin-top:12px"><label for="fld-note">Keterangan pengamatan</label><textarea id="fld-note" class="control" maxlength="400" placeholder="Lokasi, kondisi akses, cuaca, atau catatan pengukuran (tanpa identitas pribadi)"></textarea></div><p class="helper">Waktu pengamatan diisi sesuai awal interval; waktu penyimpanan dicatat otomatis secara terpisah. Fase sebelum harus A0; setelah pilih kondisi yang benar-benar telah diterapkan. Untuk perbandingan adil, gunakan definisi zona, metode, durasi dan periode yang konsisten. Pengamatan manual memerlukan izin serta prosedur keselamatan.</p><div class="modal-foot"><button type="button" class="btn" data-action="close-modal">Batal</button><button type="submit" class="btn primary">${icon('check',16)} Simpan interval</button></div></form>`;
+
+
+// SOURCE MODULE: js/pilot.js
+/**
+ * Pilot survey coverage and evidence-quality rules.
+ * Proposal basis: 12 sessions of 30–60 min. Zone/period allocation below is
+ * a configurable planning ASSUMPTION, not a requirement dictated by the PDF.
+ * All counts come from explicitly reviewed, non-synthetic manual sessions.
+ */
+const DEFAULT_PROTOCOL = Object.freeze({
+  zones:['Zona A','Zona B','Zona C'],
+  periods:['Jam sibuk','Luar jam sibuk'],
+  replicates:2,
+  minMinutes:30,
+  maxMinutes:60
+});
+
+function normalizeProtocol(input={}) {
+  const zones=Array.isArray(input.zones)?input.zones.filter(x=>DEFAULT_PROTOCOL.zones.includes(x)):DEFAULT_PROTOCOL.zones;
+  const periods=Array.isArray(input.periods)?input.periods.filter(x=>DEFAULT_PROTOCOL.periods.includes(x)):DEFAULT_PROTOCOL.periods;
+  const replicates=Number(input.replicates??2);
+  const minMinutes=Number(input.minMinutes??30),maxMinutes=Number(input.maxMinutes??60);
+  if(!zones.length || !periods.length || !Number.isInteger(replicates)||replicates<1||replicates>5||
+     !Number.isInteger(minMinutes)||!Number.isInteger(maxMinutes)||minMinutes<5||maxMinutes>240||maxMinutes<minMinutes) {
+    throw new Error('Protokol survei tidak valid. Periksa zona, periode, replikasi, dan batas menit.');
+  }
+  return {zones:[...new Set(zones)],periods:[...new Set(periods)],replicates,minMinutes,maxMinutes};
+}
+function sessionQuality(session,review,events=[],protocol=DEFAULT_PROTOCOL) {
+  const reasons=[];
+  if(session?.source!=='manual')reasons.push('Bukan sesi manual');
+  if(!protocol.zones.includes(session?.zone))reasons.push('Zona tidak tercakup protokol');
+  if(!protocol.periods.includes(session?.period))reasons.push('Periode belum diberi label');
+  const start=Date.parse(session?.startedAt??''),end=Date.parse(session?.endedAt??'');
+  const duration=Number.isFinite(start)&&Number.isFinite(end)?(end-start)/60000:null;
+  if(duration===null||duration<=0)reasons.push('Sesi belum selesai atau timestamp tidak sah');
+  else if(duration<protocol.minMinutes||duration>protocol.maxMinutes)reasons.push('Durasi di luar batas protokol');
+  const sessionEvents=events.filter(x=>x.source==='manual'&&x.sessionId===session?.id);
+  const inconsistent=sessionEvents.filter(x=>x.zone!==session?.zone || !Number.isFinite(Date.parse(x.at??'')) || Date.parse(x.at)<start || Date.parse(x.at)>end);
+  if(inconsistent.length)reasons.push(`${inconsistent.length} kejadian terhubung memiliki zona atau waktu di luar sesi`);
+  if(!sessionEvents.length && review?.zeroConfirmed!==true)reasons.push('Tidak ada kejadian; konfirmasi observasi nol secara eksplisit melalui review.');
+  if(review?.status!=='approved')reasons.push('Belum disetujui melalui peninjauan internal');
+  if(review?.status==='approved'&&!String(review?.reviewer||'').trim())reasons.push('Label peninjau tidak ada');
+  return {accepted:!reasons.length,minutes:duration,events:sessionEvents.length,reasons};
+}
+function surveyCoverage(state) {
+  const protocol=normalizeProtocol(state.surveyProtocol||DEFAULT_PROTOCOL);
+  const reviews=state.sessionReviews||{};
+  const observations=state.observations||[];
+  const rows=(state.sessions||[]).filter(s=>s.source==='manual').map(session=>({
+    session,...sessionQuality(session,reviews[session.id],observations,protocol)
+  }));
+  const slots=[];
+  for(const zone of protocol.zones)for(const period of protocol.periods){
+    const eligible=rows.filter(r=>r.accepted&&r.session.zone===zone&&r.session.period===period);
+    slots.push({zone,period,target:protocol.replicates,completed:Math.min(eligible.length,protocol.replicates),available:eligible.length});
+  }
+  const target=slots.reduce((s,r)=>s+r.target,0);
+  const completed=slots.reduce((s,r)=>s+r.completed,0);
+  const pending=rows.filter(r=>!r.accepted).length;
+  const issues=[];
+  if(!completed)issues.push('Belum ada sesi manual yang memenuhi protokol dan ditinjau internal.');
+  if(completed<target)issues.push(`${target-completed} slot observasi masih belum terpenuhi.`);
+  if(pending)issues.push(`${pending} sesi manual belum memenuhi seluruh kriteria.`);
+  const baseline=(state.fieldReadings||[]).filter(r=>r.source==='manual'&&r.phase==='baseline').length;
+  if(!baseline)issues.push('Belum ada interval baseline manual untuk kalibrasi lalu lintas.');
+  return {protocol,slots,rows,target,completed,pending,baseline,coveragePct:target?Math.round(completed/target*100):0,issues,
+    // A complete survey schedule is *not* sufficient to validate a digital twin.
+    surveyReady:completed===target&&baseline>0,
+    calibrationVerified:false};
+}
+function exportSurveyCoverage(state){
+  const c=surveyCoverage(state);
+  return {schema:'simpul.survey_coverage.v1',generatedAt:new Date().toISOString(),projectId:state.project?.id||null,
+    scope:'Local planning and review only; not evidence of third-party approval or SUMO validation.',
+    protocol:c.protocol,slots:c.slots,summary:{target:c.target,completed:c.completed,coveragePct:c.coveragePct,baselineIntervals:c.baseline,calibrationVerified:false},
+    sessionAssessments:c.rows.map(r=>({id:r.session.id,zone:r.session.zone,period:r.session.period,
+      startedAt:r.session.startedAt,endedAt:r.session.endedAt,minutes:r.minutes,eventCount:r.events,
+      accepted:r.accepted,reviewStatus:state.sessionReviews?.[r.session.id]?.status||'pending',reasons:r.reasons}))};
+}
+
+
+// SOURCE MODULE: js/classification.js
+/** Operational event classification for transit curbside monitoring.
+ * This is deterministic triage, never an automated legal violation finding.
+ * Unknown fields remain unknown; no personal identifiers are used.
+ */
+const ZONE_CONTEXT = Object.freeze({
+  unknown:'Rambu / fungsi area belum diperiksa',
+  designated_pickup:'Area naik-turun yang ditetapkan (perlu verifikasi)',
+  general_road:'Tepi jalan umum',
+  signed_no_stopping:'Rambu larangan berhenti teramati',
+  signed_no_parking:'Rambu larangan parkir teramati'
+});
+const IMPACT_STATUS = Object.freeze({unknown:'Belum diperiksa',yes:'Teramati',no:'Tidak teramati'});
+const REVIEW_STATUS = Object.freeze({
+  pending:'Belum ditinjau',
+  needs_evidence:'Bukti tambahan diperlukan',
+  context_reviewed:'Konteks telah ditinjau',
+  field_check:'Perlu pemeriksaan lapangan',
+  closed:'Ditutup (catatan internal)'
+});
+const EVENT_TYPES = Object.freeze({Jemput:'Penjemputan',Turun:'Penurunan',Menunggu:'Menunggu penumpang'});
+const PRIORITY = Object.freeze({P1:'P1 / Periksa keselamatan',P2:'P2 / Tinjau hambatan',P3:'P3 / Observasi berulang',P4:'P4 / Pemantauan rutin'});
+const TERNARY=new Set(['yes','no','unknown']);
+const normalizeSignal=value=>TERNARY.has(value)?value:'unknown';
+function classifyTrafficEvent(event,review=null){
+  const context=Object.hasOwn(ZONE_CONTEXT,event?.zoneContext)?event.zoneContext:'unknown';
+  const lane=normalizeSignal(event?.laneBlocked),pedestrian=normalizeSignal(event?.pedestrianBlocked),queue=normalizeSignal(event?.queueObserved);
+  const duration=Number(event?.duration)||0;
+  const signVerified=event?.signageVerified===true && Boolean(String(event?.evidenceReference||'').trim());
+  let priority='P4',cause='Belum ada dampak terkonfirmasi; pemantauan rutin.';
+  if(pedestrian==='yes') {priority='P1';cause='Akses pejalan kaki dilaporkan terhalang. Perlu pemeriksaan keselamatan.';}
+  else if(lane==='yes'||queue==='yes'){priority='P2';cause='Hambatan lajur atau antrean dilaporkan teramati.';}
+  else if(event?.type==='Menunggu'&&duration>=120){priority='P3';cause='Durasi menunggu panjang; evaluasi pola dan kapasitas penjemputan.';}
+  let ruleFlag='unknown',ruleDescription='Belum cukup bukti mengenai aturan yang berlaku pada titik dan waktu pengamatan.';
+  if(context==='signed_no_stopping'&&signVerified){ruleFlag='review_rule';ruleDescription='Ada catatan rambu larangan berhenti terverifikasi oleh pengamat; pemeriksaan konteks dan kewenangan tetap diperlukan.';}
+  else if(context==='signed_no_parking'&&signVerified){ruleFlag='interpretation_needed';ruleDescription='Rambu larangan parkir tercatat; aktivitas berhenti/menunggu tidak boleh otomatis disamakan dengan parkir.';}
+  else if(context==='designated_pickup'&&signVerified){ruleFlag='area_documented';ruleDescription='Area penjemputan tercatat, namun kesesuaian perilaku tetap membutuhkan pemeriksaan aturan setempat.';}
+  else if(context!=='unknown' && !signVerified){ruleDescription='Konteks lokasi dicatat tetapi belum didukung referensi rambu/fasilitas yang diperiksa.';}
+  return {
+    eventId:String(event?.id||''),activity:EVENT_TYPES[event?.type]||'Aktivitas lain',
+    zone:String(event?.zone||'Tidak diketahui'),source:event?.source==='manual'?'manual':'demo',
+    priority,priorityLabel:PRIORITY[priority],priorityReason:cause,
+    context,contextLabel:ZONE_CONTEXT[context],ruleFlag,ruleDescription,
+    impact:{lane,pedestrian,queue},
+    evidenceStatus:event?.source!=='manual'?'SYNTHETIC':signVerified?'CONTEXT_RECORDED':'FIELD_UNVERIFIED',
+    reviewStatus:REVIEW_STATUS[review?.status]?review.status:'pending',
+    reviewLabel:REVIEW_STATUS[review?.status]||REVIEW_STATUS.pending,
+    legalConclusion:'NOT_DETERMINED'
+  };
+}
+function classifyTrafficDataset(observations=[],reviews={}){
+  return observations.map(event=>({event,classification:classifyTrafficEvent(event,reviews?.[event.id]),review:reviews?.[event.id]||null}));
+}
+function trafficClassSummary(observations=[],reviews={}){
+  const classified=classifyTrafficDataset(observations,reviews);
+  const manual=classified.filter(x=>x.event.source==='manual');
+  return {
+    total:classified.length,manual:manual.length,synthetic:classified.length-manual.length,
+    priorities:Object.fromEntries(['P1','P2','P3','P4'].map(p=>[p,manual.filter(x=>x.classification.priority===p).length])),
+    ruleReview:manual.filter(x=>['review_rule','interpretation_needed'].includes(x.classification.ruleFlag)).length,
+    pending:manual.filter(x=>x.classification.reviewStatus==='pending').length,
+    reviewed:manual.filter(x=>x.classification.reviewStatus!=='pending').length
+  };
+}
+function makePoliceReviewBundle(state){
+  const records=classifyTrafficDataset(state.observations,state.eventReviews).filter(x=>x.event.source==='manual');
+  return {
+    schema:'simpul.operational_traffic_review.v1',generatedAt:new Date().toISOString(),
+    project:{id:state.project?.id||'unknown',name:state.project?.name||'unknown'},
+    purpose:'Operational traffic and pedestrian-access review only; not enforcement evidence or automated offence determination.',
+    legalConclusion:'NOT_DETERMINED',
+    sourcePolicy:'Manual observation records only; synthetic samples excluded. Free-text notes and personal identifiers omitted.',
+    records:records.map(x=>({id:x.event.id,at:x.event.at,zone:x.event.zone,activity:x.event.type,vehicleCategory:x.event.vehicle,durationSec:x.event.duration,
+      fieldContext:x.classification.context,observedImpact:x.classification.impact,
+      contextReference:x.event.evidenceReference||null,signageVerifiedByObserver:x.event.signageVerified===true,
+      operationalPriority:x.classification.priority,priorityReason:x.classification.priorityReason,
+      ruleReviewFlag:x.classification.ruleFlag,ruleReviewExplanation:x.classification.ruleDescription,
+      evidenceStatus:x.classification.evidenceStatus,reviewStatus:x.classification.reviewStatus,
+      reviewedAt:x.review?.at||null,reviewerLabel:x.review?.reviewer||null,
+      legalConclusion:'NOT_DETERMINED'})),
+    reviewAudit:(state.classificationAudit||[]).filter(x=>records.some(r=>r.event.id===x.eventId)).map(x=>({eventId:x.eventId,at:x.at,action:x.action,status:x.status,reviewer:x.reviewer})),
+    disclaimer:'Not an official police record. Review by an authorized official and verify the applicable road signs, context and jurisdiction before any enforcement action.'
+  };
+}
+
+
+// SOURCE MODULE: js/operations.js
+/** Action board: operational response, not traffic law adjudication. */
+
+const CASE_STATUSES=Object.freeze({
+  open:'Perlu ditugaskan',assigned:'Ditugaskan',checking:'Pemeriksaan lapangan',resolved:'Selesai ditindaklanjuti',dismissed:'Ditutup tanpa tindakan'
+});
+function actionableEvents(state){
+  return (state.observations||[]).filter(e=>e.source==='manual')
+    .map(event=>({event,assessment:classifyTrafficEvent(event,state.eventReviews?.[event.id])}))
+    .filter(x=>['P1','P2'].includes(x.assessment.priority));
+}
+function operationalBoard(state,at=new Date()){
+  const candidates=actionableEvents(state),events=new Map((state.observations||[]).filter(x=>x.source==='manual').map(x=>[x.id,x]));
+  const cases=(state.responseCases||[]).map(record=>{
+    const event=events.get(record.eventId)||null;
+    const assessment=event?classifyTrafficEvent(event,state.eventReviews?.[event.id]):null;
+    const overdue=Boolean(record.dueAt&&Number.isFinite(Date.parse(record.dueAt))&&Date.parse(record.dueAt)<at.getTime()&&!['resolved','dismissed'].includes(record.status));
+    return {...record,event,assessment,overdue,sourceMissing:!event};
+  });
+  return {candidates,cases,open:cases.filter(x=>!['resolved','dismissed'].includes(x.status)).length,
+    overdue:cases.filter(x=>x.overdue).length,
+    unassigned:candidates.filter(c=>!cases.some(x=>x.eventId===c.event.id)).length,
+    closed:cases.filter(x=>['resolved','dismissed'].includes(x.status)).length};
+}
+function validateCaseDraft({eventId,owner,action,dueAt},state){
+  const candidate=actionableEvents(state).find(x=>x.event.id===eventId);
+  if(!candidate)throw new Error('Hanya kejadian manual prioritas P1/P2 yang dapat menjadi tindak lanjut.');
+  if((state.responseCases||[]).some(c=>c.eventId===eventId))throw new Error('Kejadian ini sudah memiliki catatan tindak lanjut.');
+  if(String(owner||'').trim().length<2||String(action||'').trim().length<10)throw new Error('Isi penanggung jawab dan rencana tindakan minimal 10 karakter.');
+  if(dueAt && (!Number.isFinite(Date.parse(dueAt))||Date.parse(dueAt)<Date.now()-60000))throw new Error('Batas tindak lanjut harus tanggal/waktu yang sah dan tidak di masa lalu.');
+  return {eventId,owner:String(owner).trim().slice(0,80),action:String(action).trim().slice(0,350),dueAt:dueAt?new Date(dueAt).toISOString():null};
+}
+function validateCaseUpdate(record,status,reason){
+  if(!record)throw new Error('Kasus operasional tidak ditemukan.');
+  if(!Object.hasOwn(CASE_STATUSES,status))throw new Error('Status tindak lanjut tidak dikenal.');
+  if(['resolved','dismissed'].includes(status)&&String(reason||'').trim().length<10)throw new Error('Penutupan memerlukan alasan minimal 10 karakter.');
+  return {status,reason:String(reason||'').trim().slice(0,500)};
+}
+function exportOperations(state){
+  const board=operationalBoard(state);
+  return {schema:'simpul.operational_response.v1',generatedAt:new Date().toISOString(),
+    notice:'Internal operational follow-up only; does not establish an offense or official police action.',
+    cases:board.cases.filter(c=>!c.sourceMissing).map(c=>({id:c.id,eventId:c.eventId,eventAt:c.event.at,zone:c.event.zone,
+      observedActivity:c.event.type,priority:c.assessment.priority,status:c.status,createdAt:c.createdAt,dueAt:c.dueAt,updatedAt:c.updatedAt||null,
+      evidenceStatus:c.assessment.evidenceStatus,legalConclusion:'NOT_DETERMINED'})),
+    statusHistory:(state.responseAudit||[]).filter(x=>board.cases.some(c=>!c.sourceMissing&&c.id===x.caseId)).map(x=>({caseId:x.caseId,eventId:x.eventId,at:x.at,status:x.status,action:x.action}))};
+}
+
+
+// SOURCE MODULE: js/analytics.js
+
+function observationStats(obs){
+  const n=obs.length, total=obs.reduce((s,e)=>s+(Number(e.duration)||0),0);
+  return {count:n,avgDwell:n?total/n:0,pickup:obs.filter(e=>e.type==='Jemput').length,dropoff:obs.filter(e=>e.type==='Turun').length,waiting:obs.filter(e=>e.type==='Menunggu').length,real:obs.filter(e=>e.source==='manual').length,synthetic:obs.filter(e=>e.source==='demo').length,zoneCount:new Set(obs.map(e=>e.zone)).size};
+}
+/** Transparent illustrative capacity/queue heuristic. NOT a SUMO simulation or validated traffic model. */
+function heuristicSimulation(p){
+  const t=clamp(p.traffic,100,1800), pickup=clamp(p.pickupShare,0,60)/100;
+  const baselineDwell=clamp(p.dwell,5,300), redirected=clamp(p.diversion,0,100)/100;
+  const ruleDwell=clamp(p.ruleDwell,5,300), pedestrianDetour=clamp(p.pedestrianDetour,0,900);
+  function run(code,stopsOnRoad,dwell,detour){
+    const blockHours=(t*pickup*stopsOnRoad*dwell)/3600;
+    const pressure=1-Math.exp(-blockHours*0.72);
+    const capacity=1450*(1-0.50*pressure);
+    const ratio=t/capacity;
+    // Stylized congestion curve calibrated to no field data.
+    const delay=6+9*ratio/(Math.max(0.12,1-Math.min(.88,ratio)))+Math.max(0,ratio-1)*135;
+    const queue=Math.max(0,Math.round((Math.max(0,t-capacity)*.09)+Math.max(0,delay-12)*.23));
+    return {id:code,delay:+delay.toFixed(1),queue,capacity:Math.round(capacity),events:Math.round(t*pickup),access:Math.round(detour),estimated:true, model:'Ilustrasi matematis, bukan keluaran SUMO'};
+  }
+  const a0=run('A0',1,baselineDwell,pedestrianDetour),a1=run('A1',1-redirected,baselineDwell,pedestrianDetour+Math.round(redirected*65)),a2=run('A2',1,Math.min(baselineDwell,ruleDwell),pedestrianDetour);
+  return {engine:'heuristic',evidence:'synthetic',createdAt:new Date().toISOString(),assumptions:{...p},scenarios:[a0,a1,a2],valid:false,message:'Hasil ilustratif dari rumus antrean sederhana. Bukan prediksi atau validasi kondisi Fatmawati; simulasi SUMO sesungguhnya membutuhkan backend dan kalibrasi data lapangan.'};
+}
+function compareScenarios(results){if(!results?.scenarios?.length)return null;const s=results.scenarios;const a=s.find(x=>x.id==='A0')||s[0];return s.map(x=>({...x,delayChange:a.delay?100*(x.delay-a.delay)/a.delay:0,queueChange:a.queue?100*(x.queue-a.queue)/a.queue:0}));}
+function rankScenarios(results){const list=compareScenarios(results)||[];return [...list].sort((a,b)=>((a.delay/70)*.6+(a.queue/70)*.25+(a.access/400)*.15)-((b.delay/70)*.6+(b.queue/70)*.25+(b.access/400)*.15));}
+function eventByType(obs){const s=observationStats(obs);return[{name:'Jemput',count:s.pickup,color:'teal'},{name:'Turun',count:s.dropoff,color:'blue'},{name:'Menunggu',count:s.waiting,color:'navy'}]}
+
+
+// SOURCE MODULE: js/views/evaluation.js
+
+
+
+
+
+
+const fmtEval=v=>v===null||v===undefined?'-':num(v);
+const sign=v=>v===null?'-':(v>0?'+':'')+num(v);
+const statusLabel={draft:'Draft internal',review:'Dalam kajian',pilot:'Pilot terencana',closed:'Ditutup'};
+const scenarioNames={A0:'Kondisi eksisting',A1:'Optimasi area jemput',A2:'Aturan durasi berhenti'};
+const cmpCard=(name,before,after,change,unit='',lowerBetter=true)=>{
+ const trend=change===null?'unknown':change===0?'neutral':(lowerBetter?change<0:change>0)?'good':'bad';
+ return `<div class="eval-comparison"><span>${name}</span><div class="eval-metrics"><strong>${fmtEval(before)} <small>${unit}</small></strong>${icon('arrow-right',15)}<strong>${fmtEval(after)} <small>${unit}</small></strong></div><div class="eval-delta ${trend}">${change===null?'Belum dapat dibandingkan':sign(change)+' '+unit+' (selisih deskriptif)'}</div></div>`;
+};
+function renderEvaluation(){
+ const s=getState(),src=analysisReadings(s.fieldReadings,getSimReadings()),p=comparePeriods(src.readings,s.comparisonScenario),gate=evidenceGate(src.readings,s.sessions,s.observations),res=s.lastAnalysis||heuristicSimulation(s.scenario),options=screenScenario(res,s.fieldSettings),last=s.decisions?.at(-1),measured=p.comparableSamples;
+ return `${pageHead('REKAYASA / DECISION WORKFLOW','Rencana Intervensi & Dampak','Uji alternatif penjemputan, periksa batas akses pejalan kaki, catat keputusan tim, dan bandingkan hasil setelah implementasi.',`${button(`${icon('clipboard-plus',16)} Catat keputusan tim`,'add-decision','primary')}`)}
+<section class="eval-hero"><div class="eval-hero-mark">${icon('git-compare-arrows',25)}</div><div><span class="dia-kicker">PENGAMBILAN KEPUTUSAN / A0 - A2</span><h2>Kurangi hambatan kendaraan.<br/>Lindungi akses pengguna MRT.</h2><p>Alternatif yang dipilih perlu memenuhi kendala kelancaran, aksesibilitas, keselamatan, dan bukti pengamatan. Model heuristik hanya dipakai untuk screening, bukan izin implementasi.</p></div></section>
+${note('<strong>Provenance:</strong> skor dan status kelayakan di bawah berasal dari parameter skenario serta ambang yang ditetapkan pengguna. Hasilnya berupa <strong>proyeksi simulasi untuk membandingkan skenario</strong>; prediksi lapangan menyusul setelah kalibrasi dengan data CCTV. Catatan keputusan tidak menggantikan persetujuan pihak berwenang.')}
+<div class="eval-step-nav"><span class="active">01 / Diagnosa</span>${icon('arrow-right',14)}<span>02 / Bandingkan</span>${icon('arrow-right',14)}<span>03 / Tinjau</span>${icon('arrow-right',14)}<span>04 / Verifikasi sesudah</span></div>
+<div class="eval-layout"><section class="dia-panel"><div class="dia-panel-head"><div><span class="dia-kicker dark">SCREENING / PEMBATAS</span><h3>Kriteria operasional tim</h3><p>Ini merupakan ambang studi yang dapat diubah, bukan standar teknis pemerintah.</p></div></div><div class="eval-criteria"><div class="field"><label for="guard-queue">Batas antrean maksimum (kendaraan)</label><input id="guard-queue" class="control" type="number" min="0" max="1000" value="${fmtEval(s.fieldSettings.maxQueue)}"/></div><div class="field"><label for="guard-detour">Batas akses/detour (m)</label><input id="guard-detour" class="control" type="number" min="0" max="2000" value="${fmtEval(s.fieldSettings.maxDetour)}" /></div></div><div class="eval-safety"><strong>${icon('shield-check',17)} Gerbang kualitas bukti</strong><p>${gate.baselineCount} interval baseline dan ${gate.followupCount} tindak lanjut. Kalibrasi lokal SUMO belum dibuktikan.</p><div class="eval-microbar"><div style="width:${Math.min(100,Math.round(gate.completed/12*100))}%"></div></div></div></section>
+<section class="dia-panel"><div class="dia-panel-head"><div><span class="dia-kicker dark">SKENARIO / PERBANDINGAN</span><h3>Mana yang layak dipelajari lebih lanjut?</h3><p>Sumber ${res.engine==='heuristic'?'rumus simulasi':'SUMO pada jaringan koridor uji'}; kalibrasi lokasi dengan data CCTV menyusul.</p></div>${tag(res.engine==='heuristic'?'MODEL SIMULASI':'SUMO KORIDOR UJI','gold')}</div>
+<div class="eval-scenario-list">${options.map(a=>`<div class="eval-option ${a.eligible?'eligible':'risk'}"><div class="eval-option-title"><div><span class="eval-id">${a.id}</span><strong>${safe(scenarioNames[a.id]||a.id)}</strong></div><span class="eval-option-state">${a.eligible?'Lolos ambang input':'Perlu tinjauan'}</span></div><div class="eval-opt-metrics"><span>Delay model <strong>${fmtEval(a.delay)} s</strong></span><span>Antrean model <strong>${fmtEval(a.queue)}</strong></span><span>Akses model <strong>${fmtEval(a.access)} m</strong></span></div><div class="eval-option-foot">${a.eligible?'Lolos kriteria numerik yang ditetapkan, tetapi tetap memerlukan verifikasi.':'Salah satu batas antrean atau akses yang ditetapkan terlampaui.'}</div></div>`).join('')}</div><div class="form-actions">${button('Ubah simulasi A0/A1/A2','goto-simulation')}</div></section></div>
+<div class="eval-section-title"><div><span class="dia-kicker dark">MEASURE / BEFORE–AFTER</span><h3>Evaluasi dampak dari data CCTV AI, bukan asumsi</h3></div><div class="eval-phase-actions"><label>Bandingkan A0 dengan <select class="control" id="compare-scenario"><option value="A1" ${s.comparisonScenario==='A1'?'selected':''}>A1 – area jemput</option><option value="A2" ${s.comparisonScenario==='A2'?'selected':''}>A2 – aturan berhenti</option><option value="A0" ${s.comparisonScenario==='A0'?'selected':''}>A0 – kondisi kontrol</option></select></label>${button(`${icon('cctv',15)} Data dari CCTV AI`,'goto-cctv','primary')}</div></div>
+<div class="eval-compare-status">${measured?`<span class="eval-status-ready">${icon('check-circle',16)} ${p.comparable.length} kombinasi zona–periode dapat dibandingkan</span>`:`<span class="eval-status-pending">${icon('alert-circle',16)} Belum ada pasangan data sebelum dan sesudah pada zona + periode yang sama</span>`}<small>${p.baseline.samples} baseline; ${p.followup.samples} follow-up ${safe(s.comparisonScenario)}. ${src.simulated?'Sumber: simulasi CCTV AI (label SIMULASI); akan diganti otomatis oleh deteksi CCTV AI nyata.':'Sumber: data interval CCTV AI.'}</small></div>
+<div class="eval-comparison-grid">${cmpCard('Kendaraan berhenti per jam',p.before.stopPerHour,p.after.stopPerHour,p.changes.stopPerHour,'unit/jam')}${cmpCard('Antrean rata-rata maksimum',p.before.avgQueue,p.after.avgQueue,p.changes.avgQueue,'kendaraan')}${cmpCard('Rerata jarak akses pejalan',p.before.meanAccess,p.after.meanAccess,p.changes.accessMeters,'m')}${cmpCard('Interval akses terhalang',p.before.blockedPercent,p.after.blockedPercent,p.changes.blockedPercentPoints,'p.p.')}</div>
+<div class="eval-disclaimer"><div>${icon('info',19)}</div><div><strong>Interpretasi hasil</strong><p>Selisih ini bersifat deskriptif. Perubahan belum membuktikan bahwa intervensi penyebabnya. Periksa volume lalu lintas, cuaca, hari, jam, metodologi, serta rentang ketidakpastian sebelum membentuk kesimpulan. Angka tidak ditampilkan jika tidak ada kelompok pembanding yang sepadan.</p></div></div>
+<div class="eval-layout eval-last"><section class="dia-panel"><div class="dia-panel-head"><div><span class="dia-kicker dark">DECISION REGISTER</span><h3>Catatan pilihan intervensi</h3><p>Keputusan internal tim dengan jejak alasan; bukan persetujuan otoritas lalu lintas.</p></div>${tag(`${s.decisions.length} catatan`,'slate')}</div>
+${!s.decisions.length?'<div class="dia-empty">Belum ada catatan keputusan. Dokumentasikan alasan memilih atau menolak A0/A1/A2.</div>':`<div class="eval-decisions">${[...s.decisions].reverse().slice(0,8).map(x=>`<div class="eval-decision"><div><strong>${safe(x.scenario)} / ${safe(scenarioNames[x.scenario]||'')}</strong><span>${safe(statusLabel[x.status]||'Draft')} / ${safe(shortDate(x.at))}</span></div><p>${safe(x.reason)}</p><small>Penanggung jawab: ${safe(x.owner)} / Tindak lanjut: ${safe(x.nextAction||'Belum ditetapkan')}</small></div>`).join('')}</div>`}</section>
+<section class="dia-panel"><div class="dia-panel-head"><div><span class="dia-kicker dark">WORKFLOW / FIELD PILOT</span><h3>Tahapan keputusan yang bertanggung jawab</h3><p>Urutan berikut dipakai untuk memastikan hasil benar-benar menjawab masalah.</p></div></div><ol class="eval-checklist"><li><strong>Baseline terukur</strong><span>CCTV AI mengumpulkan volume, dwell, antrean, dan akses pada jam sibuk serta non-sibuk.</span></li><li><strong>Uji dan kalibrasi</strong><span>Cocokkan SUMO dengan data CCTV AI pada periode terpisah; ulang beberapa seed.</span></li><li><strong>Tinjau alternatif</strong><span>Periksa aksesibilitas dan keselamatan sebelum mengusulkan lokasi atau aturan berhenti.</span></li><li><strong>Persetujuan berwenang</strong><span>Implementasi di jalan publik harus mengikuti prosedur pihak terkait.</span></li><li><strong>Ukur sesudah</strong><span>Bandingkan deteksi CCTV AI pada zona dan periode setara setelah intervensi.</span></li></ol></section></div>`
+}
+const decisionModal=()=>`<div class="modal-header"><div><div class="eyebrow">DECISION LOG / KAJIAN INTERNAL</div><h2>Catat pilihan tim</h2></div><button class="btn sm" data-action="close-modal" type="button">${icon('x')}</button></div><form id="decision-form"><div class="form-grid"><div class="field"><label for="dec-scenario">Alternatif</label><select id="dec-scenario" class="control"><option value="A0">A0 – kondisi eksisting</option><option value="A1">A1 – area penjemputan</option><option value="A2">A2 – aturan berhenti</option></select></div><div class="field"><label for="dec-status">Status kajian internal</label><select id="dec-status" class="control"><option value="draft">Draft internal</option><option value="review">Dalam kajian</option><option value="pilot">Pilot terencana (perlu izin)</option><option value="closed">Ditutup</option></select></div></div><div class="field" style="margin-top:14px"><label for="dec-owner">Penanggung jawab tim</label><input required id="dec-owner" maxlength="100" class="control" placeholder="Peran / tim pengkaji" /></div><div class="field" style="margin-top:14px"><label for="dec-reason">Alasan berbasis bukti / risiko yang masih terbuka</label><textarea id="dec-reason" required maxlength="700" class="control" placeholder="Sebutkan sumber data, batas akses, dan ketidakpastian."></textarea></div><div class="field" style="margin-top:14px"><label for="dec-next">Tindak lanjut</label><input id="dec-next" maxlength="200" class="control" placeholder="Contoh: verifikasi kapasitas ruang jemput, wawancara pengelola"/></div><p class="helper">Menyimpan keputusan ini tidak menyatakan intervensi sudah diizinkan atau diterapkan. Hanya catatan kajian tim.</p><div class="modal-foot"><button type="button" class="btn" data-action="close-modal">Batal</button><button class="btn primary" type="submit">${icon('check',16)} Simpan catatan</button></div></form>`;
+
+
+// SOURCE MODULE: js/standards.js
+// SIMPUL international-practice module: quality gates and interoperable export.
+// These are implementation controls; they do NOT establish ISO/WCAG certification.
+const iso = value => { const parsed=new Date(value); return Number.isFinite(parsed.getTime())?parsed.toISOString():null; };
+const tzAware = value => typeof value==='string' && /(Z|[+-]\d{2}:?\d{2})$/i.test(value) && iso(value)!==null;
+const unique = items => new Set(items).size===items.length;
+const asNum = value => typeof value==='number' && Number.isFinite(value) && value>=0;
+const STANDARD_REFERENCES = [
+ {code:'ISO 37120:2018',name:'City services & quality of life',application:'Konteks indikator mobilitas perkotaan; metrik SIMPUL adalah indikator studi lokal, bukan otomatis indikator ISO.',status:'Referensi metodologis',url:'https://www.iso.org/standard/68498.html'},
+ {code:'ISO 37122:2019',name:'Smart city indicators',application:'Prinsip indikator terdefinisi dengan sumber, periode, dan metode yang dapat ditinjau.',status:'Referensi metodologis',url:'https://www.iso.org/standard/69050.html'},
+ {code:'ISO 39001:2012',name:'Road traffic safety management',application:'Tinjauan risiko dan akses sebelum usulan perubahan pengaturan lalu lintas; bukan sertifikasi sistem.',status:'Referensi keselamatan',url:'https://www.iso.org/standard/44958.html'},
+ {code:'ISO 19157-1:2023',name:'Geospatial data quality',application:'Pemeriksaan keterisian, konsistensi, validitas, dan provenance lokasi.',status:'Prinsip kualitas data',url:'https://www.iso.org/standard/78900.html'},
+ {code:'ISO 8601-1:2019',name:'Date/time interchange',application:'Ekspor waktu pengamatan dan pencatatan ke UTC ISO 8601 dengan jejak zona waktu asal.',status:'Diterapkan pada ekspor',url:'https://www.iso.org/standard/70907.html'},
+ {code:'RFC 7946',name:'GeoJSON',application:'Titik lokasi studi sebagai WGS84 [longitude, latitude], hanya jika koordinat tersedia; bukan posisi masing-masing event.',status:'Diterapkan pada ekspor',url:'https://www.rfc-editor.org/rfc/rfc7946'},
+ {code:'W3C PROV-O',name:'Data provenance',application:'Identitas sumber, waktu, data turunan, metode dan status bukti dalam export bundle.',status:'Pemetaan provenance',url:'https://www.w3.org/TR/prov-o/'},
+ {code:'WCAG 2.2 AA',name:'Web accessibility',application:'Target keyboard, kontras, focus state, label, dan responsivitas; memerlukan audit manual serta otomatis.',status:'Target, belum diaudit',url:'https://www.w3.org/TR/WCAG22/'}
+];
+const REGULATORY_REFERENCES = [
+ {code:'UU No. 22 Tahun 2009',article:'Pasal 118',title:'Larangan berhenti yang mengganggu lalu lintas',summary:'Melarang kendaraan berhenti di lokasi tertentu, termasuk lokasi yang mengganggu keselamatan, ketertiban, dan kelancaran lalu lintas.',relevance:'Membantu memetakan aktivitas berhenti dan dampaknya pada koridor studi.',source:'Kementerian Keuangan Republik Indonesia',tone:'teal'},
+ {code:'UU No. 22 Tahun 2009',article:'Pasal 287 ayat (1) dan (3)',title:'Rambu, marka, berhenti dan parkir',summary:'Mengatur sanksi pelanggaran rambu, marka, serta tata cara berhenti dan parkir.',relevance:'Menjadi konteks saat hasil observasi ditinjau oleh pihak berwenang.',source:'Kementerian Keuangan Republik Indonesia',tone:'amber'},
+ {code:'Perda DKI Jakarta No. 5 Tahun 2014',article:'Pasal 38',title:'Parkir pada ruang milik jalan',summary:'Melarang parkir pada ruang milik jalan tanpa marka atau rambu parkir yang sesuai.',relevance:'Mendukung pemeriksaan kesesuaian lokasi berhenti dengan penataan ruang jalan.',source:'Jakarta Services',tone:'blue'},
+ {code:'Perda DKI Jakarta No. 5 Tahun 2014',article:'Pasal 95',title:'Tindakan atas pelanggaran transportasi',summary:'Menjadi dasar tindakan terhadap sejumlah pelanggaran transportasi, termasuk parkir tidak pada tempatnya dan aktivitas angkutan umum pada lokasi yang tidak ditetapkan.',relevance:'Memberi konteks kebijakan untuk tindak lanjut manual, bukan keputusan otomatis SIMPUL.',source:'Pemerintah Provinsi DKI Jakarta',tone:'violet'},
+ {code:'UU No. 27 Tahun 2022',article:'Pasal 17',title:'Kamera pemantau dan perlindungan privasi',summary:'Mengatur penggunaan kamera pemantau di ruang publik, termasuk tujuan pengelolaan informasi lalu lintas dan perlindungan privasi.',relevance:'Menjadi pengingat untuk minimisasi data, izin pengumpulan, dan perlindungan subjek data.',source:'Kerangka perlindungan data Indonesia',tone:'rose'}
+];
+function assessQuality(state){
+ const observations=(state.observations||[]).filter(x=>x?.source==='manual');
+ const intervals=(state.fieldReadings||[]).filter(x=>x?.source==='manual');
+ const all=[...observations,...intervals];
+ const invalidTime=all.filter(x=>!tzAware(x.at)|| (x.recordedAt&&!tzAware(x.recordedAt)));
+ const ids=all.map(x=>x.id);
+ const invalidNumeric=intervals.filter(x=>!Number.isInteger(Number(x.minutes))||Number(x.minutes)<5||Number(x.minutes)>240 || ['passingVehicles','stoppedVehicles','maxQueue','accessMeters','pedestrians','availableBays','occupiedBays'].some(k=>!asNum(Number(x[k]))));
+ const invalidCapacity=intervals.filter(x=>Number(x.occupiedBays)>Number(x.availableBays)&&Number(x.availableBays)>0);
+ const invalidPhase=intervals.filter(x=>x.phase==='baseline'&&x.scenario!=='A0'||x.phase==='followup'&&x.scenario==='A0');
+ const pairs=[];
+ const base=new Set(intervals.filter(x=>x.phase==='baseline'&&x.scenario==='A0').map(x=>`${x.zone}|${x.period}`));
+ for(const x of intervals.filter(x=>x.phase==='followup'&&['A1','A2'].includes(x.scenario))){if(base.has(`${x.zone}|${x.period}`))pairs.push(x)}
+ const observedSessions=(state.sessions||[]).filter(x=>x.source==='manual'&&x.endedAt);
+ const issues=[];
+ if(!all.length) issues.push({severity:'block',code:'NO_FIELD_DATA',message:'Belum ada observasi manual. Data sintetis tidak digunakan untuk evidence review.'});
+ if(invalidTime.length)issues.push({severity:'block',code:'INVALID_TIME',message:`${invalidTime.length} rekaman memiliki timestamp tidak valid atau tanpa zona waktu.`});
+ if(!unique(ids))issues.push({severity:'block',code:'DUPLICATE_ID',message:'ID rekaman tidak unik di dataset manual.'});
+ if(invalidNumeric.length)issues.push({severity:'block',code:'INVALID_METRIC',message:`${invalidNumeric.length} interval memiliki nilai numerik di luar kontrak input.`});
+ if(invalidCapacity.length)issues.push({severity:'block',code:'CAPACITY_CONFLICT',message:`${invalidCapacity.length} interval memiliki okupansi ruang jemput melebihi kapasitas tercatat; perlu konfirmasi.`});
+ if(invalidPhase.length)issues.push({severity:'block',code:'SCENARIO_CONFLICT',message:'Penandaan baseline dan skenario tidak konsisten.'});
+ if(observedSessions.length<12)issues.push({severity:'review',code:'SESSION_TARGET',message:`${observedSessions.length}/12 sesi manual selesai; angka 12 adalah rencana sampel pada proposal, bukan syarat ISO.`});
+ if(!pairs.length)issues.push({severity:'review',code:'NO_MATCHED_FOLLOWUP',message:'Belum ada pasangan before–after pada zona dan periode yang sama.'});
+ issues.push({severity:'review',code:'INDEPENDENT_VALIDATION',message:'Data kalibrasi/validasi terpisah, anotasi ground truth, serta kesesuaian jaringan SUMO belum dibuktikan.'});
+ issues.push({severity:'review',code:'SAFETY_REVIEW',message:'Persetujuan rekayasa lalu lintas dan audit aksesibilitas pejalan kaki belum diverifikasi.'});
+ const blocks=issues.filter(x=>x.severity==='block');
+ return {status:blocks.length?'not_ready':'exploratory_only',manualEvents:observations.length,manualIntervals:intervals.length,completedManualSessions:observedSessions.length,syntheticEvents:(state.observations||[]).filter(x=>x?.source==='demo').length,matchedFollowups:pairs.length,invalidTime:invalidTime.length,duplicateIds:ids.length-new Set(ids).size,issues,scope:'Data manual saja; tidak ada validasi kalibrasi, klaim sebab-akibat, atau sertifikasi'};
+}
+function buildStandardsBundle(state){
+ const quality=assessQuality(state);
+ const obs=(state.observations||[]).filter(x=>x.source==='manual').map(x=>({id:x.id,observed_at_utc:iso(x.at),source_timestamp:x.at,category:x.type,vehicle_category:x.vehicle,zone:x.zone,dwell_seconds:Number(x.duration),source:'manual',session_id:x.sessionId||null,note:x.note||''}));
+ const fields=(state.fieldReadings||[]).filter(x=>x.source==='manual').map(x=>({id:x.id,observed_at_utc:iso(x.at),recorded_at_utc:x.recordedAt?iso(x.recordedAt):null,source_timestamp:x.at,phase:x.phase,scenario:x.scenario,period:x.period,zone:x.zone,observation_minutes:Number(x.minutes),passing_vehicles:Number(x.passingVehicles),stopped_vehicles:Number(x.stoppedVehicles),stopping_events_per_hour:Number(x.minutes)>0?Number((Number(x.stoppedVehicles)*60/Number(x.minutes)).toFixed(3)):null,max_queue_vehicles:Number(x.maxQueue),pedestrian_access_distance_m:Number(x.accessMeters),pedestrians_observed:Number(x.pedestrians),access_blocked:Boolean(x.blockedAccess),available_pickup_bays:Number(x.availableBays),occupied_pickup_bays:Number(x.occupiedBays),source:'manual',session_id:x.sessionId||null,note:x.note||''}));
+ const generatedAt=new Date().toISOString();
+ return {schema:'https://simpul.local/schemas/evidence-bundle/v1',schema_version:'1.0.0',generated_at_utc:generatedAt,report_kind:'research_evidence_export',validation_status:'NOT_FIELD_VALIDATED',project:{id:state.project.id,name:state.project.name,district:state.project.district,spatial_reference:'WGS84 / EPSG:4326 only if coordinate supplied'},data_provenance:{manual_only:true,synthetic_records_excluded:quality.syntheticEvents,source_data_types:['manual_observation','manual_interval'],source_version:'SIMPUL v0.9',basis:'Local project proposal; independent calibration/validation pending'},quality,units:{observation_minutes:'min',dwell_seconds:'s',stopping_events_per_hour:'events/h',pedestrian_access_distance_m:'m',passing_vehicles:'vehicle count',max_queue_vehicles:'vehicle count'},observations:obs,field_intervals:fields,provenance:{'@context':{'prov':'http://www.w3.org/ns/prov#','dcterms':'http://purl.org/dc/terms/'},'@graph':[...obs,...fields].map(x=>({'@id':`urn:simpul:record:${encodeURIComponent(x.id)}`,'@type':'prov:Entity','prov:generatedAtTime':x.recorded_at_utc||x.observed_at_utc,'dcterms:source':'manual field input', 'dcterms:identifier':x.id}))},limitations:['ISO references inform design, not certification','No confirmed Fatmawati SUMO calibration','No independent field validation','Before/after metrics are descriptive, not causal','Manual observations are not automatically verified']};
+}
+function buildProjectGeoJSON(state){
+ const geo=state.project?.geo, lat=Number(geo?.lat), lon=Number(geo?.lon);
+ if(!geo||!Number.isFinite(lat)||!Number.isFinite(lon)||Math.abs(lat)>90||Math.abs(lon)>180)throw new Error('Koordinat lokasi proyek belum tersedia atau tidak valid. Pilih lokasi pada halaman Peta terlebih dahulu.');
+ return {type:'FeatureCollection',name:'SIMPUL study reference (not observed event coordinates)',features:[{type:'Feature',id:state.project.id,geometry:{type:'Point',coordinates:[lon,lat]},properties:{name:state.project.name,location_type:'project_reference_point',coordinate_accuracy:'not_verified',observation_location:'not_per_event',source:'user-selected geocoding',recorded_at_utc:new Date().toISOString()}}]};
+}
+function buildExecutiveBriefHTML(state){
+ const q=assessQuality(state);
+ const escape=v=>String(v??'').replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;').replaceAll('"','&quot;');
+ const rows=[['Manual event records',q.manualEvents],['Manual interval records',q.manualIntervals],['Completed manual sessions',q.completedManualSessions],['Matched before-after follow-ups',q.matchedFollowups],['Synthetic events excluded',q.syntheticEvents]];
+ return `<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>SIMPUL | International Research Brief</title><style>
+ @page{size:A4;margin:18mm}*{box-sizing:border-box}body{margin:0;font:12px/1.6 Arial,sans-serif;color:#1b3354;background:#f0f4f7}.sheet{max-width:800px;margin:20px auto;padding:40px 48px;background:#fff;box-shadow:0 6px 22px #17265e12}header{border-top:9px solid #0961ad;padding-top:20px}.eyebrow{color:#0961ad;font-size:10px;letter-spacing:1.5px;font-weight:800}h1{font-size:30px;line-height:1.2;margin:14px 0;color:#042573}h2{font-size:15px;margin-top:27px;color:#042573;border-bottom:1px solid #e1e9ee;padding-bottom:6px}p{margin:9px 0}table{border-collapse:collapse;width:100%;margin:15px 0}th,td{text-align:left;padding:8px 10px;border-bottom:1px solid #e6edf1}th{background:#042573;color:#fff}.warn{background:#fcf7eb;border-left:4px solid #d19c42;padding:14px}.foot{font-size:10px;color:#71869c;margin-top:30px;padding-top:12px;border-top:1px solid #dce8ed}@media print{body{background:#fff}.sheet{box-shadow:none;margin:0;max-width:none;padding:0}}</style></head><body><article class="sheet"><header><div class="eyebrow">SIMPUL / iSeeDesignITB / STUDY TECHNICAL BRIEF</div><h1>Mobility Access &amp; Pickup Management</h1><p><b>Case study:</b> ${escape(state.project?.name)} / ${escape(state.project?.district)}</p><p><b>Prepared (UTC):</b> ${escape(new Date().toISOString())}</p></header>
+ <div class="warn"><b>Evidence status: ${q.status==='not_ready'?'NOT READY':'EXPLORATORY ONLY'}</b><p>This document is generated from a research prototype. No real-world impact, certified standard conformance, traffic safety approval, or calibrated SUMO model is claimed.</p></div>
+ <h2>1. Problem and intended users</h2><p>SIMPUL is a mobile-first decision-support system for assessing vehicle pickup, drop-off and waiting activity near MRT Fatmawati, Jakarta, while monitoring implications for pedestrian access. Intended users include field surveyors, transport analysts, and transit operators.</p>
+ <h2>2. Engineering workflow</h2><p>Field observations → deterministic/AI-assisted analysis → A0 existing conditions, A1 pickup area optimization, A2 stopping rule evaluation → human review and follow-up measurement.</p>
+ <h2>3. Evidence inventory</h2><table><thead><tr><th>Data category</th><th>Count</th></tr></thead><tbody>${rows.map(([a,b])=>`<tr><td>${escape(a)}</td><td>${escape(b)}</td></tr>`).join('')}</tbody></table><p>Time representations follow ISO 8601 conventions; spatial exports use GeoJSON per RFC 7946 where reference coordinates exist. Data source metadata and caveats accompany the machine-readable evidence bundle.</p>
+ <h2>4. Quality findings</h2><table><thead><tr><th>Level</th><th>Finding</th></tr></thead><tbody>${q.issues.map(x=>`<tr><td>${escape(x.severity.toUpperCase())}</td><td>${escape(x.message)}</td></tr>`).join('')}</tbody></table>
+ <h2>5. Verification still required</h2><p>Independent vehicle-count annotations, calibrated and separately validated SUMO geometry/demand, accessibility and safety review, authorized field data collection, and a defensible before-after study are required before operational deployment.</p>
+ <h2>6. Standard references</h2><p>${STANDARD_REFERENCES.map(x=>escape(x.code)).join(' / ')}. These references inform engineering practices only; this application is not certified against any of them.</p>
+ <footer class="foot">Automatically generated / SIMPUL research prototype / No personal identifiers included in this brief / Methodology and field data require independent review.</footer></article></body></html>`;
+}
+
+
+// SOURCE MODULE: js/finance.js
+const nonneg=x=>Math.max(0,Number(x)||0);
+/**
+ * Forward-looking financial assumptions. Not booked revenue or actual invoices.
+ * 12-month model: assume opening sites are onboarded and billed for all 12 months;
+ * incremental monthly signups begin at month 1 and are billed from that month.
+ * Pilot conversions shown separately, not added to subscribed sites unless chosen by user.
+ */
+function forecast(f){
+  const count=Math.floor(nonneg(f.sites)),newPerMonth=nonneg(f.newSitesPerMonth),churn=Math.min(100,nonneg(f.churn))/100;
+  const monthly=nonneg(f.monthly), setup=nonneg(f.setup),pilotFee=nonneg(f.pilotFee),pilots=nonneg(f.pilots);
+  let active=count;const rows=[];
+  for(let i=1;i<=12;i++){
+    // Existing opening sites are present from month 1; additional signups join from month 2.
+    const newSites=i===1?0:newPerMonth;
+    active=Math.max(0,active*(1-churn)+newSites);
+    const pilotCount=i===1?pilots:0;
+    const setupRevenue=(i===1?count:newSites)*setup;
+    const recurring=active*monthly;
+    const pilotRevenue=pilotCount*pilotFee;
+    const revenue=setupRevenue+recurring+pilotRevenue;
+    const direct=nonneg(f.cloudMonthly)+active*nonneg(f.supportPerSite)+(i===1?count:newSites)*nonneg(f.implementationCostPerSite)+pilotCount*nonneg(f.pilotCost);
+    const fixed=nonneg(f.fixedMonthly)+nonneg(f.salesMonthly);
+    const costs=direct+fixed;
+    rows.push({month:i,active,recurring,setupRevenue,pilotRevenue,revenue,direct,fixed,costs,grossProfit:revenue-direct,net:revenue-costs});
+  }
+  const sum=k=>rows.reduce((s,r)=>s+r[k],0);
+  const revenue=sum('revenue'),grossProfit=sum('grossProfit'),net=sum('net'),direct=sum('direct'),costs=sum('costs');
+  const mrr=rows[11].recurring,arr=mrr*12;
+  const breakEven=rows.find(r=>r.net>=0)?.month??null;
+  let cumulative=0;let cashBreakEven=null;
+  for(const r of rows){cumulative+=r.net;if(cashBreakEven===null&&cumulative>=0)cashBreakEven=r.month;}
+  return {rows,revenue,grossProfit,net,direct,costs,grossMargin:revenue?grossProfit/revenue*100:0,netMargin:revenue?net/revenue*100:0,mrr,arr,breakEven,cashBreakEven,yearEndSites:rows[11].active,recurringTotal:sum('recurring'),setupTotal:sum('setupRevenue'),pilotTotal:sum('pilotRevenue')};
+}
+function directCostShare(f,siteCount){const count=Math.max(0,Number(siteCount)||0);const cloud=nonneg(f.cloudMonthly),support=count*nonneg(f.supportPerSite),fixed=nonneg(f.fixedMonthly),sales=nonneg(f.salesMonthly);const tot=cloud+support+fixed+sales||1;return [{label:'Cloud',value:cloud/tot*100,amount:cloud,css:'a'},{label:'Dukungan pelanggan',value:support/tot*100,amount:support,css:'b'},{label:'Operasional',value:fixed/tot*100,amount:fixed,css:'c'},{label:'Akuisisi',value:sales/tot*100,amount:sales,css:'d'}]}
+
+
+// SOURCE MODULE: js/views/reports.js
+
+
+function makeReport(){const s=getState(),o=observationStats(s.observations),r=s.lastAnalysis||heuristicSimulation(s.scenario),f=forecast(s.finance);return {meta:{title:'SIMPUL – Laporan kajian demonstrasi',createdAt:new Date().toISOString(),project:s.project.name,classification:'DATA SINTETISNSTRASI / BELUM TERVALIDASI',source:'Proposal SIMPUL iSeeDesignITB'},observations:{summary:o,records:s.observations},fieldAssessment:{manualIntervals:s.fieldReadings,baselineDiagnosis:diagnose(s.fieldReadings,s.observations,s.fieldSettings),beforeAfter:Object.fromEntries(['A0','A1','A2'].map(x=>[x,comparePeriods(s.fieldReadings,x)])),evidenceGate:evidenceGate(s.fieldReadings,s.sessions,s.observations),screeningCriteria:s.fieldSettings},internalDecisionLog:s.decisions,scenarios:r,financialModel:{assumptions:s.finance,forecast:f},evidenceQuality:assessQuality(s),limitations:['Kondisi Fatmawati belum diverifikasi dengan observasi lapangan yang memadai.','Model browser merupakan ilustrasi heuristik, bukan keluaran SUMO.','Jika backend SUMO digunakan, jaringannya adalah jaringan sintetis, belum terkalibrasi terhadap lokasi sebenarnya.','Pengamatan sebelum-sesudah bersifat deskriptif dan tidak cukup untuk membuktikan kausalitas.','Prediksi tidak sama dengan hasil implementasi.','Harga dan revenue merupakan asumsi bisnis, bukan transaksi.']};}
+function renderReports(){const s=getState(),o=observationStats(s.observations),r=s.lastAnalysis||heuristicSimulation(s.scenario),f=forecast(s.finance);return `${pageHead('DOCUMENTATION / EVIDENCE','Laporan & Ekspor','Unduh data dan hasil analisis beserta asumsi yang diperlukan untuk mereproduksi evaluasi.',`${button(`${icon('download')} Unduh JSON lengkap`,'export-report','primary')}`)}
+${note('<strong>Periksa keterbatasan sebelum dibagikan:</strong> laporan memuat hasil simulasi dan/atau deteksi CCTV AI beserta asumsinya, sehingga dapat direproduksi dan dikalibrasi lebih lanjut.')}
+<div class="cards three">${[['Ekspor observasi','CSV untuk ditinjau atau dikalibrasi lebih lanjut.','export-observations','database'],['Laporan proyek','JSON: asumsi, rekaman, skenario, dan keterbatasan.','export-report','files']].map(x=>`<article class="card"><div class="stat-top"><div class="stat-icon">${icon(x[3],20)}</div>${tag('READY','blue')}</div><h2 style="font-size:13px;color:#273a5d">${x[0]}</h2><p class="helper">${x[1]}</p><div style="margin-top:15px">${button(`${icon('download')} Unduh` ,x[2])}</div></article>`).join('')}</div>
+<div class="section-h"><h2>Ekspor dengan standar data internasional</h2></div><section class="card"><p class="helper">Untuk pertukaran dengan analis atau institusi lain, gunakan evidence bundle (UTC, unit SI, provenance, data deteksi) dan GeoJSON untuk titik referensi lokasi proyek. Keduanya tidak mengklaim validasi lapangan.</p><div class="head-buttons" style="margin-top:14px">${button('Unduh evidence bundle','export-evidence-package','primary')}${button('GeoJSON lokasi studi','export-study-geojson')}${button('Executive brief (EN)','export-executive-brief')}</div></section><div class="section-h"><h2>Ringkasan lampiran bukti</h2></div><div class="two-cols"><section class="card">${cardHeading('Informasi studi','Sumber: workspace browser')}<div class="result-pill"><span>Proyek</span><strong>${safe(s.project.name)}</strong></div><div class="result-pill"><span>Data observasi</span><strong>${o.count} kejadian</strong></div><div class="result-pill"><span>Data nyata</span><strong>${o.real} kejadian</strong></div><div class="result-pill"><span>Keluaran skenario</span><strong>${r.engine==='sumo'?'SUMO sintetis':'Model heuristik'}</strong></div><div class="result-pill"><span>Status kajian</span><strong>Menunggu validasi CCTV</strong></div></section></div>
+<div class="section-h"><h2>Ringkasan bukti verifikasi dan kekurangan</h2></div><section class="card"><ul class="list-clean">${[['Peta dan geometri','Peta skematis antarmuka hanya ilustrasi. Data OSM perlu diverifikasi dan diatribusikan pada peta produksi.'],['Deteksi peristiwa','Model CCTV AI belum diuji nilai F1-nya. Perlu ground truth dan anotasi independen.'],['Kalibrasi SUMO','Belum tersedia data observasi dan model ruas Fatmawati yang tervalidasi.'],['Analisis SI / Gemini','Integrasi cloud dapat ditambahkan pada backend; demo browser tidak mengaku sebagai keluaran Gemini.'],['Manfaat bagi pengguna','Perlu uji waktu kerja serta wawancara penerimaan dengan pengguna aktual.']].map(x=>`<li><div class="li-ico">${icon('alert-circle',15)}</div><div><strong>${x[0]}</strong><p>${x[1]}</p></div></li>`).join('')}</ul></section>`}
+
+
+// SOURCE MODULE: js/vehicle-problem.js
+/** Vehicle-first operational diagnostics, using only logged events.
+ * This module never identifies drivers or assigns offences. The observer's
+ * yes/no/unknown impact fields are retained exactly (unknown != no).
+ */
+const ACTIVITIES=Object.freeze(['Jemput','Turun','Menunggu']);
+const ACTIVITY_NAMES=Object.freeze({Jemput:'Menjemput penumpang',Turun:'Menurunkan penumpang',Menunggu:'Menunggu penumpang'});
+const impactFields=Object.freeze({lane:'laneBlocked',pedestrian:'pedestrianBlocked',queue:'queueObserved'});
+const numeric=value=>(value===null||value===undefined||value==='')?null:(Number.isFinite(Number(value))&&Number(value)>=0?Number(value):null);
+function vehicleProblemSummary(events=[],filter={},thresholdSec=60){
+ const source=filter.source==='manual'?'manual':'demo';
+ const available=events.filter(e=>e?.source===source);
+ const zones=[...new Set(available.map(e=>e.zone).filter(Boolean))].sort();
+ const filtered=available.filter(e=>(!filter.type||filter.type==='all'||e.type===filter.type)&&(!filter.zone||filter.zone==='all'||e.zone===filter.zone));
+ const threshold=Math.max(5,Math.min(600,Number(thresholdSec)||60));
+ const counts=Object.fromEntries(ACTIVITIES.map(k=>[k,filtered.filter(e=>e.type===k).length]));
+ const validDurations=filtered.map(e=>numeric(e.duration)).filter(x=>x!==null);
+ const avgDwell=validDurations.length?Math.round(validDurations.reduce((a,b)=>a+b,0)/validDurations.length):null;
+ const overThreshold=filtered.filter(e=>numeric(e.duration)!==null&&numeric(e.duration)>threshold).length;
+ const impacts=Object.fromEntries(Object.entries(impactFields).map(([key,field])=>{
+   const yes=filtered.filter(e=>e[field]==='yes').length;
+   const no=filtered.filter(e=>e[field]==='no').length;
+   return [key,{yes,no,unknown:filtered.length-yes-no}];
+ }));
+ const zoneRows=[...new Set(filtered.map(e=>e.zone).filter(Boolean))].map(zone=>{
+   const group=filtered.filter(e=>e.zone===zone),known=group.filter(e=>e.pedestrianBlocked==='yes'||e.laneBlocked==='yes'||e.queueObserved==='yes').length;
+   return {zone,count:group.length,waiting:group.filter(e=>e.type==='Menunggu').length,aboveThreshold:group.filter(e=>numeric(e.duration)!==null&&numeric(e.duration)>threshold).length,knownImpact:known};
+ }).sort((a,b)=>b.knownImpact-a.knownImpact||b.aboveThreshold-a.aboveThreshold||b.count-a.count);
+ const hypotheses=[];
+ if(!filtered.length){hypotheses.push({code:'A0',title:'Kumpulkan bukti awal',reason:'Belum ada kejadian untuk filter yang dipilih.',action:'Mulai observasi kendaraan pada zona dan periode yang terdefinisi.'});}
+ else {
+   if(counts.Menunggu>0||overThreshold>0)hypotheses.push({code:'A2',title:'Uji aturan durasi dan lokasi berhenti',reason:`${counts.Menunggu} laporan menunggu dan ${overThreshold} durasi di atas ambang analitis ${threshold} detik.`,action:'Periksa durasi dan titik berhenti, lalu bandingkan A2 dengan A0 melalui simulasi.'});
+   if(zoneRows.length)hypotheses.push({code:'A1',title:'Periksa kapasitas dan penempatan area jemput',reason:`${zoneRows[0].zone} memiliki ${zoneRows[0].count} kejadian pada filter ini.`,action:'Ukur kapasitas area jemput dan akses sebelum menguji pemanfaatan fasilitas pada A1.'});
+   if(impacts.pedestrian.yes>0||impacts.lane.yes>0)hypotheses.unshift({code:'SAFETY',title:'Prioritaskan inspeksi keselamatan',reason:`${impacts.pedestrian.yes} laporan akses pejalan kaki terhalang; ${impacts.lane.yes} laporan lajur terhalang.`,action:'Lakukan tinjauan manusia di lapangan sebelum menyimpulkan kelayakan penataan.'});
+ }
+ return {source,sourceCount:available.length,filtered,counts,zones,threshold,avgDwell,overThreshold,impacts,zoneRows,hypotheses,manualAvailable:events.filter(e=>e.source==='manual').length,demoAvailable:events.filter(e=>e.source==='demo').length};
+}
+
+
+// SOURCE MODULE: js/views/vehicles.js
+
+
+
+
+const options=(values,active)=>values.map(([id,label])=>`<option value="${safe(id)}" ${id===active?'selected':''}>${safe(label)}</option>`).join('');
+const dash=n=>n===null?'–':String(n);
+const bar=(n,max)=>`<span class="vehicle-bar"><i style="width:${max?Math.max(3,Math.round(n/max*100)):0}%"></i></span>`;
+function renderVehicles(){
+ const s=getState(),filter=s.vehicleView||{source:'demo',type:'all',zone:'all'},d=vehicleProblemSummary(s.observations,filter,s.fieldSettings?.dwellThresholdSec);
+ const max=Math.max(1,...Object.values(d.counts)),context=d.source==='demo';
+ return `${pageHead('PROBLEM SOLVING / TRANSPORTASI','Masalah Kendaraan di Titik Jemput','Dari aktivitas kendaraan yang teramati, telusuri dampaknya pada arus lalu lintas dan akses pejalan kaki. SIMPUL membantu memilih alternatif yang perlu diuji.',`${button(`${icon('cctv',16)} Buka CCTV AI`,'goto-cctv','primary')} ${button(`${icon('map-pinned',16)} Peta koridor`,'goto-mapview')}`)}
+ <section class="vehicle-story" aria-label="Alur penyebab dan keputusan"><div class="vehicle-story-top"><div><span class="vehicle-eyebrow">PERTANYAAN PENELITIAN</span><h2>Ketika kendaraan berhenti atau menunggu, apa yang terjadi pada jalan dan akses MRT?</h2><p>Kendaraan pengumpan membutuhkan ruang untuk naik-turun penumpang. Jika ruang dan permintaan tidak seimbang, antrean atau hambatan akses dapat terjadi. Hubungan tersebut harus diperiksa melalui observasi dan simulasi.</p></div><div class="vehicle-story-illustration" aria-hidden="true"><svg viewBox="0 0 280 155" fill="none"><rect x="8" y="14" width="264" height="127" rx="18" fill="#fff" opacity=".12"/><path d="M12 92H268" stroke="#deebf6" stroke-width="36" opacity=".65"/><path d="M16 92H264" stroke="#174e76" stroke-width="2" stroke-dasharray="10 9"/><rect x="75" y="69" width="60" height="31" rx="8" fill="#0963ac" stroke="#ffffff" stroke-width="3"/><rect x="145" y="77" width="49" height="24" rx="7" fill="#f5b84b" stroke="#ffffff" stroke-width="3"/><path d="M104 58v-24" stroke="#f5b84b" stroke-width="3" stroke-linecap="round"/><path d="m96 42 8-8 8 8" stroke="#f5b84b" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><text x="20" y="45" fill="white" font-size="11" font-weight="700">BERHENTI</text><text x="182" y="126" fill="white" font-size="11">ARUS MELINTAS</text></svg></div></div>
+ <div class="vehicle-causal"><div><span>01 / PERILAKU</span><b>Jemput / Turun / Menunggu</b><small>Kejadian dan durasi kendaraan</small></div><span class="vehicle-causal-arrow">${icon('arrow-right',20)}</span><div><span>02 / KONDISI</span><b>Ruang tepi jalan & antrean</b><small>Hambatan yang dilaporkan pengamat</small></div><span class="vehicle-causal-arrow">${icon('arrow-right',20)}</span><div><span>03 / DAMPAK</span><b>Arus dan akses pejalan</b><small>Harus diukur, bukan diasumsikan</small></div><span class="vehicle-causal-arrow">${icon('arrow-right',20)}</span><div><span>04 / PENANGANAN</span><b>Uji A1 / A2 terhadap A0</b><small>Simulasi & keputusan dengan bukti</small></div></div></section>
+ <section class="vehicle-filter-panel" aria-label="Filter catatan kendaraan"><div><span class="vehicle-eyebrow dark">PILIH DATA YANG DIANALISIS</span><h3>Eksplorasi kejadian kendaraan</h3></div><div class="vehicle-filter-grid"><label>Sumber data<select id="vehicle-source" class="control">${options([['demo','Simulasi Fatmawati'],['manual','Deteksi CCTV AI']],d.source)}</select></label><label>Aktivitas<select id="vehicle-type" class="control">${options([['all','Semua aktivitas'],...ACTIVITIES.map(t=>[t,ACTIVITY_NAMES[t]])],filter.type||'all')}</select></label><label>Zona<select id="vehicle-zone" class="control">${options([['all','Semua zona'],...d.zones.map(z=>[z,z])],filter.zone||'all')}</select></label></div></section>
+ <div class="vehicle-mode-status ${context?'demo':''}">${icon(context?'flask-conical':'clipboard-check',17)} <b>${context?'SIMULASI FATMAWATI / SIAP DATA CCTV':'DETEKSI CCTV AI / BELUM DIVERIFIKASI'}</b><span>${context?'Angka di bawah berasal dari skenario simulasi dan akan diganti otomatis oleh deteksi CCTV AI.':'Data dari deteksi CCTV AI; dampak dan aturan masih memerlukan pemeriksaan.'}</span></div>
+ <section class="vehicle-kpis" aria-label="Indikator kejadian"><article><span>Kejadian tercatat</span><strong>${d.filtered.length}</strong><small>${d.sourceCount} kejadian pada sumber terpilih</small></article><article><span>Durasi berhenti rata-rata</span><strong>${dash(d.avgDwell)}<em> s</em></strong><small>Hanya dari durasi yang tercatat</small></article><article><span>Lewati ambang analitis</span><strong>${d.overThreshold}</strong><small>Durasi &gt; ${d.threshold} detik, bukan pelanggaran</small></article><article><span>Laporan akses pejalan terhalang</span><strong>${d.impacts.pedestrian.yes}</strong><small>${d.impacts.pedestrian.unknown} belum diperiksa</small></article></section>
+ <div class="vehicle-columns"><section class="vehicle-panel"><header><div><span class="vehicle-eyebrow dark">PERILAKU KENDARAAN</span><h3>Aktivitas yang tercatat</h3></div><button class="vehicle-text-link" data-route="cctv">Buka CCTV AI ${icon('arrow-right',15)}</button></header><div class="vehicle-bars">${ACTIVITIES.map(t=>`<div class="vehicle-bar-row"><div><b>${ACTIVITY_NAMES[t]}</b><span>${d.counts[t]} kejadian</span></div>${bar(d.counts[t],max)}</div>`).join('')}</div><div class="vehicle-notice">${icon('alert-circle',16)} Periode pengamatan tidak selalu sama. Gunakan Diagnosis Hambatan untuk membandingkan kejadian per jam berdasarkan interval.</div></section>
+ <section class="vehicle-panel"><header><div><span class="vehicle-eyebrow dark">DAMPAK YANG DILAPORKAN</span><h3>Indikator hambatan</h3></div></header><div class="vehicle-impact-list">${[['Jalur pejalan terhalang',d.impacts.pedestrian],['Lajur kendaraan terhalang',d.impacts.lane],['Antrean terbentuk',d.impacts.queue]].map(([name,entry])=>`<div class="vehicle-impact"><strong>${name}</strong><div><span class="vehicle-confirmed">${entry.yes} dilaporkan</span><span>${entry.unknown} tidak diketahui</span></div></div>`).join('')}</div><p class="vehicle-hint">Status <b>tidak diketahui</b> tidak boleh dihitung sebagai bukti tidak terjadi hambatan. Ini adalah indikator dari data kejadian, belum pembuktian kausal.</p></section></div>
+ <section class="vehicle-panel vehicle-zone-panel"><header><div><span class="vehicle-eyebrow dark">DI MANA PERLU DIPERIKSA</span><h3>Zona kejadian kendaraan</h3><p>Peringkat ini menunjukkan jumlah catatan terpilih, bukan tingkat kemacetan. Untuk perbandingan intensitas antarzona, gunakan interval observasi dengan durasi jelas.</p></div><button class="vehicle-text-link" data-route="mapview">Buka peta ${icon('arrow-right',15)}</button></header><div class="vehicle-zone-grid">${d.zoneRows.length?d.zoneRows.map((z,i)=>`<article class="vehicle-zone-card"><span class="vehicle-zone-rank">ZONA ${String(i+1).padStart(2,'0')}</span><strong>${safe(z.zone)}</strong><div><b>${z.count}</b><span>kejadian tercatat</span></div><small>${z.waiting} menunggu / ${z.aboveThreshold} melebihi ambang / ${z.knownImpact} laporan hambatan</small></article>`).join(''):'<p class="vehicle-empty">Belum ada zona dengan kejadian sesuai filter.</p>'}</div></section>
+ <section class="vehicle-panel vehicle-solution-panel"><header><div><span class="vehicle-eyebrow dark">DARI GEJALA KE INTERVENSI</span><h3>Opsi penyelesaian yang perlu diuji</h3><p>Tindakan berikut berasal dari aturan penapisan transparan, bukan keputusan otomatis.</p></div></header><div class="vehicle-actions-grid">${d.hypotheses.map(h=>`<article class="vehicle-action"><span class="vehicle-scenario">${safe(h.code)}</span><h4>${safe(h.title)}</h4><p>${safe(h.reason)}</p><small>${safe(h.action)}</small></article>`).join('')}</div><div class="vehicle-solution-buttons"><button class="btn primary" data-route="diagnosis">Buka diagnosis ${icon('arrow-right',16)}</button><button class="btn" data-route="simulation">Uji A0 / A1 / A2 ${icon('arrow-right',16)}</button><button class="btn" data-route="evaluation">Tinjau akses & keputusan ${icon('arrow-right',16)}</button></div></section>
+ <section class="vehicle-panel vehicle-ledger"><header><div><span class="vehicle-eyebrow dark">SOURCE TRACEABILITY</span><h3>Jejak kejadian kendaraan</h3><p>Waktu, zona, aktivitas, dan durasi. Tidak mencatat pelat nomor atau identitas pengemudi.</p></div></header><div class="table-wrap"><table class="data-table"><thead><tr><th>Waktu</th><th>Zona</th><th>Jenis</th><th>Kendaraan</th><th>Durasi</th><th>Sumber</th></tr></thead><tbody>${d.filtered.slice().sort((a,b)=>new Date(b.at)-new Date(a.at)).slice(0,30).map(e=>`<tr><td>${safe(shortDate(e.at))} / ${safe(clock(e.at))}</td><td>${safe(e.zone||'-')}</td><td>${safe(e.type||'-')}</td><td>${safe(e.vehicle||'-')}</td><td>${Number.isFinite(Number(e.duration))?Number(e.duration):'-'} s</td><td>${context?'Simulasi':'CCTV AI'}</td></tr>`).join('')}</tbody></table>${!d.filtered.length?'<div class="vehicle-empty">Tidak ada kejadian untuk filter ini. Catat observasi manual atau pilih data ilustratif.</div>':''}</div></section>
+ ${note('<strong>Batas interpretasi:</strong> SIMPUL mengkaji aktivitas berhenti kendaraan dan keterbatasan ruang penjemputan. Pencarian kejadian tidak membuktikan pelanggaran atau identitas kendaraan. Simulasi A0/A1/A2 belum terkalibrasi untuk Fatmawati.')}`;
+}
+
+
 // SOURCE MODULE: js/views/cctv.js
 /**
  * CCTV AI Live page: interactive 3D simulation of the MRT Fatmawati frontage with
@@ -1548,7 +1531,7 @@ function renderCctv(){
       <h1>CCTV AI · Simulasi 3D Fatmawati</h1>
       <p>Model 3D kawasan Stasiun MRT Fatmawati. Kendaraan bergerak mengikuti simulasi lalu lintas; AI virtual menghitung kendaraan dan menandai yang berhenti di lajur. Ganti skenario untuk melihat dampaknya.</p>
     </div>
-    <div class="cctv-status" data-cctv-status data-state="idle"><span class="cctv-status-dot"></span><div><strong data-cctv-status-label>AI belum terhubung</strong><small data-cctv-status-sub>Simulasi 3D sintetis siap diputar</small></div></div>
+    <div class="cctv-status" data-cctv-status data-state="idle"><span class="cctv-status-dot"></span><div><strong data-cctv-status-label>AI belum terhubung</strong><small data-cctv-status-sub>Simulasi 3D Fatmawati siap diputar</small></div></div>
   </header>
 
   <div class="sim-scenarios" role="radiogroup" aria-label="Skenario penataan">
@@ -1567,7 +1550,7 @@ function renderCctv(){
         <div class="cctv-scanline" aria-hidden="true"></div>
         <div class="cctv-hud cctv-hud-tl"><span class="cctv-rec"></span><span data-cctv-camlabel><b>UDARA</b> · Seluruh kawasan</span></div>
         <div class="cctv-hud cctv-hud-tr"><span data-sim-clock>17:00</span> · <span data-cctv-clock>--:--:-- WIB</span></div>
-        <div class="cctv-hud cctv-hud-bl" data-cctv-source>SIMULASI 3D · SINTETIS</div>
+        <div class="cctv-hud cctv-hud-bl" data-cctv-source>SIMULASI 3D · FATMAWATI</div>
         <div class="cctv-hud cctv-hud-br" data-cctv-fps>0 frame/dtk</div>
         <i class="cctv-corner c1"></i><i class="cctv-corner c2"></i><i class="cctv-corner c3"></i><i class="cctv-corner c4"></i>
         <div class="sim-legend" aria-hidden="true"><span class="lg-move">Bergerak</span><span class="lg-stop">Berhenti</span><span class="lg-over">&gt; ${threshold} dtk</span></div>
@@ -1590,7 +1573,7 @@ function renderCctv(){
         <label>Kendaraan yang menaikkan/menurunkan penumpang <output data-sim-out="pickup">18</output>%<input type="range" min="0" max="40" step="1" value="18" data-sim="pickup"></label>
         <label class="sim-opacity">Opasitas stasiun <output data-sim-out="opacity">100</output>%<small>Turunkan untuk melihat lalu lintas di bawah stasiun</small><input type="range" min="10" max="100" step="5" value="100" data-sim="opacity" aria-label="Opasitas model stasiun"></label>
       </div>
-      <p class="cctv-privacy">${icon('shield-check',14)} Model 3D skematis dari foto kawasan, bukan GIS terukur. Angka simulasi ilustratif dan belum dikalibrasi dengan data lapangan. AI hanya menghitung jenis kendaraan dan durasi berhenti, tanpa plat nomor dan wajah.</p>
+      <p class="cctv-privacy">${icon('shield-check',14)} Model 3D dibangun dari foto dan dimensi asli Stasiun MRT Fatmawati (175 m × 22,3 m). Angka simulasi belum dikalibrasi dan siap dikalibrasi dengan rekaman CCTV. AI hanya menghitung jenis kendaraan dan durasi berhenti, tanpa plat nomor dan wajah.</p>
     </div>
 
     <aside class="cctv-side">
@@ -1648,6 +1631,28 @@ function renderCctv(){
 }
 
 
+// SOURCE MODULE: js/ai-status.js
+/**
+ * Presentation-only status of the external CCTV AI model. js/cctv-controller.js reports
+ * each batch of real detections (source 'ai'); Beranda reads it to show whether the AI is
+ * connected. Nothing here is stored or treated as a field observation.
+ */
+const AI_STALE_MS=15000;
+const aiState={model:'',lastAt:0,counts:{car:0,motorcycle:0,bus:0},stopped:0,over:0};
+
+/** Record the latest AI detection summary. */
+function reportAiStatus({model='',counts={},stopped=0,over=0}={},now=Date.now()){
+  aiState.model=String(model||'').slice(0,40);
+  aiState.lastAt=now;
+  aiState.counts={car:Number(counts.car)||0,motorcycle:Number(counts.motorcycle)||0,bus:Number(counts.bus)||0};
+  aiState.stopped=Number(stopped)||0;aiState.over=Number(over)||0;
+}
+/** Current status; `connected` is true only while detections keep arriving. */
+function getAiStatus(now=Date.now()){
+  return {...aiState,counts:{...aiState.counts},connected:aiState.lastAt>0&&now>=aiState.lastAt&&now-aiState.lastAt<AI_STALE_MS};
+}
+
+
 // SOURCE MODULE: js/demo-story.js
 /** Presentation-only story. No observations, measurements or decisions are saved. */
 const DEMO_SECONDS=8;
@@ -1691,6 +1696,7 @@ function advanceDemo(state,seconds){
 
 
 
+
 const CCTV_URL='https://jakcctv.jakarta.go.id/publik';
 
 function miniMap(){
@@ -1703,7 +1709,7 @@ function heroMap(){
 }
 
 function renderOverview(){
- const s=getState(),stats=observationStats(s.observations),manual=s.observations.filter(o=>o.source==='manual').length,interval=(s.fieldReadings||[]).filter(o=>o.source==='manual').length,reviewed=(s.sessions||[]).filter(x=>x.source==='manual'&&x.status==='Selesai').length,evidenceReady=manual>0&&interval>0;
+ const ai=getAiStatus(),s=getState(),stats=observationStats(s.observations),manual=s.observations.filter(o=>o.source==='manual').length,interval=(s.fieldReadings||[]).filter(o=>o.source==='manual').length,reviewed=(s.sessions||[]).filter(x=>x.source==='manual'&&x.status==='Selesai').length,evidenceReady=manual>0&&interval>0;
  const steps=t('overview.steps').map((title,i)=>[title,t('overview.stepBodies')[i],['car-front','scan-search','git-compare-arrows','clipboard-check'][i],['vehicles','diagnosis','simulation','evaluation'][i],t('overview.stepActions')[i]]);
  const en=getLanguage()==='en';
  return `<section class="mc-hero">
@@ -1715,10 +1721,10 @@ function renderOverview(){
     <button type="button" class="btn mc-cta" data-action="home-demo-play" aria-pressed="false">${icon('play',20)} <span data-demo-play-label>${en?'Play full demo':'Putar demo lengkap'}</span></button>
     <button type="button" class="btn mc-ghost" data-route="cctv">${icon('cctv',18)} ${en?'Explore CCTV 3D':'Eksplorasi CCTV 3D'}</button>
    </div>
-   <div class="mc-trust">${icon('shield-check',15)} ${en?'No licence plates or faces · Example data is synthetic':'Tanpa plat nomor &amp; wajah · Data contoh bersifat sintetis'}</div>
+   <div class="mc-trust">${icon('shield-check',15)} ${en?'No licence plates or faces · Simulation built on the real site':'Tanpa plat nomor &amp; wajah · Simulasi berbasis lokasi asli'}</div>
   </div>
   <div class="mc-preview" data-viewer="home" tabindex="-1" aria-label="${en?'Full guided demo':'Demo lengkap terpandu'}">
-   <div class="mc-preview-top"><span>${en?'SCHEMATIC 3D · SYNTHETIC':'MODEL 3D SKEMATIS · SINTETIS'}</span><div class="demo-view-tools"><button type="button" data-action="viewer-fullscreen" aria-pressed="false">${icon('maximize',15)}<span data-fullscreen-label>${en?'Full screen':'Layar penuh'}</span></button><button type="button" data-action="home-demo-zoom-in" aria-label="${en?'Zoom in':'Perbesar'}">${icon('plus',14)}</button><button type="button" data-action="home-demo-zoom-out" aria-label="${en?'Zoom out':'Perkecil'}">${icon('minus',14)}</button><button type="button" data-action="home-demo-camera-reset">${icon('refresh-cw',14)} ${en?'Reset camera':'Reset kamera'}</button><button type="button" class="demo-collapse" data-action="home-demo-close">${en?'Compact view':'Ringkas tampilan'} ${icon('chevron-down',14)}</button></div></div>
+   <div class="mc-preview-top"><span>${en?'3D MODEL · FATMAWATI SIMULATION':'MODEL 3D · SIMULASI FATMAWATI'}</span><div class="demo-view-tools"><button type="button" data-action="viewer-fullscreen" aria-pressed="false">${icon('maximize',15)}<span data-fullscreen-label>${en?'Full screen':'Layar penuh'}</span></button><button type="button" data-action="home-demo-zoom-in" aria-label="${en?'Zoom in':'Perbesar'}">${icon('plus',14)}</button><button type="button" data-action="home-demo-zoom-out" aria-label="${en?'Zoom out':'Perkecil'}">${icon('minus',14)}</button><button type="button" data-action="home-demo-camera-reset">${icon('refresh-cw',14)} ${en?'Reset camera':'Reset kamera'}</button><button type="button" class="demo-collapse" data-action="home-demo-close">${en?'Compact view':'Ringkas tampilan'} ${icon('chevron-down',14)}</button></div></div>
    <div class="mc-preview-scene" data-home-camera tabindex="0" role="group" aria-label="${en?'Free 3D camera':'Kamera 3D bebas'}" aria-describedby="home-camera-help">
     <canvas class="mc-canvas" data-home-canvas aria-label="${en?'3D simulation of the MRT Fatmawati area':'Simulasi 3D kawasan Stasiun MRT Fatmawati'}"></canvas>
     <div class="demo-curtain" data-demo-curtain><button type="button" class="demo-launch" data-action="home-demo-play" aria-pressed="false">${icon('play',32)}<span data-demo-play-label>${en?'Play full demo':'Putar demo lengkap'}</span><small>${en?'48 seconds · 6 chapters · pause anytime':'48 detik · 6 bab · bisa dijeda'}</small></button></div>
@@ -1735,23 +1741,23 @@ function renderOverview(){
    <div class="demo-toolbar"><button type="button" class="demo-play" data-action="home-demo-play" aria-pressed="false">${icon('play',16)}<span data-demo-play-label>${en?'Play full demo':'Putar demo lengkap'}</span></button><button type="button" data-action="home-demo-prev" disabled aria-label="${en?'Previous chapter':'Bab sebelumnya'}">${icon('arrow-left',18)}</button><button type="button" data-action="home-demo-next" aria-label="${en?'Next chapter':'Bab berikutnya'}">${icon('chevron-right',18)}</button><button type="button" data-action="home-demo-replay" aria-label="${en?'Replay from start':'Ulangi dari awal'}">${icon('refresh-cw',16)}</button><small data-demo-status>${en?'Press Play to start':'Tekan Play untuk mulai'}</small></div>
    <div class="demo-story" aria-live="polite" aria-atomic="true"><span class="demo-count" data-demo-count>01 / 06 · A0</span><h2 data-demo-title>${en?DEMO_STAGES[0].title[1]:DEMO_STAGES[0].title[0]}</h2><p data-demo-text>${en?DEMO_STAGES[0].text[1]:DEMO_STAGES[0].text[0]}</p><div class="demo-question">${icon('clipboard-list',17)}<span><b>${en?'FIELD CHECK':'CEK DI LAPANGAN'}</b><span data-demo-question>${en?DEMO_STAGES[0].question[1]:DEMO_STAGES[0].question[0]}</span></span></div></div>
    <div class="demo-timeline" role="group" aria-label="${en?'Choose a demo chapter':'Pilih bab demo'}">${DEMO_STAGES.map((stage,i)=>`<button type="button" data-action="home-demo-step" data-index="${i}" aria-pressed="${i===0}"><span>0${i+1}</span>${en?stage.label[1]:stage.label[0]}</button>`).join('')}</div>
-   <div class="demo-summary" data-demo-summary hidden><h3>${en?'Matched model comparison':'Perbandingan model dengan input setara'}</h3><p>${en?'Illustrative means · 2,100 vehicles/h · 18% pickup · seed 11 · 300 model seconds after 90 s warm-up.':'Rata-rata ilustratif · 2.100 kendaraan/jam · 18% jemput · seed 11 · 300 detik model setelah pemanasan 90 dtk.'}</p><div class="demo-results">${['A0','A1','A2'].map(code=>`<article data-demo-result="${code}"><b>${code}</b><span><strong data-result-speed>–</strong> km/${en?'h':'jam'}</span><span><strong data-result-queue>–</strong> m ${en?'queue':'antrean'}</span></article>`).join('')}</div><p>${en?'No verified improvement is claimed. Collect manual observations, calibrate, and review safety before recommending.':'Belum ada klaim perbaikan terverifikasi. Kumpulkan observasi manual, kalibrasi, dan tinjau keselamatan sebelum merekomendasikan.'}</p><div class="demo-next-actions"><button type="button" data-route="cctv">${en?'Open CCTV AI':'Buka CCTV AI'} ${icon('arrow-right',15)}</button><button type="button" data-route="evaluation">${en?'Human evaluation':'Evaluasi manusia'} ${icon('arrow-right',15)}</button></div></div>
-   <div class="demo-disclaimer">${icon('info',14)} ${en?'Synthetic, uncalibrated model. AI is not connected. No demo observations are saved.':'Model sintetis, belum dikalibrasi. AI belum terhubung. Demo tidak menyimpan observasi.'}</div>
+   <div class="demo-summary" data-demo-summary hidden><h3>${en?'Matched model comparison':'Perbandingan model dengan input setara'}</h3><p>${en?'Simulation averages · 2,100 vehicles/h · 18% pickup · seed 11 · 300 model seconds after 90 s warm-up.':'Rata-rata simulasi · 2.100 kendaraan/jam · 18% jemput · seed 11 · 300 detik model setelah pemanasan 90 dtk.'}</p><div class="demo-results">${['A0','A1','A2'].map(code=>`<article data-demo-result="${code}"><b>${code}</b><span><strong data-result-speed>–</strong> km/${en?'h':'jam'}</span><span><strong data-result-queue>–</strong> m ${en?'queue':'antrean'}</span></article>`).join('')}</div><p>${en?'No verified improvement is claimed. Connect the CCTV AI, calibrate, and review safety before recommending.':'Belum ada klaim perbaikan terverifikasi. Hubungkan CCTV AI, kalibrasi, dan tinjau keselamatan sebelum merekomendasikan.'}</p><div class="demo-next-actions"><button type="button" data-route="cctv">${en?'Open CCTV AI':'Buka CCTV AI'} ${icon('arrow-right',15)}</button><button type="button" data-route="evaluation">${en?'Human evaluation':'Evaluasi manusia'} ${icon('arrow-right',15)}</button></div></div>
+   <div class="demo-disclaimer">${icon('info',14)} ${en?'Simulation built from the real station geometry, ready to calibrate with CCTV data. Nothing is saved.':'Simulasi dari geometri asli stasiun, siap dikalibrasi dengan data CCTV. Tidak ada data yang disimpan.'}</div>
   </div>
  </section>
  <div class="mc-stats">
   <div><strong>${stats.count}</strong><span>${en?'Recorded events':'Kejadian tercatat'}</span></div>
   <div><strong>3</strong><span>${en?'Pickup zones monitored':'Zona penjemputan dipantau'}</span></div>
   <div><strong>A0 · A1 · A2</strong><span>${en?'Street alternatives tested':'Alternatif penataan diuji'}</span></div>
-  <div><strong>${manual}</strong><span>${en?'Manual field observations':'Observasi lapangan manual'}</span></div>
+  <div><strong>${ai.connected?'AI LIVE':(en?'3D sim':'Simulasi 3D')}</strong><span>${en?'CCTV AI detection source':'Sumber deteksi CCTV AI'}</span></div>
  </div>
  ${renderIntro()}
  <div class="section-h solution-heading"><h2>${t('overview.flowTitle')}</h2><small>${t('overview.flowLabel')}</small></div>
  <div class="solution-steps">${steps.map((x,i)=>`<article class="solution-step"><div class="solution-step-top"><span>0${i+1}</span>${icon(x[2],21)}</div><h3>${x[0]}</h3><p>${x[1]}</p><button type="button" data-route="${x[3]}">${x[4]} ${icon('arrow-right',16)}</button></article>`).join('')}</div>
- <div class="section-h"><h2>${t('overview.evidenceTitle')}</h2><small>${t('overview.evidenceLabel')}</small></div>
- <section class="solution-evidence"><div class="solution-evidence-head"><div><span class="solution-kicker">SOURCE & QUALITY GATE</span><h3>${evidenceReady?t('overview.evidenceReady'):t('overview.evidenceEmpty')}</h3><p>${evidenceReady?t('overview.evidenceReadyText'):t('overview.evidenceEmptyText')}</p></div><span class="solution-state">${evidenceReady?t('overview.review'):t('overview.notValidated')}</span></div><div class="solution-evidence-metrics"><div><strong>${manual}</strong><span>${t('overview.manualEvents')}</span></div><div><strong>${interval}</strong><span>${t('overview.manualIntervals')}</span></div><div><strong>${reviewed}</strong><span>${t('overview.sessions')}</span></div><div><strong>${stats.synthetic}</strong><span>${t('overview.illustrative')}</span></div></div><div class="solution-evidence-actions">${button(`${t('overview.record')} ${icon('arrow-right',16)}`,'goto-cctv','primary')}${button(t('overview.survey'),'goto-survey')}${button(t('overview.quality'),'goto-standards')}</div></section>
- <div class="solution-two-col"><section class="card solution-map-card">${cardHeading(t('overview.locationTitle'),t('overview.locationDescription'),tag('STUDY LOCATION','slate'))}${miniMap()}<div class="solution-link-row"><button type="button" data-route="mapview">${icon('map',16)} ${t('overview.map')} ${icon('arrow-right',15)}</button><button type="button" data-route="documents">${icon('file-text',16)} ${t('overview.pdf')} ${icon('arrow-right',15)}</button></div></section><section class="card solution-options">${cardHeading(t('overview.optionsTitle'),t('overview.optionsDescription'))}<div class="solution-option"><b>A0</b><div><strong>${t('overview.a0')}</strong><p>${t('overview.a0Text')}</p></div></div><div class="solution-option"><b>A1</b><div><strong>${t('overview.a1')}</strong><p>${t('overview.a1Text')}</p></div></div><div class="solution-option"><b>A2</b><div><strong>${t('overview.a2')}</strong><p>${t('overview.a2Text')}</p></div></div>${button(`${t('overview.compare')} ${icon('arrow-right',15)}`,'goto-simulation','primary')}<p class="solution-limit">${t('overview.limit')}</p></section></div>
- <section class="solution-secondary"><div><span class="solution-kicker">SUPPORTING FEATURES</span><h3>${t('overview.supportTitle')}</h3><p>${t('overview.supportText')}</p></div><div class="solution-secondary-links"><button type="button" data-route="monitor">${icon('activity',16)} ${t('overview.monitoring')}</button><button type="button" data-route="classification">${icon('clipboard-list',16)} ${t('overview.classification')}</button><button type="button" data-route="reports">${icon('files',16)} ${t('overview.reports')}</button></div></section>
+ <div class="section-h"><h2>${en?'CCTV AI status':'Status CCTV AI'}</h2><small>${en?'LIVE · DISPLAY ONLY, NOT SAVED':'LIVE · HANYA TAMPILAN, TIDAK DISIMPAN'}</small></div>
+ <section class="solution-evidence ai-status-card" data-ai-status data-state="${ai.connected?'ai':'sim'}"><div class="solution-evidence-head"><div><span class="solution-kicker">CCTV AI · ${en?'VEHICLE DETECTION':'DETEKSI KENDARAAN'}</span><h3 data-ai-title>${ai.connected?(en?'AI connected':'AI terhubung')+(ai.model?` · ${safe(ai.model)}`:''):(en?'AI not connected yet':'AI belum terhubung')}</h3><p data-ai-text>${ai.connected?(en?'Live detections from the AI model. Only vehicle type and stop duration; no license plates or faces.':'Deteksi langsung dari model AI. Hanya jenis kendaraan dan durasi berhenti; tanpa plat nomor dan wajah.'):(en?'Until the AI model from the team sends detections, the figures below come from the live 3D simulation of MRT Fatmawati.':'Sampai model AI tim mengirim deteksi, angka di bawah berasal dari simulasi 3D MRT Fatmawati yang sedang berjalan.')}</p></div><span class="solution-state ai-status-chip" data-ai-chip><i></i>${ai.connected?'AI LIVE':(en?'3D SIMULATION':'SIMULASI 3D')}</span></div><div class="solution-evidence-metrics"><div><strong data-ai-metric="car">${ai.counts.car}</strong><span>${en?'Cars':'Mobil'}</span></div><div><strong data-ai-metric="motorcycle">${ai.counts.motorcycle}</strong><span>${en?'Motorcycles':'Motor'}</span></div><div><strong data-ai-metric="bus">${ai.counts.bus}</strong><span>${en?'Buses / trucks':'Bus / truk'}</span></div><div class="warn"><strong data-ai-metric="stopped">${ai.stopped}</strong><span>${en?'Stopped in lane':'Berhenti di lajur'}</span></div></div><div class="solution-evidence-actions">${button(`${t('overview.record')} ${icon('arrow-right',16)}`,'goto-cctv','primary')}${button(en?'Compare A0 / A1 / A2':'Bandingkan A0 / A1 / A2','goto-simulation')}</div></section>
+ <div class="solution-two-col"><section class="card solution-map-card">${cardHeading(t('overview.locationTitle'),t('overview.locationDescription'),tag('STUDY LOCATION','slate'))}${miniMap()}<div class="solution-link-row"><button type="button" data-route="mapview">${icon('map',16)} ${t('overview.map')} ${icon('arrow-right',15)}</button></div></section><section class="card solution-options">${cardHeading(t('overview.optionsTitle'),t('overview.optionsDescription'))}<div class="solution-option"><b>A0</b><div><strong>${t('overview.a0')}</strong><p>${t('overview.a0Text')}</p></div></div><div class="solution-option"><b>A1</b><div><strong>${t('overview.a1')}</strong><p>${t('overview.a1Text')}</p></div></div><div class="solution-option"><b>A2</b><div><strong>${t('overview.a2')}</strong><p>${t('overview.a2Text')}</p></div></div>${button(`${t('overview.compare')} ${icon('arrow-right',15)}`,'goto-simulation','primary')}<p class="solution-limit">${t('overview.limit')}</p></section></div>
+ <section class="solution-secondary"><div><span class="solution-kicker">SUPPORTING FEATURES</span><h3>${t('overview.supportTitle')}</h3><p>${t('overview.supportText')}</p></div><div class="solution-secondary-links"><button type="button" data-route="reports">${icon('files',16)} ${t('overview.reports')}</button></div></section>
  ${note(`<strong>${t('overview.integrity')}</strong>`)}<section class="solution-credits"><div><span class="solution-kicker">THE PEOPLE BEHIND SIMPUL</span><h3>${t('overview.creatorsTitle')}</h3><p>${t('overview.creatorsText')}</p></div><button type="button" data-route="creators" class="btn primary">${t('overview.creatorsAction')} ${icon('arrow-right',17)}</button></section>`;
 }
 
@@ -1762,14 +1768,14 @@ function renderOverview(){
 
 
 const stages = [
- {id:'cctv',step:'01',label:'Observasi',icon:'clipboard-list',input:'Lokasi, waktu, jenis kendaraan, durasi berhenti, volume dan antrean',process:'AI CCTV mendeteksi dan menghitung kendaraan serta durasi berhenti secara otomatis per zona, tanpa plat nomor dan wajah.',output:'Dataset kejadian berstempel waktu dan sumber data.',status:'Dapat dicoba dalam aplikasi'},
- {id:'insights',step:'02',label:'Analisis SI',icon:'brain-circuit',input:'Data observasi terstruktur dan catatan anonim',process:'Statistik deskriptif dibentuk secara deterministik; Gemini opsional menginterpretasikan agregat.',output:'Pola kejadian, anomali, ringkasan dan item yang perlu ditinjau.',status:'Statistik berfungsi; Gemini memerlukan API key'},
- {id:'simulation',step:'03',label:'Simulasi',icon:'git-compare-arrows',input:'Volume, geometri, lokasi akses, durasi berhenti, konfigurasi skenario',process:'Bandingkan A0 kondisi eksisting, A1 area jemput, A2 aturan berhenti dengan permintaan setara.',output:'Tundaan, antrean dan indikator akses; setiap hasil menyatakan asal model.',status:'Sintetis heuristik; SUMO nyata opsional pada jaringan sintetis'},
- {id:'reports',step:'04',label:'Evaluasi',icon:'file-check-2',input:'Hasil skenario, asumsi, dan bukti observasi',process:'Pengelola meninjau trade-off kendaraan dan pejalan kaki sebelum keputusan lapangan.',output:'Rekomendasi, ekspor laporan dan catatan keterbatasan.',status:'Ekspor data berfungsi; evaluasi lapangan belum dilakukan'}
+ {id:'cctv',step:'01',label:'Observasi CCTV AI',icon:'cctv',input:'Rekaman CCTV atau video di tiga zona bawah stasiun',process:'AI CCTV mendeteksi dan menghitung kendaraan serta durasi berhenti secara otomatis per zona, tanpa plat nomor dan wajah.',output:'Jumlah kendaraan, durasi berhenti, dan antrean per zona secara otomatis.',status:'Simulasi 3D berfungsi; model AI tim sedang diintegrasikan'},
+ {id:'insights',step:'02',label:'Analisis SI',icon:'brain-circuit',input:'Deteksi CCTV AI yang sudah teragregasi per zona',process:'Statistik deskriptif dibentuk secara deterministik; Gemini opsional menginterpretasikan agregat.',output:'Pola kejadian, anomali, ringkasan dan item yang perlu ditinjau.',status:'Statistik berfungsi; Gemini memerlukan API key'},
+ {id:'simulation',step:'03',label:'Simulasi',icon:'git-compare-arrows',input:'Volume, geometri, lokasi akses, durasi berhenti, konfigurasi skenario',process:'Bandingkan A0 kondisi eksisting, A1 area jemput, A2 aturan berhenti dengan permintaan setara.',output:'Tundaan, antrean dan indikator akses; setiap hasil menyatakan asal model.',status:'Model heuristik; SUMO opsional untuk simulasi lalu lintas mikro'},
+ {id:'reports',step:'04',label:'Evaluasi',icon:'file-check-2',input:'Hasil skenario, asumsi, dan data deteksi CCTV AI',process:'Pengelola meninjau trade-off kendaraan dan pejalan kaki sebelum keputusan lapangan.',output:'Rekomendasi, ekspor laporan dan catatan keterbatasan.',status:'Ekspor data berfungsi; evaluasi lapangan belum dilakukan'}
 ];
 const targets=[
  ['O1 / V1','F1-score pengenalan kejadian','≥ 0,80','Target proposal; butuh anotasi manusia'],
- ['O2 / V2','Galat estimasi volume','≤ 20%','Target proposal; butuh sesi validasi terpisah'],
+ ['O2 / V2','Galat estimasi volume','≤ 20%','Target proposal; butuh periode validasi terpisah'],
  ['O3 / V3','Skenario yang dibandingkan','A0, A1, A2','Wajib memakai permintaan dan seed yang sebanding'],
  ['O4 / V4','Akses pejalan kaki','Evaluasi eksplisit','Detour dan keselamatan wajib diperiksa'],
  ['O5 / V5','Provenance keputusan','Log dan status','Laporan harus membedakan data dan simulasi'],
@@ -1781,97 +1787,17 @@ return `${pageHead('PROPOSAL / SYSTEM DESIGN','Cara Kerja SIMPUL','Penjelasan fu
 <div class="section-h"><h2>Alur end-to-end berdasarkan proposal</h2><small>Empat modul inti</small></div>
 <div class="scope-stages">${stages.map(x=>`<article class="scope-stage"><div class="scope-stage-head"><span class="scope-number">${x.step}</span><span class="scope-stage-icon">${icon(x.icon,20)}</span></div><h3>${x.label}</h3><div class="scope-key">Input</div><p>${x.input}</p><div class="scope-key">Pemrosesan</div><p>${x.process}</p><div class="scope-key">Output</div><p>${x.output}</p><div class="scope-stage-bottom">${tag(x.status,'blue')}${button(`Buka modul ${icon('arrow-right')}`,'goto-'+x.id,'sm')}</div></article>`).join('')}</div>
 <div class="two-cols" style="margin-top:19px"><section class="card">${cardHeading('Skenario perubahan','Alternatif dari halaman 2 proposal, bukan desain jalan final.')}
-<div class="scope-option"><strong>A0</strong><div><b>Kondisi eksisting</b><p>Baseline sebelum intervensi. Harus dikalibrasi terhadap hasil observasi.</p></div></div><div class="scope-option"><strong>A1</strong><div><b>Area penjemputan</b><p>Menguji pemanfaatan fasilitas penjemputan yang telah tersedia.</p></div></div><div class="scope-option"><strong>A2</strong><div><b>Aturan berhenti</b><p>Menguji perubahan durasi dan lokasi kendaraan berhenti.</p></div></div>
+<div class="scope-option"><strong>A0</strong><div><b>Kondisi eksisting</b><p>Baseline sebelum intervensi. Harus dikalibrasi terhadap deteksi CCTV AI.</p></div></div><div class="scope-option"><strong>A1</strong><div><b>Area penjemputan</b><p>Menguji pemanfaatan fasilitas penjemputan yang telah tersedia.</p></div></div><div class="scope-option"><strong>A2</strong><div><b>Aturan berhenti</b><p>Menguji perubahan durasi dan lokasi kendaraan berhenti.</p></div></div>
 ${button(`Buka pengaturan A0 / A1 / A2 ${icon('arrow-right')}`,'goto-simulation','primary')}
 </section><section class="card">${cardHeading('Asal data dan status hasil','Transparansi dari input hingga rekomendasi.')}
-<div class="scope-source"><span class="scope-dot source-demo"></span><div><b>Data sintetis</b><p>${synthetic} kejadian awal: hanya untuk menguji antarmuka dan alur perangkat lunak.</p></div></div>
-<div class="scope-source"><span class="scope-dot source-manual"></span><div><b>Observasi manual</b><p>${manual} kejadian yang dimasukkan melalui aplikasi; belum otomatis tervalidasi.</p></div></div>
+<div class="scope-source"><span class="scope-dot source-demo"></span><div><b>Data simulasi</b><p>${synthetic} kejadian simulasi untuk menunjukkan alur sistem secara lengkap.</p></div></div>
+<div class="scope-source"><span class="scope-dot source-manual"></span><div><b>Deteksi CCTV AI</b><p>Jumlah dan durasi berhenti kendaraan dari model AI; hanya tampilan langsung sampai model tim terhubung.</p></div></div>
 <div class="scope-source"><span class="scope-dot source-external"></span><div><b>Data publik/API</b><p>OSM, cuaca, dan data kontekstual dilabeli sumbernya; bukan hitungan kendaraan lapangan.</p></div></div>
-<div class="scope-source"><span class="scope-dot source-sumo"></span><div><b>Simulasi</b><p>Heuristik adalah ilustrasi. Backend SUMO menjalankan jaringan sintetis, bukan model Fatmawati terkalibrasi.</p></div></div>
+<div class="scope-source"><span class="scope-dot source-sumo"></span><div><b>Simulasi</b><p>Model heuristik untuk perbandingan cepat; backend SUMO siap dikalibrasi dengan geometri dan data CCTV Fatmawati.</p></div></div>
 </section></div>
 <div class="section-h"><h2>Target spesifikasi dan bukti evaluasi</h2><small>Dari proposal, halaman 3–4</small></div><section class="card"><div class="table-wrap"><table class="data-table"><thead><tr><th>Kode</th><th>Yang dievaluasi</th><th>Target</th><th>Status dan metode verifikasi</th></tr></thead><tbody>${targets.map(x=>`<tr><td>${tag(x[0],'slate')}</td><td><strong>${x[1]}</strong></td><td>${safe(x[2])}</td><td>${safe(x[3])}</td></tr>`).join('')}</tbody></table></div><p class="helper" style="margin-top:11px">Angka di atas adalah target penelitian, bukan hasil pengujian yang sudah tercapai.</p></section>
-<div class="section-h"><h2>Pilot yang realistis</h2></div><div class="cards three"><section class="card">${cardHeading('01 / Siapkan data')}<p class="helper">Rencanakan 12 sesi observasi, masing-masing 30–60 menit. Tentukan zona, jam sibuk, izin, dan format catatan terlebih dahulu.</p>${button('Buka CCTV AI','goto-cctv')}</section><section class="card">${cardHeading('02 / Kalibrasi')}<p class="helper">Pisahkan data kalibrasi dan validasi. Reproduksi volume, antrean, dan pola berhenti pada jaringan Fatmawati yang sudah diverifikasi.</p>${button('Buka simulasi','goto-simulation')}</section><section class="card">${cardHeading('03 / Uji bersama pengguna')}<p class="helper">Minta pengelola meninjau skenario dan akses pejalan kaki. Bandingkan waktu pembuatan laporan manual dengan SIMPUL.</p>${button('Lihat laporan','goto-reports')}</section></div>
-${note('<strong>Batas MVP:</strong> aplikasi berfungsi untuk observasi manual, penyajian data, integrasi kontekstual yang terkonfigurasi, demonstrasi skenario, proyeksi bisnis, dan ekspor. Pemrosesan video otomatis, model Fatmawati terkalibrasi, sistem multi-organisasi, serta pengambilan keputusan resmi belum tersedia.','warning')}`;
-}
-
-
-// SOURCE MODULE: js/monitoring.js
-/** Pure monitoring projections. Never turn demo records into field evidence. */
-const SOURCES = ['manual','demo'];
-const validDate=x=>{const t=Date.parse(x);return Number.isFinite(t)?t:null;};
-function filterEvents(records=[], filter={}){
-  const now=Date.now();const range=filter.range||'all';const span=({day:86400000,week:7*86400000,month:30*86400000})[range];
-  return records.filter(r=>{
-    if(!SOURCES.includes(r.source))return false;
-    if(filter.source&&filter.source!=='all'&&r.source!==filter.source)return false;
-    if(filter.zone&&filter.zone!=='all'&&r.zone!==filter.zone)return false;
-    const t=validDate(r.at);return t!==null&&(!span||(t>=now-span&&t<=now+300000));
-  }).sort((a,b)=>Date.parse(a.at)-Date.parse(b.at));
-}
-function jakartaHour(date){return new Intl.DateTimeFormat('en-CA',{timeZone:'Asia/Jakarta',year:'numeric',month:'2-digit',day:'2-digit',hour:'2-digit',hourCycle:'h23'}).format(new Date(date)).replace(', ','T');}
-function jakartaDay(date){return new Intl.DateTimeFormat('en-CA',{timeZone:'Asia/Jakarta',year:'numeric',month:'2-digit',day:'2-digit'}).format(new Date(date));}
-function timeSeries(records=[], filter={}){
-  const filtered=filterEvents(records,filter);const days=new Set(filtered.map(x=>jakartaDay(x.at)));
-  const granularity=(filter.range==='day'||(filter.range==='all'&&days.size<=1))?'hour':'day';
-  const keyOf=x=>granularity==='hour'?jakartaHour(x.at):jakartaDay(x.at);
-  const bins=new Map();for(const e of filtered){const key=keyOf(e);if(!bins.has(key))bins.set(key,{key,manual:0,demo:0});bins.get(key)[e.source]++;}
-  return {granularity,bins:[...bins.values()].sort((a,b)=>a.key.localeCompare(b.key)).slice(-24),filtered};
-}
-function monitorStats(records=[],sessions=[],filter={}){
-  const items=filterEvents(records,filter),manual=items.filter(x=>x.source==='manual'),demo=items.length-manual.length;
-  const dwell=items.reduce((s,e)=>s+(Number(e.duration)||0),0);
-  const completed=sessions.filter(s=>s.status==='Selesai'&&((filter.source||'all')==='all'||s.source===filter.source)).length;
-  const counts={};for(const e of items)counts[e.type]=(counts[e.type]||0)+1;
-  return {total:items.length,manual:manual.length,demo,completed,meanDwell:items.length?dwell/items.length:null,counts,last:items.at(-1)||null};
-}
-function monitorAlerts(records=[],sessions=[],now=Date.now()){
-  const alerts=[];const manual=records.filter(e=>e.source==='manual');
-  if(!manual.length)alerts.push({type:'info',title:'Belum ada observasi lapangan',detail:'Data sintetis tersedia untuk menguji antarmuka. Mulai sesi nyata untuk membuat data yang dapat dievaluasi.'});
-  if(sessions.some(s=>s.status==='Berjalan'&&Date.parse(s.startedAt)<now-2*60*60*1000))alerts.push({type:'warning',title:'Sesi berlangsung lebih dari 2 jam',detail:'Periksa apakah sesi masih aktif dan pastikan pencatatan sesuai periode survei.'});
-  if(manual.length&&Math.max(...manual.map(e=>Date.parse(e.at)||0))<now-24*60*60*1000)alerts.push({type:'info',title:'Tidak ada rekaman manual 24 jam terakhir',detail:'Ini merupakan indikator kesegaran data, bukan bukti gangguan lalu lintas.'});
-  return alerts;
-}
-
-
-// SOURCE MODULE: js/views/monitor.js
-
-
-
-
-const sel=(value,option)=>value===option?'selected':'';
-const monitorFmt=s=>{try{return shortDate(s)+' / '+clock(s)+' WIB'}catch{return '-'}};
-function metric(label,value,foot,name){return `<article class="monitor-kpi"><span class="monitor-kpi-caption">${label}</span><div class="monitor-kpi-value">${value}</div><span class="monitor-kpi-foot">${foot}</span><span class="monitor-kpi-icon">${icon(name,20)}</span></article>`}
-function graph(bins=[]){if(!bins.length)return `<div class="monitor-empty-chart">${icon('activity',29)}<strong>Belum ada kejadian pada filter ini</strong><span>Pilih semua sumber atau mulai sesi observasi manual.</span></div>`;
-  const W=820,H=250,left=43,right=18,top=19,bottom=48,plotH=H-top-bottom,plotW=W-left-right,max=Math.max(1,...bins.map(x=>x.demo+x.manual));
-  const width=Math.min(37,Math.max(12,(plotW/bins.length)*.49)),spacing=plotW/bins.length;
-  const lines=[0,.25,.5,.75,1].map(x=>{const y=top+(1-x)*plotH;return `<line x1="${left}" y1="${y}" x2="${W-right}" y2="${y}" stroke="#e2eaf0" stroke-dasharray="4 6"/><text x="${left-9}" y="${y+4}" text-anchor="end" fill="#8193a6" font-size="11">${Math.round(max*x)}</text>`}).join('');
-  const bars=bins.map((x,i)=>{const cx=left+spacing*i+spacing/2,dh=plotH*x.demo/max,mh=plotH*x.manual/max;
-    return `<g><rect x="${cx-width/2}" y="${top+plotH-dh}" width="${width}" height="${dh}" rx="3" fill="#abc8de"/><rect x="${cx-width/2}" y="${top+plotH-dh-mh}" width="${width}" height="${mh}" rx="3" fill="#0a538f"/><title>${safe(x.key)}: ${x.manual} manual, ${x.demo} sintetis</title></g>`}).join('');
-  const every=Math.max(1,Math.ceil(bins.length/7));const ticks=bins.map((x,i)=>i%every===0?`<text x="${left+spacing*i+spacing/2}" y="${H-14}" text-anchor="middle" fill="#8193a6" font-size="10">${safe(x.key.slice(-8).replace('T',' '))}</text>`:'').join('');
-  return `<svg class="monitor-plot" viewBox="0 0 ${W} ${H}" role="img" aria-label="Grafik jumlah kejadian per ${bins.length} interval. Hijau untuk manual, biru untuk data sintetis.">${lines}${bars}${ticks}</svg>`;
-}
-function eventTable(rows){if(!rows.length)return `<div class="monitor-no-results">Belum ada kejadian yang sesuai filter.</div>`;
- return `<div class="monitor-table-wrap"><table class="monitor-table"><thead><tr><th>Waktu</th><th>Kejadian</th><th>Zona</th><th>Durasi</th><th>Sumber</th></tr></thead><tbody>${rows.slice(-40).reverse().map(e=>`<tr><td>${safe(monitorFmt(e.at))}</td><td><span class="monitor-dot ${e.source==='manual'?'real':''}"></span><strong>${safe(e.type)}</strong><small>${safe(e.vehicle)}</small></td><td>${safe(e.zone)}</td><td>${num(e.duration)} s</td><td><span class="monitor-source ${e.source}">${e.source==='manual'?'MANUAL':'SINTETIS'}</span></td></tr>`).join('')}</tbody></table></div>`;}
-function journal(log=[]){if(!log.length)return `<p class="monitor-muted">Belum ada aktivitas pengguna yang dicatat pada perangkat ini.</p>`;
- return `<div class="monitor-timeline">${[...log].reverse().slice(0,9).map(e=>`<div class="monitor-timeline-row"><span class="monitor-timeline-point ${e.level==='warning'?'warn':''}"></span><div><strong>${safe(e.message)}</strong><small>${safe(monitorFmt(e.at))} - ${safe(e.kind)}</small></div></div>`).join('')}</div>`;
-}
-function renderMonitor(){const s=getState(),flt=s.monitorFilter||{source:'all',zone:'all',range:'all'},series=timeSeries(s.observations,flt),st=monitorStats(s.observations,s.sessions,flt),alerts=monitorAlerts(s.observations,s.sessions),remote=s.monitorRemote,checked=remote?.checkedAt;
-  const zones=[...new Set(s.observations.map(x=>x.zone))].sort();const active=s.activeSession;const latest=st.last?monitorFmt(st.last.at):'Belum ada';const syncState=remote?.connected===true?'Terhubung':remote?.connected===false?'Offline / API belum aktif':'Belum diperiksa';
-  return `${pageHead('OPERASI / DATA OBSERVABILITY','Monitoring & Data Log','Pantau aktivitas lapangan, audit perubahan, kesegaran data, dan sinkronisasi server dari satu halaman.',`${button(`${icon('refresh-cw')} Segarkan server`,'refresh-monitor')} ${button(`${icon('download')} Ekspor log`,'export-monitor','primary')}`)}
-<section class="monitor-hero"><div><span class="monitor-hero-eyebrow"><span class="monitor-live-dot"></span> FIELD OPERATIONS / OBSERVABILITY</span><h2>Semua kejadian tercatat.<br/><em>Setiap sumber dapat ditelusuri.</em></h2><p>Grafik dan log lokal bekerja offline. Data manual dapat disinkronkan ke SQLite, kemudian diproyeksikan ke InfluxDB untuk monitoring Grafana.</p><div class="monitor-hero-actions"><button class="monitor-white-button" data-action="goto-cctv">${icon('cctv',16)} Buka CCTV AI</button><button class="monitor-ghost-button" data-action="goto-reports">Lihat laporan ${icon('arrow-right',15)}</button></div></div><div class="monitor-signal"><div class="monitor-signal-top">SIMPUL / DATA STREAM <span>●&nbsp; LOCAL</span></div><div class="monitor-signal-wave">${Array.from({length:25},(_,i)=>`<span style="height:${14+(i*19%54)+(i%4)*7}px"></span>`).join('')}</div><div class="monitor-signal-row"><span>Observasi terpilih</span><strong>${st.total}</strong></div><div class="monitor-signal-row"><span>Status backend</span><strong>${safe(syncState)}</strong></div></div></section>
-<div class="monitor-toolbar"><div class="monitor-toolbar-left"><span class="monitor-toolbar-title">${icon('sliders-horizontal',16)} Filter data</span><label>Sumber <select id="monitor-source" class="monitor-select"><option value="all" ${sel(flt.source,'all')}>Semua sumber</option><option value="manual" ${sel(flt.source,'manual')}>Observasi manual</option><option value="demo" ${sel(flt.source,'demo')}>Data sintetis saja</option></select></label><label>Periode <select id="monitor-range" class="monitor-select"><option value="all" ${sel(flt.range,'all')}>Semua waktu</option><option value="day" ${sel(flt.range,'day')}>24 jam</option><option value="week" ${sel(flt.range,'week')}>7 hari</option><option value="month" ${sel(flt.range,'month')}>30 hari</option></select></label><label>Zona <select id="monitor-zone" class="monitor-select"><option value="all">Semua zona</option>${zones.map(z=>`<option value="${safe(z)}" ${sel(flt.zone,z)}>${safe(z)}</option>`).join('')}</select></label></div><button class="monitor-reset" data-action="reset-monitor-filters">Reset filter</button></div>
-<div class="monitor-kpis">${metric('Kejadian dalam filter',num(st.total),`${st.manual} manual - ${st.demo} sintetis`,'car')}${metric('Rata-rata durasi',st.meanDwell===null?'-':num(st.meanDwell)+' s','Berdasarkan rekaman tersaring','clock')}${metric('Sesi selesai',num(st.completed),active?'1 sesi sedang berjalan':'Tidak ada sesi aktif','clipboard-list')}${metric('Pencatatan terakhir',st.last?clock(st.last.at)+' WIB':'-',latest==='Belum ada'?'Belum ada data':shortDate(st.last.at),'activity')}</div>
-<div class="monitor-layout"><section class="monitor-panel monitor-chart-panel"><div class="monitor-panel-head"><div><span class="monitor-kicker">ACTIVITY VOLUME</span><h3>Tren kejadian tercatat</h3><p>Jumlah kejadian per ${series.granularity==='hour'?'jam':'hari'} dalam periode dan zona yang dipilih.</p></div><span class="monitor-chip">${series.bins.length} interval</span></div><div class="monitor-legend"><span><i class="real"></i> Manual lapangan</span><span><i class="demo"></i> Data sintetis</span></div>${graph(series.bins)}</section><section class="monitor-panel monitor-alert-panel"><div class="monitor-panel-head"><div><span class="monitor-kicker">DATA QUALITY</span><h3>Kondisi pengamatan</h3><p>Pemeriksaan administratif, bukan pengukuran lalu lintas.</p></div></div><div class="monitor-status-row"><span>Mode pencatatan</span><strong>${active?'Sesi aktif':'Siap mencatat'}</strong></div><div class="monitor-status-row"><span>Backend SQLite</span><strong class="${remote?.connected===true?'monitor-green':''}">${safe(syncState)}</strong></div><div class="monitor-status-row"><span>Segar terakhir</span><strong>${checked?safe(monitorFmt(checked)):'Belum pernah'}</strong></div><div class="monitor-alerts">${alerts.length?alerts.map(a=>`<div class="monitor-notice ${a.type}">${icon(a.type==='warning'?'alert-circle':'info',17)}<div><strong>${safe(a.title)}</strong><p>${safe(a.detail)}</p></div></div>`).join(''):`<div class="monitor-notice positive">${icon('check',17)}<div><strong>Tidak ada peringatan data dasar</strong><p>Periksa validitas dan konsistensi secara terpisah sebelum menarik kesimpulan.</p></div></div>`}</div></section></div>
-<div class="monitor-layout monitor-lower"><section class="monitor-panel"><div class="monitor-panel-head"><div><span class="monitor-kicker">EVENT LEDGER</span><h3>Log observasi</h3><p>Hanya kejadian yang tersimpan; tidak menampilkan identitas individu.</p></div><span class="monitor-chip">${series.filtered.length} baris</span></div>${eventTable(series.filtered)}</section><section class="monitor-panel"><div class="monitor-panel-head"><div><span class="monitor-kicker">AUDIT TRAIL</span><h3>Aktivitas workspace</h3><p>Log aktivitas lokal pada perangkat ini.</p></div></div>${journal(s.activityLog)}</section></div>
-<section class="monitor-panel monitor-infra"><div><span class="monitor-kicker">INTEGRASI MONITORING</span><h3>Dari HP ke monitoring multi-sesi</h3><p>Observasi manual dicatat di HP. Backend menyimpan data utama di SQLite dan mengirim metrik ke InfluxDB melalui antrean tahan-gagal. Grafana menampilkan deret waktu dari data manual yang benar-benar tersinkronisasi. Tidak ada streaming kamera ataupun survei otomatis.</p><div class="monitor-infra-flow"><span>HP / PWA</span>${icon('arrow-right',16)}<span>FastAPI + SQLite</span>${icon('arrow-right',16)}<span>Outbox</span>${icon('arrow-right',16)}<span>InfluxDB</span>${icon('arrow-right',16)}<span>Grafana</span></div></div><div class="monitor-infra-actions">${button(`${icon('upload-cloud',15)} Sinkronkan manual`,'sync-observations','primary')}${button('Periksa status server','refresh-monitor')}${remote?.connected?`<span class="monitor-caption">Server: ${remote?.summary?.count??0} event manual tersimpan</span>`:`<span class="monitor-caption">Opsional; memerlukan backend aktif</span>`}</div></section>
-<div class="eval-disclaimer"><div>${icon('scan-search',19)}</div><div><strong>Baru: data interval untuk diagnosis</strong><p>Selain log peristiwa, catat volume lalu lintas, antrean dan akses pejalan kaki melalui modul Diagnosis Hambatan. Rekaman interval manual disimpan di SQLite dan dapat diteruskan ke InfluxDB sebagai measurement <code>simpul_field_interval</code> dengan dashboard Grafana terpisah.</p>${button('Buka Diagnosis Hambatan','goto-diagnosis')}</div></div>
-<section class="monitor-observability"><div class="monitor-panel-head"><div><span class="monitor-kicker">TIME-SERIES STACK / OPSIONAL</span><h3>InfluxDB + Grafana</h3><p>Backend berusaha mengirim observasi yang belum terkirim. Jika koneksi gagal, data tetap aman di antrean SQLite.</p></div><span class="monitor-chip">90 hari retensi konfigurasi Docker</span></div>
-<div class="monitor-launch"><div><strong>Workspace monitoring di laptop</strong><p>Buka layanan lokal untuk melihat dashboard dan data deret waktu. Status pengiriman ditampilkan dari backend.</p></div><div><a href="http://127.0.0.1:3000" target="_blank" rel="noopener noreferrer">${icon('chart-no-axes-combined',16)} Buka Grafana ↗</a><a href="http://127.0.0.1:8086" target="_blank" rel="noopener noreferrer">${icon('database',16)} Buka InfluxDB ↗</a></div></div>
-<div class="monitor-stream-grid"><article class="monitor-stream-card"><div class="monitor-stream-icon">${icon('database',19)}</div><span>INFLUXDB / TIME SERIES</span><strong>${!remote?.connected?'Belum diperiksa':remote?.stream?.reachable===true?'Terhubung':remote?.stream?.reachable===false?'Koneksi perlu diperiksa':remote?.stream?.configured?'Dikonfigurasi':'Nonaktif'}</strong><small>${remote?.stream?.lastSuccessfulWrite?'Kirim terakhir '+safe(monitorFmt(remote.stream.lastSuccessfulWrite)):'Status diperiksa melalui tombol koneksi InfluxDB'}</small></article><article class="monitor-stream-card"><div class="monitor-stream-icon">${icon('list-clock',19)}</div><span>OUTBOX SQLITE</span><strong>${num(remote?.stream?.pending??0)} event + ${num(remote?.stream?.fieldIntervals?.pending??0)} interval tertunda</strong><small>Event terkirim: ${num(remote?.stream?.delivered??0)} / interval terkirim: ${num(remote?.stream?.fieldIntervals?.delivered??0)}</small></article><article class="monitor-stream-card"><div class="monitor-stream-icon">${icon('chart-no-axes-combined',19)}</div><span>GRAFANA / VISUALIZATION</span><strong>Dashboard layanan lokal</strong><small>Buka Grafana di laptop. Ketersediaan layanan dan autentikasi diperiksa pada halaman Grafana.</small></article></div>
-<div class="monitor-auto-row"><label class="monitor-auto-toggle"><input id="monitor-auto-sync" type="checkbox" ${s.monitorAutoSync?'checked':''}/><span>Sinkronisasi otomatis tiap 30 detik saat halaman ini terbuka</span></label><div class="monitor-stream-actions">${button(`${icon('send',14)} Coba kirim ulang outbox`,'flush-telemetry')}${button('Periksa koneksi InfluxDB','probe-telemetry')}</div></div>
-<div class="monitor-safety-note">Status sukses berarti InfluxDB menerima data, bukan bahwa observasi telah divalidasi. Sinkronisasi otomatis dimatikan secara default. Data sintetis tidak dikirim.</div>
-</section>
-<div class="monitor-disclosure">${icon('shield-check',16)} <span><strong>Integritas data:</strong> Data sintetis tidak dikirim sebagai observasi riil. Semua angka adalah rekaman input atau agregasi, bukan estimasi dampak di lapangan. Endpoint monitoring tidak boleh diekspos secara publik sebelum autentikasi diterapkan.</span></div>`;
+<div class="section-h"><h2>Pilot yang realistis</h2></div><div class="cards three"><section class="card">${cardHeading('01 / Siapkan data')}<p class="helper">Hubungkan model CCTV AI ke tiga zona di bawah stasiun. Tentukan jam sibuk dan izin penggunaan rekaman CCTV terlebih dahulu.</p>${button('Buka CCTV AI','goto-cctv')}</section><section class="card">${cardHeading('02 / Kalibrasi')}<p class="helper">Pisahkan data kalibrasi dan validasi. Reproduksi volume, antrean, dan pola berhenti pada jaringan Fatmawati yang sudah diverifikasi.</p>${button('Buka simulasi','goto-simulation')}</section><section class="card">${cardHeading('03 / Uji bersama pengguna')}<p class="helper">Minta pengelola meninjau skenario dan akses pejalan kaki. Bandingkan waktu analisis dengan dan tanpa otomasi SIMPUL.</p>${button('Lihat laporan','goto-reports')}</section></div>
+${note('<strong>Batas MVP:</strong> aplikasi berfungsi untuk simulasi 3D CCTV AI, penyajian data, integrasi kontekstual yang terkonfigurasi, demonstrasi skenario, dan ekspor. Model deteksi AI tim sedang diintegrasikan; model Fatmawati terkalibrasi, sistem multi-organisasi, serta pengambilan keputusan resmi belum tersedia.','warning')}`;
 }
 
 
@@ -1889,7 +1815,7 @@ function renderPublicIntel(){
  return `${pageHead('EXTERNAL CONTEXT / READ-ONLY','Konteks Publik & OpenOSINT',
  'Pencarian berita publik yang menyebut lokasi di sekitar area studi. Untuk konteks perencanaan, bukan penetapan pelanggaran.',
  `${button(`${icon('refresh-cw',15)} Periksa adapter`,'osint-status')} ${button(`${icon('map-pin',15)} Pilih titik studi`,'goto-context')}`)}
- <section class="intel-hero"><div><div class="intel-kicker">OPENOSINT / GDELT GKG / PASSIVE ONLY</div><h2>Public signals, clearly separated from field evidence.</h2><p>Membantu petugas memahami pemberitaan area transit sambil mempertahankan perbedaan antara sumber publik, observasi primer, dan keputusan pemeriksa.</p><div class="intel-pills"><span>Source linked</span><span>Geo-referenced mentions</span><span>No identity lookup</span></div></div><div class="intel-hero-stat"><small>BERITA BERREFERENSI</small><strong>${items.length}</strong><span>Lokasi dalam berita ≠ lokasi kejadian</span></div></section>
+ <section class="intel-hero"><div><div class="intel-kicker">OPENOSINT / GDELT GKG / PASSIVE ONLY</div><h2>Public signals, clearly separated from field evidence.</h2><p>Membantu tim memahami pemberitaan area transit sambil mempertahankan perbedaan antara sumber publik, observasi primer, dan keputusan pemeriksa.</p><div class="intel-pills"><span>Source linked</span><span>Geo-referenced mentions</span><span>No identity lookup</span></div></div><div class="intel-hero-stat"><small>BERITA BERREFERENSI</small><strong>${items.length}</strong><span>Lokasi dalam berita ≠ lokasi kejadian</span></div></section>
  ${note('<strong>Batas bukti:</strong> lokasi yang disebut berita tidak sama dengan lokasi insiden yang terbukti. Tidak ada penyelidikan individu, pembacaan plat, pembuktian pelanggaran, atau pengiriman otomatis ke kepolisian.','warning')}
  <div class="intel-cols"><section class="card intel-form">${cardHeading('Kueri berita publik','Pilih titik melalui Peta & Data Konteks atau masukkan koordinat yang relevan.')}
  <div class="intel-grid"><label class="field">Topik publik<select class="control" id="osint-topic"><option value="fatmawati">Fatmawati</option><option value="transit">MRT / transit</option><option value="mobility">Traffic / mobility</option><option value="all">Semua (sangat luas)</option></select></label>
@@ -1901,7 +1827,7 @@ function renderPublicIntel(){
  <p class="intel-hint">Pengambilan terjadi di server melalui OpenOSINT (opsional); data tidak dikirim ke mesin SUMO atau algoritma klasifikasi pelanggaran. Karena GDELT memakai feed terbaru, hasil bisa kosong walaupun ada berita lama.</p></section>
  <section class="card intel-side">${cardHeading('Status integrasi','OpenOSINT dapat dipasang terpisah dari layanan SIMPUL.')}
  <div class="intel-check">${statusTag(data?.status?.available)}<p>${safe(data?.status?.notice||'Klik “Periksa adapter” untuk mengecek ketersediaan backend.')}</p></div>
- <div class="intel-steps"><div><b>1</b><span>Observasi dan klasifikasi tetap mengandalkan data lapangan.</span></div><div><b>2</b><span>OpenOSINT mengambil pemberitaan publik berkoordinat.</span></div><div><b>3</b><span>Petugas dapat membuka sumber asli untuk verifikasi manual.</span></div><div><b>4</b><span>Keputusan dan status hukum tetap ditentukan oleh pihak berwenang.</span></div></div>
+ <div class="intel-steps"><div><b>1</b><span>Deteksi kendaraan tetap berasal dari CCTV AI, bukan dari berita.</span></div><div><b>2</b><span>OpenOSINT mengambil pemberitaan publik berkoordinat.</span></div><div><b>3</b><span>Tim dapat membuka sumber asli untuk verifikasi.</span></div><div><b>4</b><span>Keputusan dan status hukum tetap ditentukan oleh pihak berwenang.</span></div></div>
  <p class="intel-hint">Instalasi opsional: <code>pip install -r server/requirements-openosint.txt</code> dan set <code>SIMPUL_PUBLIC_OSINT_ENABLED=1</code> pada backend lokal.</p></section></div>
  <section class="card intel-results">${cardHeading('Hasil konteks publik',data?.queriedAt?`Diambil ${safe(new Date(data.queriedAt).toLocaleString('id-ID'))} / ${safe(data.provider)} / ${safe(data.topic)}`:'Belum ada permintaan berita yang berhasil.')}
  ${items.length?`<div class="intel-list">${items.map(i=>`<article class="intel-item"><div class="intel-item-head"><span class="intel-chip">SUMBER SEKUNDER</span><small>${safe(i.place)} / ${i.mentionCount} referensi</small></div><h3>${safe(i.title||'(Judul tidak tersedia)')}</h3><p>${safe(i.domain)} / Tautan publik, belum diverifikasi sebagai kejadian lalu lintas.</p><a target="_blank" rel="noopener noreferrer" href="${safe(i.url)}">Periksa sumber asli ${icon('external-link',13)}</a></article>`).join('')}</div>`:emptyState('Belum ada hasil konteks',data?.queriedAt?'Tidak ada berita berlokasi dalam jendela waktu dan radius ini. Ini bukan bukti tidak ada kejadian.':'Pilih topik, lokasi, lalu jalankan pencarian berizin. Tidak ada hasil palsu atau sumber sintetis.')}
@@ -2004,80 +1930,48 @@ function renderContextPlus(){const s=getState(),c=s.contextPlus||{},geo=s.projec
  ${s.context?.nearby?.items?.length?`<div class="ctx-destinations"><small>Isi otomatis tujuan dari fasilitas OSM di dekat studi:</small>${s.context.nearby.items.filter(p=>Number.isFinite(Number(p.lat))&&Number.isFinite(Number(p.lon))).slice(0,8).map((p,i)=>`<button type="button" class="ctx-destination" data-action="ctx-select-poi" data-lat="${p.lat}" data-lon="${p.lon}">${icon('map-pin',12)} ${safe(p.name)} ${icon('arrow-up-right',11)}</button>`).join('')}</div>`:'<p class="helper">Untuk memilih tujuan dari daftar fasilitas, ambil data OSM terlebih dahulu di halaman Peta & Data Konteks.</p>'}
  ${output('route',c.route)}</section>
  <section class="card"><div class="ctx-card-head"><span class="ctx-card-icon">${icon('radar',23)}</span><div><h3>Isochrone berjalan kaki</h3><p>Area yang diperkirakan dapat dicapai dari titik studi dalam durasi tertentu.</p></div></div><div class="ctx-iso-buttons">${[5,10,15].map(x=>`<button class="btn ${Number(c.isochrone?.data?.minutes)===x?'primary':'outline'}" data-action="ctx-isochrone" data-minutes="${x}">${x} menit</button>`).join('')}</div>${output('isochrone',c.isochrone)}<p class="ctx-warning">Catatan: area jangkauan dari ORS tidak membuktikan penyeberangan aman, akses kursi roda tersedia, atau perjalanan bebas hambatan.</p></section></div>
- <section class="card ctx-provenance"><div><strong>${icon('file-check-2',19)} Aturan penggunaan data</strong><p>Jangan gabungkan data prakiraan, pemodelan, metadata peta, dan observasi manual menjadi satu metrik tanpa penanda sumber. Data-data di atas hanya mendukung konteks dan penyusunan hipotesis. Observasi serta kalibrasi lapangan tetap dibutuhkan.</p></div>${button(`${icon('map')} Buka peta`,'goto-context')}</section>`;
+ <section class="card ctx-provenance"><div><strong>${icon('file-check-2',19)} Aturan penggunaan data</strong><p>Jangan gabungkan data prakiraan, pemodelan, metadata peta, dan deteksi CCTV AI menjadi satu metrik tanpa penanda sumber. Data-data di atas hanya mendukung konteks dan penyusunan hipotesis. Kalibrasi terhadap deteksi CCTV AI tetap dibutuhkan.</p></div>${button(`${icon('map')} Buka peta`,'goto-context')}</section>`;
 }
 
 
 // SOURCE MODULE: js/views/simulation.js
 
 function renderSimulation(){const s=getState(),p=s.scenario,results=s.lastAnalysis||heuristicSimulation(p),comparison=compareScenarios(results),ranking=rankScenarios(results),best=ranking[0],maxDelay=Math.max(...comparison.map(x=>x.delay),1);const names={A0:'Kondisi eksisting',A1:'Area penjemputan',A2:'Aturan berhenti'};return `${pageHead('ENGINEERING / DIGITAL TWIN','Simulasi Skenario','Bandingkan intervensi dengan asumsi konsisten. Gunakan estimasi interaktif untuk eksplorasi awal, atau SUMO jika backend tersedia.',`${button(`${icon('refresh-cw')} Reset parameter`,'reset-scenario')} ${button(`${icon('play')} Jalankan analisis`,'run-simulation','primary')}`)}
-${note(`<strong>${results.engine==='sumo'?'Keluaran SUMO demonstrasi':'Estimasi ilustratif, bukan SUMO'}:</strong> ${results.engine==='sumo'?'Engine SUMO benar-benar dieksekusi pada jaringan sintetis, tidak mewakili jaringan Fatmawati yang terkalibrasi.':'Model demonstrasi memakai pendekatan matematis sederhana, belum divalidasi dengan 12 sesi survei yang direncanakan. Angka bukan pengukuran dampak lalu lintas.'}`,results.engine==='sumo'?'':'warning')}
+${note(`<strong>${results.engine==='sumo'?'Keluaran SUMO demonstrasi':'Estimasi cepat (model heuristik)'}:</strong> ${results.engine==='sumo'?'Engine SUMO dijalankan pada jaringan koridor uji; siap dikalibrasi dengan geometri dan data CCTV Fatmawati.':'Model cepat memakai pendekatan matematis untuk membandingkan skenario secara adil, dan siap dikalibrasi dengan data CCTV AI di lokasi.'}`,results.engine==='sumo'?'':'warning')}
 <div class="analysis-grid"><section class="card">${cardHeading('Parameter eksperimen','Berlaku pada A0, A1, dan A2 sesuai peran masing-masing parameter.',tag('EDITABLE','blue'))}<div style="display:grid;gap:21px">${rangeField('traffic','Arus kendaraan (kendaraan/jam)',200,1500,p.traffic,50,'')}${rangeField('pickupShare','Proporsi kendaraan jemput (%)',0,45,p.pickupShare,1,'%')}${rangeField('dwell','Dwell time awal (detik)',10,180,p.dwell,5,'s')}${rangeField('diversion','A1: pengalihan ke area jemput (%)',0,100,p.diversion,5,'%')}${rangeField('ruleDwell','A2: batas waktu berhenti (detik)',5,120,p.ruleDwell,5,'s')}${rangeField('pedestrianDetour','Jarak akses pejalan kaki awal (m)',0,500,p.pedestrianDetour,10,'m')}</div><div class="form-actions">${button(`${icon('play')} Hitung estimasi`,'run-simulation','primary wide')} ${button(`${icon('cloud')} Jalankan SUMO nyata`,'run-sumo','wide')}</div><p class="helper" style="margin-top:13px">Tombol SUMO nyata memerlukan layanan backend dengan executable <code>sumo</code> dan <code>netconvert</code>. Jika tidak tersedia, sistem akan menampilkan pesan kegagalan, tidak memalsukan hasil.</p></section>
-<section class="card">${cardHeading('Perbandingan kinerja','Indikator utama: tundaan kendaraan, antrean, dan jarak akses.',tag(results.engine==='sumo'?'SUMO SINTETIS':'ESTIMASI ILUSTRATIF',results.engine==='sumo'?'blue':'gold'))}
+<section class="card">${cardHeading('Perbandingan kinerja','Indikator utama: tundaan kendaraan, antrean, dan jarak akses.',tag(results.engine==='sumo'?'SUMO SINTETIS':'ESTIMASI SIMULASI',results.engine==='sumo'?'blue':'gold'))}
 <div class="metrics-compare">${comparison.map(x=>`<div class="scenario-card ${best.id===x.id?'recommended':''}"><div class="head"><b>${x.id}</b>${best.id===x.id?tag('SKOR TERENDAH') :tag('ALTERNATIF','slate')}</div><div class="helper" style="margin-top:4px">${names[x.id]}</div><div class="big">${num(x.delay)}<span style="font-size:11px;color:#788799;font-weight:700;margin-left:4px">s</span></div><div class="unit">Rata-rata tundaan model</div><div class="compare-foot"><span>vs A0</span><strong>${x.id==='A0'?'Baseline':`${x.delayChange>0?'+':''}${pct(x.delayChange)}`}</strong></div></div>`).join('')}</div>
 <div class="result-section">${cardHeading('Tundaan relatif','Lebih pendek menunjukkan tundaan estimasi yang lebih rendah.')}<div class="bars" style="margin-top:23px">${comparison.map(x=>`<div class="bar-row"><label>${x.id} - ${names[x.id]}</label><div class="bar-track" style="height:13px"><div class="bar-fill ${x.id==='A0'?'navy':x.id==='A2'?'blue':''}" style="width:${x.delay/maxDelay*100}%"></div></div><strong>${num(x.delay)}s</strong></div>`).join('')}</div></div><div class="form-divider"></div><div class="cards three" style="gap:8px">${comparison.map(x=>`<div style="background:#f7fafb;border-radius:9px;padding:12px"><div class="mini-kicker">${x.id}</div><div style="font-size:18px;font-weight:850;margin:7px 0;color:#294061">${num(x.queue)} <span style="font-size:9px;color:#8996a5">kend.</span></div><div class="helper">Panjang antrean model</div><div class="helper">Akses ${num(x.access)} m</div></div>`).join('')}</div><p class="footnote">Waktu tundaan dan panjang antrean berasal dari ${results.engine==='sumo'?'simulasi SUMO pada jaringan uji sintetis':'persamaan demonstrasi heuristik'}. Jarak akses merupakan parameter geometri asumsi, bukan simulasi pejalan kaki.</p></section></div>
-<div class="section-h"><h2>Interpretasi dan keputusan</h2></div><div class="grid-halves"><section class="card"><div class="mini-kicker">HASIL PEMERINGKATAN ILUSTRATIF</div><h2 style="font-size:21px;margin:8px 0;color:#19385c">${best.id} - ${names[best.id]}</h2><p class="helper">Mendapat skor berbobot terkecil berdasarkan tundaan (60%), antrean (25%), dan jarak akses (15%) dalam model demo. Bukan rekomendasi operasional yang disetujui.</p><div class="callout warning"><strong>Keputusan tetap memerlukan verifikasi</strong>Periksa geometri, permintaan kendaraan, variasi seed, keselamatan pedestrian, dan keakuratan data sebelum menyarankan perubahan nyata.</div></section><section class="card">${cardHeading('Keterlacakan model')}<div class="result-pill"><span>Jenis keluaran</span><strong>${results.engine==='sumo'?'SUMO synthetic network':'Heuristik ilustratif'}</strong></div><div class="result-pill"><span>Kalibrasi Fatmawati</span><strong>Belum dilakukan</strong></div><div class="result-pill"><span>Sumber data pengamatan</span><strong>Sintetis + manual</strong></div><div class="result-pill"><span>Status validasi</span><strong>Belum tervalidasi</strong></div>${button(`${icon('arrow-right')} Buka temuan & keputusan`,'goto-insights','')}</section></div>`}
+<div class="section-h"><h2>Interpretasi dan keputusan</h2></div><div class="grid-halves"><section class="card"><div class="mini-kicker">HASIL PEMERINGKATAN SIMULASI</div><h2 style="font-size:21px;margin:8px 0;color:#19385c">${best.id} - ${names[best.id]}</h2><p class="helper">Mendapat skor berbobot terkecil berdasarkan tundaan (60%), antrean (25%), dan jarak akses (15%) dalam model demo. Bukan rekomendasi operasional yang disetujui.</p><div class="callout warning"><strong>Keputusan tetap memerlukan verifikasi</strong>Periksa geometri, permintaan kendaraan, variasi seed, keselamatan pedestrian, dan keakuratan data sebelum menyarankan perubahan nyata.</div></section><section class="card">${cardHeading('Keterlacakan model')}<div class="result-pill"><span>Jenis keluaran</span><strong>${results.engine==='sumo'?'SUMO koridor uji':'Model heuristik'}</strong></div><div class="result-pill"><span>Kalibrasi Fatmawati</span><strong>Belum dilakukan</strong></div><div class="result-pill"><span>Sumber data</span><strong>Simulasi; siap menerima data CCTV AI</strong></div><div class="result-pill"><span>Status validasi</span><strong>Tahap berikutnya: validasi CCTV</strong></div>${button(`${icon('arrow-right')} Buka temuan & keputusan`,'goto-insights','')}</section></div>`}
 
 
 // SOURCE MODULE: js/views/insights.js
 
 function renderInsights(){const s=getState(),o=observationStats(s.observations),r=s.lastAnalysis||heuristicSimulation(s.scenario),best=rankScenarios(r)[0];const demoOnly=o.real===0;return `${pageHead('INSIGHT / DECISION SUPPORT','Temuan & Keputusan','Audit sumber bukti dan alur dari observasi sampai rekomendasi sebelum tindakan fisik.',`${button(`${icon('download')} Ekspor laporan`,'export-report','primary')}`)}
 ${note('<strong>Validasi diperlukan:</strong> temuan di bawah merupakan agregasi dari rekaman browser, bukan hasil Gemini yang tervalidasi. Keputusan pengaturan lalu lintas harus dikaji dan disetujui pihak berwenang.')}
-<div class="cards three" style="margin-bottom:17px"><div class="card"><div class="stat-label">REKAMAN YANG DITINJAU</div><div class="stat-value">${o.count}</div><div class="stat-foot">${o.real} manual; ${o.synthetic} sintetis</div></div><div class="card"><div class="stat-label">DURASI BERHENTI RATA-RATA</div><div class="stat-value">${num(o.avgDwell)} <span style="font-size:11px">detik</span></div><div class="stat-foot">Agregasi aritmetis dari catatan tersedia</div></div><div class="card"><div class="stat-label">STATUS EVIDENCE</div><div class="stat-value" style="font-size:19px;margin-top:14px">Belum tervalidasi</div><div class="stat-foot">Observasi terpisah dan kalibrasi diperlukan</div></div></div>
-<div class="two-cols"><section class="card">${cardHeading('Ringkasan temuan','Temuan deterministik dari data yang tersimpan',tag(demoOnly?'HANYA SINTETIS':'CAMPURAN','gold'))}<ul class="list-clean"><li><div class="li-ico">${icon('car',16)}</div><div><strong>${o.pickup} kejadian penjemputan</strong><p>Jumlah berasal dari kategori Jemput yang tercatat. Belum dapat digeneralisasi ke volume lalu lintas total.</p></div></li><li><div class="li-ico">${icon('clock',16)}</div><div><strong>${o.waiting} kejadian menunggu</strong><p>Definisi menunggu mengikuti pilihan petugas saat input, bukan klasifikasi video otomatis.</p></div></li><li><div class="li-ico">${icon('map-pin',16)}</div><div><strong>${o.zoneCount} zona memiliki catatan</strong><p>Distribusi zona perlu dibandingkan dengan durasi sesi yang setara.</p></div></li></ul><div class="callout warning" style="margin-top:13px"><strong>AI Gemini melalui backend</strong>Analisis hanya menggunakan agregat kejadian manual (tanpa catatan bebas, foto, atau identitas). Perlu kunci GEMINI_API_KEY di server. Hasil AI adalah interpretasi yang belum diverifikasi.<div class="form-actions">${button(`${icon('sparkles')} Analisis dengan Gemini`,'ai-insights','primary')}</div></div>${s.aiInsights?`<div class="api-ai-result"><h3>Gemini / Hasil belum tervalidasi</h3><p>${safe(s.aiInsights.result.summary)}</p>${[['Temuan',s.aiInsights.result.findings],['Keterbatasan',s.aiInsights.result.limitations],['Langkah lanjut',s.aiInsights.result.nextSteps]].map(([name,items])=>`<strong>${name}</strong><ul>${items.map(x=>`<li>${safe(x)}</li>`).join('')}</ul>`).join('')}<small>${safe(s.aiInsights.model)} - ${s.aiInsights.sourceEvents} kejadian manual - memerlukan review manusia</small></div>`:''}</section>
-<section class="card">${cardHeading('Rantai keterlacakan','Klik modul terkait untuk meninjau setiap tahapan.')}${[['Data observasi',`${o.count} catatan; ${o.real} manual`, 'goto-monitor','database'],['Asumsi model',`${Object.keys(s.scenario).length} parameter tersimpan`,'goto-simulation','sliders-horizontal'],['Keluaran skenario',`${r.engine==='sumo'?'SUMO demo':'Estimasi heuristik'}; 3 alternatif`,'goto-simulation','git-compare-arrows'],['Interpretasi awal',`${best.id} skor terendah, tidak mengikat`,'goto-simulation','target'],['Laporan','Unduh bukti dan keterbatasan','goto-reports','files']].map((x,i)=>`<button data-action="${x[2]}" class="btn" style="width:100%;border:0;border-bottom:1px solid #edf1f4;border-radius:0;padding:15px 4px;display:flex;justify-content:space-between;text-align:left"><span style="display:flex;align-items:center;gap:11px"><span style="color:#0a4f87">${icon(x[3],19)}</span><span><strong style="display:block;color:#324962">${i+1}. ${x[0]}</strong><small style="font-size:9px;color:#8796a4;font-weight:500">${x[1]}</small></span></span>${icon('chevron-right',15)}</button>`).join('')}</section></div>
-<div class="section-h"><h2>Kriteria penerimaan proposal</h2></div><section class="card"><div class="table-wrap"><table class="data-table"><thead><tr><th>Objektif</th><th>Target</th><th>Metode pengujian</th><th>Status</th></tr></thead><tbody>${[['Deteksi kejadian','F1-score ≥ 0,80','Bandingkan dengan anotasi manusia'],['Estimasi volume','Galat ≤ 20%','Validasi pada sesi terpisah'],['Evaluasi alternatif','A0, A1, A2','Pengulangan SUMO dan sensitivitas'],['Akses pejalan kaki','Jarak dan trade-off','Audit aksesibilitas'],['Audit keputusan','Asumsi dan sumber tercatat','Pengujian data dan log']].map(x=>`<tr><td><strong>${x[0]}</strong></td><td>${x[1]}</td><td>${x[2]}</td><td>${tag('BELUM DIUJI','gold')}</td></tr>`).join('')}</tbody></table></div><p class="footnote">Objektif diambil dari proposal SIMPUL halaman 3. Status tidak akan berubah menjadi "lulus" hanya karena demo berjalan.</p></section>`}
-
-
-// SOURCE MODULE: js/views/standards.js
-
-
-
-
-const indicator=(isGood,label,text)=>`<div class="std-check ${isGood?'std-ok':'std-pending'}"><div class="std-check-symbol">${icon(isGood?'check':'alert-circle',17)}</div><div><b>${label}</b><p>${text}</p></div></div>`;
-function renderStandards(){
- const s=getState(),q=assessQuality(s);
- const errors=q.issues.filter(x=>x.severity==='block'),review=q.issues.filter(x=>x.severity==='review');
- const regulatoryCards=REGULATORY_REFERENCES.map((x,i)=>`<details class="reg-card reg-${safe(x.tone)}" ${i===0?'open':''}><summary><span class="reg-card-index">0${i+1}</span><span class="reg-card-summary"><strong>${safe(x.code)}</strong><span>${safe(x.article)}</span></span><span class="reg-card-chevron">${icon('chevron-down',16)}</span></summary><div class="reg-card-body"><h4>${safe(x.title)}</h4><p>${safe(x.summary)}</p><div class="reg-relevance"><span>${icon('arrow-up-right',14)} Relevansi untuk SIMPUL</span><p>${safe(x.relevance)}</p></div><footer><span class="reg-source">${icon('library',13)} ${safe(x.source)}</span><span class="reg-status">KONTEKS HUKUM</span></footer></div></details>`).join('');
- return `${pageHead('INTERNATIONAL PRACTICES / QUALITY ASSURANCE','Standar & Evidence Quality','Kesiapan bukti pengamatan untuk dibagikan, ditinjau, dan dibandingkan. Referensi internasional digunakan secara proporsional.','')}
- <section class="std-hero"><div class="std-hero-info"><div class="std-eyebrow"><span class="std-live-dot"></span> RESEARCH QUALITY CONTROL / SIMPUL v0.9</div><h2>From field observations<br><em>to defensible decisions.</em></h2><p>Data dapat dipakai untuk keputusan bila asalnya jelas, definisi metrik konsisten, risiko akses ditinjau, dan hasil simulasi diperiksa terhadap pengamatan. Halaman ini mengecek prasyarat teknis; tidak menerbitkan sertifikasi.</p><div class="std-hero-actions">${button(`${icon('download',15)} Export evidence bundle`,'export-evidence-package','primary')}${button(`${icon('map',15)} Export GeoJSON`,'export-study-geojson')}</div></div><div class="std-hero-score"><span>EVIDENCE STATUS</span><strong>${errors.length?'NOT READY':'EXPLORATORY'}</strong><p>${errors.length?'Perlu melengkapi atau memperbaiki data':'Layak untuk eksplorasi; validasi lapangan belum lengkap'}</p><div class="std-hero-stats"><div><b>${q.manualEvents}</b><small>Events</small></div><div><b>${q.manualIntervals}</b><small>Intervals</small></div><div><b>${q.completedManualSessions}</b><small>Sessions</small></div></div></div></section>
- <section class="regulatory-panel"><div class="regulatory-heading"><div><span class="std-eyebrow reg-eyebrow">${icon('scale',14)} DECISION GUARDRAILS / REGULASI INDONESIA</span><h3>Konteks regulasi untuk keputusan yang bertanggung jawab</h3><p>Gunakan referensi ini untuk memperkaya review lapangan dan desain privasi. Kartu dapat dibuka untuk melihat ringkasan dan relevansinya.</p></div><div class="regulatory-count"><strong>05</strong><span>referensi kunci</span></div></div><div class="regulatory-callout"><span class="regulatory-callout-icon">${icon('shield-check',18)}</span><p><strong>Human review tetap wajib.</strong> SIMPUL tidak menetapkan pelanggaran, sanksi, atau legal conclusion secara otomatis. Observasi manual, sumber, izin, dan kewenangan harus ditinjau terpisah.</p></div><div class="reg-grid">${regulatoryCards}</div></section>
- <div class="std-kpi-row"><article class="std-kpi"><span>DATA MANUAL</span><strong>${q.manualEvents+q.manualIntervals}</strong><small>Observasi + interval yang benar-benar dimasukkan</small></article><article class="std-kpi"><span>DATA SINTETIS DILUAR EVALUASI</span><strong>${q.syntheticEvents}</strong><small>Catatan sintetis dikecualikan</small></article><article class="std-kpi"><span>MATCHED FOLLOW-UP</span><strong>${q.matchedFollowups}</strong><small>Pasangan zona/periode untuk studi deskriptif</small></article><article class="std-kpi"><span>QUALITY FINDINGS</span><strong>${errors.length} / ${review.length}</strong><small>Blokir / perlu ditinjau</small></article></div>
- <div class="std-grid"><section class="std-panel"><div class="std-panel-title"><div><span>01 / DATA ASSURANCE</span><h3>Evidence quality gates</h3><p>Evaluasi deterministik pada data manual di browser.</p></div><span class="std-chip">LIVE CHECK</span></div>
- ${indicator(q.manualEvents+q.manualIntervals>0,'Data tersedia','Dataset manual diperlukan sebelum hasil dipakai untuk analisis eksploratif.')}
- ${indicator(q.manualEvents+q.manualIntervals>0&&q.invalidTime===0,'Timestamp & timezone','Waktu menggunakan format ISO 8601 dengan offset atau UTC eksplisit.')}
- ${indicator(q.manualEvents+q.manualIntervals>0&&q.duplicateIds===0,'Unique record identifiers','Deteksi ID berulang pada event dan interval pengamatan.')}
- ${indicator(errors.length===0&&q.manualIntervals>0,'Numerical integrity','Nilai interval, kapasitas ruang jemput, dan fase harus konsisten.')}
- ${indicator(q.completedManualSessions>=12,'Sampling plan','Target proposal: 12 sesi observasi, bukan kewajiban standar internasional.')}
- ${indicator(q.matchedFollowups>0,'Comparable before–after','Tindak lanjut dibandingkan pada zona dan periode yang sepadan.')}
- ${indicator(false,'Independent field validation','Kalibrasi SUMO, data validasi terpisah, dan persetujuan intervensi belum diverifikasi.')}
- </section>
- <section class="std-panel"><div class="std-panel-title"><div><span>02 / ACTION REGISTER</span><h3>Audit & next actions</h3><p>Temuan ditautkan dengan kekurangan data dan langkah verifikasi.</p></div><span class="std-chip std-chip-warning">${q.issues.length} ITEMS</span></div>
- <div class="std-findings">${q.issues.map(x=>`<div class="std-finding"><span class="std-severity ${x.severity}">${x.severity==='block'?'BLOCKER':'REVIEW'}</span><div><b>${safe(x.code.replaceAll('_',' '))}</b><p>${safe(x.message)}</p></div></div>`).join('')||'<div class="std-empty">Tidak ditemukan masalah data yang dapat diverifikasi otomatis.</div>'}</div>
- <div class="std-warn"><b>Decision safeguard</b><p>Tidak ada skor otomatis yang membuktikan keselamatan, aksesibilitas, efektivitas intervensi, atau kesiapan sertifikasi. Keputusan operasional tetap memerlukan evaluasi serta persetujuan pihak berwenang.</p></div></section></div>
- <div class="std-panel std-reference-panel"><div class="std-panel-title"><div><span>03 / METHODS & INTEROPERABILITY</span><h3>Referensi standar internasional</h3><p>Acuan desain yang dapat diperiksa secara publik. Penerapan tidak sama dengan sertifikasi.</p></div><span class="std-chip">8 REFERENCES</span></div><div class="std-standards">${STANDARD_REFERENCES.map(x=>`<article class="std-reference"><div class="std-ref-top"><strong>${safe(x.code)}</strong><a href="${safe(x.url)}" target="_blank" rel="noopener noreferrer" aria-label="Lihat referensi ${safe(x.code)}">${icon('external-link',14)}<span>Dokumen</span></a></div><h4>${safe(x.name)}</h4><p>${safe(x.application)}</p><small>${safe(x.status)}</small></article>`).join('')}</div></div>
- <section class="std-export-strip"><div><div class="std-eyebrow">EXPORT / MACHINE-READABLE DATA</div><h3>Dataset yang bisa dipertukarkan</h3><p>Evidence bundle memuat asal data, UTC, satuan, pemeriksaan kualitas, dan provenance. GeoJSON hanya mengekspor titik referensi proyek apabila koordinat tersedia; tidak mengarang koordinat per kejadian.</p></div><div class="std-export-actions">${button('Unduh Evidence JSON','export-evidence-package','primary')}${button('Unduh GeoJSON','export-study-geojson')}${button('English executive brief','export-executive-brief')}</div></section>
- ${note('<strong>Metodologi:</strong> ISO 37120/37122 dipakai sebagai acuan konseptual indikator kota, bukan klaim bahwa indikator internal SIMPUL merupakan indikator ISO. WCAG 2.2 AA adalah target desain yang memerlukan audit terpisah.','warning')}`;
-}
+<div class="cards three" style="margin-bottom:17px"><div class="card"><div class="stat-label">REKAMAN YANG DITINJAU</div><div class="stat-value">${o.count}</div><div class="stat-foot">${o.real} nyata; ${o.synthetic} simulasi</div></div><div class="card"><div class="stat-label">DURASI BERHENTI RATA-RATA</div><div class="stat-value">${num(o.avgDwell)} <span style="font-size:11px">detik</span></div><div class="stat-foot">Agregasi aritmetis dari catatan tersedia</div></div><div class="card"><div class="stat-label">STATUS EVIDENCE</div><div class="stat-value" style="font-size:19px;margin-top:14px">Menunggu validasi CCTV</div><div class="stat-foot">Observasi terpisah dan kalibrasi diperlukan</div></div></div>
+<div class="two-cols"><section class="card">${cardHeading('Ringkasan temuan','Temuan deterministik dari data yang tersimpan',tag(demoOnly?'DATA SIMULASI':'CAMPURAN','gold'))}<ul class="list-clean"><li><div class="li-ico">${icon('car',16)}</div><div><strong>${o.pickup} kejadian penjemputan</strong><p>Jumlah berasal dari kategori Jemput yang tercatat. Belum dapat digeneralisasi ke volume lalu lintas total.</p></div></li><li><div class="li-ico">${icon('clock',16)}</div><div><strong>${o.waiting} kejadian menunggu</strong><p>Kategori menunggu nantinya berasal dari klasifikasi CCTV AI; saat ini dari data contoh.</p></div></li><li><div class="li-ico">${icon('map-pin',16)}</div><div><strong>${o.zoneCount} zona memiliki catatan</strong><p>Distribusi zona perlu dibandingkan pada durasi rekaman yang setara.</p></div></li></ul><div class="callout warning" style="margin-top:13px"><strong>AI Gemini melalui backend</strong>Analisis hanya menggunakan agregat kejadian (tanpa foto, video, atau identitas). Perlu kunci GEMINI_API_KEY di server. Hasil AI adalah interpretasi yang belum diverifikasi.<div class="form-actions">${button(`${icon('sparkles')} Analisis dengan Gemini`,'ai-insights','primary')}</div></div>${s.aiInsights?`<div class="api-ai-result"><h3>Gemini / Hasil belum tervalidasi</h3><p>${safe(s.aiInsights.result.summary)}</p>${[['Temuan',s.aiInsights.result.findings],['Keterbatasan',s.aiInsights.result.limitations],['Langkah lanjut',s.aiInsights.result.nextSteps]].map(([name,items])=>`<strong>${name}</strong><ul>${items.map(x=>`<li>${safe(x)}</li>`).join('')}</ul>`).join('')}<small>${safe(s.aiInsights.model)} - ${s.aiInsights.sourceEvents} kejadian - memerlukan review manusia</small></div>`:''}</section>
+<section class="card">${cardHeading('Rantai keterlacakan','Klik modul terkait untuk meninjau setiap tahapan.')}${[['Data observasi',`${o.count} catatan; ${o.real} nyata`, 'goto-vehicles','database'],['Asumsi model',`${Object.keys(s.scenario).length} parameter tersimpan`,'goto-simulation','sliders-horizontal'],['Keluaran skenario',`${r.engine==='sumo'?'SUMO demo':'Estimasi heuristik'}; 3 alternatif`,'goto-simulation','git-compare-arrows'],['Interpretasi awal',`${best.id} skor terendah, tidak mengikat`,'goto-simulation','target'],['Laporan','Unduh bukti dan keterbatasan','goto-reports','files']].map((x,i)=>`<button data-action="${x[2]}" class="btn" style="width:100%;border:0;border-bottom:1px solid #edf1f4;border-radius:0;padding:15px 4px;display:flex;justify-content:space-between;text-align:left"><span style="display:flex;align-items:center;gap:11px"><span style="color:#0a4f87">${icon(x[3],19)}</span><span><strong style="display:block;color:#324962">${i+1}. ${x[0]}</strong><small style="font-size:9px;color:#8796a4;font-weight:500">${x[1]}</small></span></span>${icon('chevron-right',15)}</button>`).join('')}</section></div>
+<div class="section-h"><h2>Kriteria penerimaan proposal</h2></div><section class="card"><div class="table-wrap"><table class="data-table"><thead><tr><th>Objektif</th><th>Target</th><th>Metode pengujian</th><th>Status</th></tr></thead><tbody>${[['Deteksi kejadian','F1-score ≥ 0,80','Bandingkan dengan anotasi manusia'],['Estimasi volume','Galat ≤ 20%','Validasi pada periode terpisah'],['Evaluasi alternatif','A0, A1, A2','Pengulangan SUMO dan sensitivitas'],['Akses pejalan kaki','Jarak dan trade-off','Audit aksesibilitas'],['Audit keputusan','Asumsi dan sumber tercatat','Pengujian data dan log']].map(x=>`<tr><td><strong>${x[0]}</strong></td><td>${x[1]}</td><td>${x[2]}</td><td>${tag('BELUM DIUJI','gold')}</td></tr>`).join('')}</tbody></table></div><p class="footnote">Objektif diambil dari proposal SIMPUL halaman 3. Status tidak akan berubah menjadi "lulus" hanya karena demo berjalan.</p></section>`}
 
 
 // SOURCE MODULE: js/views/integrations.js
 
 const items=[
  ['openosint','newspaper','OpenOSINT / GDELT GKG','Konteks berita publik berkoordinat; bukan alat pembuktian pelanggaran.','Konteks Publik / OSINT'],
- ['geo','map-pin','Nominatim / OpenStreetMap','Cari lokasi nyata; input manual dan kebijakan rate limit.','Peta & Konteks'],
+ ['geo','map-pin','Nominatim / OpenStreetMap','Cari lokasi nyata; dipanggil saat diminta dan sesuai kebijakan rate limit.','Peta & Konteks'],
  ['nearby','train-front','Overpass API','Temukan halte, akses subway, dan parkir berdasarkan OSM.','Peta & Konteks'],
  ['weather','cloud-sun','Open-Meteo','Cuaca dan presipitasi sebagai faktor konteks.','Peta & Konteks'],
  ['traffic','gauge','TomTom Traffic Flow','Kecepatan lalu lintas segmen terdekat (opsional API key).','Peta & Konteks'],
  ['gemini','brain-circuit','Google Gemini','Interpretasi AI atas agregat observasi tanpa identitas.','Temuan & Keputusan'],
- ['storage','database','SQLite Local API','Simpan dan tarik data observasi manual secara eksplisit.','Observasi Lapangan'],
- ['influxdb','database','InfluxDB OSS 2.x','Data observasi manual sebagai time-series dengan antrean tahan-gagal.','Monitoring & Data Log'],
+ ['storage','database','SQLite Local API','Simpan dan tarik data deteksi secara eksplisit.','API & integrasi'],
+ ['influxdb','database','InfluxDB OSS 2.x','Data deteksi sebagai time-series dengan antrean tahan-gagal.','API & integrasi'],
  ['grafana','activity','Grafana Dashboard','Visualisasi durasi berhenti, zona, jenis kendaraan, dan kesegaran data.','Monitoring & Data Log'],
- ['simulation','workflow','SUMO Worker','Simulasi nyata di jaringan data ilustratif.','Simulasi Skenario'],
+ ['simulation','workflow','SUMO Worker','Simulasi lalu lintas mikro SUMO di jaringan koridor.','Simulasi Skenario'],
  ['reverse','map-pin','OSM Reverse Geocoder','Alamat berbasis koordinat dari Nominatim; dipanggil manual.','Context Intelligence Lab'],
  ['crossings','accessibility','OSM Pedestrian Metadata','Temukan crossing, kerb, tactile paving dari Overpass.','Context Intelligence Lab'],
  ['forecast','cloud-rain','Open-Meteo Rain Forecast','Prakiraan probabilitas dan presipitasi 12 jam.','Context Intelligence Lab'],
- ['history','calendar-clock','Open-Meteo Historical ERA5','Cuaca historis untuk periode pengamatan.','Context Intelligence Lab'],
+ ['history','calendar-clock','Open-Meteo Historical ERA5','Cuaca historis untuk periode rekaman.','Context Intelligence Lab'],
  ['airquality','wind','Open-Meteo CAMS AQ','PM2.5, PM10, US AQI berbasis model.','Context Intelligence Lab'],
  ['elevation','mountain','Copernicus DEM GLO-90','Elevasi medan resolusi 90 m, bukan kemiringan trotoar.','Context Intelligence Lab'],
  ['holidays','calendar-days','Nager.Holidays v4','Kalender hari libur Indonesia, verifikasi resmi diperlukan.','Context Intelligence Lab'],
@@ -2087,9 +1981,9 @@ const items=[
 function renderIntegrations(){const s=getState(),d=s.integrationStatus,online=!!d?.backend;
 return `${pageHead('SYSTEM / CONNECTORS','API & Integrasi','Panel kontrol untuk melihat kesiapan endpoint, integrasi cloud, dan asal setiap respons.',button(`${icon('refresh-cw')} Periksa koneksi`,'check-apis','primary'))}
 ${note('<strong>Mode penggunaan:</strong> file HTML mandiri tetap berfungsi offline tanpa koneksi API. Agar API aktif, jalankan FastAPI dan akses aplikasi dari http://localhost:8888. Pengujian status tidak berarti layanan eksternal telah dipanggil.')}
-<section class="api-hero"><div><span class="api-eyebrow">SIMPUL / INTEGRATION LAYER</span><h2>Connected Mobility Workspace</h2><p>REST API modular - ${items.length} integrasi - Kredensial hanya di backend</p><div class="api-hero-links">${button(`${icon('map')} Jelajahi data kota`,'goto-context')} ${button(`${icon('scan-line')} Sinkronisasi observasi`,'goto-monitor')}</div></div><div class="api-hero-pulse"><div class="api-circle">${icon('plug-zap',43)}</div><span>${online?'BACKEND TERHUBUNG':'KONEKSI BELUM DIUJI'}</span></div></section>
+<section class="api-hero"><div><span class="api-eyebrow">SIMPUL / INTEGRATION LAYER</span><h2>Connected Mobility Workspace</h2><p>REST API modular - ${items.length} integrasi - Kredensial hanya di backend</p><div class="api-hero-links">${button(`${icon('map')} Jelajahi data kota`,'goto-context')}</div></div><div class="api-hero-pulse"><div class="api-circle">${icon('plug-zap',43)}</div><span>${online?'BACKEND TERHUBUNG':'KONEKSI BELUM DIUJI'}</span></div></section>
 <div class="cards three" style="margin-bottom:19px"><article class="card api-number"><small>BACKEND</small><strong>${!d?'Belum dicek':online?'Tersambung':'Tidak tersedia'}</strong><span>${online?'FastAPI merespons /api/status':'Jalankan server lalu periksa koneksi'}</span></article><article class="card api-number"><small>SUMO ENGINE</small><strong>${online?(d.status?.engineAvailable?'Siap':'Belum tersedia'):'-'}</strong><span>Simulasi hanya berjalan jika binary terdeteksi</span></article><article class="card api-number"><small>GEMINI KEY</small><strong>${online?(d.services?.gemini?.enabled?'Terpasang':'Belum diatur'):'-'}</strong><span>Kunci tidak pernah dikirim ke browser</span></article></div>
-<div class="api-grid">${items.map(([id,ico,title,desc,target])=>{const v=d?.services?.[id],enabled=id==='simulation'?(d?.status?.engineAvailable===true):(v?.enabled===true);const label=!online?'BELUM DIPERIKSA':enabled?'TERKONFIGURASI':'PERLU SETUP';return `<article class="card api-integration"><div class="api-integr-head"><div class="api-tile">${icon(ico,23)}</div>${tag(label,!online||!enabled?'gold':'')}</div><h3>${title}</h3><p>${desc}</p><div class="api-integr-footer"><small>${safe(v?.note||'Integrasi dengan validasi status dan pembatasan.')}</small><button class="api-open" data-action="goto-${id==='geo'||id==='nearby'||id==='weather'||id==='traffic'?'context':id==='storage'?'monitor':id==='gemini'?'insights':id==='simulation'?'simulation':id==='openosint'?'publicintel':['grafana','influxdb'].includes(id)?'monitor':'contextplus'}">${safe(target)} ${icon('arrow-up-right',14)}</button></div></article>`}).join('')}</div>
+<div class="api-grid">${items.map(([id,ico,title,desc,target])=>{const v=d?.services?.[id],enabled=id==='simulation'?(d?.status?.engineAvailable===true):(v?.enabled===true);const label=!online?'BELUM DIPERIKSA':enabled?'TERKONFIGURASI':'PERLU SETUP';return `<article class="card api-integration"><div class="api-integr-head"><div class="api-tile">${icon(ico,23)}</div>${tag(label,!online||!enabled?'gold':'')}</div><h3>${title}</h3><p>${desc}</p><div class="api-integr-footer"><small>${safe(v?.note||'Integrasi dengan validasi status dan pembatasan.')}</small><button class="api-open" data-action="goto-${id==='geo'||id==='nearby'||id==='weather'||id==='traffic'?'context':id==='storage'?'integrations':id==='gemini'?'insights':id==='simulation'?'simulation':id==='openosint'?'publicintel':['grafana','influxdb'].includes(id)?'monitor':'contextplus'}">${safe(target)} ${icon('arrow-up-right',14)}</button></div></article>`}).join('')}</div>
 <div class="section-h"><h2>Alur request API</h2></div><section class="card"><div class="flow-diagram api-flow"><div class="flow-node"><strong>Browser / HP</strong><small>HTTPS / localhost</small></div>${icon('arrow-right',16)}<div class="flow-node"><strong>FastAPI</strong><small>Validasi & pembatasan</small></div>${icon('arrow-right',16)}<div class="flow-node"><strong>Provider / DB</strong><small>OSM, ORS, cuaca, Gemini, SQLite</small></div>${icon('arrow-right',16)}<div class="flow-node"><strong>Dashboard</strong><small>Sumber & status data</small></div></div><p class="helper" style="margin-top:15px">Tidak ada API key di frontend. Panggilan ke penyedia eksternal hanya dilakukan setelah tindakan pengguna. Respons gagal akan ditampilkan sebagai error, bukan diganti angka rekaan.</p></section>
 <div class="section-h"><h2>Cara mengaktifkan</h2></div><div class="two-cols"><section class="card"><h3 class="mini-heading">Langkah 1 / Jalankan backend</h3><pre class="api-code">python -m pip install -r server/requirements.txt\npython server/app.py</pre><p class="helper">Buka <strong>http://localhost:8888</strong> dari komputer host dan klik Periksa koneksi. Browser di HP harus dapat menjangkau server secara aman.</p></section><section class="card"><h3 class="mini-heading">Langkah 2 / Kunci API opsional</h3><pre class="api-code">GEMINI_API_KEY=isi_di_environment_server\nORS_API_KEY=isi_di_environment_server\nTOMTOM_API_KEY=isi_di_environment_server</pre><p class="helper">Kunci AI disetel di server (bukan di formulir browser). Untuk publik/komersial, tambahkan autentikasi, kuota, keamanan, dan persetujuan penggunaan data.</p></section></div>`;
 }
@@ -2140,9 +2034,8 @@ const TOOL_ROUTES = Object.freeze(['mapview', 'settings']);
  * "Fitur lanjutan" entry and search, and are listed in Pengaturan.
  */
 const NAV_SECTIONS = Object.freeze([
-  { id:'field', label:'Survei & operasional', icon:'clipboard-list', routes:['survey','monitor','classification','operations'] },
-  { id:'context', label:'Data & konteks', icon:'map-pinned', routes:['documents','context','contextplus','insights','publicintel'] },
-  { id:'evidence', label:'Dokumentasi & bukti', icon:'files', routes:['project','standards','reports'] },
+  { id:'context', label:'Data & konteks', icon:'map-pinned', routes:['context','contextplus','insights','publicintel'] },
+  { id:'evidence', label:'Dokumentasi & bukti', icon:'files', routes:['project','reports'] },
   { id:'system', label:'Integrasi', icon:'plug-zap', routes:['integrations'] },
   { id:'about', label:'Tentang pembuat', icon:'users', routes:['creators'] }
 ]);
@@ -2258,7 +2151,7 @@ return `${pageHead('SISTEM / PENGATURAN','Pengaturan & data','Kelola nama proyek
 <div class="field"><label for="simpul-api-token">Token API (opsional)</label><input id="simpul-api-token" class="control" type="password" autocomplete="off" placeholder="Disimpan hanya di sessionStorage" /></div>
 <div class="form-actions">${button('Simpan token sesi','save-api-token','primary')} ${button('Hapus token sesi','clear-api-token')}</div>
 <p class="helper">Status token pada tab: ${getSessionApiToken()?'Terpasang (belum diverifikasi)':'Tidak disimpan'}. Penggunaan jaringan publik tetap membutuhkan identitas pengguna, TLS dan isolasi data proyek.</p></section>
-<div class="section-h"><h2>Status integrasi saat ini</h2></div><section class="card"><div class="table-wrap"><table class="data-table"><thead><tr><th>Subsystem</th><th>Kemampuan</th><th>Status</th></tr></thead><tbody>${[['Aplikasi mobile-first','Responsive web & local persistence','Berfungsi'],['Observasi lapangan','Input manual, sesi, CSV, sinkronisasi REST ke SQLite lokal','Berfungsi'],['Analitik cepat','Agregasi dan estimasi heuristik','Sintetis ilustratif'],['Simulasi SUMO','Worker FastAPI + executable eksternal','Memerlukan SUMO'],['Gemini','Integrasi backend tersedia; perlu GEMINI_API_KEY','Memerlukan key'],['OpenStreetMap','Pencarian lokasi, map dan objek sekitar via backend','Berfungsi'],['Open-Meteo','Konteks cuaca via backend','Berfungsi'],['Login multi-tenant','Belum tersedia; sinkronisasi SQLite hanya untuk server lokal','Belum dibuat']].map(x=>`<tr><td><strong>${x[0]}</strong></td><td>${x[1]}</td><td>${tag(x[2],x[2]==='Berfungsi'?'':x[2].includes('Sintetis')?'gold':'slate')}</td></tr>`).join('')}</tbody></table></div></section>
+<div class="section-h"><h2>Status integrasi saat ini</h2></div><section class="card"><div class="table-wrap"><table class="data-table"><thead><tr><th>Subsystem</th><th>Kemampuan</th><th>Status</th></tr></thead><tbody>${[['Aplikasi mobile-first','Responsive web & local persistence','Berfungsi'],['Observasi lapangan','Input manual, sesi, CSV, sinkronisasi REST ke SQLite lokal','Berfungsi'],['Analitik cepat','Agregasi dan estimasi heuristik','Simulasi'],['Simulasi SUMO','Worker FastAPI + executable eksternal','Memerlukan SUMO'],['Gemini','Integrasi backend tersedia; perlu GEMINI_API_KEY','Memerlukan key'],['OpenStreetMap','Pencarian lokasi, map dan objek sekitar via backend','Berfungsi'],['Open-Meteo','Konteks cuaca via backend','Berfungsi'],['Login multi-tenant','Belum tersedia; sinkronisasi SQLite hanya untuk server lokal','Belum dibuat']].map(x=>`<tr><td><strong>${x[0]}</strong></td><td>${x[1]}</td><td>${tag(x[2],x[2]==='Berfungsi'?'':x[2].includes('Simulasi')?'gold':'slate')}</td></tr>`).join('')}</tbody></table></div></section>
 ${note('MVP ini memprioritaskan pengalaman demonstrasi end-to-end dengan transparansi bukti. Autentikasi organisasi, sinkronisasi multi-perangkat, integrasi kamera, izin pengamatan, dan kalibrasi model jalan harus diselesaikan sebelum pilot operasional.')}`}
 
 
@@ -2331,40 +2224,13 @@ function renderMapview(){
  const zonePins=studyZonePoints(state.zonePins);
  const countByZone={};for(const row of state.pdfEvidence?.items||[]){if(row.source==='uploaded_pdf')countByZone[row.zone]=(countByZone[row.zone]||0)+1;}
  const osmUrl=`https://www.openstreetmap.org/?mlat=${center.lat}&mlon=${center.lon}#map=16/${center.lat}/${center.lon}`;
- return `${pageHead('SPATIAL WORKSPACE','Peta Koridor SIMPUL','Tinjau lokasi studi, tempatkan zona survei, dan telusuri koordinat dari dokumen observasi.',`<button class="btn primary" data-route="documents">${icon('file-text',16)} Tambah dokumen</button>`)}
- <section class="spatial-hero"><div><span class="spatial-eyebrow">FATMAWATI / JAKARTA SELATAN</span><h2>Lokasi yang jelas.<br><em>Data yang dapat ditelusuri.</em></h2><p>Susun konteks spasial sebelum menilai akses dan memilih skenario penataan.</p><div class="spatial-status" id="map-network-status" data-state="pending" role="status" aria-live="polite">Menyiapkan peta interaktif</div></div><div class="spatial-summary"><article><strong>${points.length}</strong><span>GPS eksplisit dari PDF</span></article><article><strong>${zonePins.length}</strong><span>Zona referensi pengamat</span></article><article><strong>WGS84</strong><span>Koordinat latitude / longitude</span></article></div></section>
+ return `${pageHead('SPATIAL WORKSPACE','Peta Koridor SIMPUL','Tinjau lokasi studi dan posisi tiga zona deteksi CCTV AI di bawah Stasiun MRT Fatmawati.','')}
+ <section class="spatial-hero"><div><span class="spatial-eyebrow">FATMAWATI / JAKARTA SELATAN</span><h2>Lokasi yang jelas.<br><em>Data yang dapat ditelusuri.</em></h2><p>Susun konteks spasial sebelum menilai akses dan memilih skenario penataan.</p><div class="spatial-status" id="map-network-status" data-state="pending" role="status" aria-live="polite">Menyiapkan peta interaktif</div></div><div class="spatial-summary"><article><strong>${zonePins.length}</strong><span>Zona deteksi CCTV AI</span></article><article><strong>WGS84</strong><span>Koordinat latitude / longitude</span></article></div></section>
  <div class="map-layout spatial-layout"><section class="card map-stage"><div class="map-commandbar"><div><span class="spatial-eyebrow">STUDY AREA</span><h3>Koridor MRT Fatmawati</h3><small>${center.lat.toFixed(5)}, ${center.lon.toFixed(5)}</small></div><div class="map-command-actions"><button class="btn" id="map-home" type="button">${icon('locate-fixed',15)} Pusat studi</button><button class="btn" id="map-fit" type="button">${icon('maximize',15)} Semua titik</button></div></div>
  <div id="simpul-leaflet-map" class="simpul-map" role="region" aria-label="Peta interaktif kawasan studi SIMPUL"><div class="map-loading"><strong>Menyiapkan ruang geospasial</strong><span>Referensi stasiun: -6.29247, 106.79245. Peta dasar memerlukan internet pada browser.</span></div></div><div class="map-foot"><span>© OpenStreetMap contributors / Referensi geografis</span><a href="${osmUrl}" rel="noopener noreferrer" target="_blank">Buka OpenStreetMap ↗</a></div></section>
- <aside class="map-side spatial-side"><section class="card">${cardHeading('Sumber dan layer','Status setiap penanda tetap terlihat.',tag('PROVENANCE',''))}<div class="spatial-layer"><i class="station"></i><div><strong>Stasiun MRT Fatmawati</strong><small>Referensi OpenStreetMap / verifikasi lapangan diperlukan</small></div><span>01</span></div><div class="spatial-layer"><i class="zone"></i><div><strong>Zona pengamatan</strong><small>Default di bawah stasiun; dapat dipindah pengamat</small></div><span>${zonePins.length}</span></div><div class="spatial-layer"><i class="document"></i><div><strong>Koordinat dokumen</strong><small>GPS eksplisit / catatan belum diverifikasi</small></div><span>${points.length}</span></div></section>
- <section class="card spatial-zone-editor">${cardHeading('Petakan zona survei','Pilih zona, kemudian klik posisi pada peta.')}<div class="field"><label for="map-zone-select">Zona yang akan ditempatkan</label><select id="map-zone-select" class="control">${['Zona A','Zona B','Zona C'].map(z=>`<option value="${z}">${z}</option>`).join('')}</select></div><div class="map-zones">${['Zona A','Zona B','Zona C'].map(z=>{const p=zonePins.find(p=>p.name===z);return `<div><strong>${z}</strong><span>${p.lat.toFixed(5)}, ${p.lon.toFixed(5)}</span><small>${p.custom?'Titik pengamat':'Posisi default di bawah stasiun'}</small><small>${countByZone[z]||0} catatan PDF terindeks</small></div>`}).join('')}</div><button class="btn" data-action="map-reset-zones">${icon('refresh-cw',15)} Kembalikan posisi default</button></section></aside></div>
- <div class="spatial-evidence-note">${icon('shield-check',19)}<div><strong>Validasi mengikuti sumber data</strong><p>Titik zona mewakili lokasi referensi pengamat. Catatan PDF memperoleh pin saat memiliki GPS eksplisit yang valid. Validasi kondisi lalu lintas dilakukan melalui pemeriksaan lapangan.</p></div></div>`;
-}
-
-
-// SOURCE MODULE: js/views/documents.js
-
-
-
-
-
-function renderDocuments(){
- const state=getState(),index=state.pdfEvidence||{items:[],filters:{},lastImport:null},f=index.filters||{};
- const rows=filterDocumentRecords(index.items||[],f);
- const result=index.lastImport;
- return `${pageHead('DATA / DOCUMENT EVIDENCE','PDF Observation Finder','Impor laporan observasi yang berizin dan telusuri kategori kendaraan, zona, tanggal, serta jam dari isi dokumen.','<button class="btn primary" data-route="mapview">'+icon('map-pinned',16)+' Lihat pada peta</button>')}
- ${note('<strong>Batas penggunaan:</strong> hasil ekstraksi PDF berupa kandidat catatan yang perlu tinjauan manusia. Tidak ada pencarian pelat nomor, pengenalan wajah, identifikasi pemilik kendaraan, ataupun lokasi kendaraan secara langsung.')}
- <div class="doc-summary"><div><span class="mini">DOKUMEN TERAKHIR</span><strong>${result?safe(result.fileName):'Belum ada PDF'}</strong><small>${result?`${result.pages} halaman / ${result.recordsFound} catatan kandidat`: 'Unggah laporan observasi yang mengandung waktu, zona, dan jenis kendaraan'}</small></div><div class="doc-mode">${tag(result?result.extractionMode:'BELUM DIIMPOR',result?.ocrRequired?'gold':'slate')}</div></div>
- <div class="two-cols" style="margin-bottom:20px"><section class="card doc-upload">${cardHeading('01 / Unggah laporan PDF','Maksimum 10 MB dan 30 halaman. Sistem membaca text layer; OpenOCR opsional untuk PDF hasil scan.')}
- <form id="document-upload-form"><label class="doc-drop" for="doc-pdf-file">${icon('file-text',29)}<strong>Pilih PDF laporan survei</strong><span>Jangan unggah laporan yang memuat identitas pribadi atau nomor pelat.</span><input type="file" id="doc-pdf-file" accept="application/pdf,.pdf" required /></label><button type="submit" class="btn primary">${icon('upload-cloud',16)} Impor & indeks dokumen</button></form>
- <div class="doc-help"><strong>Format yang bisa ditemukan</strong><code>2026-11-15 07:35 | Zona A | Mobil | Hitam | Menunggu | -6.29247, 106.79245</code><small>SIMPUL tidak mengisi nilai yang tidak tercantum di dokumen. Informasi tanpa koordinat tetap bisa dicari, tetapi tidak diberi pin kendaraan pada peta.</small></div>
- </section><section class="card">${cardHeading('02 / Status ekstraksi','Dapat digunakan secara lokal pada FastAPI; tidak mengirim PDF ke penyedia cloud.')}
- <div class="doc-processing"><div class="doc-proc-step"><span>1</span><div><strong>PDF text layer</strong><small>Pemrosesan dasar memakai PyMuPDF.</small></div></div><div class="doc-proc-step"><span>2</span><div><strong>OpenOCR (opsional)</strong><small>Untuk halaman scan ketika CLI telah dipasang dan operator mengaktifkannya.</small></div></div><div class="doc-proc-step"><span>3</span><div><strong>Indeks catatan</strong><small>Hanya tanggal, jam, zona, jenis, warna, dan GPS yang tercatat. Bukti diberi halaman dan nomor baris.</small></div></div></div>
- <p class="helper">Jika server tidak berjalan, unggahan tidak diproses. File PDF tidak disimpan setelah ekstraksi; indeks terstruktur disimpan di SQLite backend lokal.</p>
- <button type="button" class="btn" data-action="doc-status">${icon('refresh-cw',15)} Periksa status API/OCR</button>${index.status?`<p class="doc-status">Text layer: ${index.status.pdfTextExtraction?'siap':'tidak tersedia'}; OpenOCR: ${index.status.openocrInstalled&&index.status.openocrEnabled?'aktif':'belum aktif'}</p>`:''}</section></div>
- <section class="card"><div class="card-title"><div><h2>03 / Cari catatan kendaraan</h2><p>Pencarian pada dokumen yang Anda unggah, bukan sistem pelacakan langsung.</p></div>${tag(`${rows.length} cocok`,'')}</div>
- <form id="document-filter-form" class="doc-filters"><div class="field"><label for="doc-zone">Zona</label><input id="doc-zone" class="control" value="${safe(f.zone||'')}" placeholder="Zona A" maxlength="80"/></div><div class="field"><label for="doc-vehicle">Kategori / tipe</label><input id="doc-vehicle" class="control" value="${safe(f.vehicle||'')}" placeholder="Mobil / sedan" maxlength="30"/></div><div class="field"><label for="doc-color">Warna</label><input id="doc-color" class="control" value="${safe(f.color||'')}" placeholder="Hitam" maxlength="40"/></div><div class="field"><label for="doc-date">Tanggal</label><input id="doc-date" class="control" value="${safe(f.date||'')}" type="date"/></div><div class="field"><label for="doc-after">Mulai jam (WIB)</label><input id="doc-after" class="control" type="time" value="${safe(f.after||'')}"/></div><div class="field"><label for="doc-before">Sampai jam (WIB)</label><input id="doc-before" class="control" type="time" value="${safe(f.before||'')}"/></div><div class="doc-filter-buttons"><button type="submit" class="btn primary">${icon('search',16)} Cari</button><button type="button" data-action="doc-reset" class="btn">Atur ulang</button></div></form>
- ${rows.length?`<div class="table-wrap"><table class="data-table"><thead><tr><th>Waktu (WIB)</th><th>Zona</th><th>Kendaraan</th><th>Warna</th><th>Aktivitas</th><th>Asal dokumen</th><th>Geolokasi</th></tr></thead><tbody>${rows.slice(0,100).map(r=>`<tr><td>${shortDate(r.at)}<small>${clock(r.at)} WIB</small></td><td>${safe(r.zone)}</td><td>${safe(r.subcategory||r.vehicle)}</td><td>${safe(r.color||'Tidak dicatat')}</td><td>${safe(r.activity||'Tidak dicatat')}</td><td><strong>${safe(r.fileName)}</strong><small>Hal. ${r.page}, baris ${r.line}</small></td><td>${r.lat!=null?tag('GPS dari PDF',''):'Tidak ada koordinat'}</td></tr>`).join('')}</tbody></table></div>`:emptyState('Belum ada hasil yang cocok','Impor PDF observasi dengan struktur yang didukung, atau ubah filter. Hasil kosong tidak membuktikan kendaraan tidak berada di lokasi.')}
- <div class="doc-footer"><span>Seluruh catatan merupakan hasil ekstraksi otomatis berstatus BELUM DIVERIFIKASI.</span><button data-action="doc-export" class="btn">${icon('download',15)} Ekspor hasil JSON</button></div></section>`;
+ <aside class="map-side spatial-side"><section class="card">${cardHeading('Sumber dan layer','Status setiap penanda tetap terlihat.',tag('PROVENANCE',''))}<div class="spatial-layer"><i class="station"></i><div><strong>Stasiun MRT Fatmawati</strong><small>Referensi OpenStreetMap / verifikasi lapangan diperlukan</small></div><span>01</span></div><div class="spatial-layer"><i class="zone"></i><div><strong>Zona deteksi CCTV AI</strong><small>Default di bawah stasiun; posisi dapat disesuaikan</small></div><span>${zonePins.length}</span></div></section>
+ <section class="card spatial-zone-editor">${cardHeading('Atur posisi zona','Pilih zona, kemudian klik posisi pada peta.')}<div class="field"><label for="map-zone-select">Zona yang akan ditempatkan</label><select id="map-zone-select" class="control">${['Zona A','Zona B','Zona C'].map(z=>`<option value="${z}">${z}</option>`).join('')}</select></div><div class="map-zones">${['Zona A','Zona B','Zona C'].map(z=>{const p=zonePins.find(p=>p.name===z);return `<div><strong>${z}</strong><span>${p.lat.toFixed(5)}, ${p.lon.toFixed(5)}</span><small>${p.custom?'Posisi diubah':'Posisi default di bawah stasiun'}</small><small>${countByZone[z]||0} catatan PDF terindeks</small></div>`}).join('')}</div><button class="btn" data-action="map-reset-zones">${icon('refresh-cw',15)} Kembalikan posisi default</button></section></aside></div>
+ <div class="spatial-evidence-note">${icon('shield-check',19)}<div><strong>Validasi mengikuti sumber data</strong><p>Titik zona menandai area yang dipantau CCTV AI. Posisinya skematis dari model 3D; kondisi lalu lintas tetap divalidasi melalui pemeriksaan lapangan.</p></div></div>`;
 }
 
 
@@ -2395,21 +2261,11 @@ function renderDocuments(){
 
 
 
-
-
-
-
-
-
 const pageRenderers = Object.freeze({
   overview: renderOverview,
   cctv: renderCctv,
   vehicles: renderVehicles,
   project: renderProject,
-  survey: renderSurvey,
-  operations: renderOperations,
-  monitor: renderMonitor,
-  classification: renderClassification,
   publicintel: renderPublicIntel,
   diagnosis: renderDiagnosis,
   context: renderContext,
@@ -2417,12 +2273,10 @@ const pageRenderers = Object.freeze({
   simulation: renderSimulation,
   evaluation: renderEvaluation,
   insights: renderInsights,
-  standards: renderStandards,
   reports: renderReports,
   integrations: renderIntegrations,
   settings: renderSettings,
   mapview: renderMapview,
-  documents: renderDocuments,
   creators: renderCreators,
 });
 
@@ -2490,7 +2344,7 @@ async function activateMapView(state,onZonePick){
   if(project)pin(project,'#1b2b4e',8,'Titik proyek / Koordinat yang dipilih pengguna.');
   for(const point of studyZonePoints(state.zonePins)){
    const marker=L.circleMarker([point.lat,point.lon],{radius:6,color:'#ffffff',weight:2,fillColor:'#f86809',fillOpacity:1}).addTo(current)
-    .bindPopup(popup(point.custom?`${point.name} / Titik referensi yang ditetapkan pengamat.`:`${point.name} / Lajur kiri Jl. R.A. Kartini di bawah Stasiun MRT Fatmawati. Posisi skematis dari model 3D SIMPUL; perlu verifikasi lapangan.`));
+    .bindPopup(popup(point.custom?`${point.name} / Posisi zona yang disesuaikan pengguna.`:`${point.name} / Lajur kiri Jl. R.A. Kartini di bawah Stasiun MRT Fatmawati. Posisi skematis dari model 3D SIMPUL; perlu verifikasi lapangan.`));
    marker.bindTooltip(point.name.replace('Zona ',''),{permanent:true,direction:'top',offset:[0,-6],className:'zone-tip'});
    bounds.push([point.lat,point.lon]);
   }
@@ -4636,7 +4490,123 @@ const I18N_PHRASES=Object.freeze([
 ["Memuat peta dasar","Loading base map"],
 ["Menunggu koneksi peta dasar","Waiting for the base map connection"],
 ["Menyiapkan peta interaktif","Preparing the interactive map"],
-["Default di bawah stasiun; dapat dipindah pengamat","Default under the station; observers can move them"]
+["Default di bawah stasiun; dapat dipindah pengamat","Default under the station; observers can move them"],
+["Data interval (volume, antrean, akses) akan terisi otomatis dari deteksi CCTV AI.","Interval data (volume, queue, access) will be filled automatically from CCTV AI detections."],
+["Dari data kejadian yang tersimpan. Periksa posisi dan waktu terhadap arus utama.","From stored event data. Check position and timing against the main flow."],
+["Hubungkan CCTV AI untuk mengisi data jam sibuk dan non-sibuk.","Connect the CCTV AI to fill in peak and off-peak data."],
+["Telusuri sumber hambatan kendaraan yang menjemput, menurunkan, dan menunggu penumpang berdasarkan data interval dari deteksi CCTV AI.","Trace the sources of obstruction from vehicles picking up, dropping off and waiting for passengers, based on interval data from CCTV AI detections."],
+["Lihat deteksi CCTV AI","View CCTV AI detections"],
+["baseline di bawah menghitung data interval yang masuk ke SIMPUL; nantinya terisi otomatis dari deteksi CCTV AI. Data sintetis delapan kejadian dari versi awal","the baseline below counts interval data received by SIMPUL; it will be filled automatically from CCTV AI detections. The eight synthetic events from the early version are"],
+["kejadian/jam","events/hour"],
+["Belum ada baseline. Data interval dari CCTV AI akan menampilkan zona yang memerlukan perhatian.","No baseline yet. Interval data from the CCTV AI will show which zones need attention."],
+["Ledger interval data","Interval data ledger"],
+["Fase baseline dan tindak lanjut dicatat terpisah. Sumber utama: deteksi CCTV AI.","Baseline and follow-up phases are stored separately. Main source: CCTV AI detections."],
+["Belum ada interval data. Hubungkan CCTV AI untuk mengisi volume, antrean, dan akses per zona.","No interval data yet. Connect the CCTV AI to fill in volume, queue and access per zone."],
+["Kelengkapan data interval sebelum dan sesudah intervensi.","Completeness of interval data before and after intervention."],
+["Untuk tim AI: format data interval","For the AI team: interval data format"],
+["Model CCTV AI mengirim ringkasan per zona dan periode (volume lewat, kendaraan berhenti, antrean maksimum, jarak akses). Tombol di bawah hanya untuk menguji format data, bukan pencatatan lapangan.","The CCTV AI model sends a summary per zone and period (passing volume, stopped vehicles, maximum queue, access distance). The button below is only for testing the data format, not for field recording."],
+["Masukkan interval uji","Enter test interval"],
+["Data dari CCTV AI","Data from CCTV AI"],
+["# baseline; # follow-up A#. Data interval nantinya terisi otomatis dari deteksi CCTV AI.","# baseline; # follow-up A#. Interval data will be filled automatically from CCTV AI detections."],
+["# interval baseline dan # tindak lanjut. Kalibrasi lokal SUMO belum dibuktikan.","# baseline and # follow-up intervals. Local SUMO calibration not yet proven."],
+["CCTV AI mengumpulkan volume, dwell, antrean, dan akses pada jam sibuk serta non-sibuk.","The CCTV AI collects volume, dwell, queue and access in peak and off-peak hours."],
+["Cocokkan SUMO dengan data CCTV AI pada periode terpisah; ulang beberapa seed.","Match SUMO to CCTV AI data from a separate period; repeat several seeds."],
+["Bandingkan deteksi CCTV AI pada zona dan periode setara setelah intervensi.","Compare CCTV AI detections in equivalent zones and periods after the intervention."],
+["Sebutkan sumber data, batas akses, dan ketidakpastian.","State the data source, access limits and uncertainty."],
+["Deteksi CCTV AI","CCTV AI detection"],
+["tidak boleh dihitung sebagai bukti tidak terjadi hambatan. Ini adalah indikator dari data kejadian, belum pembuktian kausal.","must not be counted as evidence that no obstruction occurred. These are indicators from event data, not causal proof."],
+["DETEKSI CCTV AI / BELUM DIVERIFIKASI","CCTV AI DETECTION / NOT VERIFIED"],
+["Data dari deteksi CCTV AI; dampak dan aturan masih memerlukan pemeriksaan.","Data from CCTV AI detections; impact and rules still need checking."],
+["Buka diagnosis","Open diagnosis"],
+["Model demonstrasi memakai pendekatan matematis sederhana, belum divalidasi dengan data CCTV AI di lokasi. Angka bukan pengukuran dampak lalu lintas.","The demonstration model uses a simple mathematical approach and is not yet validated with on-site CCTV AI data. The figures are not traffic impact measurements."],
+["Sintetis; CCTV AI belum terhubung","Synthetic; CCTV AI not connected yet"],
+["Rekaman CCTV atau video di tiga zona bawah stasiun","CCTV or video footage of the three zones under the station"],
+["Jumlah kendaraan, durasi berhenti, dan antrean per zona secara otomatis.","Vehicle counts, stop durations and queues per zone, automatically."],
+["Simulasi 3D berfungsi; model AI tim sedang diintegrasikan","3D simulation works; the team's AI model is being integrated"],
+["Deteksi CCTV AI yang sudah teragregasi per zona","CCTV AI detections aggregated per zone"],
+["Hasil skenario, asumsi, dan data deteksi CCTV AI","Scenario results, assumptions and CCTV AI detection data"],
+["Target proposal; butuh periode validasi terpisah","Proposal target; needs a separate validation period"],
+["Baseline sebelum intervensi. Harus dikalibrasi terhadap deteksi CCTV AI.","Baseline before intervention. Must be calibrated against CCTV AI detections."],
+["Jumlah dan durasi berhenti kendaraan dari model AI; hanya tampilan langsung sampai model tim terhubung.","Vehicle counts and stop durations from the AI model; live display only until the team's model is connected."],
+["Hubungkan model CCTV AI ke tiga zona di bawah stasiun. Tentukan jam sibuk dan izin penggunaan rekaman CCTV terlebih dahulu.","Connect the CCTV AI model to the three zones under the station. Decide peak hours and CCTV footage permissions first."],
+["Minta pengelola meninjau skenario dan akses pejalan kaki. Bandingkan waktu analisis dengan dan tanpa otomasi SIMPUL.","Ask managers to review the scenarios and pedestrian access. Compare analysis time with and without SIMPUL automation."],
+["aplikasi berfungsi untuk simulasi #D CCTV AI, penyajian data, integrasi kontekstual yang terkonfigurasi, demonstrasi skenario, dan ekspor. Model deteksi AI tim sedang diintegrasikan; model Fatmawati terkalibrasi, sistem multi-organisasi, serta pengambilan keputusan resmi belum tersedia.","the app works for the #D CCTV AI simulation, data presentation, configured contextual integrations, scenario demonstration and export. The team's AI detection model is being integrated; a calibrated Fatmawati model, a multi-organisation system and official decision-making are not yet available."],
+["# nyata; # sintetis","# real; # synthetic"],
+["Kategori menunggu nantinya berasal dari klasifikasi CCTV AI; saat ini dari data contoh.","The waiting category will come from CCTV AI classification; for now it comes from sample data."],
+["Distribusi zona perlu dibandingkan pada durasi rekaman yang setara.","Zone distribution needs comparing over equivalent footage durations."],
+["Analisis hanya menggunakan agregat kejadian (tanpa foto, video, atau identitas). Perlu kunci GEMINI_API_KEY di server. Hasil AI adalah interpretasi yang belum diverifikasi.","The analysis uses only event aggregates (no photos, video or identities). Needs a GEMINI_API_KEY on the server. AI output is an unverified interpretation."],
+["kejadian - memerlukan review manusia","events - need human review"],
+["# catatan; # nyata","# records; # real"],
+["Validasi pada periode terpisah","Validate on a separate period"],
+["Simpan dan tarik data deteksi secara eksplisit.","Explicitly save and fetch detection data."],
+["Data deteksi sebagai time-series dengan antrean tahan-gagal.","Detection data as time series with a fault-tolerant queue."],
+["Cari lokasi nyata; dipanggil saat diminta dan sesuai kebijakan rate limit.","Search real locations; called on request and within the rate-limit policy."],
+["Cuaca historis untuk periode rekaman.","Historical weather for the footage period."],
+["Tinjau lokasi studi dan posisi tiga zona deteksi CCTV AI di bawah Stasiun MRT Fatmawati.","Review the study location and the three CCTV AI detection zones under MRT Fatmawati Station."],
+["Zona deteksi CCTV AI","CCTV AI detection zones"],
+["Default di bawah stasiun; posisi dapat disesuaikan","Default under the station; positions can be adjusted"],
+["Atur posisi zona","Adjust zone positions"],
+["Posisi diubah","Position adjusted"],
+["Titik zona menandai area yang dipantau CCTV AI. Posisinya skematis dari model #D; kondisi lalu lintas tetap divalidasi melalui pemeriksaan lapangan.","Zone points mark the areas monitored by the CCTV AI. Positions are schematic from the #D model; traffic conditions are still validated through site checks."],
+["Zona A / Posisi zona yang disesuaikan pengguna.","Zone A / Zone position adjusted by the user."],
+["Zona B / Posisi zona yang disesuaikan pengguna.","Zone B / Zone position adjusted by the user."],
+["Zona C / Posisi zona yang disesuaikan pengguna.","Zone C / Zone position adjusted by the user."],
+["laporan memuat catatan sintetis dan/atau deteksi CCTV AI, simulasi ilustratif atau SUMO demo. Dokumen ini belum setara dengan hasil kajian terkalibrasi.","the report contains synthetic records and/or CCTV AI detections, illustrative simulation or demo SUMO. This document is not equivalent to calibrated study results."],
+["Untuk pertukaran dengan analis atau institusi lain, gunakan evidence bundle (UTC, unit SI, provenance, data deteksi) dan GeoJSON untuk titik referensi lokasi proyek. Keduanya tidak mengklaim validasi lapangan.","For exchange with analysts or other institutions, use the evidence bundle (UTC, SI units, provenance, detection data) and GeoJSON for the project location reference point. Neither claims field validation."],
+["Data nyata","Real data"],
+["Model CCTV AI belum diuji nilai F#-nya. Perlu ground truth dan anotasi independen.","The CCTV AI model's F# score has not been tested yet. Ground truth and independent annotation are needed."],
+["Membantu tim memahami pemberitaan area transit sambil mempertahankan perbedaan antara sumber publik, observasi primer, dan keputusan pemeriksa.","Helps the team understand news about the transit area while keeping public sources, primary data and reviewer decisions distinct."],
+["Deteksi kendaraan tetap berasal dari CCTV AI, bukan dari berita.","Vehicle detection still comes from the CCTV AI, not from news."],
+["Tim dapat membuka sumber asli untuk verifikasi.","The team can open the original source for verification."],
+["Jangan gabungkan data prakiraan, pemodelan, metadata peta, dan deteksi CCTV AI menjadi satu metrik tanpa penanda sumber. Data-data di atas hanya mendukung konteks dan penyusunan hipotesis. Kalibrasi terhadap deteksi CCTV AI tetap dibutuhkan.","Do not combine forecasts, modelling, map metadata and CCTV AI detections into one metric without source labels. The data above only supports context and hypothesis building. Calibration against CCTV AI detections is still required."],
+["Observasi CCTV AI","CCTV AI observation"],
+["DATA INTERVAL","INTERVAL DATA"],
+["# menit data","# minutes of data"],
+["Evaluasi dampak dari data CCTV AI, bukan asumsi","Evaluate impact from CCTV AI data, not assumption"],
+["Belum ada pasangan data sebelum dan sesudah pada zona + periode yang sama","No before-and-after data pairs in the same zone + period yet"],
+["Model #D dibangun dari foto dan dimensi asli Stasiun MRT Fatmawati (# m × # m). Angka simulasi belum dikalibrasi dan siap dikalibrasi dengan rekaman CCTV. AI hanya menghitung jenis kendaraan dan durasi berhenti, tanpa plat nomor dan wajah.","The #D model is built from photos and the real dimensions of MRT Fatmawati Station (# m × # m). Simulation figures are not yet calibrated and are ready to calibrate with CCTV footage. The AI only counts vehicle types and stop durations, without license plates or faces."],
+["SIMULASI #D · FATMAWATI","#D SIMULATION · FATMAWATI"],
+["Simulasi #D Fatmawati siap diputar","Fatmawati #D simulation ready to play"],
+["AI virtual · simulasi lalu lintas Fatmawati","Virtual AI · Fatmawati traffic simulation"],
+["Simulasi Fatmawati","Fatmawati simulation"],
+["SIMULASI FATMAWATI / SIAP DATA CCTV","FATMAWATI SIMULATION / READY FOR CCTV DATA"],
+["Angka di bawah berasal dari skenario simulasi dan akan diganti otomatis oleh deteksi CCTV AI.","The figures below come from the simulation scenario and will be replaced automatically by CCTV AI detections."],
+["baseline di bawah menghitung data interval yang masuk ke SIMPUL; nantinya terisi otomatis dari deteksi CCTV AI. Data simulasi","the baseline below counts interval data received by SIMPUL; it will be filled automatically from CCTV AI detections. Simulation data is"],
+["dicampur ke statistik ini. Jumlah berhenti per jam adalah normalisasi durasi pengamatan, bukan pengukuran tundaan kendaraan atau bukti sebab-akibat.","mixed into these statistics. Stops per hour are normalised by observation duration; they are not a measurement of vehicle delay or proof of cause and effect."],
+["Estimasi cepat (model heuristik):","Quick estimate (heuristic model):"],
+["Model cepat memakai pendekatan matematis untuk membandingkan skenario secara adil, dan siap dikalibrasi dengan data CCTV AI di lokasi.","The quick model uses a mathematical approach to compare scenarios fairly and is ready to calibrate with on-site CCTV AI data."],
+["Engine SUMO dijalankan pada jaringan koridor uji; siap dikalibrasi dengan geometri dan data CCTV Fatmawati.","The SUMO engine runs on a test corridor network, ready to calibrate with Fatmawati geometry and CCTV data."],
+["ESTIMASI SIMULASI","SIMULATION ESTIMATE"],
+["HASIL PEMERINGKATAN SIMULASI","SIMULATION RANKING RESULT"],
+["SUMO koridor uji","SUMO test corridor"],
+["Model heuristik","Heuristic model"],
+["Tahap berikutnya: validasi CCTV","Next step: CCTV validation"],
+["Simulasi; siap menerima data CCTV AI","Simulation; ready for CCTV AI data"],
+["skor dan status kelayakan di bawah berasal dari parameter skenario serta ambang yang ditetapkan pengguna. Hasilnya berupa","the scores and feasibility status below come from scenario parameters and user-set thresholds. The results are"],
+["proyeksi simulasi untuk membandingkan skenario","simulation projections for comparing scenarios"],
+["; prediksi lapangan menyusul setelah kalibrasi dengan data CCTV. Catatan keputusan tidak menggantikan persetujuan pihak berwenang.","; field predictions follow after calibration with CCTV data. Decision notes do not replace approval from the authorities."],
+["Sumber rumus simulasi; kalibrasi lokasi dengan data CCTV menyusul.","Simulation formula source; site calibration with CCTV data follows."],
+["Sumber SUMO pada jaringan koridor uji; kalibrasi lokasi dengan data CCTV menyusul.","SUMO on a test corridor network; site calibration with CCTV data follows."],
+["MODEL SIMULASI","SIMULATION MODEL"],
+["SUMO KORIDOR UJI","SUMO TEST CORRIDOR"],
+["Simulasi SUMO koridor uji selesai","SUMO test corridor simulation complete"],
+["# nyata; # simulasi","# real; # simulation"],
+["DATA SIMULASI","SIMULATION DATA"],
+["CAMPURAN","MIXED"],
+["Menunggu validasi CCTV","Awaiting CCTV validation"],
+["Model heuristik; SUMO opsional untuk simulasi lalu lintas mikro","Heuristic model; SUMO optional for microscopic traffic simulation"],
+["Data simulasi","Simulation data"],
+["# kejadian simulasi untuk menunjukkan alur sistem secara lengkap.","# simulated events showing the complete system flow."],
+["Model heuristik untuk perbandingan cepat; backend SUMO siap dikalibrasi dengan geometri dan data CCTV Fatmawati.","Heuristic model for quick comparison; the SUMO backend is ready to calibrate with Fatmawati geometry and CCTV data."],
+["Simulasi lalu lintas mikro SUMO di jaringan koridor.","SUMO microscopic traffic simulation on the corridor network."],
+["laporan memuat hasil simulasi dan/atau deteksi CCTV AI beserta asumsinya, sehingga dapat direproduksi dan dikalibrasi lebih lanjut.","the report contains simulation results and/or CCTV AI detections with their assumptions, so it can be reproduced and calibrated further."],
+["Sumber data: Simulasi CCTV AI","Data source: CCTV AI simulation"],
+["Interval # menit per zona (jam sibuk & luar jam sibuk) dihasilkan otomatis dari simulasi lalu lintas #D Fatmawati, dengan format yang sama seperti keluaran model AI. Akan diganti otomatis oleh deteksi CCTV AI nyata.","# minute intervals per zone (peak & off-peak) generated automatically from the Fatmawati #D traffic simulation, in the same format as the AI model output. Real CCTV AI detections replace them automatically."],
+["SIMULASI","SIMULATION"],
+["baseline di bawah menghitung data interval yang masuk ke SIMPUL; nantinya terisi otomatis dari deteksi CCTV AI. Selama model AI belum terhubung, interval berasal dari simulasi lalu lintas #D Fatmawati dan diberi label SIMULASI; simulasi dan data AI nyata","the baseline below counts interval data received by SIMPUL; it will be filled automatically from CCTV AI detections. Until the AI model is connected, intervals come from the Fatmawati #D traffic simulation and are labelled SIMULATION; simulation and real AI data are"],
+["pernah dicampur. Jumlah berhenti per jam adalah normalisasi durasi pengamatan, bukan pengukuran tundaan kendaraan atau bukti sebab-akibat.","ever mixed. Stops per hour are normalised by observation duration; they are not a measurement of vehicle delay or proof of cause and effect."],
+["# baseline; # follow-up A#. Sumber: simulasi CCTV AI (label SIMULASI); akan diganti otomatis oleh deteksi CCTV AI nyata.","# baseline; # follow-up A#. Source: CCTV AI simulation (labelled SIMULATION); real CCTV AI detections replace it automatically."],
+["# baseline; # follow-up A#. Sumber: data interval CCTV AI.","# baseline; # follow-up A#. Source: CCTV AI interval data."]
 ]);
 
 
@@ -5037,6 +5007,7 @@ function bindFreeCamera(stage,camera,onManual,onDraw){
 
 
 
+
 const STOP_LOG_SEC=8;
 const PANEL_INTERVAL=250;
 const STALE_MS=1500;
@@ -5102,6 +5073,10 @@ function ingestDetections(detail){
   }
   for(const [id,t] of rt.tracks){
     if(source==='demo'?!present.has(id):now-t.t>STALE_MS)closeTrack(id,t);
+  }  if(source==='ai'){
+    const counts={car:0,motorcycle:0,bus:0};for(const c of rt.seen.values())counts[c]=(counts[c]||0)+1;
+    const stoppedNow=[...rt.tracks.values()].filter(t=>t.zone&&t.dwellSec>=STOP_LOG_SEC);
+    reportAiStatus({model:rt.model,counts,stopped:stoppedNow.length,over:stoppedNow.filter(t=>t.dwellSec>=rt.threshold).length});
   }
 }
 
@@ -5255,8 +5230,8 @@ function drawPanels(){
   setText('[data-sim-clock]',`Sim ${simClock()}`);
   setText('[data-cctv-fps]',`${rt.frames.length} frame/dtk`);
   const states={
-    idle:['AI belum terhubung','Simulasi 3D sintetis siap diputar'],
-    demo:['Simulasi 3D berjalan','AI virtual · data sintetis, bukan rekaman nyata'],
+    idle:['AI belum terhubung','Simulasi 3D Fatmawati siap diputar'],
+    demo:['Simulasi 3D berjalan','AI virtual · simulasi lalu lintas Fatmawati'],
     paused:['Simulasi dijeda','Putar lagi untuk melanjutkan'],
     ai:['AI terhubung',rt.model?`Model: ${rt.model}`:'Menerima deteksi langsung']
   };
@@ -5523,6 +5498,7 @@ if(typeof window!=='undefined'){
 
 
 
+
 const hs={raf:0,root:null,sim:null,cam:null,scenario:'A0',visible:true,observer:null,lastKpi:0,story:initialDemo(),dirty:true,comparison:null,
   focusId:null,zoom:1,frozen:false,clock:0};
 const words=pair=>pair[getLanguage()==='en'?1:0];
@@ -5644,6 +5620,26 @@ function drawKpis(){
   set('queue',`${Math.round(m.queue)} m`,m.queue>80?'bad':m.queue>30?'mid':'good');
   set('blocked',`${m.blocked}`,m.blocked>=3?'bad':m.blocked>=1?'mid':'good');
 }
+/** Beranda "Status CCTV AI" card: real AI detections when connected, otherwise the live 3D simulation. */
+function drawAiStatus(){
+  const card=document.querySelector('[data-ai-status]');if(!card)return;
+  const ai=getAiStatus(),en=getLanguage()==='en';
+  let counts=ai.counts,stopped=ai.stopped;
+  if(!ai.connected&&hs.sim){
+    counts={car:0,motorcycle:0,bus:0};stopped=0;
+    for(const v of hs.sim.vehicles){if(v.road!=='S')continue;const k=v.cls==='truck'?'bus':v.cls;if(k in counts)counts[k]++;if(v.state==='stopped')stopped++;}
+  }
+  const put=(k,v)=>{const el=card.querySelector(`[data-ai-metric="${k}"]`);if(el&&el.textContent!==String(v))el.textContent=String(v);};
+  put('car',counts.car);put('motorcycle',counts.motorcycle);put('bus',counts.bus);put('stopped',stopped);
+  const state=ai.connected?'ai':'sim';
+  if(card.dataset.state!==state){
+    card.dataset.state=state;
+    const title=card.querySelector('[data-ai-title]'),text=card.querySelector('[data-ai-text]'),chip=card.querySelector('[data-ai-chip]');
+    if(title)title.textContent=ai.connected?(en?'AI connected':'AI terhubung')+(ai.model?` · ${ai.model}`:''):(en?'AI not connected yet':'AI belum terhubung');
+    if(text)text.textContent=ai.connected?(en?'Live detections from the AI model. Only vehicle type and stop duration; no license plates or faces.':'Deteksi langsung dari model AI. Hanya jenis kendaraan dan durasi berhenti; tanpa plat nomor dan wajah.'):(en?'Until the AI model from the team sends detections, the figures below come from the live 3D simulation of MRT Fatmawati.':'Sampai model AI tim mengirim deteksi, angka di bawah berasal dari simulasi 3D MRT Fatmawati yang sedang berjalan.');
+    if(chip)chip.lastChild.textContent=ai.connected?'AI LIVE':(en?'3D SIMULATION':'SIMULASI 3D');
+  }
+}
 function focusLabel(stage,focus){
   const base=words(stage.label);
   if(!focus)return base;
@@ -5712,6 +5708,8 @@ function activateHomeSim(root){
        drawProgress();
       }
     }
+    // The AI status card sits below the 3D preview, so refresh it even when the preview is scrolled away.
+    if(!document.hidden&&t-(hs.lastAi||0)>500){hs.lastAi=t;drawAiStatus();}
     hs.raf=requestAnimationFrame(tick);
   };
   hs.raf=requestAnimationFrame(tick);
@@ -5962,6 +5960,44 @@ function monitoringCsv(state) {
 }
 
 
+// SOURCE MODULE: js/monitoring.js
+/** Pure monitoring projections. Never turn demo records into field evidence. */
+const SOURCES = ['manual','demo'];
+const validDate=x=>{const t=Date.parse(x);return Number.isFinite(t)?t:null;};
+function filterEvents(records=[], filter={}){
+  const now=Date.now();const range=filter.range||'all';const span=({day:86400000,week:7*86400000,month:30*86400000})[range];
+  return records.filter(r=>{
+    if(!SOURCES.includes(r.source))return false;
+    if(filter.source&&filter.source!=='all'&&r.source!==filter.source)return false;
+    if(filter.zone&&filter.zone!=='all'&&r.zone!==filter.zone)return false;
+    const t=validDate(r.at);return t!==null&&(!span||(t>=now-span&&t<=now+300000));
+  }).sort((a,b)=>Date.parse(a.at)-Date.parse(b.at));
+}
+function jakartaHour(date){return new Intl.DateTimeFormat('en-CA',{timeZone:'Asia/Jakarta',year:'numeric',month:'2-digit',day:'2-digit',hour:'2-digit',hourCycle:'h23'}).format(new Date(date)).replace(', ','T');}
+function jakartaDay(date){return new Intl.DateTimeFormat('en-CA',{timeZone:'Asia/Jakarta',year:'numeric',month:'2-digit',day:'2-digit'}).format(new Date(date));}
+function timeSeries(records=[], filter={}){
+  const filtered=filterEvents(records,filter);const days=new Set(filtered.map(x=>jakartaDay(x.at)));
+  const granularity=(filter.range==='day'||(filter.range==='all'&&days.size<=1))?'hour':'day';
+  const keyOf=x=>granularity==='hour'?jakartaHour(x.at):jakartaDay(x.at);
+  const bins=new Map();for(const e of filtered){const key=keyOf(e);if(!bins.has(key))bins.set(key,{key,manual:0,demo:0});bins.get(key)[e.source]++;}
+  return {granularity,bins:[...bins.values()].sort((a,b)=>a.key.localeCompare(b.key)).slice(-24),filtered};
+}
+function monitorStats(records=[],sessions=[],filter={}){
+  const items=filterEvents(records,filter),manual=items.filter(x=>x.source==='manual'),demo=items.length-manual.length;
+  const dwell=items.reduce((s,e)=>s+(Number(e.duration)||0),0);
+  const completed=sessions.filter(s=>s.status==='Selesai'&&((filter.source||'all')==='all'||s.source===filter.source)).length;
+  const counts={};for(const e of items)counts[e.type]=(counts[e.type]||0)+1;
+  return {total:items.length,manual:manual.length,demo,completed,meanDwell:items.length?dwell/items.length:null,counts,last:items.at(-1)||null};
+}
+function monitorAlerts(records=[],sessions=[],now=Date.now()){
+  const alerts=[];const manual=records.filter(e=>e.source==='manual');
+  if(!manual.length)alerts.push({type:'info',title:'Belum ada observasi lapangan',detail:'Data sintetis tersedia untuk menguji antarmuka. Mulai sesi nyata untuk membuat data yang dapat dievaluasi.'});
+  if(sessions.some(s=>s.status==='Berjalan'&&Date.parse(s.startedAt)<now-2*60*60*1000))alerts.push({type:'warning',title:'Sesi berlangsung lebih dari 2 jam',detail:'Periksa apakah sesi masih aktif dan pastikan pencatatan sesuai periode survei.'});
+  if(manual.length&&Math.max(...manual.map(e=>Date.parse(e.at)||0))<now-24*60*60*1000)alerts.push({type:'info',title:'Tidak ada rekaman manual 24 jam terakhir',detail:'Ini merupakan indikator kesegaran data, bukan bukti gangguan lalu lintas.'});
+  return alerts;
+}
+
+
 // SOURCE MODULE: js/custom-select.js
 /**
  * Themed form controls: rounded dropdowns and range sliders with a filled track.
@@ -6176,16 +6212,14 @@ function installCustomSelects(){
 
 
 
-
-
-
-
 // The renderer registry is maintained separately from action orchestration.
 const components = pageRenderers;
 const names=Object.fromEntries(views.map(v=>[v.id,v.label]));
 let mobileOpen=false,toastTimer=null,serverStatus=null,monitorTimer=null,monitorBusy=false,lastMonitorSync=0,expandedNavGroup=null,lastRenderedRoute=null;
-// Pages removed from the website: manual field observation (AI now automates input) and the business model (moved to the pitch deck).
-const REMOVED_ROUTES={observation:'cctv',business:'overview',pipeline:'overview',equipment:'overview'};
+// Pages removed from the website: manual field observation and its survey/monitoring/review/follow-up/PDF pages
+// (the CCTV AI automates input) and the business model (moved to the pitch deck).
+const REMOVED_ROUTES={observation:'cctv',business:'overview',pipeline:'overview',equipment:'overview',
+ survey:'cctv',monitor:'cctv',classification:'vehicles',operations:'vehicles',documents:'mapview',standards:'reports'};
 const currentPage=()=>{let p=decodeURIComponent(location.hash.replace('#',''))||'overview';p=REMOVED_ROUTES[p]||p;return components[p]?p:'overview';};
 function sidebar(){
   const active=currentPage();
@@ -6314,7 +6348,7 @@ async function runSumo(){const button=document.querySelector('[data-action="run-
     if(j.status==='failed')throw new Error(j.error||'SUMO gagal');
     if(j.status==='complete'){
       updateState(s=>({...s,lastAnalysis:j.result,history:[...s.history,{id:uid('run'),engine:'sumo',createdAt:nowIso()}]}));
-      recordLocalActivity('simulation.complete','Simulasi SUMO jaringan sintetis selesai');
+      recordLocalActivity('simulation.complete','Simulasi SUMO koridor uji selesai');
       toast('SUMO selesai: hasil jaringan uji sintetis dimuat');return;
     }
   }
@@ -6521,35 +6555,16 @@ case 'toggle-nav-group':{
   break;
 }
 case 'close-mobile':closeMobileDrawer(document.getElementById('sidebar'),document.querySelector('.mobile-curtain'),()=>{mobileOpen=false;render()});break;
-case 'quick-observation':modal(eventModal());break;
 case 'export-survey':download('SIMPUL_survey_coverage_manual.json',JSON.stringify(exportSurveyCoverage(getState()),null,2));toast('Matriks survei diekspor dengan status review');break;
-case 'review-survey-session':{
-  const s=getState(),session=s.sessions.find(x=>x.id===el.dataset.id&&x.source==='manual');
-  if(!session)return toast('Sesi manual tidak ditemukan');
-  const summary=surveyCoverage(s),row=summary.rows.find(x=>x.session.id===session.id);
-  modal(reviewSessionModal(session,row,s.sessionReviews?.[session.id]||{}));break;
-}
-case 'create-operation':{
-  const s=getState(),board=operationalBoard(s),candidate=board.candidates.find(x=>x.event.id===el.dataset.id)||null;
-  const available=board.candidates.filter(x=>!board.cases.some(c=>c.eventId===x.event.id));
-  if(!available.length)return toast('Belum ada kejadian manual P1/P2 yang belum ditindaklanjuti.');
-  modal(operationCreateModal(candidate,board));break;
-}
-case 'update-operation':{
-  const item=(getState().responseCases||[]).find(x=>x.id===el.dataset.id);
-  if(!item)return toast('Kasus tidak ditemukan');modal(operationUpdateModal(item));break;
-}
 case 'export-operations':download('SIMPUL_operational_response_manual.json',JSON.stringify(exportOperations(getState()),null,2));toast('Daftar tindak lanjut diekspor tanpa catatan bebas');break;
 case 'export-police-csv':downloadPoliceCsv();break;
 case 'export-police-json':{download('SIMPUL_traffic_review_manual_only.json',JSON.stringify(makePoliceReviewBundle(getState()),null,2));toast('Berkas review JSON disiapkan, tanpa data ilustratif');break;}
-case 'review-traffic':{const e=getState().observations.find(x=>x.id===el.dataset.id);if(!e)return toast('Rekaman tidak ditemukan');if(e.source!=='manual'){toast('Review resmi tidak dapat diisi pada data sintetis. Catat observasi manual.');return;}modal(trafficReviewModal(e,getState().eventReviews?.[e.id]));break;}
 
 case 'add-field-reading':modal(fieldReadingModal());break;
 case 'add-decision':modal(decisionModal());break;
 case 'export-field-readings':downloadFieldReadings();break;
 case 'sync-field-readings':syncFieldReadings();break;
 case 'delete-field-reading':if(confirm('Hapus interval ini dari penyimpanan lokal? Data yang sudah tersinkronisasi ke server tidak otomatis terhapus.')){updateState(s=>({...s,fieldReadings:s.fieldReadings.filter(r=>r.id!==el.dataset.id)}));recordLocalActivity('field.delete','Interval manual dihapus lokal','warning');toast('Interval dihapus dari browser');}break;
-case 'capture-type':modal(eventModal(el.dataset.value));break;
 case 'close-modal':closeModal();break;
 case 'start-session':startSession();break;
 case 'end-session':endSession();break;
@@ -6716,4 +6731,9 @@ subscribe(render);render();manageMonitorPolling();
 installCustomSelects();
 installDomI18n();
 // PWA service worker, best-effort. HTTPS or localhost required.
-if('serviceWorker' in navigator && location.protocol!=='file:')navigator.serviceWorker.register('./sw.js').catch(()=>{});
+if('serviceWorker' in navigator && location.protocol!=='file:'){
+  const hadController=Boolean(navigator.serviceWorker.controller);let reloaded=false;
+  // A new deploy installs a new versioned cache; reload once so the new files show without a manual refresh.
+  navigator.serviceWorker.addEventListener('controllerchange',()=>{if(hadController&&!reloaded){reloaded=true;location.reload();}});
+  navigator.serviceWorker.register('./sw.js',{updateViaCache:'none'}).then(reg=>reg.update?.()).catch(()=>{});
+}

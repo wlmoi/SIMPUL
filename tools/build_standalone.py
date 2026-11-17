@@ -98,6 +98,19 @@ def refresh_pwa_cache_manifest(files: list[Path]) -> None:
     sw_path.write_text(updated, encoding='utf-8')
 
 
+def refresh_modulepreload(files: list[Path]) -> None:
+    """Let the browser fetch the whole ES-module graph in parallel instead of import-by-import."""
+    index = ROOT / 'index.html'
+    html = index.read_text(encoding='utf-8')
+    links = ''.join(f'\n  <link rel="modulepreload" href="./{f.relative_to(ROOT).as_posix()}" />' for f in files)
+    updated, count = re.subn(r'(<!-- modulepreload:start[^>]*-->).*?(\n\s*<!-- modulepreload:end -->)',
+                             lambda m: m.group(1) + links + m.group(2), html, count=1, flags=re.S)
+    if not count:
+        raise ValueError('Missing modulepreload markers in index.html')
+    if updated != html:
+        index.write_text(updated, encoding='utf-8')
+
+
 def build() -> tuple[int, int]:
     modules = dependency_order(ENTRY)
     js = bundle_js(modules)
@@ -106,11 +119,14 @@ def build() -> tuple[int, int]:
     aiera = base64.b64encode((ROOT / 'assets/aiera-foundation.png').read_bytes()).decode()
     js = js.replace('/assets/aiera-foundation.png', 'data:image/png;base64,' + aiera)
     refresh_pwa_cache_manifest(modules)
+    refresh_modulepreload(modules)
     css = (ROOT / 'styles.css').read_text(encoding='utf-8')
     css = re.sub(r'^@import\s+url\(.*?\);\s*', '', css, count=1)
     html = (ROOT / 'index.html').read_text(encoding='utf-8')
     html = re.sub(r'\s*<link rel="stylesheet"[^>]+>', '', html)
     html = re.sub(r'\s*<link rel="manifest"[^>]+>', '', html)
+    html = re.sub(r'\s*<!-- modulepreload:start.*?<!-- modulepreload:end -->', '', html, flags=re.S)
+    html = re.sub(r'\s*<link rel="preconnect"[^>]+>', '', html)
     icon = base64.b64encode((ROOT / 'assets/favicon.svg').read_bytes()).decode()
     html = html.replace('<link rel="icon" href="./assets/favicon.svg" type="image/svg+xml" />',
                         f'<link rel="icon" href="data:image/svg+xml;base64,{icon}" type="image/svg+xml" />')

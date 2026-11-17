@@ -6,7 +6,7 @@ import {pageRenderers} from '../js/page-registry.js';
 import {SIMPUL_TEAM,renderCreators} from '../js/views/creators.js';
 const src=readFileSync(new URL('../js/views/overview.js', import.meta.url),'utf8');
 const app=readFileSync(new URL('../js/app.js',import.meta.url),'utf8');
-assert.equal(assertNavigationCoverage(),22);
+assert.equal(assertNavigationCoverage(),16);
 assert.deepEqual(PRIMARY_ROUTES,['overview','cctv','vehicles','diagnosis','simulation','evaluation']);
 assert.equal(NAV_SECTIONS.at(-1).id,'about');
 assert.deepEqual(NAV_SECTIONS.at(-1).routes,['creators']);

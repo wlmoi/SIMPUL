@@ -47,9 +47,8 @@
     },
     {
       "id": "field-observation",
-      "purpose": "Record manual vehicle events and synchronize verified source metadata",
+      "purpose": "Record manual vehicle events and synchronize verified source metadata (no website page; the CCTV AI replaces manual input — domain logic kept and tested)",
       "source": [
-        "js/views/observation.js",
         "server/storage.py",
         "server/extra_routes.py"
       ],
@@ -66,11 +65,9 @@
     },
     {
       "id": "field-survey-coverage",
-      "purpose": "Review manual survey sessions and track planned 12-session zone/period coverage without treating review as model validation",
+      "purpose": "Review manual survey sessions and track planned 12-session zone/period coverage without treating review as model validation (no website page; the CCTV AI replaces manual input — domain logic kept and tested)",
       "source": [
         "js/pilot.js",
-        "js/views/survey.js",
-        "js/views/observation.js",
         "js/store.js"
       ],
       "tests": [
@@ -86,10 +83,9 @@
     },
     {
       "id": "operational-response",
-      "purpose": "Turn manually observed P1/P2 obstructions into assigned follow-ups; no automated enforcement",
+      "purpose": "Turn manually observed P1/P2 obstructions into assigned follow-ups; no automated enforcement (no website page; the CCTV AI replaces manual input — domain logic kept and tested)",
       "source": [
         "js/operations.js",
-        "js/views/operations.js",
         "js/classification.js"
       ],
       "tests": [
@@ -104,9 +100,8 @@
     },
     {
       "id": "monitoring",
-      "purpose": "Track observation history, local audit history, InfluxDB outbox and Grafana dashboards",
+      "purpose": "Track observation history, local audit history, InfluxDB outbox and Grafana dashboards (no website page; the CCTV AI replaces manual input — domain logic kept and tested)",
       "source": [
-        "js/views/monitor.js",
         "js/monitoring.js",
         "server/monitoring.py",
         "server/timeseries.py",
@@ -129,7 +124,10 @@
         "js/diagnostics.js",
         "js/views/diagnosis.js",
         "js/views/evaluation.js",
-        "server/field_readings.py"
+        "server/field_readings.py",
+        "js/sim-readings.js",
+        "js/sim-readings-data.js",
+        "tools/gen_sim_readings.mjs"
       ],
       "tests": [
         "tests/test_diagnostics.mjs",
@@ -143,10 +141,9 @@
     },
     {
       "id": "traffic-classification",
-      "purpose": "Prioritize traffic observations for human review without legal adjudication",
+      "purpose": "Prioritize traffic observations for human review without legal adjudication (no website page; the CCTV AI replaces manual input — domain logic kept and tested)",
       "source": [
         "js/classification.js",
-        "js/views/classification.js",
         "server/traffic_classification.py"
       ],
       "tests": [
@@ -238,7 +235,6 @@
       "purpose": "Evidence quality, provenance, geo exports and executive brief",
       "source": [
         "js/standards.js",
-        "js/views/standards.js",
         "js/views/reports.js",
         "server/international.py"
       ],
@@ -350,10 +346,9 @@
     },
     {
       "id": "geospatial-document-intelligence",
-      "purpose": "Interactive map for explicit project/observer/PDF GPS coordinates; local PDF ingestion and time/zone/vehicle-category indexing with optional OpenOCR; never personal vehicle identification",
+      "purpose": "Interactive map for explicit project/observer/PDF GPS coordinates; local PDF ingestion and time/zone/vehicle-category indexing with optional OpenOCR; never personal vehicle identification (PDF search page removed; the corridor map and PDF parsing backend remain)",
       "source": [
         "js/views/mapview.js",
-        "js/views/documents.js",
         "js/document-search.js",
         "js/map-controller.js",
         "server/document_evidence.py",
@@ -404,6 +399,7 @@
         "js/sim3d-scene.js",
         "js/sim3d-engine.js",
         "js/home-sim.js",
+        "js/ai-status.js",
         "js/demo-story.js",
         "js/viewer-controls.js"
       ],

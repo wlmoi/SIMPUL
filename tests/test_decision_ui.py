@@ -12,6 +12,8 @@ HTML=(ROOT/'SIMPUL_Standalone.html').read_text()
 
 
 def _fill(page,phase,scenario,passing,stopped,queue,access):
+    # Interval test input lives in the collapsed "Untuk tim AI" section (the CCTV AI is the real source).
+    page.evaluate("document.querySelector('#dia-dev')&&(document.querySelector('#dia-dev').open=true)")
     page.locator('[data-action="add-field-reading"]').first.click()
     page.locator('#fld-observed-at').fill('2026-11-15T07:00' if phase=='baseline' else '2026-11-16T07:00')
     page.locator('#fld-phase').select_option(phase)
@@ -36,6 +38,8 @@ def test_modal_autofocus_preserves_active_input():
         page.evaluate("location.hash='#diagnosis'")
         page.clock.run_for(100)
         page.clock.pause_at(page.evaluate('Date.now()')+100)
+        # Interval test input lives in the collapsed "Untuk tim AI" section (the CCTV AI is the real source).
+        page.evaluate("document.querySelector('#dia-dev')&&(document.querySelector('#dia-dev').open=true)")
         page.locator('[data-action="add-field-reading"]').first.click()
         field=page.locator('#fld-passing')
         field.fill('350')
@@ -56,7 +60,7 @@ def test_mobile_and_decision_flow():
         page.set_content(HTML)
         # The assertions below check the Indonesian copy, so run this flow in Indonesian.
         page.locator('[data-language="id"]').first.click()
-        for route in ('overview','project','monitor','diagnosis','context','contextplus','simulation','evaluation','insights','reports','integrations','settings'):
+        for route in ('overview','project','diagnosis','context','contextplus','simulation','evaluation','insights','reports','integrations','settings'):
             page.evaluate(f"location.hash='#{route}'")
             assert page.locator('h1').count()==1,route
         page.evaluate("location.hash='#diagnosis'")

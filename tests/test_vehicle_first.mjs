@@ -20,10 +20,10 @@ r=vehicleProblemSummary(rows,{source:'manual',type:'Jemput',zone:'Zona B'},60);a
 r=vehicleProblemSummary(rows,{source:'demo'},60);assert.equal(r.filtered.length,1);assert.equal(r.impacts.queue.unknown,1);
 r=vehicleProblemSummary([],{source:'manual'},60);assert.equal(r.avgDwell,null);assert.equal(r.hypotheses[0].code,'A0');
 assert.equal(initialData().vehicleView.source,'demo');
-assert.equal(assertNavigationCoverage(),views.length);assert.equal(views.length,22);
+assert.equal(assertNavigationCoverage(),views.length);assert.equal(views.length,16);
 assert.ok(PRIMARY_ROUTES.indexOf('vehicles') < PRIMARY_ROUTES.indexOf('diagnosis'));
 assert.equal(typeof pageRenderers.vehicles,'function');
 let html=readFileSync(new URL('../js/views/vehicles.js',import.meta.url),'utf8');
-assert.match(html,/OBSERVASI MANUAL/);assert.match(html,/CONTOH SINTETIS/);assert.match(html,/Uji A0 \/ A1 \/ A2/);
+assert.match(html,/DETEKSI CCTV AI/);assert.match(html,/SIMULASI FATMAWATI/);assert.match(html,/Uji A0 \/ A1 \/ A2/);
 assert.match(html,/tidak boleh dihitung sebagai bukti/);
 console.log('PASS vehicle problem: event filtering, impact unknowns, synthetic separation, safe hypotheses, route registration');

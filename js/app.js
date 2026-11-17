@@ -1,13 +1,9 @@
 import {getIntroStages} from './views/intro.js';
 import { fieldReadingModal } from './views/diagnosis.js';
-import { reviewSessionModal } from './views/survey.js';
-import { operationCreateModal, operationUpdateModal } from './views/operations.js';
 import { surveyCoverage, normalizeProtocol, sessionQuality, exportSurveyCoverage } from './pilot.js';
 import { operationalBoard,validateCaseDraft,validateCaseUpdate,exportOperations } from './operations.js';
 import { decisionModal } from './views/evaluation.js';
-import { eventModal } from './views/observation.js';
 import { makeReport } from './views/reports.js';
-import { trafficReviewModal } from './views/classification.js';
 import { pageRenderers } from './page-registry.js';
 import {activateMapView} from './map-controller.js';
 import {activateCctv,deactivateCctv} from './cctv-controller.js';
@@ -34,8 +30,10 @@ import {installDomI18n,refreshDomI18n} from './i18n-dom.js';
 const components = pageRenderers;
 const names=Object.fromEntries(views.map(v=>[v.id,v.label]));
 let mobileOpen=false,toastTimer=null,serverStatus=null,monitorTimer=null,monitorBusy=false,lastMonitorSync=0,expandedNavGroup=null,lastRenderedRoute=null;
-// Pages removed from the website: manual field observation (AI now automates input) and the business model (moved to the pitch deck).
-const REMOVED_ROUTES={observation:'cctv',business:'overview',pipeline:'overview',equipment:'overview'};
+// Pages removed from the website: manual field observation and its survey/monitoring/review/follow-up/PDF pages
+// (the CCTV AI automates input) and the business model (moved to the pitch deck).
+const REMOVED_ROUTES={observation:'cctv',business:'overview',pipeline:'overview',equipment:'overview',
+ survey:'cctv',monitor:'cctv',classification:'vehicles',operations:'vehicles',documents:'mapview',standards:'reports'};
 const currentPage=()=>{let p=decodeURIComponent(location.hash.replace('#',''))||'overview';p=REMOVED_ROUTES[p]||p;return components[p]?p:'overview';};
 function sidebar(){
   const active=currentPage();
@@ -164,7 +162,7 @@ async function runSumo(){const button=document.querySelector('[data-action="run-
     if(j.status==='failed')throw new Error(j.error||'SUMO gagal');
     if(j.status==='complete'){
       updateState(s=>({...s,lastAnalysis:j.result,history:[...s.history,{id:uid('run'),engine:'sumo',createdAt:nowIso()}]}));
-      recordLocalActivity('simulation.complete','Simulasi SUMO jaringan sintetis selesai');
+      recordLocalActivity('simulation.complete','Simulasi SUMO koridor uji selesai');
       toast('SUMO selesai: hasil jaringan uji sintetis dimuat');return;
     }
   }
@@ -371,35 +369,16 @@ case 'toggle-nav-group':{
   break;
 }
 case 'close-mobile':closeMobileDrawer(document.getElementById('sidebar'),document.querySelector('.mobile-curtain'),()=>{mobileOpen=false;render()});break;
-case 'quick-observation':modal(eventModal());break;
 case 'export-survey':download('SIMPUL_survey_coverage_manual.json',JSON.stringify(exportSurveyCoverage(getState()),null,2));toast('Matriks survei diekspor dengan status review');break;
-case 'review-survey-session':{
-  const s=getState(),session=s.sessions.find(x=>x.id===el.dataset.id&&x.source==='manual');
-  if(!session)return toast('Sesi manual tidak ditemukan');
-  const summary=surveyCoverage(s),row=summary.rows.find(x=>x.session.id===session.id);
-  modal(reviewSessionModal(session,row,s.sessionReviews?.[session.id]||{}));break;
-}
-case 'create-operation':{
-  const s=getState(),board=operationalBoard(s),candidate=board.candidates.find(x=>x.event.id===el.dataset.id)||null;
-  const available=board.candidates.filter(x=>!board.cases.some(c=>c.eventId===x.event.id));
-  if(!available.length)return toast('Belum ada kejadian manual P1/P2 yang belum ditindaklanjuti.');
-  modal(operationCreateModal(candidate,board));break;
-}
-case 'update-operation':{
-  const item=(getState().responseCases||[]).find(x=>x.id===el.dataset.id);
-  if(!item)return toast('Kasus tidak ditemukan');modal(operationUpdateModal(item));break;
-}
 case 'export-operations':download('SIMPUL_operational_response_manual.json',JSON.stringify(exportOperations(getState()),null,2));toast('Daftar tindak lanjut diekspor tanpa catatan bebas');break;
 case 'export-police-csv':downloadPoliceCsv();break;
 case 'export-police-json':{download('SIMPUL_traffic_review_manual_only.json',JSON.stringify(makePoliceReviewBundle(getState()),null,2));toast('Berkas review JSON disiapkan, tanpa data ilustratif');break;}
-case 'review-traffic':{const e=getState().observations.find(x=>x.id===el.dataset.id);if(!e)return toast('Rekaman tidak ditemukan');if(e.source!=='manual'){toast('Review resmi tidak dapat diisi pada data sintetis. Catat observasi manual.');return;}modal(trafficReviewModal(e,getState().eventReviews?.[e.id]));break;}
 
 case 'add-field-reading':modal(fieldReadingModal());break;
 case 'add-decision':modal(decisionModal());break;
 case 'export-field-readings':downloadFieldReadings();break;
 case 'sync-field-readings':syncFieldReadings();break;
 case 'delete-field-reading':if(confirm('Hapus interval ini dari penyimpanan lokal? Data yang sudah tersinkronisasi ke server tidak otomatis terhapus.')){updateState(s=>({...s,fieldReadings:s.fieldReadings.filter(r=>r.id!==el.dataset.id)}));recordLocalActivity('field.delete','Interval manual dihapus lokal','warning');toast('Interval dihapus dari browser');}break;
-case 'capture-type':modal(eventModal(el.dataset.value));break;
 case 'close-modal':closeModal();break;
 case 'start-session':startSession();break;
 case 'end-session':endSession();break;
@@ -566,4 +545,9 @@ subscribe(render);render();manageMonitorPolling();
 installCustomSelects();
 installDomI18n();
 // PWA service worker, best-effort. HTTPS or localhost required.
-if('serviceWorker' in navigator && location.protocol!=='file:')navigator.serviceWorker.register('./sw.js').catch(()=>{});
+if('serviceWorker' in navigator && location.protocol!=='file:'){
+  const hadController=Boolean(navigator.serviceWorker.controller);let reloaded=false;
+  // A new deploy installs a new versioned cache; reload once so the new files show without a manual refresh.
+  navigator.serviceWorker.addEventListener('controllerchange',()=>{if(hadController&&!reloaded){reloaded=true;location.reload();}});
+  navigator.serviceWorker.register('./sw.js',{updateViaCache:'none'}).then(reg=>reg.update?.()).catch(()=>{});
+}

@@ -44,7 +44,7 @@ export function renderCctv(){
       <h1>CCTV AI · Simulasi 3D Fatmawati</h1>
       <p>Model 3D kawasan Stasiun MRT Fatmawati. Kendaraan bergerak mengikuti simulasi lalu lintas; AI virtual menghitung kendaraan dan menandai yang berhenti di lajur. Ganti skenario untuk melihat dampaknya.</p>
     </div>
-    <div class="cctv-status" data-cctv-status data-state="idle"><span class="cctv-status-dot"></span><div><strong data-cctv-status-label>AI belum terhubung</strong><small data-cctv-status-sub>Simulasi 3D sintetis siap diputar</small></div></div>
+    <div class="cctv-status" data-cctv-status data-state="idle"><span class="cctv-status-dot"></span><div><strong data-cctv-status-label>AI belum terhubung</strong><small data-cctv-status-sub>Simulasi 3D Fatmawati siap diputar</small></div></div>
   </header>
 
   <div class="sim-scenarios" role="radiogroup" aria-label="Skenario penataan">
@@ -63,7 +63,7 @@ export function renderCctv(){
         <div class="cctv-scanline" aria-hidden="true"></div>
         <div class="cctv-hud cctv-hud-tl"><span class="cctv-rec"></span><span data-cctv-camlabel><b>UDARA</b> · Seluruh kawasan</span></div>
         <div class="cctv-hud cctv-hud-tr"><span data-sim-clock>17:00</span> · <span data-cctv-clock>--:--:-- WIB</span></div>
-        <div class="cctv-hud cctv-hud-bl" data-cctv-source>SIMULASI 3D · SINTETIS</div>
+        <div class="cctv-hud cctv-hud-bl" data-cctv-source>SIMULASI 3D · FATMAWATI</div>
         <div class="cctv-hud cctv-hud-br" data-cctv-fps>0 frame/dtk</div>
         <i class="cctv-corner c1"></i><i class="cctv-corner c2"></i><i class="cctv-corner c3"></i><i class="cctv-corner c4"></i>
         <div class="sim-legend" aria-hidden="true"><span class="lg-move">Bergerak</span><span class="lg-stop">Berhenti</span><span class="lg-over">&gt; ${threshold} dtk</span></div>
@@ -86,7 +86,7 @@ export function renderCctv(){
         <label>Kendaraan yang menaikkan/menurunkan penumpang <output data-sim-out="pickup">18</output>%<input type="range" min="0" max="40" step="1" value="18" data-sim="pickup"></label>
         <label class="sim-opacity">Opasitas stasiun <output data-sim-out="opacity">100</output>%<small>Turunkan untuk melihat lalu lintas di bawah stasiun</small><input type="range" min="10" max="100" step="5" value="100" data-sim="opacity" aria-label="Opasitas model stasiun"></label>
       </div>
-      <p class="cctv-privacy">${icon('shield-check',14)} Model 3D skematis dari foto kawasan, bukan GIS terukur. Angka simulasi ilustratif dan belum dikalibrasi dengan data lapangan. AI hanya menghitung jenis kendaraan dan durasi berhenti, tanpa plat nomor dan wajah.</p>
+      <p class="cctv-privacy">${icon('shield-check',14)} Model 3D dibangun dari foto dan dimensi asli Stasiun MRT Fatmawati (175 m × 22,3 m). Angka simulasi belum dikalibrasi dan siap dikalibrasi dengan rekaman CCTV. AI hanya menghitung jenis kendaraan dan durasi berhenti, tanpa plat nomor dan wajah.</p>
     </div>
 
     <aside class="cctv-side">

@@ -14,4 +14,21 @@ const gate=evidenceGate(rows,[{source:'demo',status:'Selesai'},{source:'manual',
 assert.equal(gate.completed,1);assert.equal(gate.manualEvents,1);assert.equal(gate.checks.at(-1).met,false);
 const d=diagnose(rows,[{source:'manual',type:'Menunggu',duration:95}],{dwellThresholdSec:60});assert.equal(d.waiting,1);assert.equal(d.long,1);
 const a=screenScenario({engine:'heuristic',scenarios:[{id:'A1',delay:19,queue:20,access:70},{id:'A2',delay:23,queue:8,access:140}]},{maxQueue:15,maxDetour:150});assert.equal(a[0].id,'A2');assert.equal(a[1].eligible,false);
+// Simulated CCTV AI intervals fill the analysis only while no real interval exists, always labelled.
+{
+  const {analysisReadings,comparePeriods:cmp,diagnose:diag}=await import('../js/diagnostics.js');
+  const {getSimReadings,simulateInterval}=await import('../js/sim-readings.js');
+  const {TIME_PRESETS}=await import('../js/traffic-sim.js');
+  const sim=getSimReadings();
+  assert.equal(sim.length,18,'3 zones x 2 periods x A0/A1/A2');
+  assert.ok(sim.every(r=>r.source==='simulation'),'Simulated intervals are always labelled');
+  const pick=analysisReadings([],sim);assert.equal(pick.simulated,true);assert.equal(pick.readings,sim);
+  const real=[{...rows[0],source:'ai'}];assert.equal(analysisReadings(real,sim).simulated,false,'Real AI data wins over simulation');
+  assert.equal(analysisReadings([{source:'demo'}],sim).simulated,true,'Demo events never count as real intervals');
+  assert.equal(cmp(sim,'A1').comparable.length,6,'Every zone + period has a matched before/after pair');
+  assert.ok(diag(sim,[],{}).base.samples===6);
+  // The shipped data equals a fresh run of the simulation (deterministic).
+  const again=simulateInterval('A0','baseline',{period:'Jam sibuk',preset:TIME_PRESETS.sore,hour:17});
+  assert.deepEqual(again.map(r=>({...r})),sim.slice(0,3).map(r=>({...r})),'Regenerate js/sim-readings-data.js with node tools/gen_sim_readings.mjs');
+}
 console.log('PASS: field normalization, matched before/after, source exclusion, quality gates, risk thresholds and scenario guardrails');

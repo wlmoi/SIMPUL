@@ -9,6 +9,7 @@ import {createSim,stepSim,resetStats,simMetrics,runScenario} from './traffic-sim
 import {createCamera,renderFrame} from './sim3d-engine.js';
 import {DEMO_STAGES,DEMO_SECONDS,DEMO_INPUTS,initialDemo,selectDemo,playDemo,advanceDemo} from './demo-story.js';
 import {getLanguage} from './i18n.js';
+import {getAiStatus} from './ai-status.js';
 import {bindViewerFullscreen,bindFreeCamera,exitViewerFullscreen,zoomCamera} from './viewer-controls.js';
 
 const hs={raf:0,root:null,sim:null,cam:null,scenario:'A0',visible:true,observer:null,lastKpi:0,story:initialDemo(),dirty:true,comparison:null,
@@ -132,6 +133,26 @@ function drawKpis(){
   set('queue',`${Math.round(m.queue)} m`,m.queue>80?'bad':m.queue>30?'mid':'good');
   set('blocked',`${m.blocked}`,m.blocked>=3?'bad':m.blocked>=1?'mid':'good');
 }
+/** Beranda "Status CCTV AI" card: real AI detections when connected, otherwise the live 3D simulation. */
+function drawAiStatus(){
+  const card=document.querySelector('[data-ai-status]');if(!card)return;
+  const ai=getAiStatus(),en=getLanguage()==='en';
+  let counts=ai.counts,stopped=ai.stopped;
+  if(!ai.connected&&hs.sim){
+    counts={car:0,motorcycle:0,bus:0};stopped=0;
+    for(const v of hs.sim.vehicles){if(v.road!=='S')continue;const k=v.cls==='truck'?'bus':v.cls;if(k in counts)counts[k]++;if(v.state==='stopped')stopped++;}
+  }
+  const put=(k,v)=>{const el=card.querySelector(`[data-ai-metric="${k}"]`);if(el&&el.textContent!==String(v))el.textContent=String(v);};
+  put('car',counts.car);put('motorcycle',counts.motorcycle);put('bus',counts.bus);put('stopped',stopped);
+  const state=ai.connected?'ai':'sim';
+  if(card.dataset.state!==state){
+    card.dataset.state=state;
+    const title=card.querySelector('[data-ai-title]'),text=card.querySelector('[data-ai-text]'),chip=card.querySelector('[data-ai-chip]');
+    if(title)title.textContent=ai.connected?(en?'AI connected':'AI terhubung')+(ai.model?` · ${ai.model}`:''):(en?'AI not connected yet':'AI belum terhubung');
+    if(text)text.textContent=ai.connected?(en?'Live detections from the AI model. Only vehicle type and stop duration; no license plates or faces.':'Deteksi langsung dari model AI. Hanya jenis kendaraan dan durasi berhenti; tanpa plat nomor dan wajah.'):(en?'Until the AI model from the team sends detections, the figures below come from the live 3D simulation of MRT Fatmawati.':'Sampai model AI tim mengirim deteksi, angka di bawah berasal dari simulasi 3D MRT Fatmawati yang sedang berjalan.');
+    if(chip)chip.lastChild.textContent=ai.connected?'AI LIVE':(en?'3D SIMULATION':'SIMULASI 3D');
+  }
+}
 function focusLabel(stage,focus){
   const base=words(stage.label);
   if(!focus)return base;
@@ -200,6 +221,8 @@ export function activateHomeSim(root){
        drawProgress();
       }
     }
+    // The AI status card sits below the 3D preview, so refresh it even when the preview is scrolled away.
+    if(!document.hidden&&t-(hs.lastAi||0)>500){hs.lastAi=t;drawAiStatus();}
     hs.raf=requestAnimationFrame(tick);
   };
   hs.raf=requestAnimationFrame(tick);
