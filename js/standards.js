@@ -14,6 +14,13 @@ export const STANDARD_REFERENCES = [
  {code:'W3C PROV-O',name:'Data provenance',application:'Identitas sumber, waktu, data turunan, metode dan status bukti dalam export bundle.',status:'Pemetaan provenance',url:'https://www.w3.org/TR/prov-o/'},
  {code:'WCAG 2.2 AA',name:'Web accessibility',application:'Target keyboard, kontras, focus state, label, dan responsivitas; memerlukan audit manual serta otomatis.',status:'Target, belum diaudit',url:'https://www.w3.org/TR/WCAG22/'}
 ];
+export const REGULATORY_REFERENCES = [
+ {code:'UU No. 22 Tahun 2009',article:'Pasal 118',title:'Larangan berhenti yang mengganggu lalu lintas',summary:'Melarang kendaraan berhenti di lokasi tertentu, termasuk lokasi yang mengganggu keselamatan, ketertiban, dan kelancaran lalu lintas.',relevance:'Membantu memetakan aktivitas berhenti dan dampaknya pada koridor studi.',source:'Kementerian Keuangan Republik Indonesia',tone:'teal'},
+ {code:'UU No. 22 Tahun 2009',article:'Pasal 287 ayat (1) dan (3)',title:'Rambu, marka, berhenti dan parkir',summary:'Mengatur sanksi pelanggaran rambu, marka, serta tata cara berhenti dan parkir.',relevance:'Menjadi konteks saat hasil observasi ditinjau oleh pihak berwenang.',source:'Kementerian Keuangan Republik Indonesia',tone:'amber'},
+ {code:'Perda DKI Jakarta No. 5 Tahun 2014',article:'Pasal 38',title:'Parkir pada ruang milik jalan',summary:'Melarang parkir pada ruang milik jalan tanpa marka atau rambu parkir yang sesuai.',relevance:'Mendukung pemeriksaan kesesuaian lokasi berhenti dengan penataan ruang jalan.',source:'Jakarta Services',tone:'blue'},
+ {code:'Perda DKI Jakarta No. 5 Tahun 2014',article:'Pasal 95',title:'Tindakan atas pelanggaran transportasi',summary:'Menjadi dasar tindakan terhadap sejumlah pelanggaran transportasi, termasuk parkir tidak pada tempatnya dan aktivitas angkutan umum pada lokasi yang tidak ditetapkan.',relevance:'Memberi konteks kebijakan untuk tindak lanjut manual, bukan keputusan otomatis SIMPUL.',source:'Pemerintah Provinsi DKI Jakarta',tone:'violet'},
+ {code:'UU No. 27 Tahun 2022',article:'Pasal 17',title:'Kamera pemantau dan perlindungan privasi',summary:'Mengatur penggunaan kamera pemantau di ruang publik, termasuk tujuan pengelolaan informasi lalu lintas dan perlindungan privasi.',relevance:'Menjadi pengingat untuk minimisasi data, izin pengumpulan, dan perlindungan subjek data.',source:'Kerangka perlindungan data Indonesia',tone:'rose'}
+];
 export function assessQuality(state){
  const observations=(state.observations||[]).filter(x=>x?.source==='manual');
  const intervals=(state.fieldReadings||[]).filter(x=>x?.source==='manual');
