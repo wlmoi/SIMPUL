@@ -8,6 +8,7 @@
  */
 import { views } from './data.js';
 import { icon, safe } from './util.js';
+import {labelForRoute,labelForGroup,getLanguage} from './i18n.js';
 
 export const PRIMARY_ROUTES = Object.freeze([
   'overview', 'vehicles', 'observation', 'diagnosis', 'mapview', 'simulation', 'evaluation'
@@ -24,7 +25,7 @@ export const NAV_SECTIONS = Object.freeze([
 
 const pages = new Map(views.map(page=>[page.id,page]));
 export function sectionForRoute(route){return NAV_SECTIONS.find(section=>section.routes.includes(route))?.id || null;}
-export function sectionTitleForRoute(route){return NAV_SECTIONS.find(section=>section.routes.includes(route))?.label || (PRIMARY_ROUTES.includes(route)?'Alur utama':'Workspace');}
+export function sectionTitleForRoute(route){const section=NAV_SECTIONS.find(item=>item.routes.includes(route));return section?labelForGroup(section.id,section.label):(PRIMARY_ROUTES.includes(route)?(getLanguage()==='en'?'Primary flow':'Alur utama'):(getLanguage()==='en'?'Workspace':'Workspace'));}
 export function assertNavigationCoverage(){
   const ids=[...PRIMARY_ROUTES,...NAV_SECTIONS.flatMap(s=>s.routes)];
   if(ids.length!==new Set(ids).size)throw new Error('A navigation route is assigned more than once');
@@ -38,7 +39,8 @@ function link(route,active,number=null){
   const page=pages.get(route);
   if(!page)throw new Error('Missing navigation page: '+route);
   const selected=active===route;
-  return `<div class="nav-item-wrap" data-nav-page="${page.id}" data-nav-label="${safe(page.label.toLowerCase())}"><button type="button" class="nav-link ${selected?'active':''}" data-route="${page.id}" ${selected?'aria-current="page"':''}>${icon(page.icon,17)}<span>${safe(page.label)}</span>${number?`<span class="nav-step">${number}</span>`:''}</button></div>`;
+  const label=labelForRoute(page.id,page.label);
+  return `<div class="nav-item-wrap" data-nav-page="${page.id}" data-nav-label="${safe(label.toLowerCase())}"><button type="button" class="nav-link ${selected?'active':''}" data-route="${page.id}" ${selected?'aria-current="page"':''}>${icon(page.icon,17)}<span>${safe(label)}</span>${number?`<span class="nav-step">${number}</span>`:''}</button></div>`;
 }
 
 /** Return sidebar navigation content only; the outer shell is owned by app.js. */
@@ -47,14 +49,16 @@ export function renderNavigation(active,expanded=''){
   const sections=NAV_SECTIONS.map(section=>{
     const selected=section.routes.includes(active);
     const open=expanded===section.id;
+    const label=labelForGroup(section.id,section.label);
     return `<div class="nav-fold ${selected?'has-active':''}" data-nav-section="${section.id}">
       <button type="button" class="nav-fold-trigger" data-action="toggle-nav-group" data-group="${section.id}" aria-expanded="${open}" aria-controls="nav-panel-${section.id}">
-        ${icon(section.icon,17)}<span>${safe(section.label)}</span><span class="nav-fold-count">${section.routes.length}</span>${icon('chevron-down',15)}
+        ${icon(section.icon,17)}<span>${safe(label)}</span><span class="nav-fold-count">${section.routes.length}</span>${icon('chevron-down',15)}
       </button>
       <div class="nav-fold-content" id="nav-panel-${section.id}" ${open?'':'hidden'}>${section.routes.map(route=>link(route,active)).join('')}</div>
     </div>`;
   }).join('');
-  return `<div class="nav-search">${icon('search',16)}<input id="simpul-nav-search" type="search" autocomplete="off" placeholder="Cari halaman... (/)" aria-label="Cari halaman SIMPUL"/></div>
+  const english=getLanguage()==='en';
+  return `<div class="nav-search">${icon('search',16)}<input id="simpul-nav-search" type="search" autocomplete="off" placeholder="${english?'Search pages... (/)':'Cari halaman... (/)' }" aria-label="${english?'Search SIMPUL pages':'Cari halaman SIMPUL'}"/></div>
     <div class="nav-items"><div class="nav-label" data-nav-core-heading>ALUR UTAMA</div><div class="nav-core">${core}</div>
     <div class="nav-label nav-label-secondary">FITUR PENDUKUNG</div><div class="nav-sections">${sections}</div>
     <p class="nav-empty" hidden>Tidak ada halaman yang cocok.</p></div>`;
