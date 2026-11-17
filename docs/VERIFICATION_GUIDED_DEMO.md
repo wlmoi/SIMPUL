@@ -22,6 +22,8 @@ Final follow-up regression: `python -m pytest -q tests --basetemp=tmp/fullscreen
 
 The first follow-up Linux CI run returned 38 passed and one failure in the pre-existing decision-form test, which checked the form's disappearance immediately after clicking Submit. The test now uses Playwright's waiting `expect(...).to_have_count(0)` assertion for the same required result. Neither application behavior nor the assertion's expected count was changed. The full local rerun, `python -m pytest -q tests --basetemp=tmp/fullscreen_ci_regression_pytest`, passed all 39 tests with one dependency warning.
 
+A second Linux run reproduced the same form failure after waiting. The test fixture now fixes the browser clock/timezone and fills explicit historical baseline/follow-up timestamps instead of depending on form defaults and runner time. Failure output includes field validation messages and UI feedback. `python -m pytest -q tests/test_decision_ui.py --basetemp=tmp/decision_deterministic_pytest` passed locally (1 passed). The production form and all validation rules remain unchanged.
+
 ## Observed verification
 
 - `npm.cmd run verify`: 18 JavaScript suites passed, including the new story state-machine checks, navigation, motion, solution-first, vehicle-first and CSV security. Catalog: 21 modules, 113 paths. Standalone: 58 JS modules; bundle syntax passed.

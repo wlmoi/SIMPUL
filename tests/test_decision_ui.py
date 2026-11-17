@@ -4,6 +4,7 @@ Run `python tools/build_standalone.py` first, then
 `python -m pytest -q tests/test_decision_ui.py` with Chromium installed.
 """
 from pathlib import Path
+from datetime import datetime, timezone
 from playwright.sync_api import sync_playwright, expect
 
 ROOT=Path(__file__).resolve().parent.parent
@@ -12,18 +13,24 @@ HTML=(ROOT/'SIMPUL_Standalone.html').read_text()
 
 def _fill(page,phase,scenario,passing,stopped,queue,access):
     page.locator('[data-action="add-field-reading"]').first.click()
+    page.locator('#fld-observed-at').fill('2026-11-15T07:00' if phase=='baseline' else '2026-11-16T07:00')
     page.locator('#fld-phase').select_option(phase)
     page.locator('#fld-scenario').select_option(scenario)
     for field,value in [('fld-passing',passing),('fld-stopped',stopped),('fld-queue',queue),('fld-access',access),('fld-pedestrians',60),('fld-bays',5),('fld-occupied',3)]:
         page.locator('#'+field).fill(str(value))
     page.locator('#field-reading-form button[type=submit]').click()
-    expect(page.locator('#field-reading-form')).to_have_count(0)
+    try:
+        expect(page.locator('#field-reading-form')).to_have_count(0)
+    except AssertionError as error:
+        details=page.locator('#field-reading-form').evaluate('(form) => [...form.elements].filter(el => el.id).map(el => ({id:el.id,value:el.value,valid:el.checkValidity(),message:el.validationMessage}))')
+        raise AssertionError({'fields':details,'messages':page.locator('#toasts').inner_text()}) from error
 
 
 def test_mobile_and_decision_flow():
     with sync_playwright() as p:
         browser=p.chromium.launch(headless=True,args=['--no-sandbox','--disable-dev-shm-usage'])
-        page=browser.new_page(viewport={'width':1440,'height':900})
+        page=browser.new_page(viewport={'width':1440,'height':900},timezone_id='Asia/Jakarta')
+        page.clock.set_fixed_time(datetime(2026,11,17,12,tzinfo=timezone.utc))
         errors=[]
         page.on('pageerror',lambda e:errors.append(str(e)))
         page.set_content(HTML)
