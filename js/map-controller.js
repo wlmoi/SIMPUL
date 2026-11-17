@@ -47,7 +47,7 @@ export async function activateMapView(state,onZonePick){
   const project=coordinatePair(state.project?.geo?.lat,state.project?.geo?.lon);
   if(project)pin(project,'#142456',8,'Titik proyek / Koordinat yang dipilih pengguna.');
   for(const point of zoneReferencePoints(state.zonePins))pin(point,'#176fa6',9,`${point.name} / Titik referensi yang ditetapkan pengamat.`);
-  for(const point of mapPointsFromDocuments(state.pdfEvidence?.items))pin(point,'#c87d19',6,`Catatan PDF / Status: belum diverifikasi. ${point.vehicle}; ${point.zone}; ${point.at}; halaman ${point.page??'—'}`);
+  for(const point of mapPointsFromDocuments(state.pdfEvidence?.items))pin(point,'#c87d19',6,`Catatan PDF / Status: belum diverifikasi. ${point.vehicle}; ${point.zone}; ${point.at}; halaman ${point.page??'-'}`);
   current.on('click',event=>{
    const zone=document.getElementById('map-zone-select')?.value;
    const point=coordinatePair(event.latlng.lat,event.latlng.lng);
