@@ -31,7 +31,7 @@
 
 ## AIERA interface and illustrative 3D CCTV simulation (PR #1)
 
-The Overview now includes **Play full demo**: a 48-second guided 3D story from pickup demand and stopping activity to potential queues, A1/A2 alternatives, and human evaluation. Pause, replay, or select any of six chapters; the final table compares matched synthetic model runs. The demo never saves observations. See [guided demo verification](docs/VERIFICATION_GUIDED_DEMO.md).
+The Overview now includes **Play full demo**: a 48-second guided 3D story from pickup demand and stopping activity to potential queues, A1/A2 alternatives, and human evaluation. Pause, replay, or select any of six chapters; the final table compares matched synthetic model runs. Use **Full screen** on Overview or CCTV 3D. Drag to orbit the demo camera, scroll/pinch to zoom, or Shift-drag/two-finger drag to pan; manual exploration pauses the story and **Reset camera** restores the chapter view. The demo never saves observations. See [guided demo verification](docs/VERIFICATION_GUIDED_DEMO.md).
 
 PR #1 adds the AIERA palette, a live schematic 3D preview, an interactive CCTV simulation page, and compact navigation with advanced pages under Settings. The A0/A1/A2 traffic simulation is synthetic and uncalibrated. External detection input is display-only and never becomes a stored field observation. Existing bilingual navigation and observation provenance remain intact.
 

@@ -32,9 +32,9 @@ export function renderOverview(){
    </div>
    <div class="mc-trust">${icon('shield-check',15)} ${en?'No licence plates or faces · Example data is synthetic':'Tanpa plat nomor &amp; wajah · Data contoh bersifat sintetis'}</div>
   </div>
-  <div class="mc-preview" tabindex="-1" aria-label="${en?'Full guided demo':'Demo lengkap terpandu'}">
-   <div class="mc-preview-top"><span>${en?'SCHEMATIC 3D · SYNTHETIC':'MODEL 3D SKEMATIS · SINTETIS'}</span><button type="button" class="demo-collapse" data-action="home-demo-close">${en?'Compact view':'Ringkas tampilan'} ${icon('chevron-down',14)}</button></div>
-   <div class="mc-preview-scene">
+  <div class="mc-preview" data-viewer="home" tabindex="-1" aria-label="${en?'Full guided demo':'Demo lengkap terpandu'}">
+   <div class="mc-preview-top"><span>${en?'SCHEMATIC 3D · SYNTHETIC':'MODEL 3D SKEMATIS · SINTETIS'}</span><div class="demo-view-tools"><button type="button" data-action="viewer-fullscreen" aria-pressed="false">${icon('maximize',15)}<span data-fullscreen-label>${en?'Full screen':'Layar penuh'}</span></button><button type="button" data-action="home-demo-camera-reset">${icon('refresh-cw',14)} ${en?'Reset camera':'Reset kamera'}</button><button type="button" class="demo-collapse" data-action="home-demo-close">${en?'Compact view':'Ringkas tampilan'} ${icon('chevron-down',14)}</button></div></div>
+   <div class="mc-preview-scene" data-home-camera tabindex="0" role="group" aria-label="${en?'Free 3D camera':'Kamera 3D bebas'}" aria-describedby="home-camera-help">
     <canvas class="mc-canvas" data-home-canvas aria-label="${en?'3D simulation of the MRT Fatmawati area':'Simulasi 3D kawasan Stasiun MRT Fatmawati'}"></canvas>
     <div class="demo-curtain" data-demo-curtain><button type="button" class="demo-launch" data-action="home-demo-play" aria-pressed="false">${icon('play',32)}<span data-demo-play-label>${en?'Play full demo':'Putar demo lengkap'}</span><small>${en?'48 seconds · 6 chapters · pause anytime':'48 detik · 6 bab · bisa dijeda'}</small></button></div>
     <div class="demo-scene-note" data-demo-focus>${en?DEMO_STAGES[0].focus[1]:DEMO_STAGES[0].focus[0]}</div>
@@ -45,6 +45,7 @@ export function renderOverview(){
     <small data-home-caption></small>
     <button type="button" class="mc-open" data-route="cctv">${en?'Open full view':'Buka penuh'} ${icon('arrow-up-right',15)}</button>
    </div>
+   <div class="demo-camera-help" id="home-camera-help">${en?'Drag to orbit · scroll/pinch to zoom · Shift-drag or two fingers to pan · arrow keys / + / − also work. Exploring pauses the story.':'Seret untuk memutar · gulir/cubit untuk zoom · Shift-seret atau dua jari untuk geser · tombol panah / + / − juga bisa. Eksplorasi menjeda narasi.'}</div>
    <div class="demo-progress" data-demo-progress role="progressbar" aria-label="${en?'Demo progress':'Progres demo'}" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><i></i></div>
    <div class="demo-toolbar"><button type="button" class="demo-play" data-action="home-demo-play" aria-pressed="false">${icon('play',16)}<span data-demo-play-label>${en?'Play full demo':'Putar demo lengkap'}</span></button><button type="button" data-action="home-demo-prev" disabled aria-label="${en?'Previous chapter':'Bab sebelumnya'}">${icon('arrow-left',18)}</button><button type="button" data-action="home-demo-next" aria-label="${en?'Next chapter':'Bab berikutnya'}">${icon('chevron-right',18)}</button><button type="button" data-action="home-demo-replay" aria-label="${en?'Replay from start':'Ulangi dari awal'}">${icon('refresh-cw',16)}</button><small data-demo-status>${en?'Press Play to start':'Tekan Play untuk mulai'}</small></div>
    <div class="demo-story" aria-live="polite" aria-atomic="true"><span class="demo-count" data-demo-count>01 / 06 · A0</span><h2 data-demo-title>${en?DEMO_STAGES[0].title[1]:DEMO_STAGES[0].title[0]}</h2><p data-demo-text>${en?DEMO_STAGES[0].text[1]:DEMO_STAGES[0].text[0]}</p><div class="demo-question">${icon('clipboard-list',17)}<span><b>${en?'FIELD CHECK':'CEK DI LAPANGAN'}</b><span data-demo-question>${en?DEMO_STAGES[0].question[1]:DEMO_STAGES[0].question[0]}</span></span></div></div>

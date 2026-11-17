@@ -1572,7 +1572,7 @@ function renderCctv(){
   </div>
 
   <div class="cctv-grid">
-    <div class="cctv-main">
+    <div class="cctv-main" data-viewer="cctv" tabindex="-1">
       <div class="sim-cams" role="group" aria-label="Kamera">
         ${CAMERA_PRESETS.map((c,i)=>`<button type="button" data-sim="cam" data-value="${c.id}" aria-pressed="${i===0}"><b>${c.label}</b><small>${c.sub}</small></button>`).join('')}
       </div>
@@ -1592,6 +1592,7 @@ function renderCctv(){
       </div>
 
       <div class="cctv-controls sim-controls" role="toolbar" aria-label="Kontrol simulasi">
+        <button type="button" class="cctv-ctl" data-action="viewer-fullscreen" aria-pressed="false">${icon('maximize',16)}<span data-fullscreen-label>Layar penuh</span></button>
         <button type="button" class="cctv-ctl primary" data-sim="play" aria-pressed="false">${icon('play',16)}<span>Putar</span></button>
         <div class="sim-seg" role="group" aria-label="Kecepatan">${[1,2,4].map((x,i)=>`<button type="button" data-sim="speed" data-value="${x}" aria-pressed="${i===0}">${x}×</button>`).join('')}</div>
         <div class="sim-seg" role="group" aria-label="Waktu">${Object.values(TIME_PRESETS).map(t=>`<button type="button" data-sim="time" data-value="${t.id}" aria-pressed="${t.id==='sore'}">${t.label}</button>`).join('')}</div>
@@ -1732,9 +1733,9 @@ function renderOverview(){
    </div>
    <div class="mc-trust">${icon('shield-check',15)} ${en?'No licence plates or faces · Example data is synthetic':'Tanpa plat nomor &amp; wajah · Data contoh bersifat sintetis'}</div>
   </div>
-  <div class="mc-preview" tabindex="-1" aria-label="${en?'Full guided demo':'Demo lengkap terpandu'}">
-   <div class="mc-preview-top"><span>${en?'SCHEMATIC 3D · SYNTHETIC':'MODEL 3D SKEMATIS · SINTETIS'}</span><button type="button" class="demo-collapse" data-action="home-demo-close">${en?'Compact view':'Ringkas tampilan'} ${icon('chevron-down',14)}</button></div>
-   <div class="mc-preview-scene">
+  <div class="mc-preview" data-viewer="home" tabindex="-1" aria-label="${en?'Full guided demo':'Demo lengkap terpandu'}">
+   <div class="mc-preview-top"><span>${en?'SCHEMATIC 3D · SYNTHETIC':'MODEL 3D SKEMATIS · SINTETIS'}</span><div class="demo-view-tools"><button type="button" data-action="viewer-fullscreen" aria-pressed="false">${icon('maximize',15)}<span data-fullscreen-label>${en?'Full screen':'Layar penuh'}</span></button><button type="button" data-action="home-demo-camera-reset">${icon('refresh-cw',14)} ${en?'Reset camera':'Reset kamera'}</button><button type="button" class="demo-collapse" data-action="home-demo-close">${en?'Compact view':'Ringkas tampilan'} ${icon('chevron-down',14)}</button></div></div>
+   <div class="mc-preview-scene" data-home-camera tabindex="0" role="group" aria-label="${en?'Free 3D camera':'Kamera 3D bebas'}" aria-describedby="home-camera-help">
     <canvas class="mc-canvas" data-home-canvas aria-label="${en?'3D simulation of the MRT Fatmawati area':'Simulasi 3D kawasan Stasiun MRT Fatmawati'}"></canvas>
     <div class="demo-curtain" data-demo-curtain><button type="button" class="demo-launch" data-action="home-demo-play" aria-pressed="false">${icon('play',32)}<span data-demo-play-label>${en?'Play full demo':'Putar demo lengkap'}</span><small>${en?'48 seconds · 6 chapters · pause anytime':'48 detik · 6 bab · bisa dijeda'}</small></button></div>
     <div class="demo-scene-note" data-demo-focus>${en?DEMO_STAGES[0].focus[1]:DEMO_STAGES[0].focus[0]}</div>
@@ -1745,6 +1746,7 @@ function renderOverview(){
     <small data-home-caption></small>
     <button type="button" class="mc-open" data-route="cctv">${en?'Open full view':'Buka penuh'} ${icon('arrow-up-right',15)}</button>
    </div>
+   <div class="demo-camera-help" id="home-camera-help">${en?'Drag to orbit · scroll/pinch to zoom · Shift-drag or two fingers to pan · arrow keys / + / − also work. Exploring pauses the story.':'Seret untuk memutar · gulir/cubit untuk zoom · Shift-seret atau dua jari untuk geser · tombol panah / + / − juga bisa. Eksplorasi menjeda narasi.'}</div>
    <div class="demo-progress" data-demo-progress role="progressbar" aria-label="${en?'Demo progress':'Progres demo'}" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><i></i></div>
    <div class="demo-toolbar"><button type="button" class="demo-play" data-action="home-demo-play" aria-pressed="false">${icon('play',16)}<span data-demo-play-label>${en?'Play full demo':'Putar demo lengkap'}</span></button><button type="button" data-action="home-demo-prev" disabled aria-label="${en?'Previous chapter':'Bab sebelumnya'}">${icon('arrow-left',18)}</button><button type="button" data-action="home-demo-next" aria-label="${en?'Next chapter':'Bab berikutnya'}">${icon('chevron-right',18)}</button><button type="button" data-action="home-demo-replay" aria-label="${en?'Replay from start':'Ulangi dari awal'}">${icon('refresh-cw',16)}</button><small data-demo-status>${en?'Press Play to start':'Tekan Play untuk mulai'}</small></div>
    <div class="demo-story" aria-live="polite" aria-atomic="true"><span class="demo-count" data-demo-count>01 / 06 · A0</span><h2 data-demo-title>${en?DEMO_STAGES[0].title[1]:DEMO_STAGES[0].title[0]}</h2><p data-demo-text>${en?DEMO_STAGES[0].text[1]:DEMO_STAGES[0].text[0]}</p><div class="demo-question">${icon('clipboard-list',17)}<span><b>${en?'FIELD CHECK':'CEK DI LAPANGAN'}</b><span data-demo-question>${en?DEMO_STAGES[0].question[1]:DEMO_STAGES[0].question[0]}</span></span></div></div>
@@ -3025,6 +3027,82 @@ function renderFrame(canvas, cam, scene, dyn, opts = {}){
 }
 
 
+// SOURCE MODULE: js/viewer-controls.js
+/** Temporary viewer controls. Never read or write observation/application state. */
+
+const viewerClamp=(value,min,max)=>Math.min(max,Math.max(min,value));
+function orbitCamera(camera,dx,dy){camera.yaw-=dx*0.006;camera.pitch=viewerClamp(camera.pitch+dy*0.004,0.1,1.42);}
+function zoomCamera(camera,factor){if(Number.isFinite(factor)&&factor>0)camera.dist=viewerClamp(camera.dist*factor,25,520);}
+function panCamera(camera,dx,dy){
+ const k=camera.dist*0.0016,c=Math.cos(camera.yaw),s=Math.sin(camera.yaw);
+ camera.target[0]=viewerClamp(camera.target[0]-(dx*c-dy*s)*k,-350,350);
+ camera.target[2]=viewerClamp(camera.target[2]-(-dx*s-dy*c)*k,-140,140);
+}
+function syncFullscreen(panel){
+ const active=document.fullscreenElement===panel||panel.classList.contains('viewer-fullscreen-fallback');
+ panel.querySelectorAll('[data-action="viewer-fullscreen"]').forEach(button=>{
+  button.setAttribute('aria-pressed',String(active));
+  const label=button.querySelector('[data-fullscreen-label]');
+  if(label)label.textContent=getLanguage()==='en'?(active?'Exit full screen':'Full screen'):(active?'Keluar layar penuh':'Layar penuh');
+ });
+ panel.dispatchEvent(new Event('viewer-resize'));
+}
+function fallbackFullscreen(panel,on){
+ panel.classList.toggle('viewer-fullscreen-fallback',on);syncFullscreen(panel);
+ if(on)panel.focus({preventScroll:true});
+}
+function bindViewerFullscreen(panel){
+ if(!panel||panel.dataset.fullscreenBound)return;
+ panel.dataset.fullscreenBound='true';
+ panel.addEventListener('fullscreenchange',()=>syncFullscreen(panel));
+ panel.addEventListener('keydown',event=>{if(event.key==='Escape'&&panel.classList.contains('viewer-fullscreen-fallback')){event.preventDefault();fallbackFullscreen(panel,false);}});
+}
+function toggleViewerFullscreen(panel){
+ if(!panel)return;
+ if(document.fullscreenElement===panel||panel.classList.contains('viewer-fullscreen-fallback')){exitViewerFullscreen(panel);return;}
+ if(document.fullscreenEnabled&&panel.requestFullscreen){panel.requestFullscreen().catch(()=>fallbackFullscreen(panel,true));}
+ else fallbackFullscreen(panel,true);
+}
+function exitViewerFullscreen(panel){
+ if(!panel)return;
+ if(document.fullscreenElement===panel)document.exitFullscreen().catch(()=>{});
+ if(panel.classList.contains('viewer-fullscreen-fallback'))fallbackFullscreen(panel,false);
+}
+
+function bindFreeCamera(stage,camera,onManual,onDraw){
+ const pointers=new Map();
+ const start=()=>{onManual();stage.focus({preventScroll:true});};
+ stage.addEventListener('pointerdown',event=>{
+  if(event.target.closest('button,a,input'))return;
+  pointers.set(event.pointerId,{x:event.clientX,y:event.clientY});stage.setPointerCapture?.(event.pointerId);start();
+ });
+ stage.addEventListener('pointermove',event=>{
+  const old=pointers.get(event.pointerId);if(!old)return;
+  const next={x:event.clientX,y:event.clientY},other=[...pointers.entries()].find(([id])=>id!==event.pointerId)?.[1];
+  if(other){
+   const before=Math.hypot(old.x-other.x,old.y-other.y),after=Math.hypot(next.x-other.x,next.y-other.y);
+   if(after>2)zoomCamera(camera,before/after);
+   panCamera(camera,(next.x-old.x)/2,(next.y-old.y)/2);
+  }else if(event.shiftKey||(event.buttons&2))panCamera(camera,next.x-old.x,next.y-old.y);
+  else orbitCamera(camera,next.x-old.x,next.y-old.y);
+  pointers.set(event.pointerId,next);onDraw();
+ });
+ const end=event=>pointers.delete(event.pointerId);
+ stage.addEventListener('pointerup',end);stage.addEventListener('pointercancel',end);stage.addEventListener('lostpointercapture',end);
+ stage.addEventListener('contextmenu',event=>event.preventDefault());
+ stage.addEventListener('wheel',event=>{event.preventDefault();start();zoomCamera(camera,Math.exp(event.deltaY*0.0012));onDraw();},{passive:false});
+ stage.addEventListener('keydown',event=>{
+  if(event.target.closest('button,a,input'))return;
+  const keys=['ArrowLeft','ArrowRight','ArrowUp','ArrowDown','+','=','-'];if(!keys.includes(event.key))return;
+  event.preventDefault();start();
+  if(event.key==='+'||event.key==='=')zoomCamera(camera,0.9);
+  else if(event.key==='-')zoomCamera(camera,1.1);
+  else {const dx=event.key==='ArrowLeft'?-16:event.key==='ArrowRight'?16:0,dy=event.key==='ArrowUp'?-12:event.key==='ArrowDown'?12:0;if(event.shiftKey)panCamera(camera,dx,dy);else orbitCamera(camera,dx,dy);}
+  onDraw();
+ });
+}
+
+
 // SOURCE MODULE: js/cctv-controller.js
 /**
  * CCTV AI Live runtime: interactive 3D traffic simulation of the MRT Fatmawati
@@ -3035,6 +3113,7 @@ function renderFrame(canvas, cam, scene, dyn, opts = {}){
  * Presentation only. Nothing here writes to the store, observations or exports.
  * Simulated detections are synthetic and labelled as such everywhere they appear.
  */
+
 
 
 
@@ -3490,6 +3569,7 @@ function activateCctv(root,{threshold=60}={}){
     }
     syncControls();drawPanels();
   });
+  bindViewerFullscreen(root.querySelector('[data-viewer]'));
   const stage=root.querySelector('[data-cctv-stage]');if(stage)bindStage(stage);
   setTimeout(()=>root.querySelector('[data-sim-hint]')?.classList.add('gone'),9000);
   attachVideo();
@@ -3524,6 +3604,7 @@ if(typeof window!=='undefined'){
 
 
 
+
 const hs={raf:0,root:null,sim:null,cam:null,scenario:'A0',visible:true,observer:null,lastKpi:0,story:initialDemo(),dirty:true,comparison:null};
 const words=pair=>pair[getLanguage()==='en'?1:0];
 const homeText=(selector,value)=>{const el=hs.root?.querySelector(selector);if(el)el.textContent=value;};
@@ -3534,6 +3615,7 @@ function newHomeSim(warmup=100){
   resetStats(hs.sim);
 }
 function applyStory(){
+ hs.root.dataset.cameraFree='false';
  const stage=DEMO_STAGES[hs.story.index];hs.scenario=stage.scenario;
  newHomeSim(stage.warmup);
  Object.assign(hs.cam,{target:[...stage.target],yaw:-0.85,pitch:0.48,dist:stage.dist});
@@ -3579,11 +3661,16 @@ function syncHome(){
 function controlHomeDemo(action,value){
  if(!hs.root||!hs.cam)return;
  const before=hs.story;
+ if(action==='expand'){hs.root.classList.add('demo-expanded');hs.dirty=true;return;}
+ if(action==='camera-reset'){
+  const stage=DEMO_STAGES[before.index];Object.assign(hs.cam,{target:[...stage.target],yaw:-0.85,pitch:0.48,dist:stage.dist});
+  hs.root.dataset.cameraFree='false';hs.dirty=true;syncHome();return;
+ }
  if(action==='play')hs.story=playDemo(before);
  else if(action==='replay')hs.story=playDemo(initialDemo());
  else if(action==='step')hs.story=selectDemo(before,Number(value));
  else if(action==='next'||action==='prev')hs.story=selectDemo(before,before.index+(action==='next'?1:-1));
- else if(action==='close'){hs.story={...before,playing:false};hs.root.classList.remove('demo-expanded');syncHome();return;}
+ else if(action==='close'){hs.story={...before,playing:false};exitViewerFullscreen(hs.root.querySelector('[data-viewer]'));hs.root.classList.remove('demo-expanded');syncHome();hs.dirty=true;return;}
  else return;
  hs.root.classList.add('demo-expanded');
  hs.root.dataset.demoComplete='false';
@@ -3608,6 +3695,12 @@ function activateHomeSim(root){
   if(!hs.sim)newHomeSim();
   if(!hs.cam){hs.cam=createCamera();Object.assign(hs.cam,{target:[0,10,4],yaw:-0.85,pitch:0.36,dist:195});}
   hs.story=initialDemo();hs.root.dataset.demoComplete='false';hs.scenario='A0';applyStory();
+  const panel=root.querySelector('[data-viewer]');bindViewerFullscreen(panel);
+  panel.addEventListener('viewer-resize',()=>{hs.dirty=true;});
+  bindFreeCamera(root.querySelector('[data-home-camera]'),hs.cam,()=>{
+   hs.story={...hs.story,started:true,playing:false};root.dataset.cameraFree='true';syncHome();
+   homeText('[data-demo-status]',words(['Kamera bebas · narasi dijeda. Seret untuk memutar, cubit/gulir untuk zoom.','Free camera · story paused. Drag to orbit, pinch/scroll to zoom.']));
+  },()=>{hs.dirty=true;});
   syncHome();
   hs.observer?.disconnect();
   if('IntersectionObserver' in window){
@@ -3896,6 +3989,7 @@ function monitoringCsv(state) {
 
 
 // SOURCE MODULE: js/app.js
+
 
 
 
@@ -4231,7 +4325,8 @@ case 'intro-stage':introPlaying=false;introIndex=Math.max(0,Math.min(3,Number(el
 case 'intro-next':{const stages=getIntroStages();introPlaying=false;introIndex=(introIndex+1)%stages.length;syncIntro();break;}
 case 'intro-prev':{const stages=getIntroStages();introPlaying=false;introIndex=(introIndex+stages.length-1)%stages.length;syncIntro();break;}
 case 'intro-play':introPlaying=!introPlaying;syncIntro();break;
-case 'home-demo-play':case 'home-demo-replay':case 'home-demo-step':case 'home-demo-next':case 'home-demo-prev':case 'home-demo-close':controlHomeDemo(action.replace('home-demo-',''),el.dataset.index);break;
+case 'home-demo-play':case 'home-demo-replay':case 'home-demo-step':case 'home-demo-next':case 'home-demo-prev':case 'home-demo-close':case 'home-demo-camera-reset':controlHomeDemo(action.replace('home-demo-',''),el.dataset.index);break;
+case 'viewer-fullscreen':{if(el.closest('.mc-hero'))controlHomeDemo('expand');toggleViewerFullscreen(el.closest('[data-viewer]'));break;}
 case 'intro-replay':introIndex=0;introPlaying=true;syncIntro();break;
 case 'doc-status':apiRequest('/api/v1/documents/status').then(data=>{updateState(s=>({...s,pdfEvidence:{...s.pdfEvidence,status:data}}));toast('Status OCR diperbarui')}).catch(e=>toast(e.message));break;
 case 'doc-reset':updateState(s=>({...s,pdfEvidence:{...s.pdfEvidence,filters:{}}}));break;

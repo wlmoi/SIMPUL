@@ -52,7 +52,7 @@ export function renderCctv(){
   </div>
 
   <div class="cctv-grid">
-    <div class="cctv-main">
+    <div class="cctv-main" data-viewer="cctv" tabindex="-1">
       <div class="sim-cams" role="group" aria-label="Kamera">
         ${CAMERA_PRESETS.map((c,i)=>`<button type="button" data-sim="cam" data-value="${c.id}" aria-pressed="${i===0}"><b>${c.label}</b><small>${c.sub}</small></button>`).join('')}
       </div>
@@ -72,6 +72,7 @@ export function renderCctv(){
       </div>
 
       <div class="cctv-controls sim-controls" role="toolbar" aria-label="Kontrol simulasi">
+        <button type="button" class="cctv-ctl" data-action="viewer-fullscreen" aria-pressed="false">${icon('maximize',16)}<span data-fullscreen-label>Layar penuh</span></button>
         <button type="button" class="cctv-ctl primary" data-sim="play" aria-pressed="false">${icon('play',16)}<span>Putar</span></button>
         <div class="sim-seg" role="group" aria-label="Kecepatan">${[1,2,4].map((x,i)=>`<button type="button" data-sim="speed" data-value="${x}" aria-pressed="${i===0}">${x}×</button>`).join('')}</div>
         <div class="sim-seg" role="group" aria-label="Waktu">${Object.values(TIME_PRESETS).map(t=>`<button type="button" data-sim="time" data-value="${t.id}" aria-pressed="${t.id==='sore'}">${t.label}</button>`).join('')}</div>

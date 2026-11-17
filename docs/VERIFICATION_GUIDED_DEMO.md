@@ -10,6 +10,16 @@ All story state is temporary and presentation-only. Observations, sources, legal
 
 Playback requires explicit Play, pauses while the entire demo panel is off-screen or the document is hidden, and stops after human evaluation. Reduced motion uses static chapter snapshots instead of continuously animated vehicles. New controls and narration support English and Indonesian. Navigation routes remain unchanged.
 
+## Full-screen and free-camera follow-up
+
+Overview and CCTV 3D both have full-screen entry/exit controls. Browsers without native Fullscreen API support use a viewport-filling panel; Escape and the exit control close that fallback. Returning the home demo to compact view also exits full screen. The viewer remains explicitly synthetic and uncalibrated.
+
+The home demo supports mouse/touch orbit, wheel/pinch zoom, Shift/right-button or two-finger panning, keyboard arrows with Shift for panning, and +/minus zoom. Manual camera use pauses the narrative so timed chapters cannot override the chosen viewpoint. Reset camera restores the current chapter's framing without changing simulation inputs or evidence. Pitch, distance and panning are bounded to keep the schematic corridor navigable. These controls live in `js/viewer-controls.js`; app.js owns full-screen button actions, and viewer controllers bind transient camera gestures.
+
+Observed follow-up checks: `npm.cmd run verify` passed all 18 JS suites (catalog: 21 modules, 114 paths; standalone: 59 JS modules). `npm.cmd run build` and `npm.cmd run verify:web` passed with 76 public files, 61 JS syntax checks, 193 imports and 73 offline entries. `python -m pytest -q tests/test_demo_ui.py --basetemp=tmp/free_camera_final_ui` passed both desktop/mobile cases: real drag, wheel and touch-pinch events, reset, native full-screen entry/exit, forced API-rejection fallback, Escape, compact exit, and CCTV full screen. Native transitions are awaited through their visible pressed state rather than assuming they finish synchronously. Full-screen screenshots were inspected at both viewport sizes.
+
+Final follow-up regression: `python -m pytest -q tests --basetemp=tmp/fullscreen_camera_release_pytest` returned **39 passed, 0 failed, 0 skipped**, with one dependency deprecation warning. Both standalone render scripts, the state-migration check and `git diff --check` also passed. No extra runtime configuration is needed beyond the existing test dependencies and Playwright browser installation.
+
 ## Observed verification
 
 - `npm.cmd run verify`: 18 JavaScript suites passed, including the new story state-machine checks, navigation, motion, solution-first, vehicle-first and CSV security. Catalog: 21 modules, 113 paths. Standalone: 58 JS modules; bundle syntax passed.

@@ -854,6 +854,23 @@ h1,h2,h3{letter-spacing:-.025em}
 .mc-preview button:focus-visible{outline:3px solid #ffb27a;outline-offset:3px}
 @media(max-width:640px){.demo-expanded{padding:20px 12px}.demo-expanded .mc-preview-scene{aspect-ratio:1.3/1}.demo-timeline{grid-template-columns:repeat(3,minmax(0,1fr));padding:8px 12px 12px}.demo-story{padding:16px 12px 10px}.demo-toolbar{padding:12px}.demo-summary{margin:0 12px 12px;padding:12px}.demo-results{gap:6px}.demo-results article{padding:10px}.demo-results strong{font-size:19px}.demo-scene-note{font-size:10px;top:8px;left:8px;max-width:calc(100% - 16px)}.demo-launch{padding:15px 18px;font-size:15px}.demo-launch small{font-size:10px}}
 @media(prefers-reduced-motion:reduce){.demo-launch,.mc-preview{transition:none!important}}
+
+.demo-view-tools{display:flex;align-items:center;gap:8px;flex-wrap:wrap;justify-content:flex-end}
+.demo-view-tools button{display:flex;align-items:center;gap:5px;border:1px solid #6885b566;border-radius:7px;background:#ffffff09;color:#d8e6fa;padding:7px;font:600 10px/1.2 Arial,sans-serif;letter-spacing:0}
+.demo-view-tools .demo-collapse{display:none}
+.demo-expanded .demo-view-tools .demo-collapse{display:flex}
+.mc-preview-top{gap:10px;flex-wrap:wrap;line-height:1.5}
+[data-home-camera]{touch-action:none;cursor:grab;outline-offset:-3px}
+[data-home-camera]:active{cursor:grabbing}
+[data-home-camera]:focus-visible{outline:3px solid #f86809}
+.demo-camera-help{font-size:10px;line-height:1.6;color:#afc5e4;padding:10px 14px;border-top:1px solid #607fa833}
+[data-viewer].viewer-fullscreen-fallback{position:fixed!important;inset:0!important;z-index:1000!important}
+[data-viewer]:is(:fullscreen,.viewer-fullscreen-fallback){box-sizing:border-box!important;display:block!important;width:100vw!important;height:100dvh!important;max-width:none!important;max-height:none!important;margin:0!important;border:0!important;border-radius:0!important;background:#0b1b3f!important;color:#fff;overflow-y:auto!important;overscroll-behavior:contain}
+.mc-hero [data-viewer]:is(:fullscreen,.viewer-fullscreen-fallback) .mc-preview-scene{height:62dvh;min-height:220px;max-height:none;aspect-ratio:auto}
+[data-viewer]:is(:fullscreen,.viewer-fullscreen-fallback) .cctv-stage{height:calc(100dvh - 140px);aspect-ratio:auto;min-height:240px}
+[data-viewer]:is(:fullscreen,.viewer-fullscreen-fallback) .sim-cams,[data-viewer]:is(:fullscreen,.viewer-fullscreen-fallback) .sim-controls{padding:10px}
+.mc-hero [data-viewer]:is(:fullscreen,.viewer-fullscreen-fallback) .mc-preview-top{position:sticky;top:0;z-index:5;background:#0b1b3f}
+@media(max-width:640px){.demo-view-tools{gap:5px}.demo-view-tools button{font-size:9px;padding:6px}.demo-camera-help{font-size:9px}.mc-hero [data-viewer]:is(:fullscreen,.viewer-fullscreen-fallback) .mc-preview-scene{height:56dvh}}
 .mc-switch{display:inline-flex;background:rgba(255,255,255,.08);border-radius:9px;padding:3px;gap:2px}
 .mc-switch button{border:0;background:transparent;color:#dbe6f7;font:800 11px/1 "Plus Jakarta Sans",Arial,sans-serif;padding:7px 10px;border-radius:7px;cursor:pointer}
 .mc-switch button[aria-pressed="true"]{background:var(--orange);color:#1b2b4e}

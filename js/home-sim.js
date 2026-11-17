@@ -8,6 +8,7 @@ import {createSim,stepSim,resetStats,simMetrics,runScenario} from './traffic-sim
 import {createCamera,renderFrame} from './sim3d-engine.js';
 import {DEMO_STAGES,DEMO_SECONDS,DEMO_INPUTS,initialDemo,selectDemo,playDemo,advanceDemo} from './demo-story.js';
 import {getLanguage} from './i18n.js';
+import {bindViewerFullscreen,bindFreeCamera,exitViewerFullscreen} from './viewer-controls.js';
 
 const hs={raf:0,root:null,sim:null,cam:null,scenario:'A0',visible:true,observer:null,lastKpi:0,story:initialDemo(),dirty:true,comparison:null};
 const words=pair=>pair[getLanguage()==='en'?1:0];
@@ -19,6 +20,7 @@ function newHomeSim(warmup=100){
   resetStats(hs.sim);
 }
 function applyStory(){
+ hs.root.dataset.cameraFree='false';
  const stage=DEMO_STAGES[hs.story.index];hs.scenario=stage.scenario;
  newHomeSim(stage.warmup);
  Object.assign(hs.cam,{target:[...stage.target],yaw:-0.85,pitch:0.48,dist:stage.dist});
@@ -64,11 +66,16 @@ function syncHome(){
 export function controlHomeDemo(action,value){
  if(!hs.root||!hs.cam)return;
  const before=hs.story;
+ if(action==='expand'){hs.root.classList.add('demo-expanded');hs.dirty=true;return;}
+ if(action==='camera-reset'){
+  const stage=DEMO_STAGES[before.index];Object.assign(hs.cam,{target:[...stage.target],yaw:-0.85,pitch:0.48,dist:stage.dist});
+  hs.root.dataset.cameraFree='false';hs.dirty=true;syncHome();return;
+ }
  if(action==='play')hs.story=playDemo(before);
  else if(action==='replay')hs.story=playDemo(initialDemo());
  else if(action==='step')hs.story=selectDemo(before,Number(value));
  else if(action==='next'||action==='prev')hs.story=selectDemo(before,before.index+(action==='next'?1:-1));
- else if(action==='close'){hs.story={...before,playing:false};hs.root.classList.remove('demo-expanded');syncHome();return;}
+ else if(action==='close'){hs.story={...before,playing:false};exitViewerFullscreen(hs.root.querySelector('[data-viewer]'));hs.root.classList.remove('demo-expanded');syncHome();hs.dirty=true;return;}
  else return;
  hs.root.classList.add('demo-expanded');
  hs.root.dataset.demoComplete='false';
@@ -93,6 +100,12 @@ export function activateHomeSim(root){
   if(!hs.sim)newHomeSim();
   if(!hs.cam){hs.cam=createCamera();Object.assign(hs.cam,{target:[0,10,4],yaw:-0.85,pitch:0.36,dist:195});}
   hs.story=initialDemo();hs.root.dataset.demoComplete='false';hs.scenario='A0';applyStory();
+  const panel=root.querySelector('[data-viewer]');bindViewerFullscreen(panel);
+  panel.addEventListener('viewer-resize',()=>{hs.dirty=true;});
+  bindFreeCamera(root.querySelector('[data-home-camera]'),hs.cam,()=>{
+   hs.story={...hs.story,started:true,playing:false};root.dataset.cameraFree='true';syncHome();
+   homeText('[data-demo-status]',words(['Kamera bebas · narasi dijeda. Seret untuk memutar, cubit/gulir untuk zoom.','Free camera · story paused. Drag to orbit, pinch/scroll to zoom.']));
+  },()=>{hs.dirty=true;});
   syncHome();
   hs.observer?.disconnect();
   if('IntersectionObserver' in window){

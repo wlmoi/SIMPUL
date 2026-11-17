@@ -12,6 +12,7 @@ import {LAYOUT} from './fatmawati-layout.js';
 import {createSim,stepSim,simMetrics,runScenario,placeStoppedVehicle,resetStats,SCENARIOS,TIME_PRESETS} from './traffic-sim.js';
 import {getFatmawatiScene,buildDynamicScene} from './sim3d-scene.js';
 import {createCamera,renderFrame,boxCorners,projectPoint,screenToGround} from './sim3d-engine.js';
+import {bindViewerFullscreen} from './viewer-controls.js';
 
 const STOP_LOG_SEC=8;
 const PANEL_INTERVAL=250;
@@ -462,6 +463,7 @@ export function activateCctv(root,{threshold=60}={}){
     }
     syncControls();drawPanels();
   });
+  bindViewerFullscreen(root.querySelector('[data-viewer]'));
   const stage=root.querySelector('[data-cctv-stage]');if(stage)bindStage(stage);
   setTimeout(()=>root.querySelector('[data-sim-hint]')?.classList.add('gone'),9000);
   attachVideo();
