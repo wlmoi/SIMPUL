@@ -343,7 +343,9 @@ Automated CI runs the same JS/Python contract gates on pull requests; see [`.git
 
 ```bash
 npm run verify                  # JS tests + catalog + regenerated standalone syntax
-python -m pytest -q tests/test_api_registry.py tests/test_build_standalone.py
+python -m pip install -r requirements-dev.txt
+python -m playwright install chromium  # Linux CI uses: install --with-deps chromium
+python -m pytest -q tests
 ```
 
 The module catalog is validated automatically; adding a new page or API requires updating the corresponding registry and tests. No empty folder structure or speculative service is needed.
