@@ -14,3 +14,5 @@ The app uses native ES modules (no framework runtime). Preserve the SIMPUL 2.0 A
 - Never break browser localStorage migration; run `tests/test_state_migration.mjs` after state changes.
 
 **Verification:** `npm test`, `python tools/build_standalone.py`, `node --check docs/bundled_app.js`. For a new route, update `config/module-catalog.json` and its owning test.
+
+**Language switch (EN/ID):** `js/i18n-dom.js` translates every rendered text node, `placeholder`, `title`, `aria-label` and `alt` (and 3D canvas labels via `translatePhrase`) using the pairs in `js/i18n-phrases.js`. Numbers in a sentence are written as `#`. When you add or change visible copy, add an `[indonesian, english]` pair at the end of `I18N_PHRASES`; keys in `js/i18n.js` (`t()`) keep working. Mark user-entered content with `data-no-i18n` if it must never be rewritten.

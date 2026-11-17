@@ -5,7 +5,7 @@ import { renderSettings, setSettingsTab } from '../js/views/settings.js';
 assert.equal(assertNavigationCoverage(),views.length,'Each page has exactly one menu location');
 assert.deepEqual(PRIMARY_ROUTES,['overview','cctv','vehicles','diagnosis','simulation','evaluation']);
 assert.equal(sectionForRoute('monitor'),'field');
-assert.equal(sectionForRoute('business'),'business');
+assert.equal(sectionForRoute('business'),null,'Business pages are not part of the website');
 assert.equal(sectionForRoute('simulation'),null);
 const html=renderNavigation('monitor','field');
 assert.match(html, /aria-expanded="true" aria-controls="nav-panel-field"/);
@@ -16,10 +16,12 @@ for(const page of views){
   assert.equal((html.match(new RegExp(`data-route="${escaped}"`, 'g'))||[]).length,1,`${page.id} should appear exactly once`);
 }
 // Compact sidebar: on a main-flow page only the flow, tools and one collapsed "Fitur lanjutan" entry are visible.
-assert.deepEqual(TOOL_ROUTES,['mapview','observation','settings']);
+assert.deepEqual(TOOL_ROUTES,['mapview','settings']);
+for(const removed of ['observation','business','pipeline','equipment'])assert.ok(!views.some(v=>v.id===removed),`${removed} page is removed`);
 const home=renderNavigation('overview',null);
 assert.match(home,/id="nav-more-panel" hidden/,'Advanced pages are collapsed by default');
-assert.match(home,/Fitur lanjutan|Advanced features/);
+assert.ok(!/nav-more-trigger/.test(home),'No "Fitur lanjutan" entry in the sidebar; advanced pages live in Pengaturan');
+assert.match(renderNavigation('monitor',null),/data-route="settings" aria-current="page"/,'Pengaturan is highlighted while an advanced page is open');
 // Every advanced page is reachable from Pengaturan; creators has its own tab.
 setSettingsTab('fitur');
 const hub=renderSettings();
@@ -28,5 +30,5 @@ setSettingsTab('tim');
 assert.match(renderSettings(),/About the Creators/);
 setSettingsTab('data');
 assert.match(renderSettings(),/Manajemen data/);
-console.log('PASS: compact sidebar (flow + tools + Fitur lanjutan), settings hub reaches every advanced page');
-console.log('PASS: 26 navigable routes, one location each, grouped menus, active state and search input');
+console.log('PASS: compact sidebar (flow + tools only), settings hub reaches every advanced page');
+console.log('PASS: 22 navigable routes, one location each, grouped menus, active state and search input');

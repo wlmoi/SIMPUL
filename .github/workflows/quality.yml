@@ -18,10 +18,11 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-      - name: Install backend contract dependencies
+      - name: Install test dependencies and Chromium
         run: |
           python -m pip install --upgrade pip
-          python -m pip install -r server/requirements.txt pytest httpx
+          python -m pip install -r requirements-dev.txt
+          python -m playwright install --with-deps chromium
       - name: Verify frontend modules and standalone output
         run: npm run verify
       - name: Verify backend API and schema contracts

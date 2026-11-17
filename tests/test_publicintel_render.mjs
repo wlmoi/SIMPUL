@@ -6,9 +6,10 @@ let html='';
 const storage=new Map();
 const context=vm.createContext({console,Date,Intl,Math,URL,URLSearchParams,AbortController,Blob,
  location:{hash:'#publicintel',protocol:'file:'},navigator:{},
- document:{hidden:false,getElementById(id){return id==='app'?{set innerHTML(v){html=v},get innerHTML(){return html}}:null},addEventListener(){}},
+ document:{hidden:false,querySelector(){return null},getElementById(id){return id==='app'?{set innerHTML(v){html=v},get innerHTML(){return html}}:null},addEventListener(){}},
  window:{addEventListener(){},scrollTo(){}},
  localStorage:{getItem:k=>storage.get(k)||null,setItem:(k,v)=>storage.set(k,v)},
+ requestAnimationFrame(){return 1},
  setTimeout(){return 1},clearTimeout(){},setInterval(){return 1},clearInterval(){}
 });
 vm.runInContext(bundle,context,{timeout:5000});

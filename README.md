@@ -33,6 +33,8 @@
 
 SIMPUL starts with the core operational problem: vehicles picking up, dropping off, or waiting for passengers compete for curbside space near **MRT Fatmawati, Jakarta Selatan**. The outcome being investigated is traffic queues and obstruction of passenger/pedestrian access, not vehicle identity tracking or automatic law enforcement.
 
+The Overview includes **Play full demo**: a 48-second guided 3D story from pickup demand and stopping activity to potential queues, A1/A2 alternatives, and human evaluation, plus full EN/ID language switching, compact sidebar navigation with advanced pages under Settings, and an interactive schematic 3D CCTV simulation page. Pause, replay, or select any of six chapters, or explore freely with orbit/zoom/pan (**Reset camera** restores the chapter view). The guided demo never saves observations. See [guided demo verification](docs/VERIFICATION_GUIDED_DEMO.md).
+
 The primary app sequence is **Vehicle Problem Center → Field Observation → Diagnosis by time interval → Corridor Map → A0/A1/A2 Simulation → Evidence-backed Evaluation**.
 
 - **Vehicle-first diagnostics:** Working source/activity/zone filters, duration and activity summaries, ternary pedestrian/lane/queue evidence states (`yes` / `no` / `unknown`), and review hypotheses for A1 and A2 ([Vehicle Problem Logic](docs/VEHICLE_PROBLEM_v1.9.md)).
@@ -261,7 +263,9 @@ Automated CI runs the same JS/Python contract gates on pull requests; see [`.git
 
 ```bash
 npm run verify                  # JS tests + catalog + regenerated standalone syntax
-python -m pytest -q tests/test_api_registry.py tests/test_build_standalone.py
+python -m pip install -r requirements-dev.txt
+python -m playwright install chromium  # Linux CI uses: install --with-deps chromium
+python -m pytest -q tests
 ```
 
 The module catalog is validated automatically; adding a new page or API requires updating the corresponding registry and tests. No empty folder structure or speculative service is needed.

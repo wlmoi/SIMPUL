@@ -3,6 +3,7 @@
  * Perspective camera, near-plane clipping, flat shading, painter's sort per box,
  * and depth haze. Presentation only: it never reads or writes application state.
  */
+import {translatePhrase} from './i18n-dom.js';
 const NEAR = 0.6;
 const LIGHT = v3norm([-0.38, 0.86, 0.34]);
 const colorCache = new Map();
@@ -151,7 +152,8 @@ function drawLabel(ctx, B, l){
   if (!p || p[0] < -80 || p[0] > B.w + 80 || p[1] < -20 || p[1] > B.h + 20) return;
   const size = l.size || 11;
   ctx.font = `700 ${size}px "Plus Jakarta Sans", Arial, sans-serif`;
-  const tw = ctx.measureText(l.text).width;
+  const text = translatePhrase(l.text);
+  const tw = ctx.measureText(text).width;
   const padX = 7, hgt = size + 9, x = p[0] - tw / 2 - padX, y = p[1] - hgt / 2;
   ctx.fillStyle = l.bg || 'rgba(6,16,42,.72)';
   ctx.beginPath();
@@ -159,7 +161,7 @@ function drawLabel(ctx, B, l){
   ctx.fill();
   ctx.fillStyle = l.fg || '#ffffff';
   ctx.textBaseline = 'middle';
-  ctx.fillText(l.text, x + padX, p[1] + 0.5);
+  ctx.fillText(text, x + padX, p[1] + 0.5);
 }
 
 /**
