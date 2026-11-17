@@ -54,7 +54,7 @@ URLs on the **hosting computer**:
 - InfluxDB local admin: `http://127.0.0.1:8086`
 - Grafana local UI: `http://127.0.0.1:3000`
 
-Grafana username `admin`, password in the generated local `.env` file (`GRAFANA_ADMIN_PASSWORD`). InfluxDB username `simpul_admin`, password in the same file (`INFLUXDB_ADMIN_PASSWORD`). Keep `.env` private. These values are bootstrap credentials, not recommended for any public deployment. Grafana dashboard is provisioned under **SIMPUL → SIMPUL | Monitoring Observasi Lapangan**.
+Both services default to username `user`, configurable with `GRAFANA_ADMIN_USERNAME` and `INFLUXDB_ADMIN_USERNAME`. Passwords are stored only in the local `.env` file (`GRAFANA_ADMIN_PASSWORD` and `INFLUXDB_ADMIN_PASSWORD`). The initializer generates random passwords and never overwrites an existing `.env`; explicitly selected local passwords must be set in that file. Keep `.env` private. These are bootstrap settings: existing database volumes require an account update in the running service, not volume deletion. Grafana dashboard is provisioned under **SIMPUL → SIMPUL | Monitoring Observasi Lapangan**.
 
 **Recommended operation sequence:** Start session → record manual event → navigate to **Monitoring & Data Log** → click **Sinkronkan manual** (or opt in to 30-second autosync) → inspect the InfluxDB pending queue → open Grafana and select a time range that includes the observation timestamps. No synthetic observations should appear in Grafana.
 
