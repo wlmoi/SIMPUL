@@ -880,3 +880,54 @@ h1,h2,h3{letter-spacing:-.025em}
 .sim-sliders .sim-opacity{grid-column:1/-1}
 .sim-sliders .sim-opacity small{flex-basis:100%;font-size:10.5px;color:#8a97a8;font-weight:600}
 .sim-sliders .sim-opacity input{accent-color:#0961ad}
+
+/* Rounded themed dropdowns (js/custom-select.js). The native select stays hidden as the source of truth. */
+.cs-wrap{display:contents}
+.cs-native{position:absolute!important;width:1px!important;height:1px!important;min-width:0!important;min-height:0!important;margin:0!important;padding:0!important;border:0!important;opacity:0!important;pointer-events:none!important;overflow:hidden}
+.cs-trigger{display:inline-flex;align-items:center;justify-content:space-between;gap:10px;min-height:40px;padding:7px 7px 7px 14px;border:1px solid #d6e0ec;border-radius:14px;background:linear-gradient(180deg,#fff,#f5f8fc);color:#1b2b4e;font-size:12px;font-weight:650;line-height:1.25;text-align:left;box-shadow:0 1px 2px #1b2b4e12;transition:border-color .16s,box-shadow .16s,background .16s;outline:none}
+.cs-trigger:hover:not(:disabled){border-color:#0961ad88;box-shadow:0 6px 16px #0961ad1c}
+.cs-trigger:focus-visible,.cs-trigger[aria-expanded="true"]{border-color:#0961ad;box-shadow:0 0 0 4px #0961ad24;background:#fff}
+.cs-trigger:disabled{opacity:.6;background:#f3f5f9}
+.cs-value{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.cs-chevron{display:inline-grid;place-items:center;width:26px;height:26px;border-radius:999px;background:#eaf2fb;color:#0961ad;flex-shrink:0;transition:transform .2s ease,background .16s,color .16s}
+.cs-trigger:hover:not(:disabled) .cs-chevron{background:#dbe9f8}
+.cs-trigger[aria-expanded="true"] .cs-chevron{transform:rotate(180deg);background:#0961ad;color:#fff}
+.monitor-select.cs-trigger{min-height:36px;font-size:11px;border-radius:12px}
+.monitor-select.cs-trigger .cs-chevron{width:22px;height:22px}
+.eval-phase-actions .cs-trigger{min-width:170px}
+.cs-list{position:fixed;z-index:2000;margin:0;padding:6px;list-style:none;background:#fff;border:1px solid #dbe5f0;border-radius:16px;box-shadow:0 22px 48px #04257329,0 3px 8px #04257314;overflow:auto;overscroll-behavior:contain;font:600 12px/1.3 'Plus Jakarta Sans','DM Sans',Arial,sans-serif;color:#1b2b4e;animation:cs-pop .14s ease-out;transform-origin:top center}
+.cs-list[data-side="top"]{transform-origin:bottom center}
+@keyframes cs-pop{from{opacity:0;transform:translateY(-4px) scale(.98)}to{opacity:1;transform:none}}
+.cs-option{display:flex;align-items:center;gap:8px;padding:10px 14px 10px 8px;border-radius:11px;cursor:pointer;white-space:nowrap;transition:background .1s}
+.cs-option+.cs-option{margin-top:2px}
+.cs-option.is-active{background:#eef4fb;color:#042573}
+.cs-option[aria-selected="true"]{color:#0961ad;font-weight:750;background:linear-gradient(90deg,#f8680912,transparent 70%)}
+.cs-option[aria-selected="true"].is-active{background:#e6f0fa}
+.cs-check{display:inline-grid;place-items:center;width:18px;height:18px;color:#f86809;flex-shrink:0}
+.cs-option.is-disabled{opacity:.45;cursor:not-allowed}
+.cs-list.cs-dark{background:#0f1d3d;border-color:#2a3f6e;color:#dfe9f8;box-shadow:0 22px 48px #00000066}
+.cs-dark .cs-option.is-active{background:#1b2f5a;color:#fff}
+.cs-dark .cs-option[aria-selected="true"]{color:#7fb6ec}
+@media(prefers-reduced-motion:reduce){.cs-list{animation:none}.cs-chevron,.cs-trigger{transition:none}}
+
+/* Range sliders: round knob raised above a filled track (fill set by js/custom-select.js). */
+input[type=range]{-webkit-appearance:none;appearance:none;height:30px;margin:4px 0 0;padding:0;background:transparent;cursor:pointer;touch-action:pan-y}
+input[type=range]:focus{outline:none}
+input[type=range]::-webkit-slider-runnable-track{height:8px;border-radius:999px;background:linear-gradient(90deg,#0961ad,#f86809) 0 0/var(--fill,50%) 100% no-repeat,#dce5f0;box-shadow:inset 0 1px 2px #1b2b4e26}
+input[type=range]::-moz-range-track{height:8px;border-radius:999px;background:#dce5f0;box-shadow:inset 0 1px 2px #1b2b4e26}
+input[type=range]::-moz-range-progress{height:8px;border-radius:999px;background:linear-gradient(90deg,#0961ad,#f86809)}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;width:24px;height:24px;margin-top:-8px;border-radius:50%;background:radial-gradient(circle at 50% 50%,#f86809 0 4px,#fff 4.5px);border:2px solid #f86809;box-shadow:0 4px 12px #04257338,0 1px 2px #04257326;transition:transform .15s ease,box-shadow .15s ease}
+input[type=range]::-moz-range-thumb{width:20px;height:20px;border-radius:50%;background:radial-gradient(circle at 50% 50%,#f86809 0 4px,#fff 4.5px);border:2px solid #f86809;box-shadow:0 4px 12px #04257338,0 1px 2px #04257326;transition:transform .15s ease,box-shadow .15s ease}
+input[type=range]:hover::-webkit-slider-thumb{transform:scale(1.12);box-shadow:0 0 0 7px #f8680922,0 4px 12px #04257338}
+input[type=range]:hover::-moz-range-thumb{transform:scale(1.12);box-shadow:0 0 0 7px #f8680922,0 4px 12px #04257338}
+input[type=range]:active::-webkit-slider-thumb{transform:scale(1.22);box-shadow:0 0 0 10px #f8680930,0 6px 16px #04257340;cursor:grabbing}
+input[type=range]:active::-moz-range-thumb{transform:scale(1.22);box-shadow:0 0 0 10px #f8680930,0 6px 16px #04257340;cursor:grabbing}
+input[type=range]:focus-visible::-webkit-slider-thumb{box-shadow:0 0 0 4px #fff,0 0 0 7px #0961ad,0 4px 12px #04257338}
+input[type=range]:focus-visible::-moz-range-thumb{box-shadow:0 0 0 4px #fff,0 0 0 7px #0961ad,0 4px 12px #04257338}
+input[type=range]:disabled{cursor:not-allowed;opacity:.5}
+@media(prefers-reduced-motion:reduce){input[type=range]::-webkit-slider-thumb{transition:none}input[type=range]::-moz-range-thumb{transition:none}}
+/* "Meet the team" button on the dark credits card: high-contrast orange. */
+.solution-credits>.btn,.solution-credits>.btn.primary{background:linear-gradient(135deg,#ff7a1f,#f86809);color:#fff;border:0;box-shadow:0 8px 22px #f8680955;font-weight:800;padding:12px 18px}
+.solution-credits>.btn:hover{background:linear-gradient(135deg,#ff8a38,#ff7a1f);transform:translateY(-1px);box-shadow:0 12px 28px #f8680966}
+.solution-credits>.btn:focus-visible{outline:3px solid #fff;outline-offset:3px}
+.solution-credits>.btn svg{color:#fff}
