@@ -18,7 +18,7 @@ export const REVIEW_STATUS = Object.freeze({
   closed:'Ditutup (catatan internal)'
 });
 export const EVENT_TYPES = Object.freeze({Jemput:'Penjemputan',Turun:'Penurunan',Menunggu:'Menunggu penumpang'});
-export const PRIORITY = Object.freeze({P1:'P1 · Periksa keselamatan',P2:'P2 · Tinjau hambatan',P3:'P3 · Observasi berulang',P4:'P4 · Pemantauan rutin'});
+export const PRIORITY = Object.freeze({P1:'P1 / Periksa keselamatan',P2:'P2 / Tinjau hambatan',P3:'P3 / Observasi berulang',P4:'P4 / Pemantauan rutin'});
 const TERNARY=new Set(['yes','no','unknown']);
 export const normalizeSignal=value=>TERNARY.has(value)?value:'unknown';
 export function classifyTrafficEvent(event,review=null){
