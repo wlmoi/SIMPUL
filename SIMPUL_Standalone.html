@@ -6,7 +6,7 @@
   <meta name="theme-color" content="#042573" />
   <meta name="description" content="SIMPUL : Sistem Inspeksi Mobilitas untuk Penataan Ulang Layanan" />
   <title>SIMPUL : Sistem Inspeksi Mobilitas untuk Penataan Ulang Layanan</title>
-  <link rel="icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2NCIgaGVpZ2h0PSI2NCIgdmlld0JveD0iMCAwIDY0IDY0Ij48cmVjdCB3aWR0aD0iNjQiIGhlaWdodD0iNjQiIHJ4PSIxNiIgZmlsbD0iIzE4Mjk2MCIvPjxwYXRoIGQ9Ik0xNiAxOGgzMXY4SDI3djdoMTR2N0gyN3Y3aDIwIiBmaWxsPSJub25lIiBzdHJva2U9IiMyOGQ4YmIiIHN0cm9rZS13aWR0aD0iNyIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIi8+PC9zdmc+Cg==" type="image/svg+xml" />
+  <link rel="icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2NCIgaGVpZ2h0PSI2NCIgdmlld0JveD0iMCAwIDY0IDY0Ij48cmVjdCB3aWR0aD0iNjQiIGhlaWdodD0iNjQiIHJ4PSIxNiIgZmlsbD0iIzE4Mjk2MCIvPjxwYXRoIGQ9Ik0xNiAxOGgzMXY4SDI3djdoMTR2N0gyN3Y3aDIwIiBmaWxsPSJub25lIiBzdHJva2U9IiMyOGQ4YmIiIHN0cm9rZS13aWR0aD0iNyIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIi8+PC9zdmc+DQo=" type="image/svg+xml" />
 <style>
 :root{--navy:#042573;--navy-dark:#1b2b4e;--blue:#0961ad;--teal:#0961ad;--teal-dark:#042573;--mint:#f86809;--aqua:#e5edf4;--ink:#1a2946;--muted:#718096;--line:#e7ebf1;--surface:#fff;--base:#f5f7fa;--gold:#d07438;--red:#d9545f;--shadow:0 8px 30px rgba(28,47,81,.045);--round:16px}
 *{box-sizing:border-box}html{font-family:'Plus Jakarta Sans','DM Sans',Arial,sans-serif;color:var(--ink);background:var(--base)}body{margin:0;min-width:320px}button,input,select,textarea{font:inherit}button{cursor:pointer}button:disabled{cursor:not-allowed;opacity:.55}a{color:inherit;text-decoration:none}svg{flex-shrink:0}::selection{background:#a3c8e7;color:#10204b}
@@ -4002,10 +4002,10 @@ function assertNavigationCoverage(){
   return ids.length;
 }
 
-function link(route,active,number=null){
+function link(route,active,number=null,parentOf=null){
   const page=pages.get(route);
   if(!page)throw new Error('Missing navigation page: '+route);
-  const selected=active===route;
+  const selected=active===route||Boolean(parentOf&&parentOf.includes(active));
   const label=labelForRoute(page.id,page.label);
   return `<div class="nav-item-wrap" data-nav-page="${page.id}" data-nav-label="${safe(label.toLowerCase())}"><button type="button" class="nav-link ${selected?'active':''}" data-route="${page.id}" ${selected?'aria-current="page"':''}>${icon(page.icon,17)}<span>${safe(label)}</span>${number?`<span class="nav-step">${number}</span>`:''}</button></div>`;
 }
@@ -4013,10 +4013,8 @@ function link(route,active,number=null){
 /** Return sidebar navigation content only; the outer shell is owned by app.js. */
 function renderNavigation(active,expanded=''){
   const core=PRIMARY_ROUTES.map((route,i)=>link(route,active,String(i+1).padStart(2,'0'))).join('');
-  const tools=TOOL_ROUTES.map(route=>link(route,active)).join('');
-  const hubCount=NAV_SECTIONS.reduce((n,s)=>n+s.routes.length,0);
-  const activeInHub=NAV_SECTIONS.some(s=>s.routes.includes(active));
-  const moreOpen=activeInHub||expanded===MORE_GROUP||NAV_SECTIONS.some(s=>s.id===expanded);
+  const hubRoutes=NAV_SECTIONS.flatMap(s=>s.routes);
+  const tools=TOOL_ROUTES.map(route=>link(route,active,null,route==='settings'?hubRoutes:null)).join('');
   const sections=NAV_SECTIONS.map(section=>{
     const selected=section.routes.includes(active);
     const open=expanded===section.id||(selected&&(expanded===null||expanded===undefined||expanded===MORE_GROUP));
@@ -4032,10 +4030,8 @@ function renderNavigation(active,expanded=''){
   return `<div class="nav-search">${icon('search',16)}<input id="simpul-nav-search" type="search" autocomplete="off" placeholder="${english?'Search pages... (/)':'Cari halaman... (/)' }" aria-label="${english?'Search SIMPUL pages':'Cari halaman SIMPUL'}"/></div>
     <div class="nav-items"><div class="nav-label" data-nav-core-heading>${english?'PRIMARY FLOW':'ALUR UTAMA'}</div><div class="nav-core">${core}</div>
     <div class="nav-label nav-label-secondary" data-nav-tools-heading>${english?'TOOLS':'ALAT'}</div><div class="nav-tools">${tools}</div>
-    <div class="nav-more ${moreOpen?'open':''}">
-      <button type="button" class="nav-more-trigger" data-action="toggle-nav-group" data-group="${MORE_GROUP}" aria-expanded="${moreOpen}" aria-controls="nav-more-panel">${icon('layers',16)}<span>${english?'Advanced features':'Fitur lanjutan'}</span><span class="nav-fold-count">${hubCount}</span>${icon('chevron-down',15)}</button>
-      <div class="nav-sections nav-more-panel" id="nav-more-panel" ${moreOpen?'':'hidden'}>${sections}</div>
-    </div>
+    <!-- Advanced pages live in Pengaturan; they are rendered here only so sidebar search can find them. -->
+    <div class="nav-sections nav-more-panel nav-search-only" id="nav-more-panel" hidden>${sections}</div>
     <p class="nav-empty" hidden>${english?'No matching pages.':'Tidak ada halaman yang cocok.'}</p></div>`;
 }
 
