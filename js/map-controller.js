@@ -54,9 +54,9 @@ export async function activateMapView(state,onZonePick){
    bounds.push([point.lat,point.lon]);
    return L.circleMarker([point.lat,point.lon],{radius,color,weight:2,fillColor:color,fillOpacity:.8}).addTo(current).bindPopup(popup(text,link));
   };
-  pin(STATION_REFERENCE,'#087d72',10,'MRT Fatmawati / Referensi OpenStreetMap. Verifikasi lapangan diperlukan.',OFFICIAL_CCTV_URL);
+  pin(STATION_REFERENCE,'#0961ad',10,'MRT Fatmawati / Referensi OpenStreetMap. Verifikasi lapangan diperlukan.',OFFICIAL_CCTV_URL);
   const project=coordinatePair(state.project?.geo?.lat,state.project?.geo?.lon);
-  if(project)pin(project,'#142456',8,'Titik proyek / Koordinat yang dipilih pengguna.');
+  if(project)pin(project,'#1b2b4e',8,'Titik proyek / Koordinat yang dipilih pengguna.');
   for(const point of zoneReferencePoints(state.zonePins))pin(point,'#176fa6',9,`${point.name} / Titik referensi yang ditetapkan pengamat.`);
   for(const point of mapPointsFromDocuments(state.pdfEvidence?.items))pin(point,'#c87d19',6,`Catatan PDF / Status: belum diverifikasi. ${point.vehicle}; ${point.zone}; ${point.at}; halaman ${point.page??'-'}`);
   current.on('click',event=>{

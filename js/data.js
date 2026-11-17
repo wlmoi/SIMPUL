@@ -50,7 +50,8 @@ export const initialData = () => ({
   zonePins: {}
 });
 export const views = [
-  {id:'overview',label:'Ringkasan',icon:'layout-dashboard',group:'WORKSPACE'},
+  {id:'overview',label:'Beranda',icon:'layout-dashboard',group:'WORKSPACE'},
+  {id:'cctv',label:'CCTV AI Live',icon:'cctv',group:'WORKSPACE'},
   {id:'vehicles',label:'Masalah Kendaraan',icon:'car-front',group:'WORKSPACE'},
   {id:'project',label:'Cara kerja SIMPUL',icon:'workflow',group:'WORKSPACE'},
   {id:'observation',label:'Observasi lapangan',icon:'scan-line',group:'WORKSPACE'},

@@ -11,8 +11,11 @@ import { makeReport } from './views/reports.js';
 import { trafficReviewModal } from './views/classification.js';
 import { pageRenderers } from './page-registry.js';
 import {activateMapView} from './map-controller.js';
+import {activateCctv,deactivateCctv} from './cctv-controller.js';
+import {activateHomeSim,deactivateHomeSim} from './home-sim.js';
+import {setSettingsTab} from './views/settings.js';
 import {filterDocumentRecords} from './document-search.js';
-import { renderNavigation, filterNavigation, sectionForRoute, sectionTitleForRoute } from './navigation.js';
+import { renderNavigation, filterNavigation, sectionForRoute, sectionTitleForRoute, MORE_GROUP } from './navigation.js';
 import { enterPage, openMobileDrawer, closeMobileDrawer, toggleAccordion, showModal, hideModal, showToast, accentActiveNav } from './motion.js';
 import { observationCsv, policeCsv, fieldReadingCsv, forecastCsv, equipmentCsv, monitoringCsv } from './services/export-data.js';
 import {views,initialData} from './data.js';
@@ -35,7 +38,7 @@ function sidebar(){
   const open=expandedNavGroup===null?sectionForRoute(active):expandedNavGroup;
   return `<aside class="sidebar ${mobileOpen?'open':''}" id="sidebar" aria-label="${t('shell.openNav')}"><div class="brand"><div class="brand-icon">S</div><div><div class="wordmark">SIMPUL</div><small>MOBILITY INTELLIGENCE</small></div></div><nav class="nav-area" aria-label="${t('shell.openNav')}">${renderNavigation(active,open)}</nav><div class="sidebar-foot"><div class="mini">${t('shell.workspace')}</div><strong>${safe(getState().project.name)}</strong><div class="presence"><span class="dot"></span> ${t('shell.local')}</div><button type="button" data-route="settings">${icon('settings-2',13)} &nbsp; ${t('shell.settings')}</button></div></aside>`;
 }
-function layout(){const route=currentPage(),names=Object.fromEntries(views.map(v=>[v.id,labelForRoute(v.id,v.label)])),dateStr=new Intl.DateTimeFormat(getLanguage()==='en'?'en-US':'id-ID',{day:'numeric',month:'long',year:'numeric',timeZone:'Asia/Jakarta'}).format(new Date()),lang=getLanguage();return `<div class="shell">${sidebar()}<div class="mobile-curtain ${mobileOpen?'show':''}" data-action="close-mobile"></div><div class="workspace"><header class="topbar"><div class="crumb"><button class="hamburger" data-action="toggle-mobile" aria-label="${t('shell.openNav')}">${icon('menu',22)}</button><span class="crumb-section">${sectionTitleForRoute(route)}</span>${icon('chevron-right',13)}<strong>${names[route]}</strong></div><div class="top-actions"><div class="header-date">${dateStr} - WIB</div><div class="header-divider"></div><div class="language-switch" role="group" aria-label="Language"><span>${icon('languages',15)}</span><button type="button" data-action="switch-language" data-language="en" aria-pressed="${lang==='en'}">EN</button><button type="button" data-action="switch-language" data-language="id" aria-pressed="${lang==='id'}">ID</button></div><span class="partner-brand"><img src="/assets/aiera-foundation.png" alt="AIERA Foundation" width="48" height="51"><span>AIERA<small>FOUNDATION</small></span></span><div class="avatar" title="iSeeDesignITB">ITB</div></div></header><main class="main" id="main-content">${components[route]()}<footer class="app-footer"><span>© 2026 SIMPUL / iSeeDesignITB / SI Bridges Indonesia 2026</span><span><a href="#creators">${t('shell.about')}</a> / <a href="https://www.linkedin.com/in/wlmoi/" target="_blank" rel="noopener noreferrer">${t('shell.linkedin')}</a></span></footer></main></div></div><nav class="mobile-bottom-nav" aria-label="${t('shell.quickNav')}">${[['overview','layout-dashboard',labelForRoute('overview','Overview')],['vehicles','car-front',labelForRoute('vehicles','Vehicle Problem')],['mapview','map-pinned',labelForRoute('mapview','Map')],['simulation','git-compare-arrows',labelForRoute('simulation','Simulation')],['evaluation','clipboard-check',labelForRoute('evaluation','Evaluation')]].map(v=>`<button type="button" data-route="${v[0]}" class="${route===v[0]?'active':''}" aria-label="${v[2]}">${icon(v[1],19)}<span>${v[2]}</span></button>`).join('')}</nav><div class="toasts" id="toasts" aria-live="polite"></div>`;}
+function layout(){const route=currentPage(),names=Object.fromEntries(views.map(v=>[v.id,labelForRoute(v.id,v.label)])),dateStr=new Intl.DateTimeFormat(getLanguage()==='en'?'en-US':'id-ID',{day:'numeric',month:'long',year:'numeric',timeZone:'Asia/Jakarta'}).format(new Date()),lang=getLanguage();return `<div class="shell">${sidebar()}<div class="mobile-curtain ${mobileOpen?'show':''}" data-action="close-mobile"></div><div class="workspace"><header class="topbar"><div class="crumb"><button class="hamburger" data-action="toggle-mobile" aria-label="${t('shell.openNav')}">${icon('menu',22)}</button><span class="crumb-section">${sectionTitleForRoute(route)}</span>${icon('chevron-right',13)}<strong>${names[route]}</strong></div><div class="top-actions"><div class="header-date">${dateStr} - WIB</div><div class="header-divider"></div><div class="language-switch" role="group" aria-label="Language"><span>${icon('languages',15)}</span><button type="button" data-action="switch-language" data-language="en" aria-pressed="${lang==='en'}">EN</button><button type="button" data-action="switch-language" data-language="id" aria-pressed="${lang==='id'}">ID</button></div><span class="partner-brand"><img src="/assets/aiera-foundation.png" alt="AIERA Foundation" width="48" height="51"><span>AIERA<small>FOUNDATION</small></span></span><div class="avatar" title="iSeeDesignITB">ITB</div></div></header><main class="main" id="main-content">${components[route]()}<footer class="app-footer"><span>© 2026 SIMPUL / iSeeDesignITB / SI Bridges Indonesia 2026</span><span><a href="#creators">${t('shell.about')}</a> / <a href="https://www.linkedin.com/in/wlmoi/" target="_blank" rel="noopener noreferrer">${t('shell.linkedin')}</a></span></footer></main></div></div><nav class="mobile-bottom-nav" aria-label="${t('shell.quickNav')}">${[['overview','layout-dashboard',labelForRoute('overview','Overview')],['cctv','cctv','CCTV AI'],['vehicles','car-front',labelForRoute('vehicles','Vehicle Problem')],['simulation','git-compare-arrows',labelForRoute('simulation','Simulation')],['evaluation','clipboard-check',labelForRoute('evaluation','Evaluation')]].map(v=>`<button type="button" data-route="${v[0]}" class="${route===v[0]?'active':''}" aria-label="${v[2]}">${icon(v[1],19)}<span>${v[2]}</span></button>`).join('')}</nav><div class="toasts" id="toasts" aria-live="polite"></div>`;}
 let introIndex=0,introPlaying=false,introTimer=null;
 function syncIntro(){
  clearTimeout(introTimer);introTimer=null;
@@ -60,6 +63,8 @@ function render(){
   const route=currentPage();
   const changed=route!==lastRenderedRoute;
   const first=lastRenderedRoute===null;
+  if(lastRenderedRoute==='cctv')deactivateCctv();
+  if(lastRenderedRoute==='overview')deactivateHomeSim();
   document.getElementById('app').innerHTML=layout();
   lastRenderedRoute=route;
   syncIntro();
@@ -73,6 +78,8 @@ function render(){
       }
     });
   }
+  if(route==='overview')activateHomeSim(document.querySelector('.mc-hero'));
+  if(route==='cctv')activateCctv(document.querySelector('.cctv-page'),{threshold:Number(getState().fieldSettings?.dwellThresholdSec)||60});
   if(route==='mapview')requestAnimationFrame(()=>activateMapView(getState(),(zone,coords)=>{
     updateState(s=>({...s,zonePins:{...(s.zonePins||{}),[zone]:coords}}));
     toast(`Titik referensi ${zone} disimpan sebagai pilihan pengamat`);
@@ -333,8 +340,17 @@ case 'doc-export':{const data=getState().pdfEvidence||{items:[],filters:{}};down
 case 'map-reset-zones':if(confirm('Hapus semua titik referensi zona yang dibuat manual?'))updateState(s=>({...s,zonePins:{}}));break;
 case 'osint-status':case 'osint-search':case 'osint-clear':osintAction(action);break;
 case 'toggle-mobile':{if(mobileOpen)closeMobileDrawer(document.getElementById('sidebar'),document.querySelector('.mobile-curtain'),()=>{mobileOpen=false;render()});else {mobileOpen=true;render();}break;}
+case 'settings-tab':{setSettingsTab(el.dataset.tab);render();window.scrollTo(0,0);break;}
 case 'toggle-nav-group':{
   const target=el.dataset.group;
+  if(target===MORE_GROUP){
+    const panel=el.closest('.nav-more')?.querySelector('.nav-more-panel');
+    const open=panel?panel.hidden:true;
+    expandedNavGroup=open?MORE_GROUP:'';
+    el.setAttribute('aria-expanded',String(open));el.closest('.nav-more')?.classList.toggle('open',open);
+    if(panel)toggleAccordion(panel,open);
+    break;
+  }
   const currentOpen=expandedNavGroup===null?sectionForRoute(currentPage()):expandedNavGroup;
   expandedNavGroup=currentOpen===target?'':target;
   const nav=el.closest('.nav-area');

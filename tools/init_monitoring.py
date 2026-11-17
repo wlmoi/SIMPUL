@@ -10,12 +10,13 @@ out=root/'.env'
 if out.exists():
     raise SystemExit('File .env sudah ada. Kredensial tidak ditimpa. Periksa file tersebut secara lokal.')
 config = {
-  'INFLUXDB_ADMIN_USERNAME': 'simpul_admin',
+  'INFLUXDB_ADMIN_USERNAME': 'user',
   'INFLUXDB_ADMIN_PASSWORD': secrets.token_urlsafe(30),
   'INFLUXDB_TOKEN': secrets.token_urlsafe(48),
   'INFLUXDB_ORG': 'simpul',
   'INFLUXDB_BUCKET': 'simpul_observations',
   'INFLUXDB_URL': 'http://influxdb:8086',
+  'GRAFANA_ADMIN_USERNAME': 'user',
   'GRAFANA_ADMIN_PASSWORD': secrets.token_urlsafe(30),
 }
 try:

@@ -29,6 +29,12 @@
 
 ---
 
+## AIERA interface and illustrative 3D CCTV simulation (PR #1)
+
+PR #1 adds the AIERA palette, a live schematic 3D preview, an interactive CCTV simulation page, and compact navigation with advanced pages under Settings. The A0/A1/A2 traffic simulation is synthetic and uncalibrated. External detection input is display-only and never becomes a stored field observation. Existing bilingual navigation and observation provenance remain intact.
+
+See [PR #1 integration verification](docs/VERIFICATION_PR1.md) for observed checks, browser limitations, and the commit-attribution cleanup. No API credentials are needed for the illustrative simulation; a real detection model must be connected separately.
+
 ## Vehicle-first experience (v1.9)
 
 <p align="center"><img src="docs/vehicle_first_desktop_v1.9.png" width="90%" alt="SIMPUL vehicle problem dashboard showing pickup, drop-off, waiting, zones, and A1/A2 hypotheses" /></p>

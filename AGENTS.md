@@ -71,6 +71,8 @@ For additional tests, use catalog `modules[].tests` and [`tests/AGENTS.md`](test
 
 ## 7. Response protocol
 
+- Commit attribution: preserve human authors; do not add AI assistant `Co-authored-by` trailers or assistant session links to commit messages.
+
 Conclude each coding task with: **changed files, implemented functionality, commands executed, observed pass/fail/skip counts, remaining limitations, configuration needed and next acceptance gate.** Do not report imagined test results.
 
 For practical task recipes: [`docs/agents/START_HERE.md`](docs/agents/START_HERE.md) and [`docs/agents/TASK_PLAYBOOKS.md`](docs/agents/TASK_PLAYBOOKS.md).
@@ -118,6 +120,7 @@ The menu hierarchy is defined only in `js/navigation.js`. Keep all pages registe
 - Keep `overview` decision-first: diagnosis, map, simulation, evaluation before secondary business sections.
 - Primary routes live in `js/navigation.js`; each route must occur exactly once in `PRIMARY_ROUTES` or `NAV_SECTIONS`.
 - `creators` must remain the final navigation section; details must be grounded in the proposal, with only the user-supplied LinkedIn link.
+- (v2.0) The sidebar shows only `PRIMARY_ROUTES` + `TOOL_ROUTES`; every other page sits under the collapsed "Fitur lanjutan" entry and the Pengaturan hub (`js/views/settings.js`), where About the Creators is its own tab.
 - Changes to display priority must never modify traffic observations, AI, SUMO calculations, or provenance.
 - Run `node tests/test_solution_first.mjs`, `npm run verify`, and `python -m pytest -q`.
 
