@@ -5415,7 +5415,7 @@ function desiredCamera(stage,focus){
 }
 function snapCamera(stage){Object.assign(hs.cam,desiredCamera(stage,null));}
 function flyCamera(stage,focus,dt){
-  const want=desiredCamera(stage,focus),k=1-Math.exp(-dt*2.2);
+  const want=desiredCamera(stage,focus),k=dt>=1?1:1-Math.exp(-dt*2.2);
   for(let i=0;i<3;i++)hs.cam.target[i]+=(want.target[i]-hs.cam.target[i])*k;
   hs.cam.yaw+=(want.yaw-hs.cam.yaw)*k;hs.cam.pitch+=(want.pitch-hs.cam.pitch)*k;hs.cam.dist+=(want.dist-hs.cam.dist)*k;
 }
