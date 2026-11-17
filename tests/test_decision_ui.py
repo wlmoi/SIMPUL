@@ -26,6 +26,26 @@ def _fill(page,phase,scenario,passing,stopped,queue,access):
         raise AssertionError({'fields':details,'messages':page.locator('#toasts').inner_text()}) from error
 
 
+def test_modal_autofocus_preserves_active_input():
+    with sync_playwright() as p:
+        browser=p.chromium.launch(headless=True,args=['--no-sandbox'])
+        page=browser.new_page(reduced_motion='reduce')
+        page.clock.install()
+        page.set_content(HTML)
+        page.clock.run_for(100)
+        page.evaluate("location.hash='#diagnosis'")
+        page.clock.run_for(100)
+        page.clock.pause_at(page.evaluate('Date.now()')+100)
+        page.locator('[data-action="add-field-reading"]').first.click()
+        field=page.locator('#fld-passing')
+        field.fill('350')
+        expect(field).to_be_focused()
+        page.clock.run_for(50)
+        expect(field).to_be_focused()
+        expect(field).to_have_value('350')
+        browser.close()
+
+
 def test_mobile_and_decision_flow():
     with sync_playwright() as p:
         browser=p.chromium.launch(headless=True,args=['--no-sandbox','--disable-dev-shm-usage'])

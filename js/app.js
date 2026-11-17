@@ -97,7 +97,7 @@ function toast(msg){
   clearTimeout(toastTimer);
   toastTimer=setTimeout(()=>{if(el)el.innerHTML=''},4800);
 }
-function modal(inner){const e=document.createElement('div');e.className='overlay';e.id='app-modal';e.innerHTML=`<div class="modal" role="dialog" aria-modal="true">${inner}</div>`;document.body.append(e);showModal(e);e.addEventListener('click',ev=>{if(ev.target===e)closeModal({animate:true})});setTimeout(()=>e.querySelector('input:not([type=hidden]),select')?.focus(),20)}
+function modal(inner){const e=document.createElement('div');e.className='overlay';e.id='app-modal';e.innerHTML=`<div class="modal" role="dialog" aria-modal="true">${inner}</div>`;document.body.append(e);showModal(e);e.addEventListener('click',ev=>{if(ev.target===e)closeModal({animate:true})});setTimeout(()=>{if(e.isConnected&&!e.contains(document.activeElement))e.querySelector('input:not([type=hidden]),select')?.focus();},20)}
 function closeModal({animate=false}={}){const overlay=document.getElementById('app-modal');if(overlay){if(animate)hideModal(overlay,()=>overlay.remove());else overlay.remove()}}
 // Pure CSV builders live in js/services/export-data.js; the app only handles downloads.
 function downloadObservations(){download('SIMPUL_observasi.csv',observationCsv(getState()),'text/csv;charset=utf-8');toast('CSV observasi berhasil disiapkan')}

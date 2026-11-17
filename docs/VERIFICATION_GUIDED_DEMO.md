@@ -24,6 +24,11 @@ The first follow-up Linux CI run returned 38 passed and one failure in the pre-e
 
 A second Linux run reproduced the same form failure after waiting. The test fixture now fixes the browser clock/timezone and fills explicit historical baseline/follow-up timestamps instead of depending on form defaults and runner time. Failure output includes field validation messages and UI feedback. `python -m pytest -q tests/test_decision_ui.py --basetemp=tmp/decision_deterministic_pytest` passed locally (1 passed). The production form and all validation rules remain unchanged.
 
+Further CI diagnostics showed the passing-vehicle field still at its default zero. A deterministic test that pauses the browser clock before opening the modal reproduced the delayed autofocus stealing focus from an input already being edited. The regression failed before the fix. The modal helper now checks that the overlay is still connected and that focus is not already inside it before applying initial autofocus. This is the only production-form change; validation, saved values and provenance are unchanged. `python -m pytest -q tests/test_decision_ui.py --basetemp=tmp/modal_focus_fixed` passed both the focus regression and decision workflow after rebuilding the bundle.
+
+Final full regression with this fix: `python -m pytest -q tests --basetemp=tmp/modal_focus_full_regression` returned **40 passed, 0 failed, 0 skipped**, with one dependency deprecation warning. All 18 JS suites and both web build/audit commands passed again with the regenerated standalone output.
+The explicit data-entry checks also passed: `python -m pytest -q tests/test_security_hardening.py --basetemp=tmp/modal_focus_security` (7 passed) and `node tests/test_csv_security.mjs`.
+
 ## Observed verification
 
 - `npm.cmd run verify`: 18 JavaScript suites passed, including the new story state-machine checks, navigation, motion, solution-first, vehicle-first and CSV security. Catalog: 21 modules, 113 paths. Standalone: 58 JS modules; bundle syntax passed.
