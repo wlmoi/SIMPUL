@@ -43,10 +43,10 @@ export function assertNavigationCoverage(){
   return ids.length;
 }
 
-function link(route,active,number=null){
+function link(route,active,number=null,parentOf=null){
   const page=pages.get(route);
   if(!page)throw new Error('Missing navigation page: '+route);
-  const selected=active===route;
+  const selected=active===route||Boolean(parentOf&&parentOf.includes(active));
   const label=labelForRoute(page.id,page.label);
   return `<div class="nav-item-wrap" data-nav-page="${page.id}" data-nav-label="${safe(label.toLowerCase())}"><button type="button" class="nav-link ${selected?'active':''}" data-route="${page.id}" ${selected?'aria-current="page"':''}>${icon(page.icon,17)}<span>${safe(label)}</span>${number?`<span class="nav-step">${number}</span>`:''}</button></div>`;
 }
@@ -54,10 +54,8 @@ function link(route,active,number=null){
 /** Return sidebar navigation content only; the outer shell is owned by app.js. */
 export function renderNavigation(active,expanded=''){
   const core=PRIMARY_ROUTES.map((route,i)=>link(route,active,String(i+1).padStart(2,'0'))).join('');
-  const tools=TOOL_ROUTES.map(route=>link(route,active)).join('');
-  const hubCount=NAV_SECTIONS.reduce((n,s)=>n+s.routes.length,0);
-  const activeInHub=NAV_SECTIONS.some(s=>s.routes.includes(active));
-  const moreOpen=activeInHub||expanded===MORE_GROUP||NAV_SECTIONS.some(s=>s.id===expanded);
+  const hubRoutes=NAV_SECTIONS.flatMap(s=>s.routes);
+  const tools=TOOL_ROUTES.map(route=>link(route,active,null,route==='settings'?hubRoutes:null)).join('');
   const sections=NAV_SECTIONS.map(section=>{
     const selected=section.routes.includes(active);
     const open=expanded===section.id||(selected&&(expanded===null||expanded===undefined||expanded===MORE_GROUP));
@@ -73,10 +71,8 @@ export function renderNavigation(active,expanded=''){
   return `<div class="nav-search">${icon('search',16)}<input id="simpul-nav-search" type="search" autocomplete="off" placeholder="${english?'Search pages... (/)':'Cari halaman... (/)' }" aria-label="${english?'Search SIMPUL pages':'Cari halaman SIMPUL'}"/></div>
     <div class="nav-items"><div class="nav-label" data-nav-core-heading>${english?'PRIMARY FLOW':'ALUR UTAMA'}</div><div class="nav-core">${core}</div>
     <div class="nav-label nav-label-secondary" data-nav-tools-heading>${english?'TOOLS':'ALAT'}</div><div class="nav-tools">${tools}</div>
-    <div class="nav-more ${moreOpen?'open':''}">
-      <button type="button" class="nav-more-trigger" data-action="toggle-nav-group" data-group="${MORE_GROUP}" aria-expanded="${moreOpen}" aria-controls="nav-more-panel">${icon('layers',16)}<span>${english?'Advanced features':'Fitur lanjutan'}</span><span class="nav-fold-count">${hubCount}</span>${icon('chevron-down',15)}</button>
-      <div class="nav-sections nav-more-panel" id="nav-more-panel" ${moreOpen?'':'hidden'}>${sections}</div>
-    </div>
+    <!-- Advanced pages live in Pengaturan; they are rendered here only so sidebar search can find them. -->
+    <div class="nav-sections nav-more-panel nav-search-only" id="nav-more-panel" hidden>${sections}</div>
     <p class="nav-empty" hidden>${english?'No matching pages.':'Tidak ada halaman yang cocok.'}</p></div>`;
 }
 
