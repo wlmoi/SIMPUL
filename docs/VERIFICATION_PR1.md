@@ -27,8 +27,12 @@ Source: https://github.com/wlmoi/SIMPUL/pull/1 at original head `c79e3546dc5ca56
 
 Seven existing commit messages had assistant co-author or session trailers removed. Commit trees, human authors, author dates and committer identities/dates were preserved; descendant commit hashes changed. Local backup refs retain the original main and PR heads under `refs/backup/pr1-*-before-attribution-cleanup` and are not included in the push.
 
-The cleaned PR head is merged into main with its human authorship retained. This cleans commit attribution, not repository collaborator permissions. GitHub connector write calls returned 403, and the local GitHub CLI is unauthenticated; collaborator access and PR description cleanup were not verified through those interfaces.
+The cleaned PR head was merged into main with its human authorship retained, then both main and the PR branch were pushed atomically using explicit expected-SHA force-with-lease guards. GitHub confirms PR #1 is merged. The generated-assistant footer and session URL were also removed from its description.
+
+GitHub connector write calls returned 403 and the local GitHub CLI was unauthenticated. The configured Git credential helper successfully supported the Git push and a direct GitHub API fallback; no credentials were printed or persisted by the integration scripts.
+
+The API lists repository collaborators as `karolyangqian`, `BrianHadianSTEI23`, `wlmoi`, `sundaysiagian`, and `greg20yoga-ops`. The contributors endpoint returns only `wlmoi` and `greg20yoga-ops`. Neither assistant appears in either list. No human collaborator permissions were changed.
 
 ## Configuration and next acceptance gate
 
-No configuration is required for the offline illustrative simulation. Real AI detections require a separately supplied model/feed; no live detection service or field calibration is claimed. Next gate: browser smoke checks on desktop/mobile using an available browser runtime, including advanced-page search, camera controls, A0/A1/A2 switching, and reduced motion. GitHub contributor display must be checked after its cached statistics refresh.
+No configuration is required for the offline illustrative simulation. Real AI detections require a separately supplied model/feed; no live detection service or field calibration is claimed. Next gate: browser smoke checks on desktop/mobile using an available browser runtime, including advanced-page search, camera controls, A0/A1/A2 switching, and reduced motion. GitHub's rendered contributor widgets may lag behind the verified API response while cached statistics refresh.
