@@ -64,7 +64,11 @@ def test_guided_demo_controls_and_evidence(width, reduced):
         expect(page.locator('.demo-toolbar [data-action="home-demo-play"]')).to_have_attribute('aria-pressed','false')
         page.mouse.wheel(0,-120);page.clock.run_for(100)
         page.locator('[data-action="home-demo-camera-reset"]').click();page.clock.run_for(100)
-        assert page.locator('[data-home-canvas]').evaluate('(el) => el.toDataURL()') == original
+        # Reset returns to the guided follow camera. Traffic keeps running while a chapter is explored,
+        # so only the reduced-motion view (no animation) is pixel-identical to the starting frame.
+        expect(page.locator('.mc-hero')).to_have_attribute('data-camera-free', 'false')
+        if reduced:
+            assert page.locator('[data-home-canvas]').evaluate('(el) => el.toDataURL()') == original
         if reduced:
             stage.scroll_into_view_if_needed();box=stage.bounding_box()
             x,y=box['x']+box['width']*0.5,box['y']+box['height']*0.6
