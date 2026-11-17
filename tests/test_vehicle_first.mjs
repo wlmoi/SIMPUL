@@ -20,7 +20,7 @@ r=vehicleProblemSummary(rows,{source:'manual',type:'Jemput',zone:'Zona B'},60);a
 r=vehicleProblemSummary(rows,{source:'demo'},60);assert.equal(r.filtered.length,1);assert.equal(r.impacts.queue.unknown,1);
 r=vehicleProblemSummary([],{source:'manual'},60);assert.equal(r.avgDwell,null);assert.equal(r.hypotheses[0].code,'A0');
 assert.equal(initialData().vehicleView.source,'demo');
-assert.equal(assertNavigationCoverage(),views.length);assert.equal(views.length,26);
+assert.equal(assertNavigationCoverage(),views.length);assert.equal(views.length,22);
 assert.ok(PRIMARY_ROUTES.indexOf('vehicles') < PRIMARY_ROUTES.indexOf('diagnosis'));
 assert.equal(typeof pageRenderers.vehicles,'function');
 let html=readFileSync(new URL('../js/views/vehicles.js',import.meta.url),'utf8');

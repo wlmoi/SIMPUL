@@ -23,6 +23,8 @@
         "js/navigation.js",
         "js/motion.js",
         "js/custom-select.js",
+        "js/i18n-dom.js",
+        "js/i18n-phrases.js",
         "js/views/overview.js",
         "js/views/creators.js",
         "js/views/intro.js",
@@ -253,11 +255,9 @@
     },
     {
       "id": "business-studio",
-      "purpose": "Deterministic business model forecast and customer discovery",
+      "purpose": "Deterministic business forecast formulas (no website page; the business model is presented in the pitch deck)",
       "source": [
-        "js/finance.js",
-        "js/views/business.js",
-        "js/views/pipeline.js"
+        "js/finance.js"
       ],
       "tests": [
         "tests/test_engines.mjs"
@@ -269,9 +269,8 @@
     },
     {
       "id": "equipment-planner",
-      "purpose": "Estimate phone, cloud and optional field-device deployment costs",
+      "purpose": "Equipment cost CSV formulas (no website page; kept for exports and tests)",
       "source": [
-        "js/views/equipment.js",
         "js/services/export-data.js"
       ],
       "tests": [

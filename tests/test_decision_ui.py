@@ -54,7 +54,9 @@ def test_mobile_and_decision_flow():
         errors=[]
         page.on('pageerror',lambda e:errors.append(str(e)))
         page.set_content(HTML)
-        for route in ('overview','project','observation','monitor','diagnosis','context','contextplus','simulation','evaluation','insights','business','pipeline','equipment','reports','integrations','settings'):
+        # The assertions below check the Indonesian copy, so run this flow in Indonesian.
+        page.locator('[data-language="id"]').first.click()
+        for route in ('overview','project','monitor','diagnosis','context','contextplus','simulation','evaluation','insights','reports','integrations','settings'):
             page.evaluate(f"location.hash='#{route}'")
             assert page.locator('h1').count()==1,route
         page.evaluate("location.hash='#diagnosis'")
@@ -65,6 +67,11 @@ def test_mobile_and_decision_flow():
         assert '1 kombinasi zona' in page.locator('.eval-compare-status').inner_text()
         assert page.locator('.eval-comparison').count()==4
         page.locator('#compare-scenario').select_option('A2')
+        assert 'Belum ada pasangan' in page.locator('.eval-compare-status').inner_text()
+        # The language switch translates the same page text into English and back.
+        page.locator('[data-language="en"]').first.click()
+        assert 'No before-and-after' in page.locator('.eval-compare-status').inner_text()
+        page.locator('[data-language="id"]').first.click()
         assert 'Belum ada pasangan' in page.locator('.eval-compare-status').inner_text()
         page.locator('#compare-scenario').select_option('A1')
         page.locator('[data-action="add-decision"]').first.click()
