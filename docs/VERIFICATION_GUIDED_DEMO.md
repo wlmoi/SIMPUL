@@ -20,6 +20,8 @@ Observed follow-up checks: `npm.cmd run verify` passed all 18 JS suites (catalog
 
 Final follow-up regression: `python -m pytest -q tests --basetemp=tmp/fullscreen_camera_release_pytest` returned **39 passed, 0 failed, 0 skipped**, with one dependency deprecation warning. Both standalone render scripts, the state-migration check and `git diff --check` also passed. No extra runtime configuration is needed beyond the existing test dependencies and Playwright browser installation.
 
+The first follow-up Linux CI run returned 38 passed and one failure in the pre-existing decision-form test, which checked the form's disappearance immediately after clicking Submit. The test now uses Playwright's waiting `expect(...).to_have_count(0)` assertion for the same required result. Neither application behavior nor the assertion's expected count was changed. The full local rerun, `python -m pytest -q tests --basetemp=tmp/fullscreen_ci_regression_pytest`, passed all 39 tests with one dependency warning.
+
 ## Observed verification
 
 - `npm.cmd run verify`: 18 JavaScript suites passed, including the new story state-machine checks, navigation, motion, solution-first, vehicle-first and CSV security. Catalog: 21 modules, 113 paths. Standalone: 58 JS modules; bundle syntax passed.

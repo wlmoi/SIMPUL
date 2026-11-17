@@ -4,7 +4,7 @@ Run `python tools/build_standalone.py` first, then
 `python -m pytest -q tests/test_decision_ui.py` with Chromium installed.
 """
 from pathlib import Path
-from playwright.sync_api import sync_playwright
+from playwright.sync_api import sync_playwright, expect
 
 ROOT=Path(__file__).resolve().parent.parent
 HTML=(ROOT/'SIMPUL_Standalone.html').read_text()
@@ -17,7 +17,7 @@ def _fill(page,phase,scenario,passing,stopped,queue,access):
     for field,value in [('fld-passing',passing),('fld-stopped',stopped),('fld-queue',queue),('fld-access',access),('fld-pedestrians',60),('fld-bays',5),('fld-occupied',3)]:
         page.locator('#'+field).fill(str(value))
     page.locator('#field-reading-form button[type=submit]').click()
-    assert page.locator('#field-reading-form').count()==0
+    expect(page.locator('#field-reading-form')).to_have_count(0)
 
 
 def test_mobile_and_decision_flow():
