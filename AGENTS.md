@@ -71,6 +71,8 @@ For additional tests, use catalog `modules[].tests` and [`tests/AGENTS.md`](test
 
 ## 7. Response protocol
 
+- Commit attribution: preserve human authors; do not add AI assistant `Co-authored-by` trailers or assistant session links to commit messages.
+
 Conclude each coding task with: **changed files, implemented functionality, commands executed, observed pass/fail/skip counts, remaining limitations, configuration needed and next acceptance gate.** Do not report imagined test results.
 
 For practical task recipes: [`docs/agents/START_HERE.md`](docs/agents/START_HERE.md) and [`docs/agents/TASK_PLAYBOOKS.md`](docs/agents/TASK_PLAYBOOKS.md).
