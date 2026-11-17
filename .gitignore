@@ -4,6 +4,8 @@
 *.sqlite3-wal
 __pycache__/
 *.py[cod]
+.venv/
+venv/
 node_modules/
 .pytest_cache/
 .DS_Store
