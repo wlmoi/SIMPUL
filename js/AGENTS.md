@@ -1,6 +1,6 @@
 # Frontend agent guide (`js/`)
 
-The app uses native ES modules (no framework runtime). Preserve the SIMPUL navy/teal/white design and Indonesian UI terms.
+The app uses native ES modules (no framework runtime). Preserve the SIMPUL 2.0 AIERA palette (Royal Navy #042573, Bright Blue #0961AD, Signature Orange #F86809, Warm Copper #D07438, Dark Slate Navy #1B2B4E, white) and Indonesian UI terms.
 
 **Read first:** `js/page-registry.js`, `js/data.js`, `js/store.js`, and the target `js/views/<page>.js`.
 

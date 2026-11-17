@@ -8,6 +8,7 @@
  *   python tools/build_standalone.py
  */
 import { renderVehicles } from './views/vehicles.js';
+import { renderCctv } from './views/cctv.js';
 import { renderOverview } from './views/overview.js';
 import { renderProject } from './views/project.js';
 import { renderObservation } from './views/observation.js';
@@ -35,6 +36,7 @@ import { renderCreators } from './views/creators.js';
 
 export const pageRenderers = Object.freeze({
   overview: renderOverview,
+  cctv: renderCctv,
   vehicles: renderVehicles,
   project: renderProject,
   observation: renderObservation,

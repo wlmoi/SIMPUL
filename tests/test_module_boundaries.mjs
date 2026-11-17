@@ -5,7 +5,7 @@ import { encodeCsvCell, encodeCsvRows } from '../js/services/csv.js';
 import { policeCsv, equipmentCsv, forecastCsv, observationCsv } from '../js/services/export-data.js';
 
 const configuredPages = views.map(v => v.id);
-assert.equal(configuredPages.length, 25, 'All 25 routes including the final creators page must be registered');
+assert.equal(configuredPages.length, 26, 'All 26 routes including the final creators page must be registered');
 assert.equal(new Set(configuredPages).size, configuredPages.length, 'Route IDs must be unique');
 assert.deepEqual(new Set(Object.keys(pageRenderers)), new Set(configuredPages));
 for (const page of views) {
@@ -27,4 +27,4 @@ assert.ok(!policeCsv(state).includes('evt-1001'), 'Demo still excluded');
 assert.ok(forecastCsv(state).includes('operating_result_idr'));
 assert.ok(equipmentCsv(state).includes('Smartphone'));
 assert.throws(()=>equipmentCsv({...state,equipmentMode:'invalid'}), /Unknown equipment mode/);
-console.log('PASS: 25 routes, page registry, CSV integrity, manual-only police export, finance and equipment exports');
+console.log('PASS: 26 routes, page registry, CSV integrity, manual-only police export, finance and equipment exports');

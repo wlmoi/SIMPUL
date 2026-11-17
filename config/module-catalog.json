@@ -392,6 +392,29 @@
         "typed observational event fields"
       ],
       "status": "implemented_local"
+    },
+    {
+      "id": "cctv-ai-live",
+      "purpose": "CCTV AI Live page: interactive 3D simulation of the MRT Fatmawati frontage (schematic from photos), IDM traffic simulation with A0/A1/A2 scenarios, virtual AI detection overlay and browser-side intake for an external model (display only, never written to observations)",
+      "source": [
+        "js/views/cctv.js",
+        "js/cctv-controller.js",
+        "js/fatmawati-layout.js",
+        "js/traffic-sim.js",
+        "js/sim3d-scene.js",
+        "js/sim3d-engine.js",
+        "js/home-sim.js"
+      ],
+      "tests": [
+        "tests/test_cctv.mjs",
+        "tests/test_traffic_sim.mjs"
+      ],
+      "interfaces": [
+        "window.SIMPUL_CCTV.push(detail)",
+        "window event 'simpul:detections'",
+        "local video file (object URL, not uploaded)"
+      ],
+      "status": "synthetic_only"
     }
   ]
 }
