@@ -1663,7 +1663,42 @@ function renderCctv(){
 }
 
 
+// SOURCE MODULE: js/demo-story.js
+/** Presentation-only story. No observations, measurements or decisions are saved. */
+const DEMO_SECONDS=8;
+const DEMO_INPUTS=Object.freeze({volume:2100,pickupShare:18,seed:11});
+const DEMO_STAGES=Object.freeze([
+ {id:'demand',scenario:'A0',warmup:35,target:[-60,3,12],dist:140,label:['Kebutuhan jemput','Pickup demand'],title:['Semua ingin bertemu di dekat pintu MRT.','Everyone wants to meet near the MRT entrance.'],text:['Dalam contoh ini, kendaraan melintas berbagi tepi jalan dengan kendaraan penjemput. Kebutuhan bertemu dekat stasiun dapat memusatkan aktivitas pada ruang yang terbatas.','In this example, through traffic shares the curb with pickup vehicles. Meeting near the station can concentrate demand in limited space.'],focus:['Perhatikan pintu stasiun dan ruang tepi jalan.','Look at the station entrance and curb space.'],question:['Di mana penumpang dan kendaraan bertemu?','Where do passengers and vehicles meet?']},
+ {id:'stopping',scenario:'A0',warmup:100,target:[-80,2,12],dist:105,label:['Berhenti di lajur','Stopping in a lane'],title:['Ruang bergerak dipakai untuk menunggu.','Road space becomes waiting space.'],text:['Model A0 mengizinkan aktivitas jemput di lajur kiri. Kendaraan yang menunggu dapat mengurangi ruang kendaraan melintas. Ini mekanisme dalam model, bukan bukti pelanggaran.','The A0 model allows pickup activity in the left lane. Waiting vehicles can reduce space for passing traffic. This is a model mechanism, not evidence of an offence.'],focus:['Kendaraan berwarna jingga sedang berhenti dalam model.','Orange vehicles are stopped in the model.'],question:['Berapa lama kendaraan berhenti dan di zona mana?','How long do vehicles stop, and in which zone?']},
+ {id:'queue',scenario:'A0',warmup:160,target:[-110,3,9],dist:150,label:['Potensi hambatan','Potential obstruction'],title:['Kendaraan berikutnya harus memperlambat atau berpindah lajur.','Following vehicles slow down or change lanes.'],text:['Sorotan menunjukkan kendaraan melambat di belakang titik berhenti. Antrean juga dipengaruhi volume, penyempitan dan geometri; hubungan sebab-akibat di Fatmawati harus diuji di lapangan.','The highlight shows vehicles slowing behind a stopping point. Demand, narrowing and geometry also affect queues; causation at Fatmawati needs field validation.'],focus:['Merah: kendaraan model yang bergerak lambat.','Red: slow-moving vehicles in the model.'],question:['Ukur volume, panjang antrean dan akses pejalan pada interval yang sama.','Measure volume, queue length and pedestrian access in matched intervals.']},
+ {id:'pickup',scenario:'A1',warmup:160,target:[0,3,22],dist:150,label:['Uji area jemput','Test pickup space'],title:['A1: arahkan aktivitas jemput ke ruang khusus.','A1: move pickup activity into dedicated space.'],text:['Model memindahkan sebagian aktivitas ke area jemput. Ruang ini merupakan alternatif skematis, bukan fasilitas yang sudah dikonfirmasi tersedia. Permintaan dan seed tetap sama.','The model moves pickup activity into a dedicated area. This is a schematic alternative, not a confirmed available facility. Demand and seed remain the same.'],focus:['Biru: lokasi alternatif jemput pada model A1.','Blue: the alternative pickup location in A1.'],question:['Apakah ruang, kapasitas dan jalur pejalan aman serta diizinkan?','Is the space available, permitted and safe for pedestrians?']},
+ {id:'duration',scenario:'A2',warmup:160,target:[20,3,12],dist:155,label:['Uji lokasi & durasi','Test location & duration'],title:['A2: uji lokasi dan waktu berhenti yang lebih singkat.','A2: test stopping locations and shorter dwell times.'],text:['A2 mengubah aturan lokasi dan durasi di dalam model. Kepatuhan tidak diasumsikan sempurna. Ini alternatif penelitian yang memerlukan tinjauan manusia, bukan penetapan aturan otomatis.','A2 changes model stopping locations and dwell times. Compliance is not assumed perfect. This research alternative needs human review, not automatic rule enforcement.'],focus:['Lihat perubahan pola berhenti pada skenario A2.','Inspect the stopping pattern in A2.'],question:['Bagaimana kepatuhan, kenyamanan penumpang dan aksesibilitas diukur?','How will compliance, passenger comfort and accessibility be measured?']},
+ {id:'review',scenario:'A2',warmup:160,target:[0,10,4],dist:195,label:['Bandingkan & evaluasi','Compare & review'],title:['Bandingkan model. Putuskan setelah ada bukti.','Compare the model. Decide after collecting evidence.'],text:['Tabel memakai permintaan, seed dan periode model yang sama: pemanasan 90 detik lalu pengukuran 300 detik. Nilainya bukan hasil lapangan atau rekomendasi penataan yang tervalidasi.','The table uses matched demand, seed and model periods: 90 seconds of warm-up, then 300 seconds of sampling. Values are not field findings or validated recommendations.'],focus:['Alur lengkap: observasi → interpretasi → simulasi → evaluasi manusia.','Full workflow: observe → interpret → simulate → human evaluation.'],question:['Kumpulkan observasi manual dan kalibrasi sebelum merekomendasikan intervensi.','Collect manual observations and calibrate before recommending an intervention.']}
+].map(stage=>Object.freeze(stage)));
+
+function initialDemo(){return {index:0,elapsed:0,playing:false,started:false,complete:false};}
+function selectDemo(state,index){
+ if(!Number.isInteger(index)||index<0||index>=DEMO_STAGES.length)return state;
+ return {...state,index,elapsed:0,playing:false,started:true,complete:false};
+}
+function playDemo(state){
+ const base=state.complete?initialDemo():state;
+ return {...base,started:true,playing:!base.playing};
+}
+function advanceDemo(state,seconds){
+ if(!state.playing||!Number.isFinite(seconds)||seconds<=0)return state;
+ let index=state.index,elapsed=state.elapsed+seconds;
+ while(elapsed>=DEMO_SECONDS){
+  elapsed-=DEMO_SECONDS;
+  if(index===DEMO_STAGES.length-1)return {...state,index,elapsed:DEMO_SECONDS,playing:false,complete:true};
+  index++;
+ }
+ return {...state,index,elapsed};
+}
+
+
 // SOURCE MODULE: js/views/overview.js
+
 
 
 
@@ -1689,25 +1724,33 @@ function renderOverview(){
  return `<section class="mc-hero">
   <div class="mc-hero-copy">
    <div class="mc-eyebrow"><span class="mc-live-dot"></span> SI BRIDGES INDONESIA 2026 · MRT FATMAWATI, JAKARTA SELATAN</div>
-   <h1>${en?'Vehicles stop. Queues form. <em>MRT access suffers.</em>':'Kendaraan berhenti. Antrean terbentuk. <em>Akses MRT terdampak.</em>'}</h1>
-   <p>${en?'SIMPUL uses CCTV and AI to see where pickup vehicles stop, then simulates the best street arrangement before it is applied on the road.':'SIMPUL memakai CCTV dan AI untuk melihat di mana kendaraan penjemput berhenti, lalu mensimulasikan penataan terbaik sebelum diterapkan di jalan.'}</p>
+   <h1>${en?'One pickup. Limited space. <em>How can a queue form?</em>':'Satu titik jemput. Ruang terbatas. <em>Dari mana antrean bermula?</em>'}</h1>
+   <p>${en?'Follow the story in 48 seconds: pickup demand, stopping, potential obstruction, then A0/A1/A2 alternatives. Explore the 3D model and see what still needs field evidence.':'Ikuti ceritanya dalam 48 detik: kebutuhan jemput, kendaraan berhenti, potensi hambatan, lalu alternatif A0/A1/A2. Jelajahi model 3D dan lihat apa yang masih harus dibuktikan di lapangan.'}</p>
    <div class="mc-actions">
-    <button type="button" class="btn mc-cta" data-route="cctv">${icon('cctv',18)} ${en?'Open CCTV AI':'Lihat CCTV AI'}</button>
-    <button type="button" class="btn mc-ghost" data-route="simulation">${icon('git-compare-arrows',18)} ${en?'Run simulation':'Jalankan simulasi'}</button>
+    <button type="button" class="btn mc-cta" data-action="home-demo-play" aria-pressed="false">${icon('play',20)} <span data-demo-play-label>${en?'Play full demo':'Putar demo lengkap'}</span></button>
+    <button type="button" class="btn mc-ghost" data-route="cctv">${icon('cctv',18)} ${en?'Explore CCTV 3D':'Eksplorasi CCTV 3D'}</button>
    </div>
    <div class="mc-trust">${icon('shield-check',15)} ${en?'No licence plates or faces · Example data is synthetic':'Tanpa plat nomor &amp; wajah · Data contoh bersifat sintetis'}</div>
   </div>
-  <div class="mc-preview">
-   <div class="mc-preview-top"><span><i class="mc-rec"></i> ${en?'LIVE 3D SIMULATION · FATMAWATI':'SIMULASI 3D LANGSUNG · FATMAWATI'}</span><span>AI virtual</span></div>
+  <div class="mc-preview" tabindex="-1" aria-label="${en?'Full guided demo':'Demo lengkap terpandu'}">
+   <div class="mc-preview-top"><span>${en?'SCHEMATIC 3D · SYNTHETIC':'MODEL 3D SKEMATIS · SINTETIS'}</span><button type="button" class="demo-collapse" data-action="home-demo-close">${en?'Compact view':'Ringkas tampilan'} ${icon('chevron-down',14)}</button></div>
    <div class="mc-preview-scene">
     <canvas class="mc-canvas" data-home-canvas aria-label="${en?'3D simulation of the MRT Fatmawati area':'Simulasi 3D kawasan Stasiun MRT Fatmawati'}"></canvas>
+    <div class="demo-curtain" data-demo-curtain><button type="button" class="demo-launch" data-action="home-demo-play" aria-pressed="false">${icon('play',32)}<span data-demo-play-label>${en?'Play full demo':'Putar demo lengkap'}</span><small>${en?'48 seconds · 6 chapters · pause anytime':'48 detik · 6 bab · bisa dijeda'}</small></button></div>
+    <div class="demo-scene-note" data-demo-focus>${en?DEMO_STAGES[0].focus[1]:DEMO_STAGES[0].focus[0]}</div>
     <div class="mc-kpis"><span data-home-kpi="speed">${en?'Speed':'Kecepatan'} <b>–</b></span><span data-home-kpi="queue">${en?'Queue':'Antrean'} <b>–</b></span><span data-home-kpi="blocked">${en?'Stopped in lane':'Berhenti di lajur'} <b>–</b></span></div>
    </div>
    <div class="mc-preview-foot">
-    <div class="mc-switch" role="group" aria-label="Skenario">${['A0','A1','A2'].map(x=>`<button type="button" data-home-scenario="${x}" aria-pressed="${x==='A0'}">${x}</button>`).join('')}</div>
+    <div class="mc-switch" role="group" aria-label="Skenario">${[['A0',2],['A1',3],['A2',4]].map(([x,i])=>`<button type="button" data-home-scenario="${x}" data-action="home-demo-step" data-index="${i}" aria-pressed="${x==='A0'}">${x}</button>`).join('')}</div>
     <small data-home-caption></small>
     <button type="button" class="mc-open" data-route="cctv">${en?'Open full view':'Buka penuh'} ${icon('arrow-up-right',15)}</button>
    </div>
+   <div class="demo-progress" data-demo-progress role="progressbar" aria-label="${en?'Demo progress':'Progres demo'}" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><i></i></div>
+   <div class="demo-toolbar"><button type="button" class="demo-play" data-action="home-demo-play" aria-pressed="false">${icon('play',16)}<span data-demo-play-label>${en?'Play full demo':'Putar demo lengkap'}</span></button><button type="button" data-action="home-demo-prev" disabled aria-label="${en?'Previous chapter':'Bab sebelumnya'}">${icon('arrow-left',18)}</button><button type="button" data-action="home-demo-next" aria-label="${en?'Next chapter':'Bab berikutnya'}">${icon('chevron-right',18)}</button><button type="button" data-action="home-demo-replay" aria-label="${en?'Replay from start':'Ulangi dari awal'}">${icon('refresh-cw',16)}</button><small data-demo-status>${en?'Press Play to start':'Tekan Play untuk mulai'}</small></div>
+   <div class="demo-story" aria-live="polite" aria-atomic="true"><span class="demo-count" data-demo-count>01 / 06 · A0</span><h2 data-demo-title>${en?DEMO_STAGES[0].title[1]:DEMO_STAGES[0].title[0]}</h2><p data-demo-text>${en?DEMO_STAGES[0].text[1]:DEMO_STAGES[0].text[0]}</p><div class="demo-question">${icon('clipboard-list',17)}<span><b>${en?'FIELD CHECK':'CEK DI LAPANGAN'}</b><span data-demo-question>${en?DEMO_STAGES[0].question[1]:DEMO_STAGES[0].question[0]}</span></span></div></div>
+   <div class="demo-timeline" role="group" aria-label="${en?'Choose a demo chapter':'Pilih bab demo'}">${DEMO_STAGES.map((stage,i)=>`<button type="button" data-action="home-demo-step" data-index="${i}" aria-pressed="${i===0}"><span>0${i+1}</span>${en?stage.label[1]:stage.label[0]}</button>`).join('')}</div>
+   <div class="demo-summary" data-demo-summary hidden><h3>${en?'Matched model comparison':'Perbandingan model dengan input setara'}</h3><p>${en?'Illustrative means · 2,100 vehicles/h · 18% pickup · seed 11 · 300 model seconds after 90 s warm-up.':'Rata-rata ilustratif · 2.100 kendaraan/jam · 18% jemput · seed 11 · 300 detik model setelah pemanasan 90 dtk.'}</p><div class="demo-results">${['A0','A1','A2'].map(code=>`<article data-demo-result="${code}"><b>${code}</b><span><strong data-result-speed>–</strong> km/${en?'h':'jam'}</span><span><strong data-result-queue>–</strong> m ${en?'queue':'antrean'}</span></article>`).join('')}</div><p>${en?'No verified improvement is claimed. Collect manual observations, calibrate, and review safety before recommending.':'Belum ada klaim perbaikan terverifikasi. Kumpulkan observasi manual, kalibrasi, dan tinjau keselamatan sebelum merekomendasikan.'}</p><div class="demo-next-actions"><button type="button" data-route="observation">${en?'Collect field observations':'Catat observasi lapangan'} ${icon('arrow-right',15)}</button><button type="button" data-route="evaluation">${en?'Human evaluation':'Evaluasi manusia'} ${icon('arrow-right',15)}</button></div></div>
+   <div class="demo-disclaimer">${icon('info',14)} ${en?'Synthetic, uncalibrated model. AI is not connected. No demo observations are saved.':'Model sintetis, belum dikalibrasi. AI belum terhubung. Demo tidak menyimpan observasi.'}</div>
   </div>
  </section>
  <div class="mc-stats">
@@ -3472,24 +3515,83 @@ if(typeof window!=='undefined'){
 // SOURCE MODULE: js/home-sim.js
 /**
  * Live 3D preview on Beranda: the same Fatmawati scene and traffic simulation
- * as the CCTV AI page, with a slowly orbiting aerial camera and a small A0/A1/A2
- * switch. Presentation only; never touches the store. Pauses off-screen.
+ * as the CCTV AI page, with a guided problem-to-evaluation story.
+ * Presentation only; never touches the store. Pauses when the panel is off-screen.
  */
 
 
 
 
-const hs={raf:0,root:null,sim:null,cam:null,scenario:'A0',visible:true,observer:null,lastKpi:0};
 
-function newHomeSim(){
-  hs.sim=createSim({scenario:hs.scenario,volume:2100,pickupShare:18,seed:11});
-  for(let i=0;i<200;i++)stepSim(hs.sim,0.5);
+
+const hs={raf:0,root:null,sim:null,cam:null,scenario:'A0',visible:true,observer:null,lastKpi:0,story:initialDemo(),dirty:true,comparison:null};
+const words=pair=>pair[getLanguage()==='en'?1:0];
+const homeText=(selector,value)=>{const el=hs.root?.querySelector(selector);if(el)el.textContent=value;};
+
+function newHomeSim(warmup=100){
+  hs.sim=createSim({...DEMO_INPUTS,scenario:hs.scenario});
+  for(let t=0;t<warmup;t+=0.5)stepSim(hs.sim,0.5);
   resetStats(hs.sim);
 }
+function applyStory(){
+ const stage=DEMO_STAGES[hs.story.index];hs.scenario=stage.scenario;
+ newHomeSim(stage.warmup);
+ Object.assign(hs.cam,{target:[...stage.target],yaw:-0.85,pitch:0.48,dist:stage.dist});
+ hs.dirty=true;syncHome();drawKpis();
+}
+function drawProgress(){
+ const progress=hs.root?.querySelector('[data-demo-progress]');
+ if(!progress)return;
+ const percent=(hs.story.index+hs.story.elapsed/DEMO_SECONDS)/DEMO_STAGES.length*100;
+ progress.style.setProperty('--demo-progress',`${percent}%`);progress.setAttribute('aria-valuenow',String(Math.round(percent)));
+}
 function syncHome(){
+  drawProgress();
+  const story=hs.story,stage=DEMO_STAGES[story.index];
   hs.root?.querySelectorAll('[data-home-scenario]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.homeScenario===hs.scenario)));
   const cap=hs.root?.querySelector('[data-home-caption]');
-  if(cap)cap.textContent=SCENARIOS[hs.scenario].short;
+  if(cap)cap.textContent=stage.scenario+' · '+words(stage.label);
+  hs.root?.querySelectorAll('[data-demo-play-label]').forEach(el=>{el.textContent=story.complete?words(['Ulangi demo lengkap','Replay full demo']):story.playing?words(['Jeda demo','Pause demo']):story.started?words(['Lanjutkan demo','Resume demo']):words(['Putar demo lengkap','Play full demo']);});
+  hs.root?.querySelectorAll('[data-action="home-demo-play"]').forEach(el=>el.setAttribute('aria-pressed',String(story.playing)));
+  hs.root?.querySelectorAll('[data-action="home-demo-step"]').forEach(el=>{el.setAttribute('aria-pressed',String(Number(el.dataset.index)===story.index));});
+  homeText('[data-demo-count]',`${String(story.index+1).padStart(2,'0')} / 06 · ${stage.scenario}`);
+  homeText('[data-demo-title]',words(stage.title));homeText('[data-demo-text]',words(stage.text));
+  homeText('[data-demo-focus]',words(stage.focus));homeText('[data-demo-question]',words(stage.question));
+  homeText('[data-demo-status]',story.complete?words(['Demo selesai · tinjauan manusia tetap diperlukan','Demo complete · human review still required']):story.playing?words(['Sedang diputar · otomatis berpindah bab','Playing · chapters advance automatically']):words(['Pilih Play atau klik bab untuk mengeksplorasi','Press Play or select a chapter to explore']));
+  const curtain=hs.root?.querySelector('[data-demo-curtain]');if(curtain)curtain.hidden=story.started;
+  const previous=hs.root?.querySelector('[data-action="home-demo-prev"]');if(previous)previous.disabled=story.index===0;
+  const next=hs.root?.querySelector('[data-action="home-demo-next"]');if(next)next.disabled=story.index===DEMO_STAGES.length-1;
+  const summary=hs.root?.querySelector('[data-demo-summary]');
+  if(summary){
+   summary.hidden=story.index!==DEMO_STAGES.length-1;
+   if(!summary.hidden){
+    if(!hs.comparison)hs.comparison=['A0','A1','A2'].map(scenario=>runScenario({...DEMO_INPUTS,scenario},300,90));
+    summary.querySelectorAll('[data-demo-result]').forEach(el=>{
+     const result=hs.comparison[['A0','A1','A2'].indexOf(el.dataset.demoResult)];
+     el.querySelector('[data-result-speed]').textContent=result.avgSpeedKmh.toFixed(1);
+     el.querySelector('[data-result-queue]').textContent=result.avgQueueM.toFixed(1);
+    });
+   }
+  }
+}
+
+/** Called only by app.js DOM actions; all state here is temporary presentation. */
+function controlHomeDemo(action,value){
+ if(!hs.root||!hs.cam)return;
+ const before=hs.story;
+ if(action==='play')hs.story=playDemo(before);
+ else if(action==='replay')hs.story=playDemo(initialDemo());
+ else if(action==='step')hs.story=selectDemo(before,Number(value));
+ else if(action==='next'||action==='prev')hs.story=selectDemo(before,before.index+(action==='next'?1:-1));
+ else if(action==='close'){hs.story={...before,playing:false};hs.root.classList.remove('demo-expanded');syncHome();return;}
+ else return;
+ hs.root.classList.add('demo-expanded');
+ hs.root.dataset.demoComplete='false';
+ if(!before.started||before.index!==hs.story.index||before.complete||action==='replay')applyStory();else syncHome();
+ hs.dirty=true;
+ if(action==='play'&&!before.started){
+  const panel=hs.root.querySelector('.mc-preview');panel?.scrollIntoView({behavior:'instant',block:'start'});panel?.focus({preventScroll:true});
+ }
 }
 function drawKpis(){
   const m=simMetrics(hs.sim).live;
@@ -3505,17 +3607,12 @@ function activateHomeSim(root){
   hs.root=root;
   if(!hs.sim)newHomeSim();
   if(!hs.cam){hs.cam=createCamera();Object.assign(hs.cam,{target:[0,10,4],yaw:-0.85,pitch:0.36,dist:195});}
-  root.querySelectorAll('[data-home-scenario]').forEach(b=>b.addEventListener('click',e=>{
-    e.stopPropagation();
-    const id=b.dataset.homeScenario;
-    if(!SCENARIOS[id]||id===hs.scenario)return;
-    hs.scenario=id;newHomeSim();syncHome();drawKpis();
-  }));
+  hs.story=initialDemo();hs.root.dataset.demoComplete='false';hs.scenario='A0';applyStory();
   syncHome();
   hs.observer?.disconnect();
   if('IntersectionObserver' in window){
-    hs.observer=new IntersectionObserver(entries=>{hs.visible=entries.some(e=>e.isIntersecting);},{threshold:0.05});
-    hs.observer.observe(canvas);
+    hs.observer=new IntersectionObserver(entries=>{hs.visible=entries.some(e=>e.isIntersecting);hs.dirty=true;},{threshold:0.01});
+    hs.observer.observe(root.querySelector('.mc-preview'));
   }
   const reduced=window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
   cancelAnimationFrame(hs.raf);
@@ -3524,11 +3621,31 @@ function activateHomeSim(root){
     if(!canvas.isConnected){hs.raf=0;hs.observer?.disconnect();return;}
     const dt=Math.min(0.1,(t-last)/1000);last=t;
     if(hs.visible&&!document.hidden){
-      if(!reduced){stepSim(hs.sim,dt);hs.cam.yaw+=dt*0.035;}
-      renderFrame(canvas,hs.cam,getFatmawatiScene(),buildDynamicScene(hs.sim),{zones:true,scenario:hs.scenario,labels:false,stationAlpha:0.4});
-      if(t-hs.lastKpi>500){hs.lastKpi=t;drawKpis();}
+      const previous=hs.story.index;
+      hs.story=advanceDemo(hs.story,dt);
+      if(previous!==hs.story.index)applyStory();
+      else if(hs.story.complete&&hs.story.playing===false&&hs.root.dataset.demoComplete!=='true'){hs.root.dataset.demoComplete='true';syncHome();}
+      if(!reduced&&hs.story.playing)stepSim(hs.sim,dt);
+      if(hs.dirty||(!reduced&&hs.story.playing)){
+       const dynamic=buildDynamicScene(hs.sim);
+       const stopped=new Set(hs.sim.vehicles.filter(v=>v.road==='S'&&v.state==='stopped').map(v=>v.id));
+       const queued=new Set(hs.sim.vehicles.filter(v=>v.road==='S'&&v.v<2&&v.state!=='stopped').map(v=>v.id));
+       for(const box of dynamic.boxes){if(stopped.has(box.ref))box.color='#f86809';else if(hs.story.index===2&&queued.has(box.ref))box.color='#e44553';}
+       const candidates=hs.sim.vehicles.filter(v=>hs.story.index===2?queued.has(v.id):stopped.has(v.id));
+       candidates.sort((a,b)=>Math.abs(a.x-hs.cam.target[0])-Math.abs(b.x-hs.cam.target[0]));
+       const focus=hs.story.index<3?candidates[0]:null;
+       const point=focus?[focus.x,3,focus.z]:DEMO_STAGES[hs.story.index].target;
+       dynamic.labels=[{p:[...point],text:words(DEMO_STAGES[hs.story.index].label),bg:'rgba(4,37,115,.95)'}];
+       if(focus)dynamic.ground.push({pts:[[focus.x-6,focus.z-2],[focus.x+6,focus.z-2],[focus.x+6,focus.z+2],[focus.x-6,focus.z+2]],y:0.09,color:'#f86809',alpha:0.45,noFog:true});
+       const scene={...getFatmawatiScene(),labels:[]};
+       renderFrame(canvas,hs.cam,scene,dynamic,{zones:true,scenario:hs.scenario,labels:true,stationAlpha:0.18});hs.dirty=false;
+      }
+      if(t-hs.lastKpi>250){
+       hs.lastKpi=t;drawKpis();
+       drawProgress();
+      }
     }
-    hs.raf=reduced?0:requestAnimationFrame(tick);
+    hs.raf=requestAnimationFrame(tick);
   };
   hs.raf=requestAnimationFrame(tick);
 }
@@ -4114,6 +4231,7 @@ case 'intro-stage':introPlaying=false;introIndex=Math.max(0,Math.min(3,Number(el
 case 'intro-next':{const stages=getIntroStages();introPlaying=false;introIndex=(introIndex+1)%stages.length;syncIntro();break;}
 case 'intro-prev':{const stages=getIntroStages();introPlaying=false;introIndex=(introIndex+stages.length-1)%stages.length;syncIntro();break;}
 case 'intro-play':introPlaying=!introPlaying;syncIntro();break;
+case 'home-demo-play':case 'home-demo-replay':case 'home-demo-step':case 'home-demo-next':case 'home-demo-prev':case 'home-demo-close':controlHomeDemo(action.replace('home-demo-',''),el.dataset.index);break;
 case 'intro-replay':introIndex=0;introPlaying=true;syncIntro();break;
 case 'doc-status':apiRequest('/api/v1/documents/status').then(data=>{updateState(s=>({...s,pdfEvidence:{...s.pdfEvidence,status:data}}));toast('Status OCR diperbarui')}).catch(e=>toast(e.message));break;
 case 'doc-reset':updateState(s=>({...s,pdfEvidence:{...s.pdfEvidence,filters:{}}}));break;

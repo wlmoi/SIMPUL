@@ -4,6 +4,7 @@ import {icon,num,safe} from '../util.js';
 import {eventByType,observationStats} from '../analytics.js';
 import {pageHead,cardHeading,note,button,tag} from './shared.js';
 import {t,getLanguage} from '../i18n.js';
+import {DEMO_STAGES} from '../demo-story.js';
 
 const CCTV_URL='https://jakcctv.jakarta.go.id/publik';
 
@@ -23,25 +24,33 @@ export function renderOverview(){
  return `<section class="mc-hero">
   <div class="mc-hero-copy">
    <div class="mc-eyebrow"><span class="mc-live-dot"></span> SI BRIDGES INDONESIA 2026 · MRT FATMAWATI, JAKARTA SELATAN</div>
-   <h1>${en?'Vehicles stop. Queues form. <em>MRT access suffers.</em>':'Kendaraan berhenti. Antrean terbentuk. <em>Akses MRT terdampak.</em>'}</h1>
-   <p>${en?'SIMPUL uses CCTV and AI to see where pickup vehicles stop, then simulates the best street arrangement before it is applied on the road.':'SIMPUL memakai CCTV dan AI untuk melihat di mana kendaraan penjemput berhenti, lalu mensimulasikan penataan terbaik sebelum diterapkan di jalan.'}</p>
+   <h1>${en?'One pickup. Limited space. <em>How can a queue form?</em>':'Satu titik jemput. Ruang terbatas. <em>Dari mana antrean bermula?</em>'}</h1>
+   <p>${en?'Follow the story in 48 seconds: pickup demand, stopping, potential obstruction, then A0/A1/A2 alternatives. Explore the 3D model and see what still needs field evidence.':'Ikuti ceritanya dalam 48 detik: kebutuhan jemput, kendaraan berhenti, potensi hambatan, lalu alternatif A0/A1/A2. Jelajahi model 3D dan lihat apa yang masih harus dibuktikan di lapangan.'}</p>
    <div class="mc-actions">
-    <button type="button" class="btn mc-cta" data-route="cctv">${icon('cctv',18)} ${en?'Open CCTV AI':'Lihat CCTV AI'}</button>
-    <button type="button" class="btn mc-ghost" data-route="simulation">${icon('git-compare-arrows',18)} ${en?'Run simulation':'Jalankan simulasi'}</button>
+    <button type="button" class="btn mc-cta" data-action="home-demo-play" aria-pressed="false">${icon('play',20)} <span data-demo-play-label>${en?'Play full demo':'Putar demo lengkap'}</span></button>
+    <button type="button" class="btn mc-ghost" data-route="cctv">${icon('cctv',18)} ${en?'Explore CCTV 3D':'Eksplorasi CCTV 3D'}</button>
    </div>
    <div class="mc-trust">${icon('shield-check',15)} ${en?'No licence plates or faces · Example data is synthetic':'Tanpa plat nomor &amp; wajah · Data contoh bersifat sintetis'}</div>
   </div>
-  <div class="mc-preview">
-   <div class="mc-preview-top"><span><i class="mc-rec"></i> ${en?'LIVE 3D SIMULATION · FATMAWATI':'SIMULASI 3D LANGSUNG · FATMAWATI'}</span><span>AI virtual</span></div>
+  <div class="mc-preview" tabindex="-1" aria-label="${en?'Full guided demo':'Demo lengkap terpandu'}">
+   <div class="mc-preview-top"><span>${en?'SCHEMATIC 3D · SYNTHETIC':'MODEL 3D SKEMATIS · SINTETIS'}</span><button type="button" class="demo-collapse" data-action="home-demo-close">${en?'Compact view':'Ringkas tampilan'} ${icon('chevron-down',14)}</button></div>
    <div class="mc-preview-scene">
     <canvas class="mc-canvas" data-home-canvas aria-label="${en?'3D simulation of the MRT Fatmawati area':'Simulasi 3D kawasan Stasiun MRT Fatmawati'}"></canvas>
+    <div class="demo-curtain" data-demo-curtain><button type="button" class="demo-launch" data-action="home-demo-play" aria-pressed="false">${icon('play',32)}<span data-demo-play-label>${en?'Play full demo':'Putar demo lengkap'}</span><small>${en?'48 seconds · 6 chapters · pause anytime':'48 detik · 6 bab · bisa dijeda'}</small></button></div>
+    <div class="demo-scene-note" data-demo-focus>${en?DEMO_STAGES[0].focus[1]:DEMO_STAGES[0].focus[0]}</div>
     <div class="mc-kpis"><span data-home-kpi="speed">${en?'Speed':'Kecepatan'} <b>–</b></span><span data-home-kpi="queue">${en?'Queue':'Antrean'} <b>–</b></span><span data-home-kpi="blocked">${en?'Stopped in lane':'Berhenti di lajur'} <b>–</b></span></div>
    </div>
    <div class="mc-preview-foot">
-    <div class="mc-switch" role="group" aria-label="Skenario">${['A0','A1','A2'].map(x=>`<button type="button" data-home-scenario="${x}" aria-pressed="${x==='A0'}">${x}</button>`).join('')}</div>
+    <div class="mc-switch" role="group" aria-label="Skenario">${[['A0',2],['A1',3],['A2',4]].map(([x,i])=>`<button type="button" data-home-scenario="${x}" data-action="home-demo-step" data-index="${i}" aria-pressed="${x==='A0'}">${x}</button>`).join('')}</div>
     <small data-home-caption></small>
     <button type="button" class="mc-open" data-route="cctv">${en?'Open full view':'Buka penuh'} ${icon('arrow-up-right',15)}</button>
    </div>
+   <div class="demo-progress" data-demo-progress role="progressbar" aria-label="${en?'Demo progress':'Progres demo'}" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><i></i></div>
+   <div class="demo-toolbar"><button type="button" class="demo-play" data-action="home-demo-play" aria-pressed="false">${icon('play',16)}<span data-demo-play-label>${en?'Play full demo':'Putar demo lengkap'}</span></button><button type="button" data-action="home-demo-prev" disabled aria-label="${en?'Previous chapter':'Bab sebelumnya'}">${icon('arrow-left',18)}</button><button type="button" data-action="home-demo-next" aria-label="${en?'Next chapter':'Bab berikutnya'}">${icon('chevron-right',18)}</button><button type="button" data-action="home-demo-replay" aria-label="${en?'Replay from start':'Ulangi dari awal'}">${icon('refresh-cw',16)}</button><small data-demo-status>${en?'Press Play to start':'Tekan Play untuk mulai'}</small></div>
+   <div class="demo-story" aria-live="polite" aria-atomic="true"><span class="demo-count" data-demo-count>01 / 06 · A0</span><h2 data-demo-title>${en?DEMO_STAGES[0].title[1]:DEMO_STAGES[0].title[0]}</h2><p data-demo-text>${en?DEMO_STAGES[0].text[1]:DEMO_STAGES[0].text[0]}</p><div class="demo-question">${icon('clipboard-list',17)}<span><b>${en?'FIELD CHECK':'CEK DI LAPANGAN'}</b><span data-demo-question>${en?DEMO_STAGES[0].question[1]:DEMO_STAGES[0].question[0]}</span></span></div></div>
+   <div class="demo-timeline" role="group" aria-label="${en?'Choose a demo chapter':'Pilih bab demo'}">${DEMO_STAGES.map((stage,i)=>`<button type="button" data-action="home-demo-step" data-index="${i}" aria-pressed="${i===0}"><span>0${i+1}</span>${en?stage.label[1]:stage.label[0]}</button>`).join('')}</div>
+   <div class="demo-summary" data-demo-summary hidden><h3>${en?'Matched model comparison':'Perbandingan model dengan input setara'}</h3><p>${en?'Illustrative means · 2,100 vehicles/h · 18% pickup · seed 11 · 300 model seconds after 90 s warm-up.':'Rata-rata ilustratif · 2.100 kendaraan/jam · 18% jemput · seed 11 · 300 detik model setelah pemanasan 90 dtk.'}</p><div class="demo-results">${['A0','A1','A2'].map(code=>`<article data-demo-result="${code}"><b>${code}</b><span><strong data-result-speed>–</strong> km/${en?'h':'jam'}</span><span><strong data-result-queue>–</strong> m ${en?'queue':'antrean'}</span></article>`).join('')}</div><p>${en?'No verified improvement is claimed. Collect manual observations, calibrate, and review safety before recommending.':'Belum ada klaim perbaikan terverifikasi. Kumpulkan observasi manual, kalibrasi, dan tinjau keselamatan sebelum merekomendasikan.'}</p><div class="demo-next-actions"><button type="button" data-route="observation">${en?'Collect field observations':'Catat observasi lapangan'} ${icon('arrow-right',15)}</button><button type="button" data-route="evaluation">${en?'Human evaluation':'Evaluasi manusia'} ${icon('arrow-right',15)}</button></div></div>
+   <div class="demo-disclaimer">${icon('info',14)} ${en?'Synthetic, uncalibrated model. AI is not connected. No demo observations are saved.':'Model sintetis, belum dikalibrasi. AI belum terhubung. Demo tidak menyimpan observasi.'}</div>
   </div>
  </section>
  <div class="mc-stats">

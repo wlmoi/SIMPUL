@@ -12,7 +12,7 @@ import { trafficReviewModal } from './views/classification.js';
 import { pageRenderers } from './page-registry.js';
 import {activateMapView} from './map-controller.js';
 import {activateCctv,deactivateCctv} from './cctv-controller.js';
-import {activateHomeSim,deactivateHomeSim} from './home-sim.js';
+import {activateHomeSim,deactivateHomeSim,controlHomeDemo} from './home-sim.js';
 import {setSettingsTab} from './views/settings.js';
 import {filterDocumentRecords} from './document-search.js';
 import { renderNavigation, filterNavigation, sectionForRoute, sectionTitleForRoute, MORE_GROUP } from './navigation.js';
@@ -333,6 +333,7 @@ case 'intro-stage':introPlaying=false;introIndex=Math.max(0,Math.min(3,Number(el
 case 'intro-next':{const stages=getIntroStages();introPlaying=false;introIndex=(introIndex+1)%stages.length;syncIntro();break;}
 case 'intro-prev':{const stages=getIntroStages();introPlaying=false;introIndex=(introIndex+stages.length-1)%stages.length;syncIntro();break;}
 case 'intro-play':introPlaying=!introPlaying;syncIntro();break;
+case 'home-demo-play':case 'home-demo-replay':case 'home-demo-step':case 'home-demo-next':case 'home-demo-prev':case 'home-demo-close':controlHomeDemo(action.replace('home-demo-',''),el.dataset.index);break;
 case 'intro-replay':introIndex=0;introPlaying=true;syncIntro();break;
 case 'doc-status':apiRequest('/api/v1/documents/status').then(data=>{updateState(s=>({...s,pdfEvidence:{...s.pdfEvidence,status:data}}));toast('Status OCR diperbarui')}).catch(e=>toast(e.message));break;
 case 'doc-reset':updateState(s=>({...s,pdfEvidence:{...s.pdfEvidence,filters:{}}}));break;
