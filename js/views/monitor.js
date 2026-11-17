@@ -10,7 +10,7 @@ function graph(bins=[]){if(!bins.length)return `<div class="monitor-empty-chart"
   const width=Math.min(37,Math.max(12,(plotW/bins.length)*.49)),spacing=plotW/bins.length;
   const lines=[0,.25,.5,.75,1].map(x=>{const y=top+(1-x)*plotH;return `<line x1="${left}" y1="${y}" x2="${W-right}" y2="${y}" stroke="#e2eaf0" stroke-dasharray="4 6"/><text x="${left-9}" y="${y+4}" text-anchor="end" fill="#8193a6" font-size="11">${Math.round(max*x)}</text>`}).join('');
   const bars=bins.map((x,i)=>{const cx=left+spacing*i+spacing/2,dh=plotH*x.demo/max,mh=plotH*x.manual/max;
-    return `<g><rect x="${cx-width/2}" y="${top+plotH-dh}" width="${width}" height="${dh}" rx="3" fill="#abc8de"/><rect x="${cx-width/2}" y="${top+plotH-dh-mh}" width="${width}" height="${mh}" rx="3" fill="#0a8f81"/><title>${safe(x.key)}: ${x.manual} manual, ${x.demo} sintetis</title></g>`}).join('');
+    return `<g><rect x="${cx-width/2}" y="${top+plotH-dh}" width="${width}" height="${dh}" rx="3" fill="#abc8de"/><rect x="${cx-width/2}" y="${top+plotH-dh-mh}" width="${width}" height="${mh}" rx="3" fill="#0a538f"/><title>${safe(x.key)}: ${x.manual} manual, ${x.demo} sintetis</title></g>`}).join('');
   const every=Math.max(1,Math.ceil(bins.length/7));const ticks=bins.map((x,i)=>i%every===0?`<text x="${left+spacing*i+spacing/2}" y="${H-14}" text-anchor="middle" fill="#8193a6" font-size="10">${safe(x.key.slice(-8).replace('T',' '))}</text>`:'').join('');
   return `<svg class="monitor-plot" viewBox="0 0 ${W} ${H}" role="img" aria-label="Grafik jumlah kejadian per ${bins.length} interval. Hijau untuk manual, biru untuk data sintetis.">${lines}${bars}${ticks}</svg>`;
 }
