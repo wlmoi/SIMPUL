@@ -2,11 +2,11 @@ import {getState} from '../store.js';
 import {diagnose,evidenceGate,summarizeReadings,PERIODS} from '../diagnostics.js';
 import {safe,icon,num,clock,shortDate} from '../util.js';
 import {pageHead,button,tag,note,cardHeading} from './shared.js';
-const fmtDiag=x=>x===null||x===undefined?'—':num(x);
-const viewDate=x=>{try{return `${shortDate(x)} · ${clock(x)} WIB`;}catch{return '—'}};
+const fmtDiag=x=>x===null||x===undefined?'-':num(x);
+const viewDate=x=>{try{return `${shortDate(x)} / ${clock(x)} WIB`;}catch{return '-'}};
 const warnings=(flags)=>flags.length?flags.map(x=>`<div class="dia-alert ${x.kind}">${icon(x.kind==='missing'?'alert-circle':'alert-triangle',18)}<div><strong>${safe(x.title)}</strong><p>${safe(x.detail)}</p></div></div>`).join(''):'<div class="dia-alert positive">Belum ada indikator masalah pada data yang tercatat. Ini bukan bukti bahwa koridor bebas hambatan.</div>';
 function bars(groups){if(!groups.length)return `<div class="dia-empty">Belum ada baseline. Input interval lapangan untuk melihat zona yang memerlukan perhatian.</div>`;
- const max=Math.max(1,...groups.map(x=>x.stopPerHour||0));return `<div class="dia-zones">${groups.map(g=>`<div class="dia-zone"><div class="dia-zone-head"><strong>${safe(g.zone)}</strong><span>${g.samples} interval · ${fmtDiag(g.minutes)} menit</span></div><div class="dia-bar-wrap"><div class="dia-bar" style="width:${Math.max(1,Math.round(100*(g.stopPerHour||0)/max))}%"></div></div><div class="dia-zone-meta"><span>Berhenti: ${fmtDiag(g.stopPerHour)} kejadian/jam</span><span>Antrean maks.: ${fmtDiag(g.peakQueue)} kendaraan</span><span>Okupansi ruang: ${fmtDiag(g.avgBayOccupancy)}${g.avgBayOccupancy===null?'':'%'}</span></div></div>`).join('')}</div>`}
+ const max=Math.max(1,...groups.map(x=>x.stopPerHour||0));return `<div class="dia-zones">${groups.map(g=>`<div class="dia-zone"><div class="dia-zone-head"><strong>${safe(g.zone)}</strong><span>${g.samples} interval / ${fmtDiag(g.minutes)} menit</span></div><div class="dia-bar-wrap"><div class="dia-bar" style="width:${Math.max(1,Math.round(100*(g.stopPerHour||0)/max))}%"></div></div><div class="dia-zone-meta"><span>Berhenti: ${fmtDiag(g.stopPerHour)} kejadian/jam</span><span>Antrean maks.: ${fmtDiag(g.peakQueue)} kendaraan</span><span>Okupansi ruang: ${fmtDiag(g.avgBayOccupancy)}${g.avgBayOccupancy===null?'':'%'}</span></div></div>`).join('')}</div>`}
 export function renderDiagnosis(){
  const s=getState(),d=diagnose(s.fieldReadings,s.observations,s.fieldSettings),gate=evidenceGate(s.fieldReadings,s.sessions,s.observations),b=d.base,f=d.full;
  return `${pageHead('ANALISIS / IDENTIFIKASI HAMBATAN','Diagnosis Hambatan','Telusuri sumber hambatan kendaraan yang menjemput, menurunkan, dan menunggu penumpang berdasarkan interval observasi.',`${button(`${icon('plus',16)} Tambah interval`,'add-field-reading','primary')} ${button(`${icon('download',15)} Ekspor CSV`,'export-field-readings')}`)}

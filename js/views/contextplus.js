@@ -2,8 +2,8 @@ import {getState} from '../store.js';
 import {safe,icon} from '../util.js';
 import {pageHead,note,button,cardHeading,tag,emptyState} from './shared.js';
 
-const fmt=(n,d=1)=>Number.isFinite(Number(n)) && n!==null && n!==undefined?Number(n).toLocaleString('id-ID',{maximumFractionDigits:d}):'—';
-const hour=(s)=>safe(String(s||'').slice(11,16)||'—');
+const fmt=(n,d=1)=>Number.isFinite(Number(n)) && n!==null && n!==undefined?Number(n).toLocaleString('id-ID',{maximumFractionDigits:d}):'-';
+const hour=(s)=>safe(String(s||'').slice(11,16)||'-');
 const stamp=(x)=>x?.checkedAt?`<small class="context-source">Diperbarui ${safe(new Date(x.checkedAt).toLocaleString('id-ID'))} - ${safe(x.data?.provider||'API')}</small>`:'';
 const unit=(name,val,units='')=>`<div class="ctx-metric"><span>${safe(name)}</span><strong>${fmt(val)}${units}</strong></div>`;
 function routeIllustration(points,{area=false}={}){

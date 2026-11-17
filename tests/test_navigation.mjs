@@ -10,7 +10,7 @@ assert.equal(sectionForRoute('simulation'),null);
 const html=renderNavigation('monitor','field');
 assert.match(html, /aria-expanded="true" aria-controls="nav-panel-field"/);
 assert.match(html, /data-route="monitor" aria-current="page"/);
-assert.match(html, /Cari halaman/);
+assert.match(html, /(?:Cari halaman|Search pages)/);
 for(const page of views){
   const escaped=page.id.replace(/[.*+?^${}()|[\]\\]/g,'\\$&');
   assert.equal((html.match(new RegExp(`data-route="${escaped}"`, 'g'))||[]).length,1,`${page.id} should appear exactly once`);
@@ -19,7 +19,7 @@ for(const page of views){
 assert.deepEqual(TOOL_ROUTES,['mapview','observation','settings']);
 const home=renderNavigation('overview',null);
 assert.match(home,/id="nav-more-panel" hidden/,'Advanced pages are collapsed by default');
-assert.match(home,/Fitur lanjutan/);
+assert.match(home,/Fitur lanjutan|Advanced features/);
 // Every advanced page is reachable from Pengaturan; creators has its own tab.
 setSettingsTab('fitur');
 const hub=renderSettings();

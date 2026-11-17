@@ -1,4 +1,4 @@
-import {INTRO_STAGES} from './views/intro.js';
+import {getIntroStages} from './views/intro.js';
 import { fieldReadingModal } from './views/diagnosis.js';
 import { reviewSessionModal } from './views/survey.js';
 import { operationCreateModal, operationUpdateModal } from './views/operations.js';
@@ -27,6 +27,7 @@ import {assessQuality,buildStandardsBundle,buildProjectGeoJSON,buildExecutiveBri
 import {heuristicSimulation} from './analytics.js';
 import {filterEvents} from './monitoring.js';
 import {comparePeriods,evidenceGate} from './diagnostics.js';
+import {getLanguage,setLanguage,labelForRoute,t} from './i18n.js';
 // The renderer registry is maintained separately from action orchestration.
 const components = pageRenderers;
 const names=Object.fromEntries(views.map(v=>[v.id,v.label]));
@@ -35,27 +36,27 @@ const currentPage=()=>{let p=decodeURIComponent(location.hash.replace('#',''))||
 function sidebar(){
   const active=currentPage();
   const open=expandedNavGroup===null?sectionForRoute(active):expandedNavGroup;
-  return `<aside class="sidebar ${mobileOpen?'open':''}" id="sidebar" aria-label="Panel navigasi"><div class="brand"><div class="brand-icon">S</div><div><div class="wordmark">SIMPUL</div><small>MOBILITY INTELLIGENCE</small></div></div><nav class="nav-area" aria-label="Navigasi utama">${renderNavigation(active,open)}</nav><div class="sidebar-foot"><div class="mini">WORKSPACE AKTIF</div><strong>${safe(getState().project.name)}</strong><div class="presence"><span class="dot"></span> Workspace lokal - tersimpan</div><button type="button" data-route="settings">${icon('settings-2',13)} &nbsp; Pengaturan proyek</button></div></aside>`;
+  return `<aside class="sidebar ${mobileOpen?'open':''}" id="sidebar" aria-label="${t('shell.openNav')}"><div class="brand"><div class="brand-icon">S</div><div><div class="wordmark">SIMPUL</div><small>MOBILITY INTELLIGENCE</small></div></div><nav class="nav-area" aria-label="${t('shell.openNav')}">${renderNavigation(active,open)}</nav><div class="sidebar-foot"><div class="mini">${t('shell.workspace')}</div><strong>${safe(getState().project.name)}</strong><div class="presence"><span class="dot"></span> ${t('shell.local')}</div><button type="button" data-route="settings">${icon('settings-2',13)} &nbsp; ${t('shell.settings')}</button></div></aside>`;
 }
-function layout(){const route=currentPage();const dateStr=new Intl.DateTimeFormat('id-ID',{day:'numeric',month:'long',year:'numeric',timeZone:'Asia/Jakarta'}).format(new Date());return `<div class="shell">${sidebar()}<div class="mobile-curtain ${mobileOpen?'show':''}" data-action="close-mobile"></div><div class="workspace"><header class="topbar"><div class="crumb"><button class="hamburger" data-action="toggle-mobile" aria-label="Buka navigasi">${icon('menu',22)}</button><span class="crumb-section">${sectionTitleForRoute(route)}</span>${icon('chevron-right',13)}<strong>${names[route]}</strong></div><div class="top-actions"><div class="header-date">${dateStr} - WIB</div><div class="header-divider"></div><span class="partner-brand"><img src="/assets/aiera-foundation.png" alt="AIERA Foundation" width="48" height="51"><span>AIERA<small>FOUNDATION</small></span></span><div class="avatar" title="iSeeDesignITB">ITB</div></div></header><main class="main" id="main-content">${components[route]()}<footer class="app-footer"><span>© 2026 SIMPUL · iSeeDesignITB · SI Bridges Indonesia 2026</span><span><a href="#creators">About the Creators</a> · <a href="https://www.linkedin.com/in/wlmoi/" target="_blank" rel="noopener noreferrer">LinkedIn William Anthony</a></span></footer></main></div></div><nav class="mobile-bottom-nav" aria-label="Navigasi cepat">${[['overview','layout-dashboard','Beranda'],['cctv','cctv','CCTV AI'],['vehicles','car-front','Kendaraan'],['simulation','git-compare-arrows','Simulasi'],['evaluation','clipboard-check','Evaluasi']].map(v=>`<button type="button" data-route="${v[0]}" class="${route===v[0]?'active':''}" aria-label="${v[2]}">${icon(v[1],19)}<span>${v[2]}</span></button>`).join('')}</nav><div class="toasts" id="toasts" aria-live="polite"></div>`;}
+function layout(){const route=currentPage(),names=Object.fromEntries(views.map(v=>[v.id,labelForRoute(v.id,v.label)])),dateStr=new Intl.DateTimeFormat(getLanguage()==='en'?'en-US':'id-ID',{day:'numeric',month:'long',year:'numeric',timeZone:'Asia/Jakarta'}).format(new Date()),lang=getLanguage();return `<div class="shell">${sidebar()}<div class="mobile-curtain ${mobileOpen?'show':''}" data-action="close-mobile"></div><div class="workspace"><header class="topbar"><div class="crumb"><button class="hamburger" data-action="toggle-mobile" aria-label="${t('shell.openNav')}">${icon('menu',22)}</button><span class="crumb-section">${sectionTitleForRoute(route)}</span>${icon('chevron-right',13)}<strong>${names[route]}</strong></div><div class="top-actions"><div class="header-date">${dateStr} - WIB</div><div class="header-divider"></div><div class="language-switch" role="group" aria-label="Language"><span>${icon('languages',15)}</span><button type="button" data-action="switch-language" data-language="en" aria-pressed="${lang==='en'}">EN</button><button type="button" data-action="switch-language" data-language="id" aria-pressed="${lang==='id'}">ID</button></div><span class="partner-brand"><img src="/assets/aiera-foundation.png" alt="AIERA Foundation" width="48" height="51"><span>AIERA<small>FOUNDATION</small></span></span><div class="avatar" title="iSeeDesignITB">ITB</div></div></header><main class="main" id="main-content">${components[route]()}<footer class="app-footer"><span>© 2026 SIMPUL / iSeeDesignITB / SI Bridges Indonesia 2026</span><span><a href="#creators">${t('shell.about')}</a> / <a href="https://www.linkedin.com/in/wlmoi/" target="_blank" rel="noopener noreferrer">${t('shell.linkedin')}</a></span></footer></main></div></div><nav class="mobile-bottom-nav" aria-label="${t('shell.quickNav')}">${[['overview','layout-dashboard',labelForRoute('overview','Overview')],['cctv','cctv','CCTV AI'],['vehicles','car-front',labelForRoute('vehicles','Vehicle Problem')],['simulation','git-compare-arrows',labelForRoute('simulation','Simulation')],['evaluation','clipboard-check',labelForRoute('evaluation','Evaluation')]].map(v=>`<button type="button" data-route="${v[0]}" class="${route===v[0]?'active':''}" aria-label="${v[2]}">${icon(v[1],19)}<span>${v[2]}</span></button>`).join('')}</nav><div class="toasts" id="toasts" aria-live="polite"></div>`;}
 let introIndex=0,introPlaying=false,introTimer=null;
 function syncIntro(){
  clearTimeout(introTimer);introTimer=null;
  const panel=document.querySelector('.simpul-intro');
  if(!panel){introPlaying=false;return;}
- const stage=INTRO_STAGES[introIndex];
+ const stages=getIntroStages(),stage=stages[introIndex];
  panel.dataset.introStage=String(introIndex);
  panel.classList.toggle('intro-playing',introPlaying);
- panel.querySelector('#intro-count').textContent=`0${introIndex+1} / 04 · ${stage.label.toUpperCase()}`;
+ panel.querySelector('#intro-count').textContent=`0${introIndex+1} / 04 / ${stage.label.toUpperCase()}`;
  panel.querySelector('#intro-title').textContent=stage.title;
  panel.querySelector('#intro-description').textContent=stage.text;
  const destination=panel.querySelector('#intro-destination');
  destination.textContent=stage.cta+' ↗';destination.dataset.route=stage.route;
  panel.querySelectorAll('[data-action="intro-stage"]').forEach((button,index)=>button.setAttribute('aria-pressed',String(index===introIndex)));
  const play=panel.querySelector('[data-action="intro-play"]');
- play.textContent=introPlaying?'Jeda':'Putar intro';play.setAttribute('aria-pressed',String(introPlaying));
+ play.textContent=introPlaying?(getLanguage()==='en'?'Pause':'Jeda'):(getLanguage()==='en'?'Play tour':'Putar tour');play.setAttribute('aria-pressed',String(introPlaying));
  // Only user-requested playback advances the explanation. No data is changed.
- if(introPlaying)introTimer=setTimeout(()=>{if(introIndex===INTRO_STAGES.length-1)introPlaying=false;else introIndex++;syncIntro();},6000);
+ if(introPlaying)introTimer=setTimeout(()=>{if(introIndex===stages.length-1)introPlaying=false;else introIndex++;syncIntro();},6000);
 }
 document.addEventListener('visibilitychange',()=>{if(document.hidden){introPlaying=false;syncIntro();}});
 function render(){
@@ -312,14 +313,25 @@ async function refreshPdfRecords(){
  catch(error){toast('Indeks PDF belum tersedia: '+error.message);return null;}
 }
 
+function selectOverviewNode(el){
+ const node=el.dataset.node,panel=document.getElementById('overview-node-inspector');
+ if(!panel)return;
+ const labels={station:['map.station','map.stationDetail'],zoneA:['map.zoneA','map.zoneDetail'],zoneB:['map.zoneB','map.zoneDetail'],zoneC:['map.zoneC','map.zoneDetail'],pickup:['map.pickup','map.pickupDetail']};
+ const selected=labels[node]||labels.station;
+ panel.innerHTML=`<div><span class="overview-node-kicker">${safe(t(selected[0]))}</span><strong>${safe(t(selected[1]))}</strong></div>${node==='station'?`<a href="https://jakcctv.jakarta.go.id/publik" target="_blank" rel="noopener noreferrer">${icon('video',14)} ${safe(t('map.cctv'))}</a>`:''}<button type="button" class="overview-node-map-link" data-route="mapview">${icon('map',14)} ${safe(t('map.openMap'))}</button>`;
+ document.querySelectorAll('.overview-map-node').forEach(button=>button.setAttribute('aria-pressed',String(button===el)));
+}
+
 function handleAction(action,el){switch(action){
+case 'switch-language':setLanguage(el.dataset.language);introIndex=0;render();break;
+case 'select-overview-node':selectOverviewNode(el);break;
 case 'scene-alternative':{const scene=el.closest('.corridor-lab'),key=el.dataset.scene;if(!['A0','A1','A2'].includes(key))break;scene.dataset.scene=key;scene.querySelectorAll('.scene-switch button').forEach(b=>b.setAttribute('aria-pressed',String(b===el)));scene.querySelector('.scene-description').textContent=({A0:'A0: ilustrasi ruang jalan dan aktivitas penjemputan.',A1:'A1: ilustrasi pemusatan aktivitas di area jemput.',A2:'A2: ilustrasi pengaturan titik dan durasi berhenti.'})[key];break;}
-case 'preview-classifier':{const val=id=>document.getElementById('lab-'+id).value,duration=Number(val('duration')),out=document.getElementById('classifier-result');if(!Number.isFinite(duration)||duration<0||duration>86400){out.textContent='Isi durasi antara 0 dan 86400 detik.';break;}const result=classifyTrafficEvent({source:'demo',type:val('activity'),duration,pedestrianBlocked:val('pedestrian'),laneBlocked:val('lane'),queueObserved:val('queue')});out.textContent=result.priorityLabel+' — '+result.priorityReason+' Sumber: percobaan sintetis.';break;}
+case 'preview-classifier':{const val=id=>document.getElementById('lab-'+id).value,duration=Number(val('duration')),out=document.getElementById('classifier-result');if(!Number.isFinite(duration)||duration<0||duration>86400){out.textContent='Isi durasi antara 0 dan 86400 detik.';break;}const result=classifyTrafficEvent({source:'demo',type:val('activity'),duration,pedestrianBlocked:val('pedestrian'),laneBlocked:val('lane'),queueObserved:val('queue')});out.textContent=result.priorityLabel+' - '+result.priorityReason+' Sumber: percobaan sintetis.';break;}
 
 case 'intro-skip':{introPlaying=false;syncIntro();const target=document.getElementById('intro-end');target?.focus({preventScroll:true});target?.scrollIntoView({block:'start',behavior:window.matchMedia('(prefers-reduced-motion: reduce)').matches?'instant':'smooth'});break;}
 case 'intro-stage':introPlaying=false;introIndex=Math.max(0,Math.min(3,Number(el.dataset.index)||0));syncIntro();break;
-case 'intro-next':introPlaying=false;introIndex=(introIndex+1)%INTRO_STAGES.length;syncIntro();break;
-case 'intro-prev':introPlaying=false;introIndex=(introIndex+INTRO_STAGES.length-1)%INTRO_STAGES.length;syncIntro();break;
+case 'intro-next':{const stages=getIntroStages();introPlaying=false;introIndex=(introIndex+1)%stages.length;syncIntro();break;}
+case 'intro-prev':{const stages=getIntroStages();introPlaying=false;introIndex=(introIndex+stages.length-1)%stages.length;syncIntro();break;}
 case 'intro-play':introPlaying=!introPlaying;syncIntro();break;
 case 'intro-replay':introIndex=0;introPlaying=true;syncIntro();break;
 case 'doc-status':apiRequest('/api/v1/documents/status').then(data=>{updateState(s=>({...s,pdfEvidence:{...s.pdfEvidence,status:data}}));toast('Status OCR diperbarui')}).catch(e=>toast(e.message));break;
@@ -373,7 +385,7 @@ case 'update-operation':{
 }
 case 'export-operations':download('SIMPUL_operational_response_manual.json',JSON.stringify(exportOperations(getState()),null,2));toast('Daftar tindak lanjut diekspor tanpa catatan bebas');break;
 case 'export-police-csv':downloadPoliceCsv();break;
-case 'export-police-json':{download('SIMPUL_traffic_review_manual_only.json',JSON.stringify(makePoliceReviewBundle(getState()),null,2));toast('Berkas review JSON disiapkan, tanpa contoh sintetis');break;}
+case 'export-police-json':{download('SIMPUL_traffic_review_manual_only.json',JSON.stringify(makePoliceReviewBundle(getState()),null,2));toast('Berkas review JSON disiapkan, tanpa data ilustratif');break;}
 case 'review-traffic':{const e=getState().observations.find(x=>x.id===el.dataset.id);if(!e)return toast('Rekaman tidak ditemukan');if(e.source!=='manual'){toast('Review resmi tidak dapat diisi pada data sintetis. Catat observasi manual.');return;}modal(trafficReviewModal(e,getState().eventReviews?.[e.id]));break;}
 
 case 'add-field-reading':modal(fieldReadingModal());break;
@@ -385,7 +397,7 @@ case 'capture-type':modal(eventModal(el.dataset.value));break;
 case 'close-modal':closeModal();break;
 case 'start-session':startSession();break;
 case 'end-session':endSession();break;
-case 'clear-demo':{const count=getState().observations.filter(e=>e.source==='demo').length;if(!count)return toast('Tidak ada contoh sintetis');if(confirm(`Hapus ${count} kejadian sintetis? Rekaman manual tetap tersimpan.`)){updateState(s=>({...s,observations:s.observations.filter(e=>e.source!=='demo')}));recordLocalActivity('data.cleanup','Data sintetis sintetis dihapus');toast('Data contoh dihapus')}}break;
+case 'clear-demo':{const count=getState().observations.filter(e=>e.source==='demo').length;if(!count)return toast('Tidak ada data ilustratif');if(confirm(`Hapus ${count} kejadian sintetis? Rekaman manual tetap tersimpan.`)){updateState(s=>({...s,observations:s.observations.filter(e=>e.source!=='demo')}));recordLocalActivity('data.cleanup','Data sintetis sintetis dihapus');toast('Data contoh dihapus')}}break;
 case 'delete-event':if(getState().responseCases?.some(c=>c.eventId===el.dataset.id)){toast('Rekaman sudah memiliki tindak lanjut. Ekspor/arsipkan catatan dulu sebelum menghapus sumber.');break;}if(confirm('Hapus satu kejadian ini?')){updateState(s=>({...s,observations:s.observations.filter(e=>e.id!==el.dataset.id)}));recordLocalActivity('observation.delete','Satu kejadian dihapus','warning');toast('Kejadian dihapus')}break;
 case 'run-simulation':updateState(s=>({...s,lastAnalysis:heuristicSimulation(s.scenario),history:[...s.history,{id:uid('run'),engine:'heuristic',createdAt:nowIso()}]}));recordLocalActivity('simulation.demo','Estimasi heuristik ilustratif dijalankan');toast('Estimasi heuristik ilustratif diperbarui');break;
 case 'run-sumo':runSumo();break;

@@ -5,6 +5,7 @@ let loadPromise=null;
 let mapInstance=null;
 const LEAFLET_JS='/assets/vendor/leaflet/leaflet.js';
 const LEAFLET_CSS='/assets/vendor/leaflet/leaflet.css';
+export const OFFICIAL_CCTV_URL='https://jakcctv.jakarta.go.id/publik';
 function leaflet(){
  if(typeof window==='undefined')return Promise.reject(new Error('Browser unavailable'));
  if(window.L)return Promise.resolve(window.L);
@@ -22,7 +23,17 @@ function leaflet(){
  }).catch(error=>{loadPromise=null;throw error});
  return loadPromise;
 }
-function popup(text){const el=document.createElement('div');el.textContent=text;return el;}
+function popup(text,link=''){
+ const el=document.createElement('div'),message=document.createElement('div');
+ message.textContent=text;el.append(message);
+ if(link){
+  const anchor=document.createElement('a');
+  anchor.href=link;anchor.target='_blank';anchor.rel='noopener noreferrer';
+  anchor.textContent='Buka CCTV publik Jakarta';
+  anchor.style.display='inline-block';anchor.style.marginTop='8px';el.append(anchor);
+ }
+ return el;
+}
 export async function activateMapView(state,onZonePick){
  const el=document.getElementById('simpul-leaflet-map');if(!el)return;
  const status=document.getElementById('map-network-status');
@@ -39,15 +50,15 @@ export async function activateMapView(state,onZonePick){
   tiles.on('tileload',()=>{loaded++;updateStatus(failed?'Peta dasar dimuat sebagian':'Peta dasar terhubung',failed?'partial':'ready')});
   tiles.on('tileerror',()=>{failed++;updateStatus(loaded?'Peta dasar dimuat sebagian':'Peta dasar memerlukan koneksi internet','partial')});
   tiles.addTo(current);
-  const pin=(point,color,radius,text)=>{
+  const pin=(point,color,radius,text,link='')=>{
    bounds.push([point.lat,point.lon]);
-   return L.circleMarker([point.lat,point.lon],{radius,color,weight:2,fillColor:color,fillOpacity:.8}).addTo(current).bindPopup(popup(text));
+   return L.circleMarker([point.lat,point.lon],{radius,color,weight:2,fillColor:color,fillOpacity:.8}).addTo(current).bindPopup(popup(text,link));
   };
-  pin(STATION_REFERENCE,'#0961ad',10,'MRT Fatmawati / Referensi OpenStreetMap. Verifikasi lapangan diperlukan.');
+  pin(STATION_REFERENCE,'#0961ad',10,'MRT Fatmawati / Referensi OpenStreetMap. Verifikasi lapangan diperlukan.',OFFICIAL_CCTV_URL);
   const project=coordinatePair(state.project?.geo?.lat,state.project?.geo?.lon);
   if(project)pin(project,'#1b2b4e',8,'Titik proyek / Koordinat yang dipilih pengguna.');
   for(const point of zoneReferencePoints(state.zonePins))pin(point,'#176fa6',9,`${point.name} / Titik referensi yang ditetapkan pengamat.`);
-  for(const point of mapPointsFromDocuments(state.pdfEvidence?.items))pin(point,'#c87d19',6,`Catatan PDF / Status: belum diverifikasi. ${point.vehicle}; ${point.zone}; ${point.at}; halaman ${point.page??'—'}`);
+  for(const point of mapPointsFromDocuments(state.pdfEvidence?.items))pin(point,'#c87d19',6,`Catatan PDF / Status: belum diverifikasi. ${point.vehicle}; ${point.zone}; ${point.at}; halaman ${point.page??'-'}`);
   current.on('click',event=>{
    const zone=document.getElementById('map-zone-select')?.value;
    const point=coordinatePair(event.latlng.lat,event.latlng.lng);

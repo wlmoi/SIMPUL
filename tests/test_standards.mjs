@@ -1,5 +1,5 @@
 import assert from 'node:assert/strict';
-import {assessQuality,buildStandardsBundle,buildProjectGeoJSON,buildExecutiveBriefHTML,STANDARD_REFERENCES} from '../js/standards.js';
+import {assessQuality,buildStandardsBundle,buildProjectGeoJSON,buildExecutiveBriefHTML,STANDARD_REFERENCES,REGULATORY_REFERENCES} from '../js/standards.js';
 import {initialData} from '../js/data.js';
 let state=initialData();
 let q=assessQuality(state);
@@ -16,5 +16,7 @@ state={...state,project:{...state.project,geo:{lat:-6.29,lon:106.8}}};const geo=
 q=assessQuality({...state,fieldReadings:[baseline,{...baseline,id:'field-b1'}]});assert.equal(q.status,'not_ready');assert.ok(q.issues.some(i=>i.code==='DUPLICATE_ID'));
 q=assessQuality({...state,fieldReadings:[{...baseline,at:'2026-11-14T07:00:00'}]});assert.equal(q.status,'not_ready');assert.ok(q.issues.some(i=>i.code==='INVALID_TIME'));
 assert.equal(STANDARD_REFERENCES.length,8);
+assert.equal(REGULATORY_REFERENCES.length,5);
+assert.ok(REGULATORY_REFERENCES.every(x=>x.code&&x.article&&x.relevance&&x.source));
 const brief=buildExecutiveBriefHTML(state);assert.match(brief,/Executive|Mobility Access/i);assert.match(brief,/EXPLORATORY ONLY/);assert.match(brief,/No real-world impact/);
 console.log('PASS: standards gates, synthetic exclusion, provenance UTC, units, GeoJSON coordinates, duplicate and timestamp checks');

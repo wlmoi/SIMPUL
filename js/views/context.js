@@ -2,7 +2,7 @@ import {getState} from '../store.js';
 import {safe,icon} from '../util.js';
 import {pageHead,note,cardHeading,button,tag,emptyState} from './shared.js';
 
-const displayNumber=v=>typeof v==='number'&&Number.isFinite(v)?v.toLocaleString('id-ID',{maximumFractionDigits:1}):'—';
+const displayNumber=v=>typeof v==='number'&&Number.isFinite(v)?v.toLocaleString('id-ID',{maximumFractionDigits:1}):'-';
 function liveMap(place,showExternal=false){
   if(!place)return `<div class="geo-placeholder"><div class="geo-icon">${icon('map-pinned',35)}</div><strong>Lokasi belum dipilih</strong><p>Cari lokasi secara manual di atas. Peta dari OpenStreetMap akan ditampilkan setelah lokasi dipilih.</p></div>`;
   const lat=Number(place.lat),lon=Number(place.lon);
@@ -29,6 +29,6 @@ ${poi?`<p class="helper">${poi.count} entitas OSM ditemukan - cakupan tidak dija
 ${traffic?`<div class="weather-show"><div><small>Kecepatan saat ini</small><strong>${displayNumber(traffic.currentSpeedKmph)} km/j</strong></div><div><small>Free flow</small><strong>${displayNumber(traffic.freeFlowSpeedKmph)} km/j</strong></div><div><small>Rasio kecepatan</small><strong>${displayNumber(traffic.speedRatio*100)}%</strong></div></div><p class="helper">TomTom Traffic Flow - Snapshot segmen terdekat. Bukan jumlah kendaraan atau bukti hasil intervensi.</p>`:''}
 </section></div>
 <section class="card">${cardHeading('04 / Inventaris fasilitas dari Overpass','Objek OSM yang berhasil ditarik; bukan hasil survei fisik.',poi?tag('SUMBER EKSTERNAL',''):tag('BELUM DIMUAT','slate'))}
-${poi?.items?.length?`<div class="table-wrap"><table class="data-table"><thead><tr><th>Fasilitas</th><th>Kategori</th><th>Koordinat</th><th>Asal data</th></tr></thead><tbody>${poi.items.map(v=>`<tr><td><strong>${safe(v.name)}</strong></td><td>${safe(v.category)}</td><td>${v.lat!=null&&v.lon!=null?`${Number(v.lat).toFixed(5)}, ${Number(v.lon).toFixed(5)}`:'—'}</td><td>OSM ${safe(String(v.osmId))}</td></tr>`).join('')}</tbody></table></div>`:poi?emptyState('Tidak ada objek yang dikembalikan','OpenStreetMap dapat memiliki data yang belum lengkap.'):emptyState('Data fasilitas belum dimuat','Pilih lokasi dan tekan Ambil OSM untuk mencari objek terdekat.')}
+${poi?.items?.length?`<div class="table-wrap"><table class="data-table"><thead><tr><th>Fasilitas</th><th>Kategori</th><th>Koordinat</th><th>Asal data</th></tr></thead><tbody>${poi.items.map(v=>`<tr><td><strong>${safe(v.name)}</strong></td><td>${safe(v.category)}</td><td>${v.lat!=null&&v.lon!=null?`${Number(v.lat).toFixed(5)}, ${Number(v.lon).toFixed(5)}`:'-'}</td><td>OSM ${safe(String(v.osmId))}</td></tr>`).join('')}</tbody></table></div>`:poi?emptyState('Tidak ada objek yang dikembalikan','OpenStreetMap dapat memiliki data yang belum lengkap.'):emptyState('Data fasilitas belum dimuat','Pilih lokasi dan tekan Ambil OSM untuk mencari objek terdekat.')}
 </section><p class="footnote">Kebijakan Nominatim publik melarang pencarian otomatis terus-menerus serta membatasi laju permintaan. Untuk penggunaan komersial berskala besar, gunakan geocoder terkelola atau host sendiri. Open-Meteo juga menetapkan syarat berbeda untuk penggunaan komersial.</p>`;
 }
