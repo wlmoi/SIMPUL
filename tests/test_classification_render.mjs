@@ -7,7 +7,7 @@ const handlers={};
 const data=new Map();
 const context=vm.createContext({
  console,Date,Intl,Math,URL,URLSearchParams,AbortController,Blob,
- location:{hash:'#classification',protocol:'file:'},
+ location:{hash:'#vehicles',protocol:'file:'},
  navigator:{},
  document:{hidden:false,querySelector(){return null},getElementById(id){if(id==='app')return mounted;return null},
  addEventListener(name,fn){handlers[name]=fn}},
@@ -17,10 +17,8 @@ const context=vm.createContext({
  setTimeout(fn){return 1},clearTimeout(){},setInterval(){return 1},clearInterval(){},
  });
 vm.runInContext(bundle,context,{filename:'SIMPUL_Standalone_bundle.js',timeout:5000});
-assert.match(mounted.innerHTML,/Klasifikasi &amp; Tinjauan Lalu Lintas|Klasifikasi & Tinjauan Lalu Lintas/);
-assert.match(mounted.innerHTML,/Konteks aturan/);
-assert.match(mounted.innerHTML,/NO AUTOMATED ENFORCEMENT/);
-assert.equal(vm.runInContext('trafficClassSummary(getState().observations).manual',context),0);
-assert.match(vm.runInContext("eventModal('Menunggu')",context),/event-pedestrian/);
-assert.match(vm.runInContext("eventModal('Menunggu')",context),/event-context/);
-console.log('Standalone render + event modal smoke passed');
+// The manual classification page was removed; the bundle renders the vehicle problem page without a browser.
+assert.match(mounted.innerHTML,/Masalah Kendaraan di Titik Jemput/);
+assert.match(mounted.innerHTML,/Buka CCTV AI/);
+assert.doesNotMatch(mounted.innerHTML,/data-route="classification"/);
+console.log('Standalone render smoke passed');

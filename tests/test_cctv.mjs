@@ -37,4 +37,13 @@ for(const f of ['../js/cctv-controller.js','../js/sim3d-engine.js','../js/sim3d-
   const src=readFileSync(new URL(f,import.meta.url),'utf8');
   assert.ok(!/updateState|localStorage|fetch\(/.test(src),`${f} stays presentation-only`);
 }
+// Beranda AI status: connected only while real detections keep arriving.
+{
+  const {reportAiStatus,getAiStatus}=await import('../js/ai-status.js');
+  assert.equal(getAiStatus(0).connected,false,'No AI before any detection');
+  reportAiStatus({model:'YOLOv8n',counts:{car:3,motorcycle:5,bus:1},stopped:2,over:1},1000);
+  const live=getAiStatus(2000);
+  assert.equal(live.connected,true);assert.equal(live.model,'YOLOv8n');assert.deepEqual(live.counts,{car:3,motorcycle:5,bus:1});assert.equal(live.stopped,2);
+  assert.equal(getAiStatus(1000+16000).connected,false,'AI status goes stale after 15 s without detections');
+}
 console.log('PASS cctv: 3D page, scenarios, uncalibrated labelling, display-only detections, scene + camera math');

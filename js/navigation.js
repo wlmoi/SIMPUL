@@ -22,9 +22,8 @@ export const TOOL_ROUTES = Object.freeze(['mapview', 'settings']);
  * "Fitur lanjutan" entry and search, and are listed in Pengaturan.
  */
 export const NAV_SECTIONS = Object.freeze([
-  { id:'field', label:'Survei & operasional', icon:'clipboard-list', routes:['survey','monitor','classification','operations'] },
-  { id:'context', label:'Data & konteks', icon:'map-pinned', routes:['documents','context','contextplus','insights','publicintel'] },
-  { id:'evidence', label:'Dokumentasi & bukti', icon:'files', routes:['project','standards','reports'] },
+  { id:'context', label:'Data & konteks', icon:'map-pinned', routes:['context','contextplus','insights','publicintel'] },
+  { id:'evidence', label:'Dokumentasi & bukti', icon:'files', routes:['project','reports'] },
   { id:'system', label:'Integrasi', icon:'plug-zap', routes:['integrations'] },
   { id:'about', label:'Tentang pembuat', icon:'users', routes:['creators'] }
 ]);

@@ -60,7 +60,7 @@ export async function activateMapView(state,onZonePick){
   if(project)pin(project,'#1b2b4e',8,'Titik proyek / Koordinat yang dipilih pengguna.');
   for(const point of studyZonePoints(state.zonePins)){
    const marker=L.circleMarker([point.lat,point.lon],{radius:6,color:'#ffffff',weight:2,fillColor:'#f86809',fillOpacity:1}).addTo(current)
-    .bindPopup(popup(point.custom?`${point.name} / Titik referensi yang ditetapkan pengamat.`:`${point.name} / Lajur kiri Jl. R.A. Kartini di bawah Stasiun MRT Fatmawati. Posisi skematis dari model 3D SIMPUL; perlu verifikasi lapangan.`));
+    .bindPopup(popup(point.custom?`${point.name} / Posisi zona yang disesuaikan pengguna.`:`${point.name} / Lajur kiri Jl. R.A. Kartini di bawah Stasiun MRT Fatmawati. Posisi skematis dari model 3D SIMPUL; perlu verifikasi lapangan.`));
    marker.bindTooltip(point.name.replace('Zona ',''),{permanent:true,direction:'top',offset:[0,-6],className:'zone-tip'});
    bounds.push([point.lat,point.lon]);
   }

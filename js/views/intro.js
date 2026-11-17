@@ -2,13 +2,13 @@
 import {getLanguage} from '../i18n.js';
 const INTRO_STAGES={
  en:Object.freeze([
-  {label:'Observe',title:'Start with what is visible.',text:'The CCTV AI records vehicle activity, stopping duration and queues automatically. Illustrative and real sources stay separate.',route:'cctv',cta:'Open CCTV AI'},
+  {label:'Observe',title:'Start with what is visible.',text:'The CCTV AI records vehicle activity, stopping duration and queues automatically. Real CCTV data and simulation are always labelled.',route:'cctv',cta:'Open CCTV AI'},
   {label:'Analyze',title:'Turn records into questions.',text:'Review patterns and evidence quality. The summary supports review; it does not determine violations or causation automatically.',route:'diagnosis',cta:'Open diagnosis'},
   {label:'Simulate',title:'Test options before changing the street.',text:'Compare A0, A1, and A2 under equivalent assumptions. The illustrative model is not calibrated for Fatmawati.',route:'simulation',cta:'Compare scenarios'},
   {label:'Evaluate',title:'People remain accountable for decisions.',text:'Review pedestrian access, queues, assumptions, and evidence quality. Use results for evaluation, not as proof of field impact.',route:'evaluation',cta:'Review evaluation'}
  ]),
  id:Object.freeze([
-  {label:'Observasi',title:'Mulai dari yang terlihat.',text:'AI CCTV mencatat aktivitas kendaraan, durasi berhenti, dan antrean secara otomatis. Sumber nyata dan data ilustratif tetap dibedakan.',route:'cctv',cta:'Buka CCTV AI'},
+  {label:'Observasi',title:'Mulai dari yang terlihat.',text:'AI CCTV mencatat aktivitas kendaraan, durasi berhenti, dan antrean secara otomatis. Data CCTV nyata dan simulasi selalu diberi label.',route:'cctv',cta:'Buka CCTV AI'},
   {label:'Analisis',title:'Ubah catatan menjadi pertanyaan.',text:'Periksa pola dan kualitas bukti. Ringkasan membantu peninjauan, bukan menetapkan pelanggaran atau sebab secara otomatis.',route:'diagnosis',cta:'Periksa diagnosis'},
   {label:'Simulasi',title:'Uji pilihan sebelum menata.',text:'Bandingkan A0, A1, dan A2 pada asumsi yang setara. Model ilustratif belum terkalibrasi untuk Fatmawati.',route:'simulation',cta:'Bandingkan skenario'},
   {label:'Evaluasi',title:'Keputusan tetap pada manusia.',text:'Tinjau akses pejalan, antrean, asumsi, dan mutu bukti. Gunakan hasil sebagai bahan evaluasi, bukan bukti dampak lapangan.',route:'evaluation',cta:'Tinjau evaluasi'}

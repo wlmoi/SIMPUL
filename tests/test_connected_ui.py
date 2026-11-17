@@ -58,11 +58,7 @@ async def main():
   await page.locator('[data-action="fetch-traffic"]').click()
   await page.locator('text=22 km/j').wait_for()
   await page.screenshot(path=str(ROOT/'docs'/'context_desktop.png'),full_page=True)
-  # The manual Field Observation page was removed (the CCTV AI automates input); sync now lives on Monitoring.
-  await page.evaluate('location.hash="monitor"')
-  page.once('dialog',lambda dlg:asyncio.create_task(dlg.accept()))
-  await page.locator('[data-action="sync-observations"]').first.click()
-  await page.wait_for_timeout(350)
+  # Manual observation, monitoring and sync pages were removed: the CCTV AI automates input.
   if errors:raise AssertionError(errors)
   phone=await browser.new_page(viewport={'width':390,'height':844},is_mobile=True,has_touch=True,device_scale_factor=1)
   await phone.set_content(HTML,wait_until='domcontentloaded')
