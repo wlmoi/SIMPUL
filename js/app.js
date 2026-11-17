@@ -29,6 +29,7 @@ import {heuristicSimulation} from './analytics.js';
 import {filterEvents} from './monitoring.js';
 import {comparePeriods,evidenceGate} from './diagnostics.js';
 import {getLanguage,setLanguage,labelForRoute,t} from './i18n.js';
+import {installCustomSelects} from './custom-select.js';
 // The renderer registry is maintained separately from action orchestration.
 const components = pageRenderers;
 const names=Object.fromEntries(views.map(v=>[v.id,v.label]));
@@ -562,5 +563,6 @@ window.addEventListener('keydown',e=>{
   }
 });
 subscribe(render);render();manageMonitorPolling();
+installCustomSelects();
 // PWA service worker, best-effort. HTTPS or localhost required.
 if('serviceWorker' in navigator && location.protocol!=='file:')navigator.serviceWorker.register('./sw.js').catch(()=>{});
