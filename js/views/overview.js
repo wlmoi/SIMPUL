@@ -55,12 +55,6 @@ export function renderOverview(){
    <div class="demo-disclaimer">${icon('info',14)} ${en?'Simulation built from the real station geometry, ready to calibrate with CCTV data. Nothing is saved.':'Simulasi dari geometri asli stasiun, siap dikalibrasi dengan data CCTV. Tidak ada data yang disimpan.'}</div>
   </div>
  </section>
- <div class="mc-stats">
-  <div><strong>${stats.count}</strong><span>${en?'Recorded events':'Kejadian tercatat'}</span></div>
-  <div><strong>3</strong><span>${en?'Pickup zones monitored':'Zona penjemputan dipantau'}</span></div>
-  <div><strong>A0 · A1 · A2</strong><span>${en?'Street alternatives tested':'Alternatif penataan diuji'}</span></div>
-  <div><strong>${ai.connected?'AI LIVE':(en?'3D sim':'Simulasi 3D')}</strong><span>${en?'CCTV AI detection source':'Sumber deteksi CCTV AI'}</span></div>
- </div>
  ${renderIntro()}
  <div class="section-h solution-heading"><h2>${t('overview.flowTitle')}</h2><small>${t('overview.flowLabel')}</small></div>
  <div class="solution-steps">${steps.map((x,i)=>`<article class="solution-step"><div class="solution-step-top"><span>0${i+1}</span>${icon(x[2],21)}</div><h3>${x[0]}</h3><p>${x[1]}</p><button type="button" data-route="${x[3]}">${x[4]} ${icon('arrow-right',16)}</button></article>`).join('')}</div>
