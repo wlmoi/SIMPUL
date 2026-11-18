@@ -484,6 +484,7 @@ def _gemini_response_schema() -> dict:
         'properties': {
             'contradictionsAndGaps': {
                 'type': 'ARRAY',
+                'maxItems': 10,
                 'items': {
                     'type': 'OBJECT',
                     'properties': {
@@ -518,6 +519,7 @@ def _gemini_response_schema() -> dict:
             },
             'scenarioHypotheses': {
                 'type': 'ARRAY',
+                'maxItems': 3,
                 'items': {
                     'type': 'OBJECT',
                     'properties': {
@@ -541,6 +543,7 @@ def _gemini_response_schema() -> dict:
             },
             'inspectionChecklist': {
                 'type': 'ARRAY',
+                'maxItems': 8,
                 'items': {
                     'type': 'OBJECT',
                     'properties': {
@@ -717,8 +720,8 @@ def create_decision_brief(req: DecisionBriefRequest) -> dict:
             prompt,
             _gemini_response_schema(),
             timeout=25,
-            temperature=0.2,
-            max_output_tokens=2048,
+            temperature=0.0,
+            max_output_tokens=4096,
         )
         validated = _validate_and_clamp_llm(raw_llm)
         if validated is None:

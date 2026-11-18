@@ -3,6 +3,7 @@ from __future__ import annotations
 
 from datetime import datetime, timezone
 import json
+import os
 from pathlib import Path
 from tempfile import TemporaryDirectory
 from unittest.mock import patch
@@ -272,3 +273,40 @@ def test_decision_brief_blocklist_and_provider_error_fallbacks():
             assert err_res.json()['executionTrace']['providerStatuses']['gemini'] == 'error'
         finally:
             storage.DB = original
+
+
+def test_gemini_generate_json_skips_thought_parts():
+    class FakeResp:
+        def __init__(self, payload: dict):
+            self._data = json.dumps(payload).encode('utf-8')
+        def read(self, _limit=None):
+            return self._data
+        def __enter__(self):
+            return self
+        def __exit__(self, *_args):
+            return False
+
+    fake_answer = {
+        'candidates': [
+            {
+                'finishReason': 'STOP',
+                'content': {
+                    'parts': [
+                        {'thought': True, 'text': 'internal reasoning not json'},
+                        {'text': '{"ok": true}'},
+                    ]
+                },
+            }
+        ]
+    }
+    old_key = os.environ.get('GEMINI_API_KEY')
+    os.environ['GEMINI_API_KEY'] = 'dummy-test-key'
+    try:
+        with patch.object(providers, 'urlopen', return_value=FakeResp(fake_answer)):
+            _model, parsed = providers.gemini_generate_json('prompt', {'type': 'OBJECT'})
+            assert parsed == {'ok': True}
+    finally:
+        if old_key is None:
+            os.environ.pop('GEMINI_API_KEY', None)
+        else:
+            os.environ['GEMINI_API_KEY'] = old_key

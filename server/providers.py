@@ -5,6 +5,7 @@ commercial geocoding/traffic feed. They do not provide live congestion data.
 """
 from __future__ import annotations
 import json
+import logging
 import os
 import threading
 import time
@@ -142,10 +143,16 @@ def gemini_generate_json(
     except (URLError, TimeoutError, ValueError) as exc:
         raise ProviderError(502, 'Gemini tidak dapat dihubungi atau respons tidak valid.') from exc
     try:
-        result = json.loads(answer['candidates'][0]['content']['parts'][0]['text'])
+        cand = answer['candidates'][0]
+        parts = cand['content']['parts']
+        text_parts = [p['text'] for p in parts if isinstance(p, dict) and isinstance(p.get('text'), str) and not p.get('thought')]
+        raw_text = text_parts[-1] if text_parts else parts[-1]['text']
+        result = json.loads(raw_text)
         if not isinstance(result, dict):
             raise ValueError('schema mismatch')
     except (IndexError, KeyError, ValueError, TypeError) as exc:
+        finish = answer.get('candidates', [{}])[0].get('finishReason') if isinstance(answer, dict) else None
+        logging.getLogger('uvicorn.error').warning('gemini_generate_json parse failed model=%s finishReason=%s err=%s', model, finish, type(exc).__name__)
         raise ProviderError(502, 'Output Gemini tidak sesuai skema yang diharapkan.') from exc
     return model, result
 
