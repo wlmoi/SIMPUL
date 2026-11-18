@@ -1,0 +1,3 @@
+inference 1 cycles=16951 stalls=7
+inference 2 cycles=16944 stalls=0
+PASS PicoRV32 two complete graphs, reset recovery, stalls, saturation, golden readback
