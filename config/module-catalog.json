@@ -219,17 +219,23 @@
     },
     {
       "id": "ai-insights",
-      "purpose": "Optional Gemini interpretation of aggregated observations, no autonomous intervention",
+      "purpose": "Coordinator Decision Brief & optional Gemini interpretation over aggregated deterministic guardrails, no autonomous intervention",
       "source": [
         "js/views/insights.js",
+        "js/decision-brief.js",
         "server/providers.py",
-        "server/extra_routes.py"
+        "server/extra_routes.py",
+        "server/decision_brief.py"
       ],
       "tests": [
-        "tests/test_api.py"
+        "tests/test_api.py",
+        "tests/test_decision_brief.mjs",
+        "tests/test_decision_brief_api.py"
       ],
       "interfaces": [
-        "/api/ai/insights"
+        "/api/ai/insights",
+        "/api/v1/cv-reviewed",
+        "/api/v1/ai/decision-brief"
       ],
       "status": "optional_credentials"
     },
@@ -416,6 +422,8 @@
       "interfaces": [
         "window.SIMPUL_CCTV.push(detail)",
         "window event 'simpul:detections'",
+        "getAiWindowSummary(zone)",
+        "resetAiWindow(zone)",
         "local video file (object URL, not uploaded)"
       ],
       "status": "synthetic_only"

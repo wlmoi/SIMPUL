@@ -19,6 +19,7 @@ from server.international import router as evidence_router
 from server.traffic_classification import router as classification_router
 from server.public_intelligence import router as public_intelligence_router
 from server.document_evidence import router as document_evidence_router
+from server.decision_brief import router as decision_brief_router
 
 API_ROUTERS: tuple[tuple[str, APIRouter], ...] = (
     ('simulation', simulation_router),
@@ -30,6 +31,7 @@ API_ROUTERS: tuple[tuple[str, APIRouter], ...] = (
     ('traffic_classification', classification_router),
     ('public_intelligence', public_intelligence_router),
     ('pdf_observations', document_evidence_router),
+    ('decision_brief', decision_brief_router),
 )
 
 def register_api_routers(app: FastAPI) -> None:

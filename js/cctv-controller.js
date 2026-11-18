@@ -20,9 +20,11 @@ const STALE_MS=1500;
 const ZONE_IDS=new Set(CCTV_ZONES.map(z=>z.id));
 const CLOCK_START={pagi:7*3600,siang:12*3600,sore:17*3600};
 const KIND_LABEL={ojol:'Ojol',pribadi:'Kendaraan pribadi',transjakarta:'Bus Transjakarta',umum:'Kendaraan umum'};
+const makeZoneBucket=()=>({startedAt:new Date().toISOString(),counts:{car:0,motorcycle:0,bus:0},dwellSum:0,dwellCount:0,overThresholdCount:0,countedIds:new Set()});
+const emptyAiWindows=()=>({byZone:Object.fromEntries(CCTV_ZONES.map(z=>[z.id,makeZoneBucket()]))});
 
 const rt={
-  mode:'idle', model:'', tracks:new Map(), seen:new Map(), logged:new Map(),
+  mode:'idle', model:'', tracks:new Map(), seen:new Map(), logged:new Map(), aiWindow:emptyAiWindows(),
   feed:[], dwells:[], frames:[], showZones:true, showLabels:true, stationOpacity:1,
   videoUrl:null, videoTime:0, raf:0, lastPanel:0, root:null, threshold:60, resume:false,
   sim:null, scene:null, cam:null, camAnim:null, preset:'drone', speed:1,
@@ -47,13 +49,24 @@ function pushFeed(kind,text){
 }
 function closeTrack(id,t){
   const log=rt.logged.get(id)||{};
+  if(rt.mode==='ai'&&t?.zone&&(Number(t.dwellSec)||0)>=STOP_LOG_SEC){
+    const bucket=rt.aiWindow?.byZone?.[t.zone];
+    if(bucket&&!bucket.countedIds.has(id)){
+      bucket.countedIds.add(id);
+      const cls=clsKey(t.cls),dwell=Number(t.dwellSec)||0;
+      bucket.counts[cls]=(bucket.counts[cls]||0)+1;
+      bucket.dwellSum+=dwell;
+      bucket.dwellCount+=1;
+      if(dwell>=rt.threshold)bucket.overThresholdCount+=1;
+    }
+  }
   if(t?.zone&&log.stop){rt.dwells.push(t.dwellSec||0);pushFeed('leave',`${clsLabel(t.cls)} meninggalkan ${t.zone} setelah ${fmtSec(t.dwellSec||0)}`);}
   rt.logged.delete(id);rt.tracks.delete(id);
 }
 export function ingestDetections(detail){
   if(!detail||!Array.isArray(detail.detections))return;
   const source=detail.source==='ai'?'ai':'demo';
-  if(source==='ai'&&rt.mode!=='ai'){rt.mode='ai';rt.tracks.clear();rt.logged.clear();pushFeed('info','Model AI terhubung'+(detail.model?` (${String(detail.model).slice(0,40)})`:''));}
+  if(source==='ai'&&rt.mode!=='ai'){rt.mode='ai';rt.tracks.clear();rt.logged.clear();rt.aiWindow=emptyAiWindows();pushFeed('info','Model AI terhubung'+(detail.model?` (${String(detail.model).slice(0,40)})`:''));}
   if(source==='demo'&&rt.mode==='ai')return;
   if(detail.model)rt.model=String(detail.model).slice(0,40);
   const now=performance.now();
@@ -92,8 +105,46 @@ function newSim(){
   resetDetections();
 }
 function resetDetections(){
-  rt.tracks.clear();rt.seen.clear();rt.logged.clear();rt.feed=[];rt.dwells=[];rt.frames=[];
+  rt.tracks.clear();rt.seen.clear();rt.logged.clear();rt.aiWindow=emptyAiWindows();rt.feed=[];rt.dwells=[];rt.frames=[];
   const layer=$('[data-cctv-overlay]');if(layer)layer.innerHTML='';
+}
+export function getAiWindowSummary(zone){
+  if(rt.mode!=='ai')return null;
+  const bucket=rt.aiWindow?.byZone?.[zone];
+  if(!bucket)return null;
+  const counts={car:bucket.counts.car||0,motorcycle:bucket.counts.motorcycle||0,bus:bucket.counts.bus||0};
+  let dwellSum=bucket.dwellSum,dwellCount=bucket.dwellCount,overThresholdCount=bucket.overThresholdCount;
+  for(const [id,t] of rt.tracks.entries()){
+    const dwell=Number(t.dwellSec)||0;
+    if(t.zone===zone&&dwell>=STOP_LOG_SEC&&!bucket.countedIds.has(id)){
+      const cls=clsKey(t.cls);
+      counts[cls]=(counts[cls]||0)+1;
+      dwellSum+=dwell;
+      dwellCount+=1;
+      if(dwell>=rt.threshold)overThresholdCount+=1;
+    }
+  }
+  const totalVehicles=counts.car+counts.motorcycle+counts.bus;
+  return {
+    zone,
+    windowStart:bucket.startedAt,
+    windowEnd:new Date().toISOString(),
+    vehicleCountsByClass:counts,
+    totalVehicles,
+    meanDwellSec:dwellCount?Math.round((dwellSum/dwellCount)*100)/100:0,
+    overThresholdCount
+  };
+}
+export function resetAiWindow(zone){
+  if(!rt.aiWindow?.byZone?.[zone])return;
+  const retained=new Set();
+  for(const [id,t] of rt.tracks.entries()){
+    if(t.zone===zone&&(Number(t.dwellSec)||0)>=STOP_LOG_SEC)retained.add(id);
+  }
+  const next=makeZoneBucket();
+  next.countedIds=retained;
+  rt.aiWindow.byZone[zone]=next;
+  drawPanels();
 }
 function ensureWorld(){
   if(!rt.scene)rt.scene=getFatmawatiScene();
@@ -255,6 +306,25 @@ function drawPanels(){
   if(camLabel){
     const text=rt.follow?['MENGIKUTI','kendaraan terpilih']:cam?[cam.label.toUpperCase(),cam.sub]:['BEBAS','kamera diputar'];
     if(camLabel.dataset.text!==text.join()){camLabel.dataset.text=text.join();camLabel.textContent='';const b=document.createElement('b');b.textContent=text[0];camLabel.append(b,` · ${text[1]}`);}
+  }
+  const cvBtn=root.querySelector('[data-action="cv-signoff-window"]');
+  const cvZoneEl=root.querySelector('[data-cv-zone]');
+  const cvStatusEl=root.querySelector('[data-cv-window-status]');
+  const cvPreviewEl=root.querySelector('[data-cv-preview]');
+  if(cvBtn&&cvZoneEl){
+    const zone=cvZoneEl.value||'Zona A';
+    const summary=getAiWindowSummary(zone);
+    const active=rt.mode==='ai'&&summary;
+    cvBtn.disabled=!(active&&summary.totalVehicles>0);
+    if(cvStatusEl){
+      const pill=cvStatusEl.querySelector('span');
+      if(pill){pill.textContent=active?'AI AKTIF':'PERLU MODEL AI';pill.className=`tag ${active?'green':'slate'}`;}
+    }
+    if(cvPreviewEl){
+      cvPreviewEl.textContent=active
+        ?`${zone}: ${summary.totalVehicles} kend. terhenti · rerata ${fmtSec(summary.meanDwellSec)} · ${summary.overThresholdCount} melewati ambang`
+        :'Hubungkan model AI terlebih dahulu untuk mencatat ringkasan jendela.';
+    }
   }
   drawInspect();
 }
@@ -461,6 +531,7 @@ export function activateCctv(root,{threshold=60}={}){
       resetDetections();pushFeed('info',`Video lokal dimuat: ${file.name.slice(0,48)}. Tekan Ulang untuk kembali ke 3D.`);
       attachVideo();
     }
+    else if(el.matches('[data-cv-zone]')){drawPanels();return;}
     syncControls();drawPanels();
   });
   bindViewerFullscreen(root.querySelector('[data-viewer]'));

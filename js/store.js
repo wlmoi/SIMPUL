@@ -30,7 +30,9 @@ function sanitize(saved) {
    monitorRemote:saved.monitorRemote??null,
    pdfEvidence:{...initial.pdfEvidence,...(saved.pdfEvidence||{}),items:Array.isArray(saved.pdfEvidence?.items)?saved.pdfEvidence.items.filter(x=>x?.source==='uploaded_pdf').slice(-200):[]},
    zonePins:saved.zonePins&&typeof saved.zonePins==='object'&&!Array.isArray(saved.zonePins)?saved.zonePins:{},
-   monitorAutoSync:saved.monitorAutoSync===true
+   monitorAutoSync:saved.monitorAutoSync===true,
+   decisionBrief:saved.decisionBrief&&typeof saved.decisionBrief==='object'&&!Array.isArray(saved.decisionBrief)?saved.decisionBrief:null,
+   cvReviewedSummaries:(()=>{const seen=new Map();for(const x of (Array.isArray(saved.cvReviewedSummaries)?saved.cvReviewedSummaries:[])){if(x&&x.mode==='ai'&&typeof x.windowId==='string'&&/^[a-zA-Z0-9_-]{3,80}$/.test(x.windowId)){seen.delete(x.windowId);seen.set(x.windowId,x);}}return [...seen.values()].slice(-200);})()
  };
 }
 export function readState(){try{return sanitize(JSON.parse(localStorage.getItem(KEY)));}catch{return initialData();}}

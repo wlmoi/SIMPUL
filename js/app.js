@@ -10,7 +10,7 @@ import { makeReport } from './views/reports.js';
 import { trafficReviewModal } from './views/classification.js';
 import { pageRenderers } from './page-registry.js';
 import {activateMapView} from './map-controller.js';
-import {activateCctv,deactivateCctv} from './cctv-controller.js';
+import {activateCctv,deactivateCctv,getAiWindowSummary,resetAiWindow} from './cctv-controller.js';
 import {activateHomeSim,deactivateHomeSim,controlHomeDemo} from './home-sim.js';
 import {toggleViewerFullscreen} from './viewer-controls.js';
 import {setSettingsTab} from './views/settings.js';
@@ -25,6 +25,7 @@ import {icon,safe,uid,nowIso,download} from './util.js';
 import {classifyTrafficEvent,classifyTrafficDataset,makePoliceReviewBundle,REVIEW_STATUS} from './classification.js';
 import {assessQuality,buildStandardsBundle,buildProjectGeoJSON,buildExecutiveBriefHTML} from './standards.js';
 import {heuristicSimulation} from './analytics.js';
+import {buildBriefEnvelope,buildDeterministicBrief,normalizeDecisionBrief} from './decision-brief.js';
 import {filterEvents} from './monitoring.js';
 import {comparePeriods,evidenceGate} from './diagnostics.js';
 import {getLanguage,setLanguage,labelForRoute,t} from './i18n.js';
@@ -198,7 +199,7 @@ async function connectedAction(action,el){
       const url=key==='weather'?'/api/context/weather?'+part:key==='nearby'?'/api/geo/nearby?'+part:'/api/traffic/live?'+part;
       toast(key==='weather'?'Mengambil data cuacaâ€¦':key==='nearby'?'Mencari fasilitas sekitarâ€¦':'Mengambil snapshot lalu lintasâ€¦');
       const result=await apiRequest(url,{timeout:30000});
-      updateState(s=>({...s,context:{...s.context,[key]:result}}));
+      updateState(s=>({...s,context:{...s.context,[key]:{...result,checkedAt:result?.checkedAt||nowIso()}}}));
       toast(key==='weather'?'Cuaca Open-Meteo berhasil dimuat':key==='nearby'?'Fasilitas dari Overpass berhasil dimuat':'Data TomTom berhasil dimuat');return;
     }
     if(action==='sync-observations'){
@@ -224,6 +225,61 @@ async function connectedAction(action,el){
       toast('Analisis Gemini diterima; tetap membutuhkan peninjauan manusia');return;
     }
   }catch(e){toast(e.message||'API gagal diproses');console.error('SIMPUL API',e)}
+}
+const ZONE_SLUGS={'Zona A':'zona-a','Zona B':'zona-b','Zona C':'zona-c','Area A1':'area-a1'};
+const compactUtc=iso=>String(iso||nowIso()).replace(/[^a-zA-Z0-9]/g,'').slice(0,18);
+async function signoffCvWindow(){
+  const zone=document.querySelector('[data-cv-zone]')?.value||'Zona A';
+  const period=document.querySelector('[data-cv-period]')?.value||'Jam sibuk';
+  const reviewerLabel=(document.querySelector('[data-cv-reviewer]')?.value||'').trim();
+  if(reviewerLabel.length<2)return toast('Isi nama atau inisial koordinator (minimal 2 karakter).');
+  const summary=getAiWindowSummary(zone);
+  if(!summary||summary.totalVehicles<=0)return toast('Belum ada kendaraan terhenti dalam jendela AI aktif untuk zona ini.');
+  const windowId=`cv-${ZONE_SLUGS[zone]||'zone'}-${period==='Jam sibuk'?'peak':'off'}-${compactUtc(summary.windowStart)}-${compactUtc(summary.windowEnd)}`.slice(0,80);
+  const payload={windowId,signedOffAt:nowIso(),windowStart:summary.windowStart,windowEnd:summary.windowEnd,reviewerLabel,zone,period,mode:'ai',vehicleCountsByClass:summary.vehicleCountsByClass,meanDwellSec:summary.meanDwellSec,overThresholdCount:summary.overThresholdCount};
+  updateState(s=>({...s,cvReviewedSummaries:[...(s.cvReviewedSummaries||[]).filter(x=>x.windowId!==windowId),{...payload,totalVehicles:summary.totalVehicles,synced:false}].slice(-200)}));
+  resetAiWindow(zone);
+  recordLocalActivity('cv.signoff',`Jendela AI ${zone} (${period}) ditandai untuk tinjauan brief`);
+  if(typeof location!=='undefined'&&location.protocol==='file:')return toast('Ringkasan jendela AI tersimpan di browser (mode offline)');
+  try{
+    const res=await apiRequest('/api/v1/cv-reviewed',{method:'POST',body:payload,timeout:15000});
+    if(res&&(res.status==='inserted'||res.status==='already_present'||res.windowId)){
+      updateState(s=>({...s,cvReviewedSummaries:(s.cvReviewedSummaries||[]).map(x=>x.windowId===windowId?{...x,synced:true}:x)}));
+      return toast('Ringkasan jendela AI tersimpan dan tersinkron ke server');
+    }
+  }catch(_){
+    toast('Ringkasan tersimpan lokal; sinkronisasi server akan disertakan pada brief berikutnya');
+  }
+}
+async function runDecisionBrief(){
+  const snap=getState();
+  const deterministic=buildDeterministicBrief(snap);
+  updateState(s=>({...s,decisionBrief:deterministic}));
+  if(typeof location!=='undefined'&&location.protocol==='file:')return toast('Decision Brief deterministik diperbarui (mode offline file://)');
+  try{
+    toast('Menyusun Decision Brief…');
+    const apiRes=await apiRequest('/api/v1/ai/decision-brief',{method:'POST',body:buildBriefEnvelope(snap),timeout:45000});
+    const normalized=normalizeDecisionBrief(apiRes,getState());
+    updateState(s=>({...s,decisionBrief:normalized}));
+    toast(normalized.llmStatus==='ok'?'Decision Brief + sintesis Gemini siap ditinjau':'Decision Brief deterministik siap (Gemini tidak aktif / fallback)');
+  }catch(e){
+    updateState(s=>({...s,decisionBrief:{...deterministic,llmStatus:'error',executionTrace:{...deterministic.executionTrace,providerStatuses:{...(deterministic.executionTrace?.providerStatuses||{}),gemini:'error'}}}}));
+    toast(`Decision Brief menggunakan fallback deterministik (${e.message||'server error'})`);
+  }
+}
+function loadBriefScenario(el){
+  const target=el.dataset.scenario;
+  if(!['A0','A1','A2'].includes(target))return;
+  const s=getState();
+  const activeBrief=s.decisionBrief||buildDeterministicBrief(s);
+  const item=(activeBrief.brief?.scenarioHypotheses||[]).find(h=>h.scenario===target);
+  if(!item||!item.params)return toast(`Hipotesis ${target} tidak tersedia pada brief saat ini.`);
+  updateState(st=>{
+    const nextScenario={...st.scenario,...item.params};
+    return {...st,scenario:nextScenario,comparisonScenario:target,lastAnalysis:heuristicSimulation(nextScenario)};
+  });
+  recordLocalActivity('brief.scenario',`Parameter hipotesis ${target} dimuat ke estimator heuristik`);
+  toast(`Parameter hipotesis ${target} dimuat ke estimator heuristik (belum terkalibrasi)`);
 }
 async function contextPlusAction(action,el){
   try{
@@ -409,6 +465,9 @@ case 'run-simulation':updateState(s=>({...s,lastAnalysis:heuristicSimulation(s.s
 case 'run-sumo':runSumo();break;
 case 'ctx-reverse':case 'ctx-crossings':case 'ctx-airquality':case 'ctx-forecast':case 'ctx-elevation':case 'ctx-history':case 'ctx-holidays':case 'ctx-isochrone':case 'ctx-select-poi':contextPlusAction(action,el);break;
 case 'check-apis':case 'select-geo':case 'load-map':case 'fetch-weather':case 'fetch-traffic':case 'fetch-nearby':case 'sync-observations':case 'pull-observations':case 'ai-insights':connectedAction(action,el);break;
+case 'cv-signoff-window':signoffCvWindow();break;
+case 'ai-decision-brief':runDecisionBrief();break;
+case 'load-brief-scenario':loadBriefScenario(el);break;
 case 'refresh-monitor':refreshMonitor();break;
 case 'export-monitor':monitorCsv();break;
 case 'flush-telemetry':flushTelemetry(false);break;

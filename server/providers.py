@@ -92,11 +92,65 @@ def nearby(lat:float,lon:float):
             'lat':point.get('lat'),'lon':point.get('lon')})
     return {'provider':'OpenStreetMap / Overpass','items':items,'count':len(items),'coverage':'Data komunitas; belum diverifikasi di lapangan.'}
 
+class ProviderError(Exception):
+    """Typed upstream provider error preserving HTTP status and safe message."""
+
+    def __init__(self, status_code: int, detail: str):
+        super().__init__(detail)
+        self.status_code = status_code
+        self.detail = detail
+
+
+def gemini_generate_json(
+    prompt: str,
+    schema: dict,
+    *,
+    timeout: int = 25,
+    temperature: float = 0.2,
+    max_output_tokens: int | None = 1400,
+) -> tuple[str, dict]:
+    """Call Gemini REST generateContent with structured JSON output and return (model, parsed_json)."""
+    key = os.getenv('GEMINI_API_KEY', '').strip()
+    if not key:
+        raise ProviderError(503, 'GEMINI_API_KEY belum dikonfigurasi di backend.')
+    model = os.getenv('GEMINI_MODEL', 'gemini-flash-lite-latest').strip()
+    if not all(c.isalnum() or c in '.-_' for c in model):
+        raise ProviderError(500, 'GEMINI_MODEL tidak valid.')
+    gen_config: dict = {
+        'responseMimeType': 'application/json',
+        'responseSchema': schema,
+        'temperature': temperature,
+    }
+    if max_output_tokens is not None:
+        gen_config['maxOutputTokens'] = max_output_tokens
+    body = {'contents': [{'parts': [{'text': prompt}]}], 'generationConfig': gen_config}
+    # Never send credential to browser. REST legacy endpoint remains supported.
+    url = GEMINI_ROOT + model + ':generateContent'
+    data = json.dumps(body).encode()
+    req = Request(
+        url,
+        data=data,
+        method='POST',
+        headers={'x-goog-api-key': key, 'Content-Type': 'application/json', 'User-Agent': USER_AGENT},
+    )
+    try:
+        with urlopen(req, timeout=timeout) as resp:
+            answer = json.loads(resp.read(600_000))
+    except HTTPError as exc:
+        code = 429 if exc.code == 429 else 502
+        raise ProviderError(code, f'Gemini gagal: HTTP {exc.code}. Periksa kredensial, kuota, dan nama model.') from exc
+    except (URLError, TimeoutError, ValueError) as exc:
+        raise ProviderError(502, 'Gemini tidak dapat dihubungi atau respons tidak valid.') from exc
+    try:
+        result = json.loads(answer['candidates'][0]['content']['parts'][0]['text'])
+        if not isinstance(result, dict):
+            raise ValueError('schema mismatch')
+    except (IndexError, KeyError, ValueError, TypeError) as exc:
+        raise ProviderError(502, 'Output Gemini tidak sesuai skema yang diharapkan.') from exc
+    return model, result
+
+
 def gemini_insights(aggregate:dict):
-    key=os.getenv('GEMINI_API_KEY','').strip()
-    if not key:raise HTTPException(503,'GEMINI_API_KEY belum dikonfigurasi di backend.')
-    model=os.getenv('GEMINI_MODEL','gemini-2.5-flash').strip()
-    if not all(c.isalnum() or c in '.-_' for c in model):raise HTTPException(500,'GEMINI_MODEL tidak valid.')
     schema={'type':'OBJECT','properties':{'summary':{'type':'STRING'},'findings':{'type':'ARRAY','items':{'type':'STRING'}},
       'limitations':{'type':'ARRAY','items':{'type':'STRING'}},'nextSteps':{'type':'ARRAY','items':{'type':'STRING'}}},
       'required':['summary','findings','limitations','nextSteps']}
@@ -105,21 +159,13 @@ def gemini_insights(aggregate:dict):
       'Ini adalah data manual, bukan hasil verifikasi. Berikan temuan ringkas dalam Bahasa Indonesia, '
       'cantumkan keterbatasan sampel dan usulan validasi. Tidak ada data identitas yang disediakan.\n'
       +json.dumps(aggregate,ensure_ascii=False))
-    body={'contents':[{'parts':[{'text':prompt}]}],
-      'generationConfig':{'responseMimeType':'application/json','responseSchema':schema,'temperature':0.2}}
-    # Never send credential to browser. REST legacy endpoint remains supported.
-    url=GEMINI_ROOT+model+':generateContent'
-    data=json.dumps(body).encode()
-    req=Request(url,data=data,method='POST',headers={'x-goog-api-key':key,'Content-Type':'application/json','User-Agent':USER_AGENT})
     try:
-        with urlopen(req,timeout=35) as resp: answer=json.loads(resp.read(600_000))
-    except HTTPError as exc:raise HTTPException(502,f'Gemini gagal: HTTP {exc.code}. Periksa kredensial, kuota, dan nama model.') from exc
-    except (URLError,TimeoutError,ValueError) as exc:raise HTTPException(502,'Gemini tidak dapat dihubungi atau respons tidak valid.') from exc
-    try:
-        result=json.loads(answer['candidates'][0]['content']['parts'][0]['text'])
-        if not all(isinstance(result.get(k),str if k=='summary' else list) for k in ('summary','findings','limitations','nextSteps')):
-            raise ValueError('schema mismatch')
-    except (IndexError,KeyError,ValueError,TypeError) as exc:raise HTTPException(502,'Output Gemini tidak sesuai skema yang diharapkan.') from exc
+        model, result = gemini_generate_json(prompt, schema, timeout=35, temperature=0.2, max_output_tokens=None)
+    except ProviderError as exc:
+        status = exc.status_code if exc.status_code in (500, 503) else 502
+        raise HTTPException(status, exc.detail) from exc
+    if not all(isinstance(result.get(k),str if k=='summary' else list) for k in ('summary','findings','limitations','nextSteps')):
+        raise HTTPException(502,'Output Gemini tidak sesuai skema yang diharapkan.')
     return {'provider':'Google Gemini','model':model,'verified':False,'dataType':'manual observation aggregates','result':result}
 
 def tomtom_flow(lat:float,lon:float):

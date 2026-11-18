@@ -47,6 +47,7 @@ app.mount('/assets',StaticFiles(directory=ROOT/'assets'),name='assets')
 app.mount('/js',StaticFiles(directory=ROOT/'js'),name='js')
 
 @app.get('/')
+@app.get('/index.html')
 def index():
     return FileResponse(ROOT/'index.html')
 

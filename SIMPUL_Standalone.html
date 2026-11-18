@@ -1051,7 +1051,9 @@ const initialData = () => ({
   equipmentPrices: { phone:0, tripod:220000, powerbank:350000, cloud:3500000, pi:1350000, camera:900000, router:550000, storage:450000 },
   lastAnalysis: null,
   aiInsights: null,
-  context: {query:'Stasiun MRT Fatmawati, Jakarta',results:[],nearby:null,weather:null},
+  decisionBrief: null,
+  cvReviewedSummaries: [],
+  context: {query:'Stasiun MRT Fatmawati, Jakarta',results:[],nearby:null,weather:null,traffic:null},
   osintLookup: null,
   contextPlus: {historyDay:'2026-10-20',year:2026,destination:null},
   integrationStatus: null,
@@ -1127,7 +1129,9 @@ function sanitize(saved) {
    monitorRemote:saved.monitorRemote??null,
    pdfEvidence:{...initial.pdfEvidence,...(saved.pdfEvidence||{}),items:Array.isArray(saved.pdfEvidence?.items)?saved.pdfEvidence.items.filter(x=>x?.source==='uploaded_pdf').slice(-200):[]},
    zonePins:saved.zonePins&&typeof saved.zonePins==='object'&&!Array.isArray(saved.zonePins)?saved.zonePins:{},
-   monitorAutoSync:saved.monitorAutoSync===true
+   monitorAutoSync:saved.monitorAutoSync===true,
+   decisionBrief:saved.decisionBrief&&typeof saved.decisionBrief==='object'&&!Array.isArray(saved.decisionBrief)?saved.decisionBrief:null,
+   cvReviewedSummaries:(()=>{const seen=new Map();for(const x of (Array.isArray(saved.cvReviewedSummaries)?saved.cvReviewedSummaries:[])){if(x&&x.mode==='ai'&&typeof x.windowId==='string'&&/^[a-zA-Z0-9_-]{3,80}$/.test(x.windowId)){seen.delete(x.windowId);seen.set(x.windowId,x);}}return [...seen.values()].slice(-200);})()
  };
 }
 function readState(){try{return sanitize(JSON.parse(localStorage.getItem(KEY)));}catch{return initialData();}}
@@ -3511,6 +3515,17 @@ function renderCctv(){
         <div class="cctv-panel-head"><h2>Aktivitas terbaru</h2><small data-feed-count>0 kejadian</small></div>
         <ol class="cctv-feed" data-cctv-feed><li class="cctv-feed-empty">Belum ada kejadian.</li></ol>
       </section>
+      <section class="cctv-panel" data-cv-panel>
+        <div class="cctv-panel-head"><h2>Ringkasan Jendela AI</h2><span data-cv-window-status>${tag('PERLU MODEL AI','slate')}</span></div>
+        <p class="muted" style="font-size:12px;margin:0 0 10px">Catat agregat zona dari deteksi AI aktif untuk bahan <em>Decision Brief</em> (tanpa ID pelacakan, plat nomor, atau wajah).</p>
+        <div style="display:grid;gap:8px;margin-bottom:10px">
+          <label style="font-size:12px;display:grid;gap:4px">Zona pencatatan<select data-cv-zone>${CCTV_ZONES.map(z=>`<option value="${z.id}">${z.id}</option>`).join('')}</select></label>
+          <label style="font-size:12px;display:grid;gap:4px">Periode<select data-cv-period><option value="Jam sibuk">Jam sibuk</option><option value="Luar jam sibuk">Luar jam sibuk</option></select></label>
+          <label style="font-size:12px;display:grid;gap:4px">Koordinator<input type="text" data-cv-reviewer placeholder="Nama / inisial koordinator" maxlength="60" autocomplete="off"></label>
+        </div>
+        <div data-cv-preview style="font-size:12px;margin-bottom:10px;color:#475569">Hubungkan model AI terlebih dahulu untuk mencatat ringkasan jendela.</div>
+        <button type="button" class="btn primary" data-action="cv-signoff-window" disabled>${icon('clipboard-check',16)} Catat ringkasan ke cv_reviewed</button>
+      </section>
       <div class="cctv-next">
         <button type="button" class="btn primary" data-route="vehicles">Analisis masalah ${icon('arrow-right',16)}</button>
         <button type="button" class="btn" data-route="simulation">Simulasi rinci ${icon('arrow-right',16)}</button>
@@ -3908,11 +3923,475 @@ ${note(`<strong>${results.engine==='sumo'?'Keluaran SUMO demonstrasi':'Estimasi 
 <div class="section-h"><h2>Interpretasi dan keputusan</h2></div><div class="grid-halves"><section class="card"><div class="mini-kicker">HASIL PEMERINGKATAN ILUSTRATIF</div><h2 style="font-size:21px;margin:8px 0;color:#19385c">${best.id} - ${names[best.id]}</h2><p class="helper">Mendapat skor berbobot terkecil berdasarkan tundaan (60%), antrean (25%), dan jarak akses (15%) dalam model demo. Bukan rekomendasi operasional yang disetujui.</p><div class="callout warning"><strong>Keputusan tetap memerlukan verifikasi</strong>Periksa geometri, permintaan kendaraan, variasi seed, keselamatan pedestrian, dan keakuratan data sebelum menyarankan perubahan nyata.</div></section><section class="card">${cardHeading('Keterlacakan model')}<div class="result-pill"><span>Jenis keluaran</span><strong>${results.engine==='sumo'?'SUMO synthetic network':'Heuristik ilustratif'}</strong></div><div class="result-pill"><span>Kalibrasi Fatmawati</span><strong>Belum dilakukan</strong></div><div class="result-pill"><span>Sumber data pengamatan</span><strong>Sintetis + manual</strong></div><div class="result-pill"><span>Status validasi</span><strong>Belum tervalidasi</strong></div>${button(`${icon('arrow-right')} Buka temuan & keputusan`,'goto-insights','')}</section></div>`}
 
 
+// SOURCE MODULE: js/decision-brief.js
+/**
+ * Pure deterministic Coordinator Decision Brief composer and Context Envelope builder.
+ * Zero DOM or network side effects; compatible with tools/build_standalone.py static bundling.
+ */
+
+
+
+
+
+const DB_ZONES = Object.freeze(['Zona A', 'Zona B', 'Zona C']);
+const DB_TYPES = Object.freeze(['Jemput', 'Turun', 'Menunggu']);
+const DB_TTL_MS = 15 * 60 * 1000;
+const DB_SCENARIO_BOUNDS = Object.freeze({
+  traffic: [200, 1500, true],
+  pickupShare: [0, 45, false],
+  dwell: [5, 180, false],
+  diversion: [0, 100, false],
+  ruleDwell: [5, 120, false],
+  pedestrianDetour: [0, 500, false]
+});
+
+const dbClamp = (val, lo, hi, isInt = false) => {
+  const n = Number(val);
+  if (!Number.isFinite(n)) return isInt ? Math.round(lo) : lo;
+  const clamped = Math.max(lo, Math.min(hi, n));
+  return isInt ? Math.round(clamped) : Number(clamped.toFixed(2));
+};
+
+const dbContextFreshness = (checkedAt, {hasGeo = true, geoBound = false} = {}) => {
+  if (geoBound && !hasGeo) return 'project_geo_unset';
+  if (!checkedAt || typeof checkedAt !== 'string') return 'unavailable';
+  const ms = Date.parse(checkedAt);
+  if (!Number.isFinite(ms)) return 'stale';
+  return (Date.now() - ms) <= DB_TTL_MS ? 'fresh' : 'stale';
+};
+
+const dbClampScenario = (scenario = {}) => {
+  const out = {};
+  let clamped = false;
+  for (const [k, [lo, hi, isInt]] of Object.entries(DB_SCENARIO_BOUNDS)) {
+    const raw = Number(scenario?.[k]);
+    if (!Number.isFinite(raw)) continue;
+    const val = dbClamp(raw, lo, hi, isInt);
+    if (val !== raw) clamped = true;
+    out[k] = val;
+  }
+  return {scenario: out, scenarioClamped: clamped};
+};
+
+const dbStripCvWindow = w => ({
+  windowId: String(w.windowId),
+  signedOffAt: String(w.signedOffAt || w.signedAt || new Date().toISOString()),
+  windowStart: String(w.windowStart),
+  windowEnd: String(w.windowEnd),
+  reviewerLabel: String(w.reviewerLabel || 'Koordinator').trim().slice(0, 60),
+  zone: w.zone,
+  period: w.period,
+  mode: 'ai',
+  vehicleCountsByClass: {
+    car: Math.max(0, Math.min(10000, Number(w.vehicleCountsByClass?.car) || 0)),
+    motorcycle: Math.max(0, Math.min(10000, Number(w.vehicleCountsByClass?.motorcycle) || 0)),
+    bus: Math.max(0, Math.min(10000, Number(w.vehicleCountsByClass?.bus) || 0))
+  },
+  meanDwellSec: Math.max(0, Math.min(3600, Number(w.meanDwellSec) || 0)),
+  overThresholdCount: Math.max(0, Math.min(10000, Number(w.overThresholdCount) || 0))
+});
+
+const dbComputeBayUtilization = windows => {
+  const bay = windows.filter(w => w.zone === 'Area A1');
+  const totalVehicles = bay.reduce((s, w) => s + (w.vehicleCountsByClass.car + w.vehicleCountsByClass.motorcycle + w.vehicleCountsByClass.bus), 0);
+  const overThresholdCount = bay.reduce((s, w) => s + w.overThresholdCount, 0);
+  const weightedSum = bay.reduce((s, w) => {
+    const v = w.vehicleCountsByClass.car + w.vehicleCountsByClass.motorcycle + w.vehicleCountsByClass.bus;
+    return s + (w.meanDwellSec * v);
+  }, 0);
+  return {
+    windows: bay.length,
+    totalVehicles,
+    meanDwellSec: totalVehicles > 0 ? Number((weightedSum / totalVehicles).toFixed(2)) : null,
+    overThresholdCount
+  };
+};
+
+const dbProjectGeo = geo => {
+  const lat = Number(geo?.lat), lon = Number(geo?.lon);
+  if (!geo || !Number.isFinite(lat) || !Number.isFinite(lon) || Math.abs(lat) > 90 || Math.abs(lon) > 180) return null;
+  return {lat, lon};
+};
+
+const dbProjectContext = state => {
+  const projectGeo = dbProjectGeo(state?.project?.geo);
+  const ctx = state?.context || {};
+  const weather = ctx.weather ? {
+    checkedAt: typeof ctx.weather.checkedAt === 'string' ? ctx.weather.checkedAt : null,
+    rain: Number.isFinite(Number(ctx.weather.rain)) ? Number(ctx.weather.rain) : null,
+    weatherCode: Number.isFinite(Number(ctx.weather.weatherCode)) ? Math.round(Number(ctx.weather.weatherCode)) : null
+  } : null;
+  const trafficTs = ctx.traffic?.checkedAt || ctx.traffic?.retrievedAtUtc || null;
+  const traffic = ctx.traffic ? {
+    checkedAt: typeof trafficTs === 'string' ? trafficTs : null,
+    speedRatio: Number.isFinite(Number(ctx.traffic.speedRatio)) ? Number(ctx.traffic.speedRatio) : null
+  } : null;
+  const nearby = ctx.nearby ? {
+    checkedAt: typeof ctx.nearby.checkedAt === 'string' ? ctx.nearby.checkedAt : null,
+    count: Number.isFinite(Number(ctx.nearby.count)) ? Math.max(0, Math.round(Number(ctx.nearby.count))) : null
+  } : null;
+  return {projectGeo, weather, traffic, nearby};
+};
+
+function dbBuildDeterministicCore(state) {
+  const threshold = Math.max(5, Math.min(600, Number(state?.fieldSettings?.dwellThresholdSec) || 60));
+  const vSummary = vehicleProblemSummary(state?.observations || [], {source: 'manual'}, threshold);
+  const cov = surveyCoverage(state || {});
+  const diag = diagnose(state?.fieldReadings || [], state?.observations || [], state?.fieldSettings || {});
+  const gate = evidenceGate(state?.fieldReadings || [], state?.sessions || [], state?.observations || []);
+  const quality = assessQuality(state || {});
+  const cachedContext = dbProjectContext(state);
+
+  const byType = Object.fromEntries(DB_TYPES.map(t => [t, vSummary.counts[t] || 0]));
+  const byZone = Object.fromEntries(DB_ZONES.map(z => [z, vSummary.filtered.filter(e => e.zone === z).length]));
+  const manualSummary = {
+    syntheticExcluded: true,
+    totalEvents: vSummary.filtered.length,
+    byType,
+    byZone,
+    meanDwellSec: vSummary.avgDwell,
+    overThresholdCount: vSummary.overThreshold,
+    impacts: {
+      laneYes: vSummary.impacts.lane.yes,
+      laneUnknown: vSummary.impacts.lane.unknown,
+      pedYes: vSummary.impacts.pedestrian.yes,
+      pedUnknown: vSummary.impacts.pedestrian.unknown,
+      queueYes: vSummary.impacts.queue.yes
+    }
+  };
+
+  const missingSlots = cov.slots
+    .filter(s => s.completed < s.target)
+    .map(s => ({zone: s.zone, period: s.period, completed: s.completed, target: s.target}));
+  const surveySummary = {
+    completedSlots: cov.completed,
+    targetSlots: cov.target,
+    baselineIntervals: gate.baselineCount,
+    followupIntervals: gate.followupCount,
+    missingSlots
+  };
+
+  const recentCvRaw = (state?.cvReviewedSummaries || [])
+    .filter(w => w && w.mode === 'ai' && typeof w.windowId === 'string')
+    .slice(-50);
+  const cvClean = recentCvRaw.map(dbStripCvWindow);
+  const bayUtilization = dbComputeBayUtilization(cvClean);
+
+  const weatherStatus = dbContextFreshness(cachedContext.weather?.checkedAt, {hasGeo: Boolean(cachedContext.projectGeo), geoBound: true});
+  const trafficStatus = dbContextFreshness(cachedContext.traffic?.checkedAt, {hasGeo: Boolean(cachedContext.projectGeo), geoBound: true});
+  const nearbyStatus = dbContextFreshness(cachedContext.nearby?.checkedAt, {hasGeo: true, geoBound: false});
+
+  const flags = [];
+  const checklist = [];
+
+  for (const slot of missingSlots.slice(0, 6)) {
+    flags.push({
+      code: 'COVERAGE_GAP',
+      zone: slot.zone,
+      period: slot.period,
+      reason: `Slot survei ${slot.zone} (${slot.period}) baru ${slot.completed}/${slot.target} sesi terverifikasi internal.`,
+      evidenceLabel: 'requires_field_verification',
+      sourceTiersUsed: ['tier_1_manual'],
+      tier3ContextRefs: []
+    });
+    checklist.push({
+      zone: slot.zone,
+      period: slot.period,
+      question: `Lakukan observasi manual 30–60 menit di ${slot.zone} (${slot.period}) dan catat durasi berhenti serta hambatan lajur.`,
+      evidenceLabel: 'requires_field_verification'
+    });
+  }
+
+  if (gate.baselineCount === 0) {
+    flags.push({
+      code: 'COVERAGE_GAP',
+      zone: 'Corridor',
+      period: 'All',
+      reason: 'Belum ada interval pengukuran baseline (fieldReadings) untuk kalibrasi volume dan antrean.',
+      evidenceLabel: 'requires_field_verification',
+      sourceTiersUsed: ['tier_1_manual'],
+      tier3ContextRefs: []
+    });
+  }
+
+  const zonaBOver = vSummary.filtered.filter(e => e.zone === 'Zona B' && Number(e.duration) > threshold).length
+    + cvClean.filter(w => w.zone === 'Zona B').reduce((s, w) => s + w.overThresholdCount, 0);
+  if (bayUtilization.totalVehicles === 0 && zonaBOver >= 3) {
+    flags.push({
+      code: 'BAY_CURB_BLIND_SPOT',
+      zone: 'Area A1',
+      period: 'All',
+      reason: `Area A1 tercatat 0 kendaraan sementara Zona B mencatat ${zonaBOver} kejadian melebihi ${threshold} detik.`,
+      evidenceLabel: 'requires_field_verification',
+      sourceTiersUsed: cvClean.length ? ['tier_1_manual', 'tier_2_cv_reviewed'] : ['tier_1_manual'],
+      tier3ContextRefs: []
+    });
+    checklist.push({
+      zone: 'Area A1',
+      period: 'Jam sibuk',
+      question: 'Periksa apakah akses masuk ke Area A1 terbuka dan terlihat jelas bagi pengemudi di Zona B.',
+      evidenceLabel: 'requires_field_verification'
+    });
+  }
+
+  for (const w of cvClean) {
+    if (DB_ZONES.includes(w.zone) && w.overThresholdCount >= 3) {
+      const slotRow = cov.rows.filter(r => r.accepted && r.session.zone === w.zone && r.session.period === w.period);
+      if (slotRow.length === 0) {
+        flags.push({
+          code: 'BAY_CURB_BLIND_SPOT',
+          zone: w.zone,
+          period: w.period,
+          reason: `Ringkasan CV terverifikasi mencatat ${w.overThresholdCount} henti > ${threshold} detik di ${w.zone} (${w.period}) saat 0 sesi manual disetujui.`,
+          evidenceLabel: 'requires_field_verification',
+          sourceTiersUsed: ['tier_2_cv_reviewed'],
+          tier3ContextRefs: []
+        });
+      }
+    }
+  }
+
+  const unknownRatio = manualSummary.totalEvents > 0 ? manualSummary.impacts.laneUnknown / manualSummary.totalEvents : 0;
+  const freshSlowTraffic = trafficStatus === 'fresh' && cachedContext.traffic?.speedRatio !== null && cachedContext.traffic.speedRatio < 0.6;
+  const freshRain = weatherStatus === 'fresh' && ((cachedContext.weather?.rain ?? 0) > 0 || (cachedContext.weather?.weatherCode ?? 0) >= 51);
+  if ((freshSlowTraffic || freshRain) && manualSummary.totalEvents > 0 && manualSummary.impacts.laneYes === 0 && unknownRatio > 0.5) {
+    const refs = [];
+    if (freshSlowTraffic) refs.push(`tomtom:speedRatio=${cachedContext.traffic.speedRatio}`);
+    if (freshRain) refs.push(`open-meteo:rain=${cachedContext.weather.rain ?? 0}`);
+    flags.push({
+      code: 'CONTEXT_CURB_MISMATCH',
+      zone: 'Corridor',
+      period: 'All',
+      reason: `Konteks eksternal menunjukkan perlambatan/hujan namun catatan hambatan lajur manual didominasi status 'unknown' (${Math.round(unknownRatio * 100)}%).`,
+      evidenceLabel: 'contextual_signal_only',
+      sourceTiersUsed: ['tier_1_manual', 'tier_3_contextual_unverified'],
+      tier3ContextRefs: refs
+    });
+  }
+
+  for (const w of diag.warnings.slice(0, 3)) {
+    if (w.kind === 'observed') {
+      flags.push({
+        code: 'DIAGNOSTIC_WARNING',
+        zone: 'Corridor',
+        period: 'All',
+        reason: String(w.title).slice(0, 300),
+        evidenceLabel: 'requires_field_verification',
+        sourceTiersUsed: ['tier_1_manual'],
+        tier3ContextRefs: []
+      });
+    }
+  }
+
+  const baseS = state?.scenario || {};
+  const clampedSnap = dbClampScenario(baseS);
+  const a0Params = {
+    traffic: dbClamp(baseS.traffic ?? 850, 200, 1500, true),
+    pickupShare: dbClamp(baseS.pickupShare ?? 18, 0, 45, false),
+    dwell: dbClamp(manualSummary.meanDwellSec ?? baseS.dwell ?? 55, 5, 180, false)
+  };
+  const hypotheses = [{
+    scenario: 'A0',
+    title: 'Baseline kondisi lapangan saat ini (A0)',
+    rationale: `Menggunakan rerata durasi henti manual ${a0Params.dwell} detik sebagai pembanding awal sebelum penataan.`,
+    params: a0Params,
+    label: 'synthetic_hypothesis_uncalibrated'
+  }];
+
+  if (bayUtilization.totalVehicles === 0 || zonaBOver >= 3 || manualSummary.byType.Menunggu >= 1) {
+    hypotheses.push({
+      scenario: 'A1',
+      title: 'Uji pengalihan jemput ke teluk Area A1 (A1)',
+      rationale: 'Menguji sensitivitas pengalihan arus jemput dari tepi jalan Zona B ke Area A1.',
+      params: {
+        ...a0Params,
+        diversion: dbClamp(Math.max(60, Number(baseS.diversion ?? 75)), 0, 100, false)
+      },
+      label: 'synthetic_hypothesis_uncalibrated'
+    });
+  }
+  if (manualSummary.byType.Menunggu > 0 || manualSummary.overThresholdCount > 0) {
+    hypotheses.push({
+      scenario: 'A2',
+      title: 'Uji batas durasi henti dan detour pejalan (A2)',
+      rationale: `Menguji aturan batas henti lebih singkat saat tercatat ${manualSummary.byType.Menunggu} kejadian Menunggu.`,
+      params: {
+        ...a0Params,
+        ruleDwell: dbClamp(Math.round(threshold / 2), 5, 120, false),
+        pedestrianDetour: dbClamp(baseS.pedestrianDetour ?? 100, 0, 500, false)
+      },
+      label: 'synthetic_hypothesis_uncalibrated'
+    });
+  }
+
+  if (!checklist.length) {
+    checklist.push({
+      zone: 'Zona B',
+      period: 'Jam sibuk',
+      question: 'Verifikasi kesesuaian durasi henti aktual dan posisi kendaraan terhadap akses masuk stasiun.',
+      evidenceLabel: 'requires_field_verification'
+    });
+  }
+
+  const preflightBrief = {
+    contradictionsAndGaps: flags.slice(0, 40),
+    scenarioHypotheses: hypotheses.slice(0, 6),
+    inspectionChecklist: checklist.slice(0, 30),
+    diagnosticWarningsCount: diag.warnings.length,
+    qualityStatus: quality.status === 'not_ready' ? 'not_ready' : 'exploratory_only'
+  };
+
+  return {
+    manualSummary,
+    surveyCoverage: surveySummary,
+    preflightBrief,
+    recentCvRaw,
+    cvClean,
+    bayUtilization,
+    cachedContext,
+    clampedSnap,
+    weatherStatus,
+    trafficStatus,
+    nearbyStatus
+  };
+}
+
+function buildBriefEnvelope(state) {
+  const core = dbBuildDeterministicCore(state);
+  const cvReviewedIds = core.recentCvRaw.map(w => w.windowId);
+  const cvReviewedWindows = core.recentCvRaw
+    .filter(w => !w.synced)
+    .map(dbStripCvWindow);
+  return {
+    manualSummary: core.manualSummary,
+    surveyCoverage: core.surveyCoverage,
+    preflightBrief: core.preflightBrief,
+    cvReviewedIds,
+    cvReviewedWindows,
+    cachedContext: core.cachedContext,
+    simulationSnapshot: {
+      engine: state?.lastAnalysis?.engine === 'sumo' || state?.lastAnalysis?.engine === 'heuristic' ? state.lastAnalysis.engine : null,
+      scenario: core.clampedSnap.scenario,
+      scenarioClamped: core.clampedSnap.scenarioClamped
+    },
+    includeLocalPdf: true
+  };
+}
+
+function buildDeterministicBrief(state) {
+  const t0 = typeof performance !== 'undefined' ? performance.now() : Date.now();
+  const core = dbBuildDeterministicCore(state);
+  const t1 = typeof performance !== 'undefined' ? performance.now() : Date.now();
+  const preflightFlags = [...new Set(core.preflightBrief.contradictionsAndGaps.map(f => f.code))];
+  return {
+    brief: {
+      contradictionsAndGaps: core.preflightBrief.contradictionsAndGaps,
+      scenarioHypotheses: core.preflightBrief.scenarioHypotheses,
+      inspectionChecklist: core.preflightBrief.inspectionChecklist,
+      legalConclusion: 'NOT_DETERMINED',
+      bayUtilization: core.bayUtilization
+    },
+    llmStatus: 'unavailable',
+    llmModel: null,
+    pdfSummary: {available: false, totalRecords: 0, byZonePeriod: {}},
+    executionTrace: {
+      runId: 'local-deterministic',
+      promptVersion: 'decision-brief-v1',
+      tierCounts: {
+        manualEvents: core.manualSummary.totalEvents,
+        cvReviewedWindows: core.cvClean.length,
+        pdfRecords: 0
+      },
+      providerStatuses: {
+        gemini: 'unavailable',
+        weather: core.weatherStatus,
+        traffic: core.trafficStatus,
+        nearby: core.nearbyStatus,
+        pdf: 'unavailable'
+      },
+      preflightFlags,
+      clampedFields: [],
+      llmStatus: 'unavailable',
+      validatorPassed: true,
+      durationMs: Math.max(0, Math.round(t1 - t0))
+    }
+  };
+}
+
+function normalizeDecisionBrief(apiResponse, state) {
+  const fallback = buildDeterministicBrief(state);
+  if (!apiResponse || typeof apiResponse !== 'object') return fallback;
+  const brief = apiResponse.brief && typeof apiResponse.brief === 'object' ? apiResponse.brief : {};
+  return {
+    brief: {
+      contradictionsAndGaps: Array.isArray(brief.contradictionsAndGaps) ? brief.contradictionsAndGaps : fallback.brief.contradictionsAndGaps,
+      scenarioHypotheses: Array.isArray(brief.scenarioHypotheses) ? brief.scenarioHypotheses : fallback.brief.scenarioHypotheses,
+      inspectionChecklist: Array.isArray(brief.inspectionChecklist) ? brief.inspectionChecklist : fallback.brief.inspectionChecklist,
+      legalConclusion: 'NOT_DETERMINED',
+      bayUtilization: brief.bayUtilization && typeof brief.bayUtilization === 'object' ? brief.bayUtilization : fallback.brief.bayUtilization
+    },
+    llmStatus: apiResponse.llmStatus || 'unavailable',
+    llmModel: apiResponse.llmModel ?? null,
+    pdfSummary: apiResponse.pdfSummary || fallback.pdfSummary,
+    executionTrace: apiResponse.executionTrace || fallback.executionTrace
+  };
+}
+
+
 // SOURCE MODULE: js/views/insights.js
 
+function renderBriefStatusBanner(res,offlineFile){
+  const st=offlineFile?'unavailable':(res.llmStatus||'unavailable');
+  if(st==='ok')return tag(`Synthesis + Deterministic Guardrails (${safe(res.llmModel||'Gemini')})`,'green');
+  if(st==='validation_failed'||st==='error')return tag('Deterministic Fallback (LLM validation failed / error)','red');
+  return tag('Offline / Deterministic Only (LLM unavailable)','gold');
+}
+function formatParamsSummary(p={}){
+  return Object.entries(p).map(([k,v])=>`${safe(k)}=${safe(String(v))}`).join(' · ');
+}
+function renderDecisionBriefCard(s){
+  const offlineFile=typeof location!=='undefined'&&location.protocol==='file:';
+  const briefRes=s.decisionBrief||(offlineFile?buildDeterministicBrief(s):null);
+  const cvCount=Array.isArray(s.cvReviewedSummaries)?s.cvReviewedSummaries.length:0;
+  if(!briefRes){
+    return `<section class="card" style="margin-bottom:17px">${cardHeading('Coordinator Decision Brief','Ringkasan terpadu lintas bukti manual, jendela CV bertanda koordinator, PDF, dan konteks',tag('SIAP DISUSUN','slate'))}
+    <p class="muted" style="font-size:12px;margin:0 0 12px">Menjalankan <em>Deterministic Pre-Flight Gate</em> secara lokal terlebih dahulu, lalu menggabungkan sintesis terikat batas skenario (${cvCount} jendela AI tercatat). Tanpa catatan bebas atau identitas pribadi.</p>
+    <div class="form-actions">${button(`${icon('sparkles')} Susun Decision Brief Terpadu`,'ai-decision-brief','primary')}</div></section>`;
+  }
+  const b=briefRes.brief||{};
+  const gaps=Array.isArray(b.contradictionsAndGaps)?b.contradictionsAndGaps:[];
+  const hyps=Array.isArray(b.scenarioHypotheses)?b.scenarioHypotheses:[];
+  const checks=Array.isArray(b.inspectionChecklist)?b.inspectionChecklist:[];
+  const bay=b.bayUtilization;
+  const trace=briefRes.executionTrace||{};
+  const pdf=briefRes.pdfSummary||{available:false,totalRecords:0,byZonePeriod:{}};
+  const prov=trace.providerStatuses||{};
+  return `<section class="card" style="margin-bottom:17px">${cardHeading('Coordinator Decision Brief','Pre-flight deterministik + sintesis terbatas dengan audit trace',renderBriefStatusBanner(briefRes,offlineFile))}
+  <div style="display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-bottom:12px">
+    ${tag(`legalConclusion: ${safe(b.legalConclusion||'NOT_DETERMINED')}`,'slate')}
+    ${tag(`CV windows: ${cvCount}`,'blue')}
+    ${bay?tag(`Area A1 bay: ${safe(String(bay.totalVehicles||0))} kend · ${num(bay.meanDwellSec||0)} dtk`,'slate'):''}
+  </div>
+  <div class="form-actions" style="margin-bottom:14px">${button(`${icon('sparkles')} Perbarui Decision Brief`,'ai-decision-brief','primary')}</div>
+  <div class="cards three" style="margin-bottom:14px">
+    <div class="card" style="min-width:0;overflow-wrap:anywhere"><strong>Contradictions &amp; Gaps (${gaps.length})</strong>${gaps.length?`<ul style="padding-left:18px;margin:8px 0 0">${gaps.map(g=>`<li style="margin-bottom:8px"><strong>${safe(g.code)}</strong> · ${safe(g.zone)} / ${safe(g.period)} <small>(${safe(g.evidenceLabel)})</small><br><small>${safe(g.reason)}</small></li>`).join('')}</ul>`:'<p class="muted">Tidak ada celah atau kontradiksi kritis pada jendela saat ini.</p>'}</div>
+    <div class="card" style="min-width:0;overflow-wrap:anywhere"><strong>Scenario Hypotheses (${hyps.length})</strong>${hyps.length?`<ul style="padding-left:18px;margin:8px 0 0">${hyps.map(h=>`<li style="margin-bottom:10px"><strong>${safe(h.scenario)} · ${safe(h.title)}</strong><div><small>${safe(h.label||'synthetic_hypothesis_uncalibrated')}</small></div><p style="margin:4px 0">${safe(h.rationale)}</p><div><small>${formatParamsSummary(h.params)}</small></div><div style="margin-top:6px"><button type="button" class="btn" data-action="load-brief-scenario" data-scenario="${safe(h.scenario)}">Muat ${safe(h.scenario)} ke Simulator Heuristik</button></div></li>`).join('')}</ul>`:'<p class="muted">Belum ada hipotesis skenario.</p>'}</div>
+    <div class="card" style="min-width:0;overflow-wrap:anywhere"><strong>Inspection Checklist (${checks.length})</strong>${checks.length?`<ol style="padding-left:18px;margin:8px 0 0">${checks.map(c=>`<li style="margin-bottom:8px"><strong>${safe(c.question)}</strong><br><small>${safe(c.zone)} · ${safe(c.period)} · ${safe(c.evidenceLabel)}</small></li>`).join('')}</ol>`:'<p class="muted">Belum ada daftar periksa.</p>'}</div>
+  </div>
+  <details><summary>Execution Trace (${safe(trace.runId||'local-deterministic')})</summary>
+    <ul style="margin-top:8px">
+      <li>Prompt: <code>${safe(trace.promptVersion||'decision-brief-v1')}</code> · Validator passed: <strong>${trace.validatorPassed?'true':'false'}</strong></li>
+      <li>Pre-flight flags: ${(trace.preflightFlags||[]).length?trace.preflightFlags.map(f=>safe(f)).join(', '):'none'}</li>
+      <li>Clamped fields: ${(trace.clampedFields||[]).length?trace.clampedFields.map(f=>safe(f)).join(', '):'none'}</li>
+      <li>PDF context records: ${safe(String(pdf.totalRecords||0))} (${pdf.available?'indexed':'unavailable'})</li>
+      <li>Providers: gemini=${safe(prov.gemini||'unavailable')} · pdf=${safe(prov.pdf||'unavailable')} · weather=${safe(prov.weather||'unavailable')} · traffic=${safe(prov.traffic||'unavailable')}</li>
+    </ul>
+  </details></section>`;
+}
 function renderInsights(){const s=getState(),o=observationStats(s.observations),r=s.lastAnalysis||heuristicSimulation(s.scenario),best=rankScenarios(r)[0];const demoOnly=o.real===0;return `${pageHead('INSIGHT / DECISION SUPPORT','Temuan & Keputusan','Audit sumber bukti dan alur dari observasi sampai rekomendasi sebelum tindakan fisik.',`${button(`${icon('download')} Ekspor laporan`,'export-report','primary')}`)}
 ${note('<strong>Validasi diperlukan:</strong> temuan di bawah merupakan agregasi dari rekaman browser, bukan hasil Gemini yang tervalidasi. Keputusan pengaturan lalu lintas harus dikaji dan disetujui pihak berwenang.')}
 <div class="cards three" style="margin-bottom:17px"><div class="card"><div class="stat-label">REKAMAN YANG DITINJAU</div><div class="stat-value">${o.count}</div><div class="stat-foot">${o.real} manual; ${o.synthetic} sintetis</div></div><div class="card"><div class="stat-label">DURASI BERHENTI RATA-RATA</div><div class="stat-value">${num(o.avgDwell)} <span style="font-size:11px">detik</span></div><div class="stat-foot">Agregasi aritmetis dari catatan tersedia</div></div><div class="card"><div class="stat-label">STATUS EVIDENCE</div><div class="stat-value" style="font-size:19px;margin-top:14px">Belum tervalidasi</div><div class="stat-foot">Observasi terpisah dan kalibrasi diperlukan</div></div></div>
+${renderDecisionBriefCard(s)}
 <div class="two-cols"><section class="card">${cardHeading('Ringkasan temuan','Temuan deterministik dari data yang tersimpan',tag(demoOnly?'HANYA SINTETIS':'CAMPURAN','gold'))}<ul class="list-clean"><li><div class="li-ico">${icon('car',16)}</div><div><strong>${o.pickup} kejadian penjemputan</strong><p>Jumlah berasal dari kategori Jemput yang tercatat. Belum dapat digeneralisasi ke volume lalu lintas total.</p></div></li><li><div class="li-ico">${icon('clock',16)}</div><div><strong>${o.waiting} kejadian menunggu</strong><p>Definisi menunggu mengikuti pilihan petugas saat input, bukan klasifikasi video otomatis.</p></div></li><li><div class="li-ico">${icon('map-pin',16)}</div><div><strong>${o.zoneCount} zona memiliki catatan</strong><p>Distribusi zona perlu dibandingkan dengan durasi sesi yang setara.</p></div></li></ul><div class="callout warning" style="margin-top:13px"><strong>AI Gemini melalui backend</strong>Analisis hanya menggunakan agregat kejadian manual (tanpa catatan bebas, foto, atau identitas). Perlu kunci GEMINI_API_KEY di server. Hasil AI adalah interpretasi yang belum diverifikasi.<div class="form-actions">${button(`${icon('sparkles')} Analisis dengan Gemini`,'ai-insights','primary')}</div></div>${s.aiInsights?`<div class="api-ai-result"><h3>Gemini / Hasil belum tervalidasi</h3><p>${safe(s.aiInsights.result.summary)}</p>${[['Temuan',s.aiInsights.result.findings],['Keterbatasan',s.aiInsights.result.limitations],['Langkah lanjut',s.aiInsights.result.nextSteps]].map(([name,items])=>`<strong>${name}</strong><ul>${items.map(x=>`<li>${safe(x)}</li>`).join('')}</ul>`).join('')}<small>${safe(s.aiInsights.model)} - ${s.aiInsights.sourceEvents} kejadian manual - memerlukan review manusia</small></div>`:''}</section>
 <section class="card">${cardHeading('Rantai keterlacakan','Klik modul terkait untuk meninjau setiap tahapan.')}${[['Data observasi',`${o.count} catatan; ${o.real} manual`, 'goto-monitor','database'],['Asumsi model',`${Object.keys(s.scenario).length} parameter tersimpan`,'goto-simulation','sliders-horizontal'],['Keluaran skenario',`${r.engine==='sumo'?'SUMO demo':'Estimasi heuristik'}; 3 alternatif`,'goto-simulation','git-compare-arrows'],['Interpretasi awal',`${best.id} skor terendah, tidak mengikat`,'goto-simulation','target'],['Laporan','Unduh bukti dan keterbatasan','goto-reports','files']].map((x,i)=>`<button data-action="${x[2]}" class="btn" style="width:100%;border:0;border-bottom:1px solid #edf1f4;border-radius:0;padding:15px 4px;display:flex;justify-content:space-between;text-align:left"><span style="display:flex;align-items:center;gap:11px"><span style="color:#0a4f87">${icon(x[3],19)}</span><span><strong style="display:block;color:#324962">${i+1}. ${x[0]}</strong><small style="font-size:9px;color:#8796a4;font-weight:500">${x[1]}</small></span></span>${icon('chevron-right',15)}</button>`).join('')}</section></div>
 <div class="section-h"><h2>Kriteria penerimaan proposal</h2></div><section class="card"><div class="table-wrap"><table class="data-table"><thead><tr><th>Objektif</th><th>Target</th><th>Metode pengujian</th><th>Status</th></tr></thead><tbody>${[['Deteksi kejadian','F1-score ≥ 0,80','Bandingkan dengan anotasi manusia'],['Estimasi volume','Galat ≤ 20%','Validasi pada sesi terpisah'],['Evaluasi alternatif','A0, A1, A2','Pengulangan SUMO dan sensitivitas'],['Akses pejalan kaki','Jarak dan trade-off','Audit aksesibilitas'],['Audit keputusan','Asumsi dan sumber tercatat','Pengujian data dan log']].map(x=>`<tr><td><strong>${x[0]}</strong></td><td>${x[1]}</td><td>${x[2]}</td><td>${tag('BELUM DIUJI','gold')}</td></tr>`).join('')}</tbody></table></div><p class="footnote">Objektif diambil dari proposal SIMPUL halaman 3. Status tidak akan berubah menjadi "lulus" hanya karena demo berjalan.</p></section>`}
@@ -6932,9 +7411,11 @@ const STALE_MS=1500;
 const ZONE_IDS=new Set(CCTV_ZONES.map(z=>z.id));
 const CLOCK_START={pagi:7*3600,siang:12*3600,sore:17*3600};
 const KIND_LABEL={ojol:'Ojol',pribadi:'Kendaraan pribadi',transjakarta:'Bus Transjakarta',umum:'Kendaraan umum'};
+const makeZoneBucket=()=>({startedAt:new Date().toISOString(),counts:{car:0,motorcycle:0,bus:0},dwellSum:0,dwellCount:0,overThresholdCount:0,countedIds:new Set()});
+const emptyAiWindows=()=>({byZone:Object.fromEntries(CCTV_ZONES.map(z=>[z.id,makeZoneBucket()]))});
 
 const rt={
-  mode:'idle', model:'', tracks:new Map(), seen:new Map(), logged:new Map(),
+  mode:'idle', model:'', tracks:new Map(), seen:new Map(), logged:new Map(), aiWindow:emptyAiWindows(),
   feed:[], dwells:[], frames:[], showZones:true, showLabels:true, stationOpacity:1,
   videoUrl:null, videoTime:0, raf:0, lastPanel:0, root:null, threshold:60, resume:false,
   sim:null, scene:null, cam:null, camAnim:null, preset:'drone', speed:1,
@@ -6959,13 +7440,24 @@ function pushFeed(kind,text){
 }
 function closeTrack(id,t){
   const log=rt.logged.get(id)||{};
+  if(rt.mode==='ai'&&t?.zone&&(Number(t.dwellSec)||0)>=STOP_LOG_SEC){
+    const bucket=rt.aiWindow?.byZone?.[t.zone];
+    if(bucket&&!bucket.countedIds.has(id)){
+      bucket.countedIds.add(id);
+      const cls=clsKey(t.cls),dwell=Number(t.dwellSec)||0;
+      bucket.counts[cls]=(bucket.counts[cls]||0)+1;
+      bucket.dwellSum+=dwell;
+      bucket.dwellCount+=1;
+      if(dwell>=rt.threshold)bucket.overThresholdCount+=1;
+    }
+  }
   if(t?.zone&&log.stop){rt.dwells.push(t.dwellSec||0);pushFeed('leave',`${clsLabel(t.cls)} meninggalkan ${t.zone} setelah ${fmtSec(t.dwellSec||0)}`);}
   rt.logged.delete(id);rt.tracks.delete(id);
 }
 function ingestDetections(detail){
   if(!detail||!Array.isArray(detail.detections))return;
   const source=detail.source==='ai'?'ai':'demo';
-  if(source==='ai'&&rt.mode!=='ai'){rt.mode='ai';rt.tracks.clear();rt.logged.clear();pushFeed('info','Model AI terhubung'+(detail.model?` (${String(detail.model).slice(0,40)})`:''));}
+  if(source==='ai'&&rt.mode!=='ai'){rt.mode='ai';rt.tracks.clear();rt.logged.clear();rt.aiWindow=emptyAiWindows();pushFeed('info','Model AI terhubung'+(detail.model?` (${String(detail.model).slice(0,40)})`:''));}
   if(source==='demo'&&rt.mode==='ai')return;
   if(detail.model)rt.model=String(detail.model).slice(0,40);
   const now=performance.now();
@@ -7004,8 +7496,46 @@ function newSim(){
   resetDetections();
 }
 function resetDetections(){
-  rt.tracks.clear();rt.seen.clear();rt.logged.clear();rt.feed=[];rt.dwells=[];rt.frames=[];
+  rt.tracks.clear();rt.seen.clear();rt.logged.clear();rt.aiWindow=emptyAiWindows();rt.feed=[];rt.dwells=[];rt.frames=[];
   const layer=$('[data-cctv-overlay]');if(layer)layer.innerHTML='';
+}
+function getAiWindowSummary(zone){
+  if(rt.mode!=='ai')return null;
+  const bucket=rt.aiWindow?.byZone?.[zone];
+  if(!bucket)return null;
+  const counts={car:bucket.counts.car||0,motorcycle:bucket.counts.motorcycle||0,bus:bucket.counts.bus||0};
+  let dwellSum=bucket.dwellSum,dwellCount=bucket.dwellCount,overThresholdCount=bucket.overThresholdCount;
+  for(const [id,t] of rt.tracks.entries()){
+    const dwell=Number(t.dwellSec)||0;
+    if(t.zone===zone&&dwell>=STOP_LOG_SEC&&!bucket.countedIds.has(id)){
+      const cls=clsKey(t.cls);
+      counts[cls]=(counts[cls]||0)+1;
+      dwellSum+=dwell;
+      dwellCount+=1;
+      if(dwell>=rt.threshold)overThresholdCount+=1;
+    }
+  }
+  const totalVehicles=counts.car+counts.motorcycle+counts.bus;
+  return {
+    zone,
+    windowStart:bucket.startedAt,
+    windowEnd:new Date().toISOString(),
+    vehicleCountsByClass:counts,
+    totalVehicles,
+    meanDwellSec:dwellCount?Math.round((dwellSum/dwellCount)*100)/100:0,
+    overThresholdCount
+  };
+}
+function resetAiWindow(zone){
+  if(!rt.aiWindow?.byZone?.[zone])return;
+  const retained=new Set();
+  for(const [id,t] of rt.tracks.entries()){
+    if(t.zone===zone&&(Number(t.dwellSec)||0)>=STOP_LOG_SEC)retained.add(id);
+  }
+  const next=makeZoneBucket();
+  next.countedIds=retained;
+  rt.aiWindow.byZone[zone]=next;
+  drawPanels();
 }
 function ensureWorld(){
   if(!rt.scene)rt.scene=getFatmawatiScene();
@@ -7167,6 +7697,25 @@ function drawPanels(){
   if(camLabel){
     const text=rt.follow?['MENGIKUTI','kendaraan terpilih']:cam?[cam.label.toUpperCase(),cam.sub]:['BEBAS','kamera diputar'];
     if(camLabel.dataset.text!==text.join()){camLabel.dataset.text=text.join();camLabel.textContent='';const b=document.createElement('b');b.textContent=text[0];camLabel.append(b,` · ${text[1]}`);}
+  }
+  const cvBtn=root.querySelector('[data-action="cv-signoff-window"]');
+  const cvZoneEl=root.querySelector('[data-cv-zone]');
+  const cvStatusEl=root.querySelector('[data-cv-window-status]');
+  const cvPreviewEl=root.querySelector('[data-cv-preview]');
+  if(cvBtn&&cvZoneEl){
+    const zone=cvZoneEl.value||'Zona A';
+    const summary=getAiWindowSummary(zone);
+    const active=rt.mode==='ai'&&summary;
+    cvBtn.disabled=!(active&&summary.totalVehicles>0);
+    if(cvStatusEl){
+      const pill=cvStatusEl.querySelector('span');
+      if(pill){pill.textContent=active?'AI AKTIF':'PERLU MODEL AI';pill.className=`tag ${active?'green':'slate'}`;}
+    }
+    if(cvPreviewEl){
+      cvPreviewEl.textContent=active
+        ?`${zone}: ${summary.totalVehicles} kend. terhenti · rerata ${fmtSec(summary.meanDwellSec)} · ${summary.overThresholdCount} melewati ambang`
+        :'Hubungkan model AI terlebih dahulu untuk mencatat ringkasan jendela.';
+    }
   }
   drawInspect();
 }
@@ -7373,6 +7922,7 @@ function activateCctv(root,{threshold=60}={}){
       resetDetections();pushFeed('info',`Video lokal dimuat: ${file.name.slice(0,48)}. Tekan Ulang untuk kembali ke 3D.`);
       attachVideo();
     }
+    else if(el.matches('[data-cv-zone]')){drawPanels();return;}
     syncControls();drawPanels();
   });
   bindViewerFullscreen(root.querySelector('[data-viewer]'));
@@ -8069,6 +8619,7 @@ function installCustomSelects(){
 
 
 
+
 // The renderer registry is maintained separately from action orchestration.
 const components = pageRenderers;
 const names=Object.fromEntries(views.map(v=>[v.id,v.label]));
@@ -8237,7 +8788,7 @@ async function connectedAction(action,el){
       const url=key==='weather'?'/api/context/weather?'+part:key==='nearby'?'/api/geo/nearby?'+part:'/api/traffic/live?'+part;
       toast(key==='weather'?'Mengambil data cuacaâ€¦':key==='nearby'?'Mencari fasilitas sekitarâ€¦':'Mengambil snapshot lalu lintasâ€¦');
       const result=await apiRequest(url,{timeout:30000});
-      updateState(s=>({...s,context:{...s.context,[key]:result}}));
+      updateState(s=>({...s,context:{...s.context,[key]:{...result,checkedAt:result?.checkedAt||nowIso()}}}));
       toast(key==='weather'?'Cuaca Open-Meteo berhasil dimuat':key==='nearby'?'Fasilitas dari Overpass berhasil dimuat':'Data TomTom berhasil dimuat');return;
     }
     if(action==='sync-observations'){
@@ -8263,6 +8814,61 @@ async function connectedAction(action,el){
       toast('Analisis Gemini diterima; tetap membutuhkan peninjauan manusia');return;
     }
   }catch(e){toast(e.message||'API gagal diproses');console.error('SIMPUL API',e)}
+}
+const ZONE_SLUGS={'Zona A':'zona-a','Zona B':'zona-b','Zona C':'zona-c','Area A1':'area-a1'};
+const compactUtc=iso=>String(iso||nowIso()).replace(/[^a-zA-Z0-9]/g,'').slice(0,18);
+async function signoffCvWindow(){
+  const zone=document.querySelector('[data-cv-zone]')?.value||'Zona A';
+  const period=document.querySelector('[data-cv-period]')?.value||'Jam sibuk';
+  const reviewerLabel=(document.querySelector('[data-cv-reviewer]')?.value||'').trim();
+  if(reviewerLabel.length<2)return toast('Isi nama atau inisial koordinator (minimal 2 karakter).');
+  const summary=getAiWindowSummary(zone);
+  if(!summary||summary.totalVehicles<=0)return toast('Belum ada kendaraan terhenti dalam jendela AI aktif untuk zona ini.');
+  const windowId=`cv-${ZONE_SLUGS[zone]||'zone'}-${period==='Jam sibuk'?'peak':'off'}-${compactUtc(summary.windowStart)}-${compactUtc(summary.windowEnd)}`.slice(0,80);
+  const payload={windowId,signedOffAt:nowIso(),windowStart:summary.windowStart,windowEnd:summary.windowEnd,reviewerLabel,zone,period,mode:'ai',vehicleCountsByClass:summary.vehicleCountsByClass,meanDwellSec:summary.meanDwellSec,overThresholdCount:summary.overThresholdCount};
+  updateState(s=>({...s,cvReviewedSummaries:[...(s.cvReviewedSummaries||[]).filter(x=>x.windowId!==windowId),{...payload,totalVehicles:summary.totalVehicles,synced:false}].slice(-200)}));
+  resetAiWindow(zone);
+  recordLocalActivity('cv.signoff',`Jendela AI ${zone} (${period}) ditandai untuk tinjauan brief`);
+  if(typeof location!=='undefined'&&location.protocol==='file:')return toast('Ringkasan jendela AI tersimpan di browser (mode offline)');
+  try{
+    const res=await apiRequest('/api/v1/cv-reviewed',{method:'POST',body:payload,timeout:15000});
+    if(res&&(res.status==='inserted'||res.status==='already_present'||res.windowId)){
+      updateState(s=>({...s,cvReviewedSummaries:(s.cvReviewedSummaries||[]).map(x=>x.windowId===windowId?{...x,synced:true}:x)}));
+      return toast('Ringkasan jendela AI tersimpan dan tersinkron ke server');
+    }
+  }catch(_){
+    toast('Ringkasan tersimpan lokal; sinkronisasi server akan disertakan pada brief berikutnya');
+  }
+}
+async function runDecisionBrief(){
+  const snap=getState();
+  const deterministic=buildDeterministicBrief(snap);
+  updateState(s=>({...s,decisionBrief:deterministic}));
+  if(typeof location!=='undefined'&&location.protocol==='file:')return toast('Decision Brief deterministik diperbarui (mode offline file://)');
+  try{
+    toast('Menyusun Decision Brief…');
+    const apiRes=await apiRequest('/api/v1/ai/decision-brief',{method:'POST',body:buildBriefEnvelope(snap),timeout:45000});
+    const normalized=normalizeDecisionBrief(apiRes,getState());
+    updateState(s=>({...s,decisionBrief:normalized}));
+    toast(normalized.llmStatus==='ok'?'Decision Brief + sintesis Gemini siap ditinjau':'Decision Brief deterministik siap (Gemini tidak aktif / fallback)');
+  }catch(e){
+    updateState(s=>({...s,decisionBrief:{...deterministic,llmStatus:'error',executionTrace:{...deterministic.executionTrace,providerStatuses:{...(deterministic.executionTrace?.providerStatuses||{}),gemini:'error'}}}}));
+    toast(`Decision Brief menggunakan fallback deterministik (${e.message||'server error'})`);
+  }
+}
+function loadBriefScenario(el){
+  const target=el.dataset.scenario;
+  if(!['A0','A1','A2'].includes(target))return;
+  const s=getState();
+  const activeBrief=s.decisionBrief||buildDeterministicBrief(s);
+  const item=(activeBrief.brief?.scenarioHypotheses||[]).find(h=>h.scenario===target);
+  if(!item||!item.params)return toast(`Hipotesis ${target} tidak tersedia pada brief saat ini.`);
+  updateState(st=>{
+    const nextScenario={...st.scenario,...item.params};
+    return {...st,scenario:nextScenario,comparisonScenario:target,lastAnalysis:heuristicSimulation(nextScenario)};
+  });
+  recordLocalActivity('brief.scenario',`Parameter hipotesis ${target} dimuat ke estimator heuristik`);
+  toast(`Parameter hipotesis ${target} dimuat ke estimator heuristik (belum terkalibrasi)`);
 }
 async function contextPlusAction(action,el){
   try{
@@ -8448,6 +9054,9 @@ case 'run-simulation':updateState(s=>({...s,lastAnalysis:heuristicSimulation(s.s
 case 'run-sumo':runSumo();break;
 case 'ctx-reverse':case 'ctx-crossings':case 'ctx-airquality':case 'ctx-forecast':case 'ctx-elevation':case 'ctx-history':case 'ctx-holidays':case 'ctx-isochrone':case 'ctx-select-poi':contextPlusAction(action,el);break;
 case 'check-apis':case 'select-geo':case 'load-map':case 'fetch-weather':case 'fetch-traffic':case 'fetch-nearby':case 'sync-observations':case 'pull-observations':case 'ai-insights':connectedAction(action,el);break;
+case 'cv-signoff-window':signoffCvWindow();break;
+case 'ai-decision-brief':runDecisionBrief();break;
+case 'load-brief-scenario':loadBriefScenario(el);break;
 case 'refresh-monitor':refreshMonitor();break;
 case 'export-monitor':monitorCsv();break;
 case 'flush-telemetry':flushTelemetry(false);break;

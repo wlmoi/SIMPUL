@@ -61,7 +61,9 @@ class _ManagedConnection(sqlite3.Connection):
 
 def connect():
     DB.parent.mkdir(parents=True,exist_ok=True)
-    c=sqlite3.connect(DB,timeout=5,factory=_ManagedConnection)
+    c=sqlite3.connect(DB,timeout=8,factory=_ManagedConnection)
+    c.execute('PRAGMA journal_mode=WAL')
+    c.execute('PRAGMA busy_timeout=8000')
     c.execute('CREATE TABLE IF NOT EXISTS observations (id TEXT PRIMARY KEY, content TEXT NOT NULL, created_at TEXT DEFAULT CURRENT_TIMESTAMP)')
     c.execute('''CREATE TABLE IF NOT EXISTS telemetry_outbox (
         event_id TEXT PRIMARY KEY, content TEXT NOT NULL,

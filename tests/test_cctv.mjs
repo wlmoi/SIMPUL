@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
 import {renderCctv,CCTV_ZONES,CAMERA_PRESETS} from '../js/views/cctv.js';
-import {ingestDetections} from '../js/cctv-controller.js';
+import {ingestDetections,getAiWindowSummary,resetAiWindow} from '../js/cctv-controller.js';
 import {getState} from '../js/store.js';
 import {PRIMARY_ROUTES} from '../js/navigation.js';
 import {buildFatmawatiScene} from '../js/sim3d-scene.js';
@@ -18,12 +18,27 @@ assert.match(html,/window\.SIMPUL_CCTV\.push/,'AI integration contract is docume
 assert.ok(!/JORR S · KM|Hutama Karya/.test(html),'Toll cameras are no longer used');
 assert.ok(CAMERA_PRESETS.length>=3);
 
-// Detections are display-only: they must never change stored observations.
+// Demo detections never accumulate an AI window, and display-only detections never change stored observations.
+ingestDetections({source:'demo',detections:[{id:'demo-1',cls:'car',conf:0.9,box:[0.4,0.65,0.08,0.1],zone:'Zona B',dwellSec:45}]});
+assert.equal(getAiWindowSummary('Zona B'),null,'Demo mode must not produce a CV window summary');
 const before=JSON.stringify(getState().observations);
 ingestDetections({source:'ai',model:'test',detections:[{id:'t1',cls:'car',conf:0.9,box:[0.4,0.65,0.08,0.1],zone:'Zona B',dwellSec:70}]});
 ingestDetections({source:'ai',detections:[{id:'bad',cls:'car',box:['x',1,2]}]});
 ingestDetections(null);
 assert.equal(JSON.stringify(getState().observations),before);
+const aiWin=getAiWindowSummary('Zona B');
+assert.equal(aiWin?.totalVehicles,1);
+assert.equal(aiWin?.overThresholdCount,1);
+assert.equal(aiWin?.meanDwellSec,70);
+assert.equal(aiWin?.vehicleCountsByClass?.car,1);
+assert.equal('id' in aiWin,false,'Window summary must not export track IDs');
+resetAiWindow('Zona B');
+assert.equal(getAiWindowSummary('Zona B')?.totalVehicles,0,'Reset clears zone window immediately');
+ingestDetections({source:'ai',detections:[{id:'t1',cls:'car',conf:0.9,box:[0.4,0.65,0.08,0.1],zone:'Zona B',dwellSec:75},{id:'t2',cls:'motorcycle',conf:0.88,box:[0.45,0.66,0.06,0.08],zone:'Zona B',dwellSec:30}]});
+const winAfter=getAiWindowSummary('Zona B');
+assert.equal(winAfter?.totalVehicles,1,'Still-stopped t1 from prior window is not double-counted');
+assert.equal(winAfter?.vehicleCountsByClass?.motorcycle,1);
+assert.equal(getAiWindowSummary('Area A1')?.totalVehicles,0);
 
 // Static scene and camera math.
 const scene=buildFatmawatiScene();

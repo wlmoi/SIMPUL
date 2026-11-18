@@ -118,6 +118,17 @@ export function renderCctv(){
         <div class="cctv-panel-head"><h2>Aktivitas terbaru</h2><small data-feed-count>0 kejadian</small></div>
         <ol class="cctv-feed" data-cctv-feed><li class="cctv-feed-empty">Belum ada kejadian.</li></ol>
       </section>
+      <section class="cctv-panel" data-cv-panel>
+        <div class="cctv-panel-head"><h2>Ringkasan Jendela AI</h2><span data-cv-window-status>${tag('PERLU MODEL AI','slate')}</span></div>
+        <p class="muted" style="font-size:12px;margin:0 0 10px">Catat agregat zona dari deteksi AI aktif untuk bahan <em>Decision Brief</em> (tanpa ID pelacakan, plat nomor, atau wajah).</p>
+        <div style="display:grid;gap:8px;margin-bottom:10px">
+          <label style="font-size:12px;display:grid;gap:4px">Zona pencatatan<select data-cv-zone>${CCTV_ZONES.map(z=>`<option value="${z.id}">${z.id}</option>`).join('')}</select></label>
+          <label style="font-size:12px;display:grid;gap:4px">Periode<select data-cv-period><option value="Jam sibuk">Jam sibuk</option><option value="Luar jam sibuk">Luar jam sibuk</option></select></label>
+          <label style="font-size:12px;display:grid;gap:4px">Koordinator<input type="text" data-cv-reviewer placeholder="Nama / inisial koordinator" maxlength="60" autocomplete="off"></label>
+        </div>
+        <div data-cv-preview style="font-size:12px;margin-bottom:10px;color:#475569">Hubungkan model AI terlebih dahulu untuk mencatat ringkasan jendela.</div>
+        <button type="button" class="btn primary" data-action="cv-signoff-window" disabled>${icon('clipboard-check',16)} Catat ringkasan ke cv_reviewed</button>
+      </section>
       <div class="cctv-next">
         <button type="button" class="btn primary" data-route="vehicles">Analisis masalah ${icon('arrow-right',16)}</button>
         <button type="button" class="btn" data-route="simulation">Simulasi rinci ${icon('arrow-right',16)}</button>

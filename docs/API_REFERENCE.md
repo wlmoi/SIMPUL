@@ -148,3 +148,12 @@ curl 'http://127.0.0.1:8888/api/v1/documents/records?vehicle=Mobil&zone=Zona%20A
 ```
 
 If `SIMPUL_API_TOKEN` is configured, add `Authorization: Bearer <token>` to requests. Real documents must be obtained and used under appropriate authorization, and output requires human review. See `docs/PDF_MAP_INTEGRATION_v1.7.md`.
+
+## Coordinator Decision Brief & CV Window Review API
+
+Single-pass deterministic pre-/post-check pipeline wrapping bounded optional Gemini synthesis ([architecture design](designs/neuro-symbolic-decision-brief.md)). Never returns legal offense determinations (`legalConclusion` is always `'NOT_DETERMINED'`), excludes license plates and enforcement terms, and separates `Area A1` pickup bay metrics (`bayUtilization`) from 12-slot `Zona A/B/C` survey totals.
+
+| Method and endpoint | Operation | Validation & Error Behavior |
+| --- | --- | --- |
+| `POST /api/v1/cv-reviewed` | Idempotently persist coordinator-signed `mode='ai'` CCTV window summary (`windowId`, `zone`, `period`, `vehicleCountsByClass`, `totalVehicles`, `meanDwellSec`, `overThresholdCount`, `reviewerLabel`) | Rejects `mode='demo'` or missing `period` (`422`); same `windowId` + matching SHA-256 `payload_hash` returns `200` `already_present`; conflicting payload returns `409`. |
+| `POST /api/v1/ai/decision-brief` | Run server PDF/CV/context checks, optional single-pass Gemini structured JSON synthesis (`timeout=25s`, `max_output_tokens=1400`), `ScenarioParams` bounds clamp, and blocklist check | Always returns HTTP `200` with complete `brief`, `llmStatus` (`ok`, `unavailable`, `validation_failed`, `error`), `pdfSummary`, and `executionTrace` (falls back deterministically without inventing validated results). |
