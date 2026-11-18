@@ -64,6 +64,22 @@ set data [upload_hw_ila_data $ila]
 set folder $root/reports/$candidate
 file mkdir $folder
 write_hw_ila_data -force -csv_file $folder/stream.csv $data
+set csv [open $folder/stream.csv r]
+set trigger_row {}
+while {[gets $csv row]>=0} {
+    if {[regexp {^[0-9]+,[0-9]+,1,([[:xdigit:]]+)$} [string trim $row] -> word]} {
+        set trigger_row [expr 0x$word]
+        break
+    }
+}
+close $csv
+if {$trigger_row eq ""} {error "ILA capture has no trigger sample"}
+set capture_cycle [expr {($trigger_row&0xffffffff)+1}]
+set capture_edge [expr {($trigger_row>>49)&15}]
+set capture_stage [expr {($trigger_row>>53)&7}]
+set capture_value [expr {($trigger_row>>32)&0xffff}]
+if {$capture_value>=32768} {incr capture_value -65536}
+puts "ILA commit: stage=$capture_stage edge=$capture_edge cycle=$capture_cycle data=$capture_value"
 set msg "PASS device=$fpga firmware_runs=2 cycles=$count outputs=$observed"
 puts $msg
 set out [open $folder/hardware.txt w]; puts $out $msg; close $out
